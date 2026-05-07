@@ -9,18 +9,6 @@
       pkgs = nixpkgs.legacyPackages.${system};
       python = pkgs.python3;
 
-      socketio-client = python.pkgs.buildPythonPackage rec {
-        pname = "socketIO-client";
-        version = "0.5.7.2";
-        format = "setuptools";
-        src = python.pkgs.fetchPypi {
-          inherit pname version;
-          sha256 = "8ba04bcc8d8756dd511ac40215fb155aa11b60f016fcffc9e44fab369e21e575";
-        };
-        propagatedBuildInputs = with python.pkgs; [ requests six websocket-client ];
-        doCheck = false;
-      };
-
       yaspin-2 = python.pkgs.buildPythonPackage rec {
         pname = "yaspin";
         version = "2.5.0";
@@ -50,7 +38,7 @@
           beautifulsoup4
           python-dateutil
           click
-          socketio-client
+          websocket-client
           yaspin-2
         ];
 
@@ -60,9 +48,12 @@
             -e 's/beautifulsoup4 == 4\.11\.1/beautifulsoup4/' \
             -e 's/yaspin == 2\.\*/yaspin/' \
             -e 's/python-dateutil~=2\.8\.1/python-dateutil/' \
-            -e 's/socketIO-client == 0\.5\.7\.2/socketIO-client/' \
+            -e 's/socketIO-client == 0\.5\.7\.2/websocket-client/' \
             -e 's/PySide6 == 6\.\*//' \
             setup.cfg setup.py 2>/dev/null || true
+
+          # Store the auth cookie in ~/.olauth so it is found from any directory.
+          sed -i 's|default=".olauth"|default=os.path.expanduser("~/.olauth")|g' olsync/olsync.py
 
           # Replace the broken QtWebEngine login with a plain requests-based
           # CLI login. PySide6/Chromium crashes with SIGSEGV under Nix due to
@@ -196,11 +187,14 @@ import requests as reqs
 from bs4 import BeautifulSoup
 import json
 import uuid
-from socketIO_client import SocketIO
-import time
+import websocket
 
 LOGIN_URL = "https://www.overleaf.com/login"
 PROJECT_URL = "https://www.overleaf.com/project"
+DASHBOARD_URL = "https://www.overleaf.com/project"
+PROJECT_PAGE_URL = "https://www.overleaf.com/project/{}"
+SOCKET_ID_URL = "https://www.overleaf.com/socket.io/1/?projectId={}"
+SOCKET_URL = "wss://www.overleaf.com/socket.io/1/websocket/{}?projectId={}"
 DOWNLOAD_URL = "https://www.overleaf.com/project/{}/download/zip"
 UPLOAD_URL = "https://www.overleaf.com/project/{}/upload"
 FOLDER_URL = "https://www.overleaf.com/project/{}/folder"
@@ -294,25 +288,61 @@ class OverleafClient(object):
             raise reqs.HTTPError()
 
     def get_project_infos(self, project_id):
-        project_infos = None
+        """Get detailed project infos via WebSocket (replaces broken socketIO_client approach).
 
-        def set_project_infos(a, project_infos_dict, c, d):
-            nonlocal project_infos
-            project_infos = project_infos_dict
+        Overleaf's Socket.IO endpoint is accessed by:
+        1. GET /socket.io/1/?projectId=<id>  -> returns "<socket_id>:..."
+        2. WSS /socket.io/1/websocket/<socket_id>?projectId=<id>&esh=1&ssp=1
+           - recv() the connection acknowledgement
+           - send("joinProjectResponse") to trigger the server response
+           - recv() the JSON payload containing project data
+        """
+        import time
+        project_page_url = PROJECT_PAGE_URL.format(project_id)
 
-        cookie = "GCLB={}; overleaf_session2={}".format(
-            self._cookie.get("GCLB", "") if isinstance(self._cookie, dict) else "",
-            self._cookie["overleaf_session2"] if isinstance(self._cookie, dict) else "",
+        # Step 1: obtain the Socket.IO session id.
+        # Use a session so response cookies (e.g. load-balancer routing) are captured.
+        s = reqs.Session()
+        s.headers.update({"User-Agent": BROWSER_UA})
+        resp = s.get(
+            SOCKET_ID_URL.format(project_id) + f"&t={int(time.time() * 1000)}",
+            headers={"Cookie": self._cookie_str, "Referer": project_page_url},
         )
+        resp.raise_for_status()
+        socket_str = resp.text.split(":")[0]
 
-        socket_io = SocketIO(BASE_URL, params={'t': int(time.time())}, headers={'Cookie': cookie})
-        socket_io.on('connect', lambda: None)
-        socket_io.wait_for_callbacks()
-        socket_io.emit('joinProject', {'project_id': project_id}, set_project_infos)
-        socket_io.wait_for_callbacks()
-        if socket_io.connected:
-            socket_io.disconnect()
-        return project_infos
+        # Build cookie string: original session cookie + any routing cookies the
+        # handshake response set (e.g. GCLB for sticky load-balancer routing).
+        ws_cookie = self._cookie_str
+        extra = "; ".join(f"{k}={v}" for k, v in s.cookies.items()
+                          if k not in self._cookie_str)
+        if extra:
+            ws_cookie += "; " + extra
+
+        # Step 2: WebSocket upgrade.
+        # The server auto-emits joinProjectResponse because projectId is in the
+        # query string — we must NOT send it ourselves, only recv it.
+        ws = websocket.WebSocket()
+        ws.connect(
+            SOCKET_URL.format(socket_str, project_id),
+            header={"User-Agent": BROWSER_UA},
+            cookie=ws_cookie,
+            origin="https://www.overleaf.com",
+            host="www.overleaf.com",
+        )
+        ws.recv()  # Socket.IO connect frame "1::"
+
+        # Loop: skip heartbeat / other frames until joinProjectResponse arrives
+        response = ""
+        for _ in range(20):
+            response = ws.recv()
+            if '"joinProjectResponse"' in response:
+                break
+        ws.close()
+
+        idx = response.find("{")
+        project_info = json.loads(response[idx:])['args'][0]['project']
+        return project_info
 
     def upload_file(self, project_id, project_infos, file_name, file_size, file):
         folder_id = project_infos['rootFolder'][0]['_id']
