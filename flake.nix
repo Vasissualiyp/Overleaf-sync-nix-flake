@@ -362,34 +362,59 @@ class OverleafClient(object):
                     current_overleaf_folder.append(new_folder)
                     folder_id = new_folder['_id']
                     current_overleaf_folder = new_folder['folders']
-        params = {
-            "folder_id": folder_id,
-            "_csrf": self._csrf,
-            "qquuid": str(uuid.uuid4()),
-            "qqfilename": file_name,
-            "qqtotalfilesize": file_size,
-        }
-        r = reqs.post(UPLOAD_URL.format(project_id), headers=self._h(), params=params, files={"qqfile": file})
-        return r.status_code == str(200) and json.loads(r.content)["success"]
+        def _do_upload():
+            file.seek(0)
+            return reqs.post(
+                UPLOAD_URL.format(project_id),
+                headers=self._h({"X-Csrf-Token": self._csrf}),
+                data={
+                    "folder_id": folder_id,
+                    "_csrf": self._csrf,
+                    "qquuid": str(uuid.uuid4()),
+                    "qqfilename": file_name,
+                    "qqtotalfilesize": str(file_size),
+                },
+                files={"qqfile": (file_name, file, "application/octet-stream")},
+            )
+
+        r = _do_upload()
+
+        if r.status_code == 422:
+            # The upload endpoint can only CREATE docs — if one with this name
+            # already exists it returns 422. Delete it first, then re-upload.
+            self.delete_file(project_id, project_infos, file_name)
+            r = _do_upload()
+
+        if not r.ok:
+            raise Exception(f"Upload failed HTTP {r.status_code}: {r.text[:300]}")
+        result = json.loads(r.content)
+        if not result.get("success"):
+            raise Exception(f"Upload rejected by Overleaf: {r.text[:300]}")
+        return True
+
+    def _find_entity(self, project_infos, file_name):
+        """Find a doc or fileRef by name, searching recursively through folders."""
+        base = file_name.split(PATH_SEP)[-1]
+        parts = file_name.split(PATH_SEP)[:-1]
+        folder = project_infos['rootFolder'][0]
+        for part in parts:
+            folder = next((f for f in folder.get('folders', [])
+                           if f['name'].lower() == part.lower()), None)
+            if folder is None:
+                return None
+        return (next((v for v in folder.get('docs', []) if v['name'] == base), None)
+                or next((v for v in folder.get('fileRefs', []) if v['name'] == base), None))
 
     def delete_file(self, project_id, project_infos, file_name):
-        file = None
-        if PATH_SEP in file_name:
-            local_folders = file_name.split(PATH_SEP)[:-1]
-            current_overleaf_folder = project_infos['rootFolder'][0]['folders']
-            for local_folder in local_folders:
-                for remote_folder in current_overleaf_folder:
-                    if local_folder.lower() == remote_folder['name'].lower():
-                        file = next((v for v in remote_folder['docs'] if v['name'] == file_name.split(PATH_SEP)[-1]), None)
-                        current_overleaf_folder = remote_folder['folders']
-                        break
-        else:
-            file = next((v for v in project_infos['rootFolder'][0]['docs'] if v['name'] == file_name), None)
-        if file is None:
+        entity = self._find_entity(project_infos, file_name)
+        if entity is None:
             return False
-        extra = {"X-Csrf-Token": self._csrf}
-        r = reqs.delete(DELETE_URL.format(project_id, file['_id']), headers=self._h(extra), json={})
-        return r.status_code == str(204)
+        r = reqs.delete(
+            DELETE_URL.format(project_id, entity['_id']),
+            headers=self._h({"X-Csrf-Token": self._csrf}),
+            json={},
+        )
+        return r.status_code == 204
 
     def download_pdf(self, project_id):
         extra = {"X-Csrf-Token": self._csrf}
