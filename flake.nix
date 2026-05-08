@@ -344,7 +344,20 @@ class OverleafClient(object):
         project_info = json.loads(response[idx:])['args'][0]['project']
         return project_info
 
+    def _get_csrf_token(self, project_id):
+        """Fetch a fresh CSRF token from the project page (required before uploads)."""
+        resp = reqs.get(PROJECT_PAGE_URL.format(project_id), headers=self._h())
+        if resp.ok:
+            soup = BeautifulSoup(resp.content, 'html.parser')
+            meta = soup.find('meta', {'name': 'ol-csrfToken'})
+            if meta:
+                self._csrf = meta.get('content')
+        return self._csrf
+
     def upload_file(self, project_id, project_infos, file_name, file_size, file):
+        # Always refresh CSRF from the project page — the stored token may be stale.
+        csrf = self._get_csrf_token(project_id)
+
         folder_id = project_infos['rootFolder'][0]['_id']
         if PATH_SEP in file_name:
             local_folders = file_name.split(PATH_SEP)[:-1]
@@ -362,26 +375,37 @@ class OverleafClient(object):
                     current_overleaf_folder.append(new_folder)
                     folder_id = new_folder['_id']
                     current_overleaf_folder = new_folder['folders']
+
+        # Use just the base filename — the folder is addressed via folder_id.
+        base_name = file_name.split(PATH_SEP)[-1]
+
         def _do_upload():
             file.seek(0)
+            # Overleaf's current upload API (2024+):
+            #   folder_id goes in the query string, not the form body.
+            #   Form fields: relativePath="null", name=<basename>, type=<mime>.
+            #   The Fine Uploader qqfilename/qquuid fields are no longer used.
             return reqs.post(
                 UPLOAD_URL.format(project_id),
-                headers=self._h({"X-Csrf-Token": self._csrf}),
+                headers=self._h({
+                    "x-csrf-token": csrf,
+                    "Referer": PROJECT_PAGE_URL.format(project_id),
+                    "Accept": "application/json",
+                    "Cache-Control": "no-cache",
+                }),
+                params={"folder_id": folder_id},
                 data={
-                    "folder_id": folder_id,
-                    "_csrf": self._csrf,
-                    "qquuid": str(uuid.uuid4()),
-                    "qqfilename": file_name,
-                    "qqtotalfilesize": str(file_size),
+                    "relativePath": "null",
+                    "name": base_name,
+                    "type": "application/octet-stream",
                 },
-                files={"qqfile": (file_name, file, "application/octet-stream")},
+                files={"qqfile": (base_name, file, "application/octet-stream")},
             )
 
         r = _do_upload()
 
         if r.status_code == 422:
-            # The upload endpoint can only CREATE docs — if one with this name
-            # already exists it returns 422. Delete it first, then re-upload.
+            # File already exists — delete it first, then re-upload.
             self.delete_file(project_id, project_infos, file_name)
             r = _do_upload()
 
