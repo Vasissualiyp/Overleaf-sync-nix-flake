@@ -1,0 +1,615 @@
+\begin{thebibliography}{76}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Abel et~al.(1997)Abel, Anninos, Zhang, and Norman]{Abel_1997}
+T.~Abel, P.~Anninos, Y.~Zhang, and M.~L. Norman.
+\newblock {Modeling primordial gas in numerical cosmology}.
+\newblock \emph{New Astronomy}, 2:\penalty0 181--207, 1997.
+\newblock \doi{10.1016/S1384-1076(97)00010-9}.
+
+\bibitem[Abel et~al.(2002)Abel, Bryan, and Norman]{abel02}
+T.~Abel, G.~L. Bryan, and M.~L. Norman.
+\newblock {The Formation of the First Star in the Universe}.
+\newblock \emph{Science}, 295:\penalty0 93--98, 2002.
+\newblock \doi{10.1126/science.1063991}.
+
+\bibitem[Barnes and Hut(1986)]{Barnes_Hut_1986}
+J.~Barnes and P.~Hut.
+\newblock A hierarchical o(n log n) force-calculation algorithm.
+\newblock \emph{Nature}, 324:\penalty0 446–449, Dec. 1986.
+\newblock ISSN 0028-0836.
+\newblock \doi{10.1038/324446a0}.
+
+\bibitem[Behroozi et~al.(2013)Behroozi, Wechsler, and Wu]{rockstar_behroozi12}
+P.~S. Behroozi, R.~H. Wechsler, and H.-Y. Wu.
+\newblock {The ROCKSTAR Phase-Space Temporal Halo Finder and the Velocity
+  Offsets of Cluster Cores}.
+\newblock \emph{\apj}, 762:\penalty0 109, 2013.
+\newblock \doi{10.1088/0004-637X/762/2/109}.
+
+\bibitem[Bonnell et~al.(2001)Bonnell, Clarke, Bate, and Pringle]{bonnell01}
+I.~A. Bonnell, C.~J. Clarke, M.~R. Bate, and J.~E. Pringle.
+\newblock {Competitive accretion in embedded stellar clusters}.
+\newblock \emph{\mnras}, 324:\penalty0 573--579, 2001.
+\newblock \doi{10.1046/j.1365-8711.2001.04311.x}.
+
+\bibitem[Bonnor(1956)]{Bonnor_1956}
+W.~B. Bonnor.
+\newblock Boyle’s law and gravitational instability.
+\newblock \emph{Monthly Notices of the Royal Astronomical Society},
+  116:\penalty0 351, Jan. 1956.
+\newblock ISSN 0035-8711.
+\newblock \doi{10.1093/mnras/116.3.351}.
+
+\bibitem[Bromm et~al.(2002)Bromm, Coppi, and Larson]{bromm02}
+V.~Bromm, P.~S. Coppi, and R.~B. Larson.
+\newblock {The Formation of the First Stars. I. The Primordial Star-forming
+  Cloud}.
+\newblock \emph{\apj}, 564:\penalty0 23--51, 2002.
+\newblock \doi{10.1086/323947}.
+
+\bibitem[Chabrier(2003)]{chabrier03}
+G.~Chabrier.
+\newblock {Galactic Stellar and Substellar Initial Mass Function}.
+\newblock \emph{PASP}, 115:\penalty0 763--795, 2003.
+\newblock \doi{10.1086/376392}.
+
+\bibitem[Chen et~al.(2025)Chen, Ho, and Tung]{ho25}
+K.-J. Chen, M.-Y. Ho, and P.-C. Tung.
+\newblock Formation of supersonic turbulence in the primordial star-forming
+  cloud.
+\newblock 2025.
+
+\bibitem[Clark et~al.(2011)Clark, Glover, Smith, Greif, Klessen, and
+  Bromm]{clark11}
+P.~C. Clark, S.~C.~O. Glover, R.~J. Smith, T.~H. Greif, R.~S. Klessen, and
+  V.~Bromm.
+\newblock {The Formation and Fragmentation of Disks Around Primordial
+  Protostars}.
+\newblock \emph{Science}, 331:\penalty0 1040--1042, 2011.
+\newblock \doi{10.1126/science.1198027}.
+
+\bibitem[Ebert(1955)]{Ebert_1955}
+R.~Ebert.
+\newblock Über die verdichtung von h i-gebieten. mit 5 textabbildungen.
+\newblock \emph{Zeitschrift fur Astrophysik}, 37:\penalty0 217, Jan. 1955.
+\newblock ISSN 0372-8331.
+
+\bibitem[Federrath et~al.(2011)Federrath, Sur, Schleicher, Banerjee, and
+  Klessen]{Federrath2011}
+C.~Federrath, S.~Sur, D.~R.~G. Schleicher, R.~Banerjee, and R.~S. Klessen.
+\newblock A new jeans resolution criterion for (m)hd simulations of
+  self-gravitating gas: Application to magnetic field amplification by
+  gravity-driven turbulence.
+\newblock \emph{The Astrophysical Journal}, 731\penalty0 (1):\penalty0 62, Mar.
+  2011.
+\newblock ISSN 0004-637X.
+\newblock \doi{10.1088/0004-637X/731/1/62}.
+
+\bibitem[Galli and Palla(1998)]{Galli_Palla_1998}
+D.~Galli and F.~Palla.
+\newblock {The chemistry of the early Universe}.
+\newblock \emph{A\&A}, 335:\penalty0 403--420, 1998.
+
+\bibitem[Glover and Abel(2008)]{Glover_Abel_2008}
+S.~C.~O. Glover and T.~Abel.
+\newblock {Uncertainties in H$_{2}$ and HD cooling functions for primordial
+  gas}.
+\newblock \emph{\mnras}, 388:\penalty0 1627--1651, 2008.
+\newblock \doi{10.1111/j.1365-2966.2008.13224.x}.
+
+\bibitem[Glover and Jappsen(2007)]{Glover_Jappsen_2007}
+S.~C.~O. Glover and A.-K. Jappsen.
+\newblock Star formation at very low metallicity. i. chemistry and cooling at
+  low densities.
+\newblock \emph{The Astrophysical Journal}, 666\penalty0 (1):\penalty0 1–19,
+  2007.
+\newblock ISSN 1538-4357.
+\newblock \doi{10.1086/519445}.
+
+\bibitem[Gnedin and Draine(2014)]{Gnedin_Draine_2014}
+N.~Y. Gnedin and B.~T. Draine.
+\newblock Line overlap and self-shielding of molecular hydrogen in galaxies.
+\newblock \emph{The Astrophysical Journal}, 795\penalty0 (1):\penalty0 37, Oct.
+  2014.
+\newblock ISSN 0004-637X.
+\newblock \doi{10.1088/0004-637X/795/1/37}.
+
+\bibitem[Greif et~al.(2011)Greif, Springel, White, Glover, Clark, Smith,
+  Klessen, and Bromm]{greif11}
+T.~H. Greif, V.~Springel, S.~D.~M. White, S.~C.~O. Glover, P.~C. Clark, R.~J.
+  Smith, R.~S. Klessen, and V.~Bromm.
+\newblock {Simulations on a Moving Mesh: The Clustered Formation of Population
+  III Protostars}.
+\newblock \emph{\apj}, 737:\penalty0 75, 2011.
+\newblock \doi{10.1088/0004-637X/737/2/75}.
+
+\bibitem[Grudi{\' c} et~al.(2021)Grudi{\' c}, Guszejnov, Hopkins, Offner, and
+  Faucher-Gigu{\`e}re]{STARFORGE_Towa_Grudic_2021}
+M.~Y. Grudi{\' c}, D.~Guszejnov, P.~F. Hopkins, S.~S.~R. Offner, and C.-A.
+  Faucher-Gigu{\`e}re.
+\newblock Starforge: Towards a comprehensive numerical model of star cluster
+  formation and feedback.
+\newblock \emph{Monthly Notices of the Royal Astronomical Society},
+  506:\penalty0 2199\textendash 2231, 0 2021.
+\newblock ISSN 1365-2966.
+\newblock \doi{10.1093/mnras/stab1347}.
+\newblock URL \url{http://dx.doi.org/10.1093/mnras/stab1347}.
+
+\bibitem[Higashi et~al.(2024)Higashi, Susa, Federrath, and Chiaki]{higashi24}
+S.~Higashi, H.~Susa, C.~Federrath, and G.~Chiaki.
+\newblock {Amplification and Saturation of Turbulent Magnetic Fields in
+  Collapsing Primordial Gas Clouds}.
+\newblock \emph{\apj}, 962:\penalty0 158, 2024.
+\newblock \doi{10.3847/1538-4357/ad1524}.
+
+\bibitem[Hirano and Machida(2022)]{hirano_machida22}
+S.~Hirano and M.~N. Machida.
+\newblock {Exponentially Amplified Magnetic Field Eliminates Disk Fragmentation
+  around Population III Protostars}.
+\newblock \emph{\apjl}, 935:\penalty0 L16, 2022.
+\newblock \doi{10.3847/2041-8213/ac85e0}.
+
+\bibitem[Hirano et~al.(2014)Hirano, Hosokawa, Yoshida, Umeda, Omukai, Chiaki,
+  and Yorke]{hirano14}
+S.~Hirano, T.~Hosokawa, N.~Yoshida, H.~Umeda, K.~Omukai, G.~Chiaki, and H.~W.
+  Yorke.
+\newblock {One Hundred First Stars}.
+\newblock \emph{\apj}, 781:\penalty0 60, 2014.
+\newblock \doi{10.1088/0004-637X/781/2/60}.
+
+\bibitem[Hirano et~al.(2023)Hirano, Sakai, and Umeda]{hirano_sakai23}
+S.~Hirano, N.~Sakai, and H.~Umeda.
+\newblock {Formation of first star clusters under the supersonic gas flow}.
+\newblock \emph{\mnras}, 525:\penalty0 5737, 2023.
+\newblock \doi{10.1093/mnras/stad2693}.
+
+\bibitem[Hopkins(2015)]{A_new_class_of_Hopkin_2015}
+P.~F. Hopkins.
+\newblock A new class of accurate, mesh-free hydrodynamic simulation methods.
+\newblock \emph{Monthly Notices of the Royal Astronomical Society},
+  450:\penalty0 53\textendash 110, 0 2015.
+\newblock ISSN 1365-2966.
+\newblock \doi{10.1093/mnras/stv195}.
+\newblock URL \url{http://dx.doi.org/10.1093/mnras/stv195}.
+
+\bibitem[Hopkins(2016)]{Hopkins_2016_CG_MHD}
+P.~F. Hopkins.
+\newblock {A constrained-gradient method to control divergence errors in
+  numerical MHD}.
+\newblock \emph{\mnras}, 462:\penalty0 576--587, 2016.
+\newblock \doi{10.1093/mnras/stw1578}.
+
+\bibitem[Hopkins(2017)]{Hopkins_2017}
+P.~F. Hopkins.
+\newblock Anisotropic diffusion in mesh-free numerical magnetohydrodynamics.
+\newblock \emph{Monthly Notices of the Royal Astronomical Society},
+  466\penalty0 (3):\penalty0 3387–3405, Apr. 2017.
+\newblock ISSN 0035-8711.
+\newblock \doi{10.1093/mnras/stw3306}.
+
+\bibitem[Hopkins and Grudić(2019)]{Hopkins_Grudic_2019}
+P.~F. Hopkins and M.~Y. Grudić.
+\newblock Numerical problems in coupling photon momentum (radiation pressure)
+  to gas.
+\newblock \emph{Monthly Notices of the Royal Astronomical Society},
+  483\penalty0 (3):\penalty0 4187–4196, Mar. 2019.
+\newblock ISSN 0035-8711.
+\newblock \doi{10.1093/mnras/sty3089}.
+
+\bibitem[Hopkins and Raives(2015)]{Hopkins_Raives_2015}
+P.~F. Hopkins and M.~J. Raives.
+\newblock Accurate, meshless methods for magnetohydrodynamics.
+\newblock \emph{Monthly Notices of the Royal Astronomical Society},
+  455\penalty0 (1):\penalty0 51–88, 2015.
+\newblock ISSN 1365-2966.
+\newblock \doi{10.1093/mnras/stv2180}.
+
+\bibitem[Hopkins et~al.(2018)Hopkins, Wetzel, Kereš, Faucher-Giguère,
+  Quataert, Boylan-Kolchin, Murray, Hayward, Garrison-Kimmel, Hummels,
+  Feldmann, Torrey, Ma, Anglés-Alcázar, Su, Orr, Schmitz, Escala, Sanderson,
+  Grudić, Hafen, Kim, Fitts, Bullock, Wheeler, Chan, Elbert, and
+  Narayanan]{FIRE_2}
+P.~F. Hopkins, A.~Wetzel, D.~Kereš, C.-A. Faucher-Giguère, E.~Quataert,
+  M.~Boylan-Kolchin, N.~Murray, C.~C. Hayward, S.~Garrison-Kimmel, C.~Hummels,
+  R.~Feldmann, P.~Torrey, X.~Ma, D.~Anglés-Alcázar, K.-Y. Su, M.~Orr,
+  D.~Schmitz, I.~Escala, R.~Sanderson, M.~Y. Grudić, Z.~Hafen, J.-H. Kim,
+  A.~Fitts, J.~S. Bullock, C.~Wheeler, T.~K. Chan, O.~D. Elbert, and
+  D.~Narayanan.
+\newblock Fire-2 simulations: physics versus numerics in galaxy formation.
+\newblock \emph{Monthly Notices of the Royal Astronomical Society},
+  480\penalty0 (1):\penalty0 800–863, 2018.
+\newblock ISSN 1365-2966.
+\newblock \doi{10.1093/mnras/sty1690}.
+
+\bibitem[Hopkins et~al.(2020)Hopkins, Grudić, Wetzel, Kereš,
+  Faucher-Giguère, Ma, Murray, and Butcher]{Hopkins2020}
+P.~F. Hopkins, M.~Y. Grudić, A.~Wetzel, D.~Kereš, C.-A. Faucher-Giguère,
+  X.~Ma, N.~Murray, and N.~Butcher.
+\newblock Radiative stellar feedback in galaxy formation: Methods and physics.
+\newblock \emph{Monthly Notices of the Royal Astronomical Society},
+  491\penalty0 (3):\penalty0 3702–3729, Jan. 2020.
+\newblock ISSN 0035-8711.
+\newblock \doi{10.1093/mnras/stz3129}.
+
+\bibitem[Hopkins et~al.(2022)Hopkins, Wetzel, Wheeler, Sanderson, Grudić,
+  Sameie, Boylan-Kolchin, Orr, Ma, Faucher-Giguère, Kereš, Quataert, Su,
+  Moreno, Feldmann, Bullock, Loebman, Anglés-Alcázar, Stern, Necib, Choban,
+  and Hayward]{FIRE_3_Updated_Hopkin}
+P.~F. Hopkins, A.~Wetzel, C.~Wheeler, R.~Sanderson, M.~Y. Grudić, O.~Sameie,
+  M.~Boylan-Kolchin, M.~Orr, X.~Ma, C.-A. Faucher-Giguère, D.~Kereš,
+  E.~Quataert, K.-Y. Su, J.~Moreno, R.~Feldmann, J.~S. Bullock, S.~R. Loebman,
+  D.~Anglés-Alcázar, J.~Stern, L.~Necib, C.~R. Choban, and C.~C. Hayward.
+\newblock Fire-3: updated stellar evolution models, yields, and microphysics
+  and fitting functions for applications in galaxy simulations.
+\newblock \emph{Monthly Notices of the Royal Astronomical Society},
+  519\penalty0 (2):\penalty0 3154–3181, 2022.
+\newblock ISSN 1365-2966.
+\newblock \doi{10.1093/mnras/stac3489}.
+
+\bibitem[Hopkins et~al.(2023)Hopkins, Grudic, Su, Wellons, Angles-Alcazar,
+  Steinwandel, Guszejnov, Murray, Faucher-Giguere, Quataert, and
+  Keres]{FORGE_d_in_FIRE_Hopkin_2023}
+P.~F. Hopkins, M.~Y. Grudic, K.-Y. Su, S.~Wellons, D.~Angles-Alcazar, U.~P.
+  Steinwandel, D.~Guszejnov, N.~Murray, C.-A. Faucher-Giguere, E.~Quataert, and
+  D.~Keres.
+\newblock Forge\textquotesingle d in fire: Resolving the end of star formation
+  and structure of agn accretion disks from cosmological initial conditions.
+\newblock 0 2023.
+
+\bibitem[Hosokawa et~al.(2011)Hosokawa, Omukai, Yoshida, and Yorke]{hosokawa11}
+T.~Hosokawa, K.~Omukai, N.~Yoshida, and H.~W. Yorke.
+\newblock {Protostellar Feedback Halts the Growth of the First Stars in the
+  Universe}.
+\newblock \emph{Science}, 334:\penalty0 1250--1253, 2011.
+\newblock \doi{10.1126/science.1207433}.
+
+\bibitem[Hosokawa et~al.(2016)Hosokawa, Hirano, Kuiper, Yorke, Omukai, and
+  Yoshida]{hosokawa16}
+T.~Hosokawa, S.~Hirano, R.~Kuiper, H.~W. Yorke, K.~Omukai, and N.~Yoshida.
+\newblock {Formation of Massive Primordial Stars: Intermittent UV Feedback with
+  Episodic Mass Accretion}.
+\newblock \emph{\apj}, 824:\penalty0 119, 2016.
+\newblock \doi{10.3847/0004-637X/824/2/119}.
+
+\bibitem[Khullar et~al.(2026)Khullar, Grudic, Matzner, and Murray]{khullar2026}
+S.~Khullar, M.~Grudic, C.~Matzner, and N.~Murray.
+\newblock Star formation mitosis: The effects of particle splitting on the star
+  formation outcome.
+\newblock In preparation, 2026.
+
+\bibitem[Kim et~al.(2013)Kim, Abel, Agertz, Bryan, Ceverino, Christensen,
+  Conroy, Dekel, Gnedin, Goldbaum, Guedes, Hahn, Hobbs, Hopkins, Hummels,
+  Iannuzzi, Keres, Klypin, Kravtsov, Krumholz, Kuhlen, Leitner, Madau, Mayer,
+  Moody, Nagamine, Norman, Onorbe, O’Shea, Pillepich, Primack, Quinn, Read,
+  Robertson, Rocha, Rudd, Shen, Smith, Szalay, Teyssier, Thompson, Todoroki,
+  Turk, Wadsley, Wise, Zolotov, Adi, and Collaboration]{AGORA2014}
+J.-h. Kim, T.~Abel, O.~Agertz, G.~L. Bryan, D.~Ceverino, C.~Christensen,
+  C.~Conroy, A.~Dekel, N.~Y. Gnedin, N.~J. Goldbaum, J.~Guedes, O.~Hahn,
+  A.~Hobbs, P.~F. Hopkins, C.~B. Hummels, F.~Iannuzzi, D.~Keres, A.~Klypin,
+  A.~V. Kravtsov, M.~R. Krumholz, M.~Kuhlen, S.~N. Leitner, P.~Madau, L.~Mayer,
+  C.~E. Moody, K.~Nagamine, M.~L. Norman, J.~Onorbe, B.~W. O’Shea,
+  A.~Pillepich, J.~R. Primack, T.~Quinn, J.~I. Read, B.~E. Robertson, M.~Rocha,
+  D.~H. Rudd, S.~Shen, B.~D. Smith, A.~S. Szalay, R.~Teyssier, R.~Thompson,
+  K.~Todoroki, M.~J. Turk, J.~W. Wadsley, J.~H. Wise, Zolotov, Adi, and
+  f.~t.~A. Collaboration.
+\newblock The agora high-resolution galaxy simulations comparison project.
+\newblock \emph{The Astrophysical Journal Supplement Series}, 210\penalty0
+  (1):\penalty0 14, Dec. 2013.
+\newblock ISSN 0067-0049.
+\newblock \doi{10.1088/0067-0049/210/1/14}.
+
+\bibitem[Kim et~al.(2016)Kim, Agertz, Teyssier, Butler, Ceverino, Choi,
+  Feldmann, Keller, Lupi, Quinn, Revaz, Wallace, Gnedin, Leitner, Shen, Smith,
+  Thompson, Turk, Abel, Arraki, Benincasa, Chakrabarti, DeGraf, Dekel,
+  Goldbaum, Hopkins, Hummels, Klypin, Li, Madau, Mandelker, Mayer, Nagamine,
+  Nickerson, O’Shea, Primack, Roca-Fàbrega, Semenov, Shimizu, Simpson,
+  Todoroki, Wadsley, Wise, and Collaboration]{AGORA2016}
+J.-h. Kim, O.~Agertz, R.~Teyssier, M.~J. Butler, D.~Ceverino, J.-H. Choi,
+  R.~Feldmann, B.~W. Keller, A.~Lupi, T.~Quinn, Y.~Revaz, S.~Wallace, N.~Y.
+  Gnedin, S.~N. Leitner, S.~Shen, B.~D. Smith, R.~Thompson, M.~J. Turk,
+  T.~Abel, K.~S. Arraki, S.~M. Benincasa, S.~Chakrabarti, C.~DeGraf, A.~Dekel,
+  N.~J. Goldbaum, P.~F. Hopkins, C.~B. Hummels, A.~Klypin, H.~Li, P.~Madau,
+  N.~Mandelker, L.~Mayer, K.~Nagamine, S.~Nickerson, B.~W. O’Shea, J.~R.
+  Primack, S.~Roca-Fàbrega, V.~Semenov, I.~Shimizu, C.~M. Simpson,
+  K.~Todoroki, J.~W. Wadsley, J.~H. Wise, and Collaboration.
+\newblock The agora high-resolution galaxy simulations comparison project. ii.
+  isolated disk test.
+\newblock \emph{The Astrophysical Journal}, 833\penalty0 (2):\penalty0 202,
+  Dec. 2016.
+\newblock ISSN 0004-637X.
+\newblock \doi{10.3847/1538-4357/833/2/202}.
+
+\bibitem[Klessen and Glover(2023)]{klessen_glover23}
+R.~S. Klessen and S.~C.~O. Glover.
+\newblock {The First Stars: Formation, Properties, and Impact}.
+\newblock \emph{ARA\&A}, 61:\penalty0 65--130, 2023.
+\newblock \doi{10.1146/annurev-astro-071221-053453}.
+
+\bibitem[Komatsu et~al.(2011)]{komatsu11}
+E.~Komatsu et~al.
+\newblock {Seven-year Wilkinson Microwave Anisotropy Probe (WMAP) Observations:
+  Cosmological Interpretation}.
+\newblock \emph{\apjs}, 192:\penalty0 18, 2011.
+\newblock \doi{10.1088/0067-0049/192/2/18}.
+
+\bibitem[Kroupa(2001)]{kroupa01}
+P.~Kroupa.
+\newblock {On the variation of the initial mass function}.
+\newblock \emph{\mnras}, 322:\penalty0 231--246, 2001.
+\newblock \doi{10.1046/j.1365-8711.2001.04022.x}.
+
+\bibitem[Larson(1969)]{Larson_1969}
+R.~B. Larson.
+\newblock {Numerical calculations of the dynamics of collapsing proto-star}.
+\newblock \emph{MNRAS}, 145:\penalty0 271--295, 1969.
+\newblock \doi{10.1093/mnras/145.3.271}.
+
+\bibitem[Latif and Khochfar(2022)]{latif_khochfar22}
+M.~A. Latif and S.~Khochfar.
+\newblock {The birth mass function of Population III stars}.
+\newblock \emph{\apj}, 925:\penalty0 28, 2022.
+\newblock \doi{10.3847/1538-4357/ac3916}.
+
+\bibitem[Levermore(1984)]{Levermore_1984}
+C.~D. Levermore.
+\newblock Relating eddington factors to flux limiters.
+\newblock \emph{Journal of Quantitative Spectroscopy and Radiative Transfer},
+  31\penalty0 (2):\penalty0 149–160, Feb. 1984.
+\newblock ISSN 0022-4073.
+\newblock \doi{10.1016/0022-4073(84)90112-2}.
+
+\bibitem[Li et~al.(2018)Li, Klein, and McKee]{li_klein_mckee18}
+P.~S. Li, R.~I. Klein, and C.~F. McKee.
+\newblock Formation of stellar clusters in magnetized, filamentary infrared
+  dark clouds.
+\newblock \emph{Monthly Notices of the Royal Astronomical Society},
+  473:\penalty0 4220–4241, Jan. 2018.
+\newblock ISSN 0035-8711.
+\newblock \doi{10.1093/mnras/stx2611}.
+
+\bibitem[Machida et~al.(2008)Machida, Omukai, Matsumoto, and
+  Inutsuka]{machida08}
+M.~N. Machida, K.~Omukai, T.~Matsumoto, and S.-i. Inutsuka.
+\newblock {Conditions for the Formation of First-Star Binaries}.
+\newblock \emph{\apj}, 677:\penalty0 813--832, 2008.
+\newblock \doi{10.1086/533434}.
+
+\bibitem[Machida et~al.(2025)Machida, Hirano, and Basu]{machida25}
+M.~N. Machida, S.~Hirano, and S.~Basu.
+\newblock {Effect of Magnetic Field on the Accretion Phase of Population III
+  Star Formation}.
+\newblock \emph{\apj}, 2025.
+\newblock \doi{10.3847/1538-4357/addc56}.
+
+\bibitem[McKee and Tan(2003)]{mckee03}
+C.~F. McKee and J.~C. Tan.
+\newblock {The Formation of Massive Stars from Turbulent Cores}.
+\newblock \emph{\apj}, 585:\penalty0 850--871, 2003.
+\newblock \doi{10.1086/346149}.
+
+\bibitem[Meziani et~al.(2026)Meziani, Hopkins, Grudi{\'c}, Khullar,
+  Faucher-Gigu{\`e}re, and Gandhi]{meziani26}
+N.-E. Meziani, P.~F. Hopkins, M.~Y. Grudi{\'c}, S.~Khullar, C.-A.
+  Faucher-Gigu{\`e}re, and P.~J. Gandhi.
+\newblock {FORGE'd in the Early Universe: The Effect of Protostellar Outflows
+  on Pop III Accretion}.
+\newblock \emph{arXiv e-prints}, 2026.
+
+\bibitem[Murray et~al.(2017)Murray, Chang, Murray, and Pittman]{murray16}
+D.~W. Murray, P.~Chang, N.~W. Murray, and J.~Pittman.
+\newblock {Collapse in Self-gravitating Turbulent Fluids}.
+\newblock \emph{\mnras}, 465:\penalty0 1316--1335, 2017.
+\newblock \doi{10.1093/mnras/stw2796}.
+
+\bibitem[Offner et~al.(2009)Offner, Klein, McKee, and Krumholz]{Offner_2009}
+S.~S.~R. Offner, R.~I. Klein, C.~F. McKee, and M.~R. Krumholz.
+\newblock The effects of radiative transfer on low-mass star formation.
+\newblock \emph{The Astrophysical Journal}, 703:\penalty0 131–149, 2009.
+\newblock ISSN 0004-637X.
+\newblock \doi{10.1088/0004-637X/703/1/131}.
+
+\bibitem[Omukai(2000)]{omukai00}
+K.~Omukai.
+\newblock Protostellar collapse with various metallicities.
+\newblock \emph{The Astrophysical Journal}, 534\penalty0 (2):\penalty0 809, May
+  2000.
+\newblock ISSN 0004-637X.
+\newblock \doi{10.1086/308776}.
+
+\bibitem[Palla et~al.(1983)Palla, Salpeter, and Stahler]{Palla_1983}
+F.~Palla, E.~E. Salpeter, and S.~W. Stahler.
+\newblock {Primordial star formation: the role of molecular hydrogen}.
+\newblock \emph{\apj}, 271:\penalty0 632--641, 1983.
+\newblock \doi{10.1086/161231}.
+
+\bibitem[Penston(1969)]{Penston_1969}
+M.~V. Penston.
+\newblock {Dynamics of self-gravitating gaseous spheres -- III. Analytical
+  results in the free-fall of isothermal cases}.
+\newblock \emph{MNRAS}, 144:\penalty0 425--448, 1969.
+\newblock \doi{10.1093/mnras/144.4.425}.
+
+\bibitem[Prieto et~al.(2011)Prieto, Padoan, Jim{\'e}nez, and Infante]{prieto11}
+J.~Prieto, P.~Padoan, R.~Jim{\'e}nez, and L.~Infante.
+\newblock {Pop.~III stars from turbulent fragmentation at redshift $\sim$11}.
+\newblock \emph{\apjl}, 731:\penalty0 L38, 2011.
+\newblock \doi{10.1088/2041-8205/731/2/L38}.
+
+\bibitem[Pringle and King(2007)]{Pringle_King_2007}
+J.~E. Pringle and A.~King.
+\newblock \emph{Astrophysical Flows}.
+\newblock Cambridge University Press, Cambridge, 2007.
+\newblock ISBN 978-0-521-86936-2.
+\newblock \doi{10.1017/CBO9780511802201}.
+\newblock URL
+  \url{https://www.cambridge.org/core/books/astrophysical-flows/0D8C02C7C5264B1FCAD6FA47DA70902C}.
+
+\bibitem[Prole et~al.(2022)Prole, Clark, Klessen, Glover, and Pakmor]{prole22}
+L.~R. Prole, P.~C. Clark, R.~S. Klessen, S.~C.~O. Glover, and R.~Pakmor.
+\newblock {Primordial magnetic fields in Population III star formation: a
+  magnetised resolution study}.
+\newblock \emph{\mnras}, 516:\penalty0 2223--2242, 2022.
+\newblock \doi{10.1093/mnras/stac2327}.
+
+\bibitem[Prole et~al.(2025)Prole, Sharda, Menon, et~al.]{prole25}
+L.~R. Prole, P.~Sharda, S.~H. Menon, et~al.
+\newblock {Magnetic fields limit the mass of Population III stars even before
+  the onset of protostellar radiation feedback}.
+\newblock \emph{\mnras}, 541:\penalty0 L1--L7, 2025.
+\newblock \doi{10.1093/mnrasl/slaf023}.
+
+\bibitem[Ripamonti and Abel(2004)]{ripamonti_fragmentation_2004}
+E.~Ripamonti and T.~Abel.
+\newblock Fragmentation and the formation of primordial protostars: the
+  possible role of collision-induced emission.
+\newblock \emph{Monthly Notices of the Royal Astronomical Society},
+  348\penalty0 (3):\penalty0 1019--1034, Mar. 2004.
+\newblock ISSN 0035-8711.
+\newblock \doi{10.1111/j.1365-2966.2004.07422.x}.
+\newblock URL \url{https://doi.org/10.1111/j.1365-2966.2004.07422.x}.
+
+\bibitem[Sadanari et~al.(2021)Sadanari, Omukai, Sugimura, Matsumoto, and
+  Tomida]{sadanari21}
+K.~E. Sadanari, K.~Omukai, K.~Sugimura, T.~Matsumoto, and K.~Tomida.
+\newblock {Magnetohydrodynamic effect on first star formation: pre-stellar core
+  collapse and protostar formation}.
+\newblock \emph{\mnras}, 505:\penalty0 4197--4214, 2021.
+\newblock \doi{10.1093/mnras/stab1330}.
+
+\bibitem[Sadanari et~al.(2023)Sadanari, Omukai, Sugimura, Matsumoto, and
+  Tomida]{sadanari23}
+K.~E. Sadanari, K.~Omukai, K.~Sugimura, T.~Matsumoto, and K.~Tomida.
+\newblock {Non-ideal magnetohydrodynamic simulations of the first star
+  formation: the effect of ambipolar diffusion}.
+\newblock \emph{\mnras}, 519:\penalty0 3076--3090, 2023.
+\newblock \doi{10.1093/mnras/stac3724}.
+
+\bibitem[Sharda and Menon(2025)]{sharda_menon25}
+P.~Sharda and S.~H. Menon.
+\newblock {Population III star formation in the presence of turbulence,
+  magnetic fields, and ionizing radiation feedback}.
+\newblock \emph{\mnras}, 540:\penalty0 1745--1764, 2025.
+\newblock \doi{10.1093/mnras/staf732}.
+
+\bibitem[Sharda et~al.(2021)Sharda, Federrath, Krumholz, and
+  Schleicher]{sharda21}
+P.~Sharda, C.~Federrath, M.~R. Krumholz, and D.~R.~G. Schleicher.
+\newblock {Magnetic field amplification in accretion discs around the first
+  stars: implications for the primordial IMF}.
+\newblock \emph{\mnras}, 503:\penalty0 2014--2032, 2021.
+\newblock \doi{10.1093/mnras/stab531}.
+
+\bibitem[Shu(1977)]{Shu_1977}
+F.~H. Shu.
+\newblock Self-similar collapse of isothermal spheres and star formation.
+\newblock \emph{The Astrophysical Journal}, 214:\penalty0 488–497, 1977.
+\newblock ISSN 0004-637X.
+\newblock \doi{10.1086/155274}.
+
+\bibitem[Springel(2010)]{Springel_2010b}
+V.~Springel.
+\newblock E pur si muove: Galilean-invariant cosmological hydrodynamical
+  simulations on a moving mesh.
+\newblock \emph{Monthly Notices of the Royal Astronomical Society},
+  401:\penalty0 791–851, Jan. 2010.
+\newblock ISSN 0035-8711.
+\newblock \doi{10.1111/j.1365-2966.2009.15715.x}.
+
+\bibitem[Stacy and Bromm(2013)]{Stacy_Bromm_2013}
+A.~Stacy and V.~Bromm.
+\newblock Constraining the statistics of population iii binaries.
+\newblock \emph{Monthly Notices of the Royal Astronomical Society},
+  433:\penalty0 1094–1107, Aug. 2013.
+\newblock ISSN 0035-8711.
+\newblock \doi{10.1093/mnras/stt789}.
+
+\bibitem[Stacy et~al.(2010)Stacy, Greif, and Bromm]{stacy10}
+A.~Stacy, T.~H. Greif, and V.~Bromm.
+\newblock {The First Stars: Formation of Binaries and Small Multiple Systems}.
+\newblock \emph{\mnras}, 403:\penalty0 45--60, 2010.
+\newblock \doi{10.1111/j.1365-2966.2009.16113.x}.
+
+\bibitem[Stacy et~al.(2012)Stacy, Greif, and Bromm]{stacy12}
+A.~Stacy, T.~H. Greif, and V.~Bromm.
+\newblock {The First Stars: Mass Growth Under Protostellar Feedback}.
+\newblock \emph{\mnras}, 422:\penalty0 290--309, 2012.
+\newblock \doi{10.1111/j.1365-2966.2012.20605.x}.
+
+\bibitem[Stacy et~al.(2016)Stacy, Bromm, and Lee]{stacy16}
+A.~Stacy, V.~Bromm, and A.~T. Lee.
+\newblock {Building Up the Population III Initial Mass Function from
+  Cosmological Initial Conditions}.
+\newblock \emph{\mnras}, 462:\penalty0 1307--1328, 2016.
+\newblock \doi{10.1093/mnras/stw1728}.
+
+\bibitem[Stacy et~al.(2022)Stacy, McKee, Lee, Klein, and Li]{stacy22}
+A.~Stacy, C.~F. McKee, A.~T. Lee, R.~I. Klein, and P.~S. Li.
+\newblock {Magnetic fields in the formation of the first stars -- II. Results}.
+\newblock \emph{\mnras}, 511:\penalty0 5042--5069, 2022.
+\newblock \doi{10.1093/mnras/stac372}.
+
+\bibitem[Sugimura et~al.(2020)Sugimura, Matsumoto, Hosokawa, Hirano, and
+  Omukai]{sugimura20}
+K.~Sugimura, T.~Matsumoto, T.~Hosokawa, S.~Hirano, and K.~Omukai.
+\newblock {The Birth of a Massive First-star Binary}.
+\newblock \emph{\apjl}, 892:\penalty0 L14, 2020.
+\newblock \doi{10.3847/2041-8213/ab7d37}.
+
+\bibitem[Sugimura et~al.(2023)Sugimura, Matsumoto, Hosokawa, Hirano, and
+  Omukai]{sugimura23}
+K.~Sugimura, T.~Matsumoto, T.~Hosokawa, S.~Hirano, and K.~Omukai.
+\newblock {Formation of Massive and Wide First-star Binaries in Radiation
+  Hydrodynamics Simulations}.
+\newblock \emph{\apj}, 959:\penalty0 17, 2023.
+\newblock \doi{10.3847/1538-4357/ad02fc}.
+
+\bibitem[Susa et~al.(2014)Susa, Hasegawa, and Tominaga]{susa14}
+H.~Susa, K.~Hasegawa, and N.~Tominaga.
+\newblock {The Mass of the First Stars}.
+\newblock \emph{\apj}, 792:\penalty0 32, 2014.
+\newblock \doi{10.1088/0004-637X/792/1/32}.
+
+\bibitem[Tanaka et~al.(2024)Tanaka, Omukai, and Nagakura]{tanaka24}
+K.~E.~I. Tanaka, K.~Omukai, and H.~Nagakura.
+\newblock {Impact of Turbulent Magnetic Fields on Disk Formation and
+  Fragmentation in First Star Formation}.
+\newblock \emph{PASJ}, 76:\penalty0 823, 2024.
+\newblock \doi{10.1093/pasj/psae051}.
+
+\bibitem[Truelove et~al.(1997)Truelove, Klein, McKee, Holliman, Howell, and
+  Greenough]{truelove97}
+J.~K. Truelove, R.~I. Klein, C.~F. McKee, J.~H. Holliman, L.~H. Howell, and
+  J.~A. Greenough.
+\newblock {The Jeans Condition: A New Constraint on Spatial Resolution in
+  Simulations of Isothermal Self-gravitating Gas}.
+\newblock \emph{\apjl}, 489:\penalty0 L179--L183, 1997.
+\newblock \doi{10.1086/310975}.
+
+\bibitem[Wetzel et~al.(2023)Wetzel, Hayward, Sanderson, Garrison-Kimmel,
+  Faucher-Gigu{\`e}re, Kere{\v{s}}, and Hopkins]{wetzel23}
+A.~Wetzel, C.~C. Hayward, R.~E. Sanderson, S.~Garrison-Kimmel, C.-A.
+  Faucher-Gigu{\`e}re, D.~Kere{\v{s}}, and P.~F. Hopkins.
+\newblock {Public Data Release of the FIRE-2 Cosmological Zoom-in Simulations
+  of Galaxy Formation}.
+\newblock \emph{\apjs}, 265:\penalty0 44, 2023.
+\newblock \doi{10.3847/1538-4365/acb99a}.
+
+\bibitem[Wollenberg et~al.(2020)Wollenberg, Glover, Clark, and
+  Klessen]{wollenberg20}
+K.~M.~J. Wollenberg, S.~C.~O. Glover, P.~C. Clark, and R.~S. Klessen.
+\newblock {Formation of the First Stars: The Mass Function and Multiplicity}.
+\newblock \emph{\mnras}, 494:\penalty0 1871--1893, 2020.
+\newblock \doi{10.1093/mnras/staa289}.
+
+\bibitem[Yoshida et~al.(2008)Yoshida, Omukai, and Hernquist]{yoshida08}
+N.~Yoshida, K.~Omukai, and L.~Hernquist.
+\newblock {Protostar Formation in the Early Universe}.
+\newblock \emph{Science}, 321:\penalty0 669--671, 2008.
+\newblock \doi{10.1126/science.1160259}.
+
+\end{thebibliography}

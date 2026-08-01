@@ -1,0 +1,13 @@
+*.aux
+*.thm
+*.xml
+*.toc
+*.bbl
+*.log
+*.fls
+*.out
+*.gz
+*.fdb_latexmk
+methods.pdf
+*.bak
+*(busy)

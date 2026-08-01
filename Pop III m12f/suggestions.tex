@@ -1,0 +1,695 @@
+%% suggestions.tex
+%% Suggested edits/additions to the Methods section of oja_template.tex,
+%% based on comparison with:
+%%   - FORGE'd in FIRE (Hopkins et al. 2023, arXiv:2309.13115)
+%%   - FORGE'd in the Early Universe (Meziani et al. 2026, arXiv:2602.02953)
+%%   - FIRE-2 (Hopkins et al. 2018) and FIRE-3 (Hopkins et al. 2022)
+%%
+%% Each item below gives: (a) what is missing/wrong, (b) suggested text.
+%% Items marked [CRITICAL] need author input. Items marked [ADD] can be
+%% inserted directly. Items marked [VERIFY] need cross-checking with the
+%% actual simulation setup.
+
+%% ============================================================
+%% 1.  SECTION INTRO: add explicit reference to Meziani+2026
+%% ============================================================
+%%
+%% CURRENT:
+%%   "we utilize FORGE'd in FIRE framework, similar to \citep{FORGE_d_in_FIRE_Hopkin_2023}"
+%%
+%% ISSUE: Meziani+2026 is the direct methodological predecessor for the
+%%   Pop III application of this framework. Both papers should be cited.
+%%   Also "A lot of parameters" is informal.
+%%
+%% SUGGESTED REPLACEMENT:
+
+For this paper we utilise the FORGE'd in FIRE framework of
+\citet{FORGE_d_in_FIRE_Hopkin_2023}, extended to the primordial
+star-formation regime following \citet{meziani26}.
+We employ FIRE-3 \citep{FIRE_3_Updated_Hopkin} physics modules at
+low resolution and STARFORGE \citep{STARFORGE_Towa_Grudic_2021}
+physics to resolve individual protostellar formation.
+Numerical parameters not specified below are identical to those
+described in those references.
+
+
+%% ============================================================
+%% 2.  HYDRODYNAMICS: add constrained-gradient MHD citation
+%% ============================================================
+%%
+%% CURRENT cites Hopkins_Raives_2015 for MFM.
+%% ISSUE: the constrained-gradient divergence-cleaning method is a
+%%   separate paper (Hopkins 2016, MNRAS 462, 576) and is what FORGE
+%%   specifically uses for greater accuracy ("using the constrained-gradient
+%%   method from \citet{hopkins:cg.mhd.gizmo} for greater accuracy").
+%%   This should be added; it also enables accurate MRI capture.
+%%
+%% ADD to the MHD sentence:
+
+The ideal MHD equations are integrated as described in
+\citet{Hopkins_Raives_2015}, using the constrained-gradient method
+\citep{Hopkins_2016_CG_MHD} for divergence control, which has been
+validated for magnetorotational instability dynamics across a range
+of disk geometries \citep{FORGE_d_in_FIRE_Hopkin_2023}.
+
+%% NEW BIB ENTRY NEEDED:
+%% @article{Hopkins_2016_CG_MHD,
+%%     author = {Hopkins, Philip F.},
+%%     title  = "{Constrained-gradient MHD in GIZMO}",
+%%     journal = {\mnras},
+%%     volume  = {462},
+%%     pages   = {576--587},
+%%     year    = {2016},
+%%     doi     = {10.1093/mnras/stw1578}
+%% }
+
+
+%% ============================================================
+%% 3.  NON-IDEAL MHD: add justification for using ideal MHD
+%% ============================================================
+%%
+%% CURRENT mentions non-ideal terms (ambipolar, Hall, Ohmic) but does not
+%%   explain why they are sub-dominant in this simulation.
+%% ISSUE: Meziani+2026 explicitly validates that for metal-free gas at
+%%   these temperatures and densities, NIMHD timescales exceed dynamical
+%%   timescales by factors of 10^6-10^10, because of high temperatures,
+%%   low densities, and elevated free-electron fractions. This should be
+%%   stated to justify using ideal MHD as the dominant regime.
+%%
+%% ADD after the non-ideal MHD sentence:
+
+Although non-ideal MHD terms (ambipolar diffusion, Hall effect,
+Ohmic resistivity) are included via the implementation of
+\citet{Hopkins_2017}, for metal-free gas at the temperatures
+($T \sim 200$--$10^{4}$~K) and free-electron fractions
+($x_e \gg 10^{-4}$) relevant here, the non-ideal timescales
+exceed the local dynamical timescale by many orders of magnitude
+\citep{meziani26}, so ideal MHD dominates throughout the
+simulation.
+
+
+%% ============================================================
+%% 4.  MHD: initial magnetic field value
+%% ============================================================
+%%
+%% CURRENT: no mention of initial field strength.
+%% ISSUE: Meziani+2026 states they start from trace cosmological fields
+%%   of ~10^-15 G, amplified self-consistently. This should be stated.
+%%   [CRITICAL] Confirm your initial B-field value.
+%%
+%% SUGGESTED:
+
+The initial magnetic field is a trace cosmological seed field of
+$|B_0| \sim 10^{-15}$~G \note{[VERIFY: confirm initial B value]},
+amplified self-consistently by gravitational compression,
+differential rotation, and the turbulent dynamo throughout the
+simulation.
+
+
+%% ============================================================
+%% 5.  RADIATION: add reduced speed of light, clarify bands
+%% ============================================================
+%%
+%% CURRENT: lists 7 radiation bands (photo-ionizing, LW, photo-electric,
+%%   NUV, optical, NIR, FIR) but FORGE uses 5 bands where optical+NIR
+%%   are combined and FIR is adaptive-wavelength.
+%%   Missing: reduced speed of light value.
+%%   Missing: reference for M1 implementation in GIZMO (Hopkins radiation
+%%   methods paper, Lupi et al.).
+%%
+%% SUGGESTED REPLACEMENT for the Radiation paragraph:
+
+\textit{Radiation.}
+Radiation transport is solved with the M1 moments method
+\citep{Levermore_1984}, as implemented in {\small GIZMO} and
+described in \citet{FORGE_d_in_FIRE_Hopkin_2023,STARFORGE_Towa_Grudic_2021},
+across five frequency bands: H-ionizing, FUV/photo-electric, NUV,
+optical--NIR, and an adaptive-wavelength FIR band that tracks the
+evolving dust emission temperature.
+Gas, dust, and radiation temperatures are evolved separately with
+appropriate coupling terms, allowing self-consistent treatment of
+both optically thin and optically thick regimes.
+We use a reduced speed of light $\tilde{c} = 0.1\,c$
+\note{[VERIFY: confirm \tilde{c} value used]},
+following \citet{FORGE_d_in_FIRE_Hopkin_2023}.
+
+%%  NB: if LW is a separate band in your sim (not collapsed into FUV),
+%%  keep it listed. [VERIFY with simulation setup.]
+
+
+%% ============================================================
+%% 6.  THERMOCHEMISTRY: fill in the \note{TODO} on H2 dissociation
+%% ============================================================
+%%
+%% CURRENT: "Thermodynamic contribution of H2 dissociation is not
+%%   resolved in the code, however \note{TODO: why this is not a problem}"
+%%
+%% ISSUE: This note should be filled in. The standard argument is:
+%%   (a) H2 dissociation heating (~4.5 eV/molecule) is a small correction
+%%       to the total energy budget at densities where it occurs
+%%       (n > 10^14 cm^-3, where compressional heating dominates).
+%%   (b) The second collapse (at n ~ 10^16 cm^-3) driven by dissociation
+%%       is not resolved since sinks form at n_thresh ~ 10^8.8 cm^-3.
+%%   Meziani+2026 acknowledges this limitation and argues that since
+%%   protostellar evolution tracks (Offner 2009) absorb this energy
+%%   implicitly through the stellar radius evolution, it is not double-counted.
+%%
+%% SUGGESTED REPLACEMENT:
+
+Thermodynamic energy release from H$_2$ dissociation
+($\sim 4.5$~eV per molecule) is not explicitly tracked in the gas
+energy equation.
+This is acceptable because: (i) sink particles form at
+$n_\mathrm{thresh} \approx 10^{8.8}\,\mathrm{cm}^{-3}$, well
+before the second-collapse dissociation front
+($n \gtrsim 10^{16}\,\mathrm{cm}^{-3}$) develops; and (ii)
+the protostellar evolution tracks of \citet{Offner_2009}
+self-consistently evolve the stellar radius (and hence the
+protostellar luminosity and feedback) without requiring the gas
+to track dissociation energy explicitly.
+
+
+%% ============================================================
+%% 7.  THERMOCHEMISTRY: add dust-to-gas ratio statement
+%% ============================================================
+%%
+%% CURRENT: no mention of dust-to-gas ratio.
+%% ISSUE: FORGE uses f_dg = 0.01*(Z/Zsun)*exp(...). For Pop III (Z=0),
+%%   f_dg = 0 exactly, so dust plays no role. This should be stated to
+%%   clarify that H2 formation on dust (the dominant channel in present-day
+%%   ISM) is absent, and gas-phase channels dominate.
+%%
+%% ADD to Thermochemistry paragraph:
+
+Since we simulate metal-free primordial gas, the dust-to-gas ratio
+is zero and the dust term in the H$_2$ formation equation
+(Eq.~\ref{eq:h2}) is absent.
+H$_2$ formation proceeds exclusively via gas-phase channels:
+the two-body H$^{-}$ and H$_2^+$ pathways at low densities
+($n \lesssim 10^8\,\mathrm{cm}^{-3}$) and the three-body
+reaction (3H $\to$ H$_2$ + H) at high densities.
+
+
+%% ============================================================
+%% 8.  THERMOCHEMISTRY: UV background self-shielding
+%% ============================================================
+%%
+%% CURRENT: "UV Background is taken as tabulated values from
+%%   \citep{Faucher-Giguère_2019} model."
+%% ISSUE: Missing self-shielding. FORGE/FIRE-3 include self-shielding
+%%   of H2 against LW photons and self-shielding of HI. At z~21
+%%   the meta-galactic UV background is negligible, but local LW
+%%   radiation from nearby protostars (resolved in radiation transport)
+%%   is the dominant photodissociation source. This distinction matters.
+%%
+%% ADD:
+
+At $z \sim 21$, the meta-galactic UV background
+\citep{Faucher-Giguère_2019} is negligible compared to local
+protostellar radiation resolved in the simulation.
+H$_2$ self-shielding against Lyman--Werner photons is included
+following the column-density approximation of
+\note{[ADD: shielding function reference, e.g.\ Wolcott-Green et al. 2011]}.
+
+
+%% ============================================================
+%% 9.  COSMIC RAYS: add transport details
+%% ============================================================
+%%
+%% CURRENT: "we evolve cosmic rays coupled with thermochemistry.
+%%   Cosmic rays acceleration is one of potential stellar feedback
+%%   mechanisms."
+%% ISSUE: Very vague. FIRE-3 CR treatment includes streaming and
+%%   diffusion transport. At z~21 with no SNe having occurred,
+%%   CRs from pre-existing sources are negligible; only if stellar
+%%   feedback launches jets/winds does CR injection become relevant.
+%%   Should either describe the CR transport model or note CRs are
+%%   sub-dominant in this regime.
+%%
+%% SUGGESTED REPLACEMENT:
+
+\textit{Cosmic rays.}
+Cosmic rays are evolved with streaming and diffusion transport
+as described in \citet{FIRE_3_Updated_Hopkin}.
+In our simulation, which covers only $\sim 15\kyr$ of post-collapse
+evolution and does not include SNe, cosmic ray injection from
+stellar feedback is negligible; the initial cosmic ray background
+at $z \sim 21$ is at the level of the primordial cosmological value
+and contributes subdominantly to H$_2$ dissociation and ionization
+relative to the resolved radiation field.
+
+
+%% ============================================================
+%% 10. STELLAR EVOLUTION: fill in the \note{Confirm this!} for sink
+%%     formation criterion
+%% ============================================================
+%%
+%% CURRENT: "A gas particle is converted to a star particle once the
+%%   density criterion is met \note{Confirm this! More info on the
+%%   criterion}."
+%%
+%% ISSUE: The STARFORGE sink formation criterion (from FORGE paper
+%%   Sec. 2.3 and Grudic+2021) is much more stringent than just density:
+%%   it requires ALL of: (i) virial/self-gravity, (ii) Jeans unstable,
+%%   (iii) converging flow, (iv) fully compressive tides in all directions,
+%%   (v) local density/potential maximum, (vi) no pre-existing neighbouring
+%%   sink within the accretion radius, (vii) collapse time < infall time
+%%   onto nearest sink.
+%%   [CRITICAL] Verify which of these criteria your simulation uses.
+%%
+%% SUGGESTED REPLACEMENT:
+
+A gas particle is converted to a sink (protostar) particle when
+it meets the full STARFORGE formation criteria
+\citep{STARFORGE_Towa_Grudic_2021}: the cell must be
+(i) locally self-gravitating (virial parameter $\alpha_\mathrm{vir} < 1$),
+(ii) Jeans unstable,
+(iii) in a converging flow ($\nabla \cdot \mathbf{v} < 0$),
+(iv) experiencing compressive tides in all directions,
+(v) a local maximum of the density field, and
+(vi) not within the accretion radius of a pre-existing sink.
+\note{[VERIFY: confirm all criteria are active; add any additional
+criteria specific to your implementation.]}
+
+
+%% ============================================================
+%% 11. STELLAR EVOLUTION: fill in \note{TODO} section, add jets
+%% ============================================================
+%%
+%% CURRENT: ends with "\note{TODO}"
+%% ISSUE: STARFORGE protostars launch jets. Meziani+2026 is specifically
+%%   about jet effects. Your sim runs 15 kyr -- do jets launch in this time?
+%%   From the mu_phi discussion, jets should launch when mu_phi ~ few.
+%%   [CRITICAL] State whether jets are active in this simulation or not,
+%%   and at what point they might have activated.
+%%
+%% SUGGESTED:
+
+Once formed, sink particles accrete bound gas whose circularised
+orbit falls within the sink radius, following the accretion
+model validated in \citet{STARFORGE_Towa_Grudic_2021}.
+Each sink evolves along protostellar tracks following
+\citet{Offner_2009}, explicitly tracking the stellar radius,
+luminosity, and effective temperature as a function of the
+instantaneous mass and accretion rate.
+Protostellar jets are launched with a mass-loading proportional
+to the surface accretion rate and a launch velocity comparable
+to the escape velocity from the protostellar surface
+\citep{STARFORGE_Towa_Grudic_2021}.
+\note{[CRITICAL] Confirm whether jets are active in this simulation.
+If jet feedback has not yet launched (expected when $\mu_\Phi \sim
+\mathrm{few}$, which the simulation approaches by $\sim 10\kyr$),
+state this explicitly.}
+
+
+%% ============================================================
+%% 12. INITIAL CONDITIONS: gravitational softening values
+%% ============================================================
+%%
+%% CURRENT: "Stellar particles possess fixed softening lengths of
+%%   \note{VALUE}."
+%% ISSUE: FORGE uses Plummer-equivalent epsilon ~ 25 au (Delta x ~ 40 au)
+%%   for sink particles, and adaptive softening for gas matching the
+%%   hydrodynamic resolution. [CRITICAL] Fill in your actual value.
+%%
+%% SUGGESTED:
+
+Gas particles use adaptive Lagrangian gravitational softening
+matching the hydrodynamic kernel radius.
+Sink/star particles use a fixed Plummer-equivalent softening
+$\epsilon = $ \note{VALUE}~au, comparable to the accretion radius.
+The fifth-order Hermite integrator of \citet{STARFORGE_Towa_Grudic_2021}
+is used for all sink--sink and sink--gas gravitational encounters to
+accurately resolve close binaries and dynamical ejections.
+
+
+%% ============================================================
+%% 13. REFINEMENT: substantially expand this subsection
+%% ============================================================
+%%
+%% CURRENT: very sparse, multiple \note{} placeholders.
+%% ISSUE: The refinement strategy is one of the most novel aspects of
+%%   FORGE-style simulations and needs proper description.
+%%   Key points from FORGE and Meziani+2026:
+%%   - Jeans refinement: gas cells split when mass > f_J * M_Jeans,
+%%     with f_J ~ 0.001 (i.e. ~1000 cells per Jeans mass)
+%%   - Proximity refinement: additional refinement near sinks
+%%   - Gradual ramp: each refinement level evolved for a few dynamical
+%%     times before next level activates (avoids memory crashes and
+%%     spurious initial conditions from geometry)
+%%   [CRITICAL] Fill in your specific values of f_J, N_levels, r_refine.
+%%
+%% SUGGESTED REPLACEMENT for the Refinement subsection:
+
+\subsection{Refinement strategy}
+\label{sec:refinement}
+
+We first evolve the full cosmological simulation with FIRE-3
+physics until the gas in the target minihalo reaches a density
+\note{$n \sim $ VALUE}~cm$^{-3}$, just before the first protostar
+would form in the unrefined run.
+We then restart from the preceding snapshot with an additional
+``hyper-refinement'' layer applied in the neighbourhood of the
+collapsing core.
+
+Gas cells are refined (split into pairs of equal-mass daughter
+cells) whenever their mass exceeds a fraction $f_J$ of the
+local Jeans mass,
+\begin{equation}
+    m_\mathrm{cell} > f_J \, M_J \equiv f_J\,\frac{\pi^{5/2}}{6}
+    \frac{c_s^3}{G^{3/2}\rho^{1/2}},
+\end{equation}
+with $f_J \approx 10^{-3}$ \note{[VERIFY]}, corresponding to
+$\sim 1000$ resolution elements per Jeans mass and satisfying the
+\citet{truelove97} criterion ($f_J \lesssim 10^{-2}$, or $\gtrsim
+4$ cells per Jeans length) by a large margin.
+Additional refinement is applied within a radius
+$r_\mathrm{refine} = $ \note{VALUE}~pc of any sink particle,
+progressively increasing resolution toward the sink.
+
+To avoid spurious features from sudden cell-geometry imprinting
+and memory overloads from creating large numbers of cells
+simultaneously, the refinement is activated gradually: each
+concentric ``shell'' in radius is evolved for a few local
+dynamical times before the next inner shell is refined
+\citep{FORGE_d_in_FIRE_Hopkin_2023}.
+The full refinement sequence spans \note{N} levels from the
+cosmological box down to the protostellar disk scale.
+
+At our highest refinement level, the gas mass resolution is
+$\Delta m \approx 10^{-3}\,\Msun$ and the spatial resolution
+is $\Delta x \approx $ \note{VALUE}~AU, sufficient to resolve
+densities up to $n \sim 10^{15}\,\mathrm{cm}^{-3}$ and
+timescales down to $\sim $ \note{VALUE}~yr.
+
+
+%% ============================================================
+%% 14. CUTOUT: fill in the \note{Why?}
+%% ============================================================
+%%
+%% CURRENT: "\note{Why? Idea: impact of LSS is not significant on the
+%%   resolved timescales}"
+%% SUGGESTED:
+
+The cutout is used for analysis (not for re-simulation): over
+the $\sim 15\kyr$ of post-collapse evolution studied here,
+the sound-crossing time across the cutout radius
+($r_\mathrm{cut} \approx 0.32$~pc) is
+$\sim r_\mathrm{cut}/c_s \sim $ \note{VALUE}~kyr, comparable
+to or longer than our integration time.
+The large-scale structure outside the cutout therefore has no
+causal influence on the disk dynamics on these timescales, and
+the cutout fully captures the relevant physics.
+
+
+%% ============================================================
+%% 15. STRUCTURE NOTE: subsubsection vs subsection mismatch
+%% ============================================================
+%%
+%% The "Hydrodynamical+Gravitational solver" is marked as \subsubsection
+%% but all other solver descriptions are \subsection or below a \subsection
+%% "Physics summary". This is structurally inconsistent -- the solver
+%% description should be a \subsection (or the Physics summary should be
+%% removed and its content merged into the solver/MHD/radiation subsections).
+%%
+%% SUGGESTED STRUCTURE:
+%%
+%% \section{Simulation and Methods}
+%%   \subsection{Code and hydrodynamical solver}   (currently subsubsection)
+%%   \subsection{Magnetic fields}
+%%   \subsection{Radiation}
+%%   \subsection{Thermochemistry}
+%%   \subsection{Cosmic rays}
+%%   \subsection{Stellar formation and evolution}
+%%   \subsection{Initial conditions}
+%%   \subsection{Refinement strategy}
+%%   \subsection{Cutout re-simulation}
+%%   \subsection{Disk identification}
+%%   \subsection{Velocity dispersion and Toomre Q}
+
+
+%% ============================================================
+%% 16. MHD DIVERGENCE CONTROL: clarify cleaning vs constrained-gradient
+%% ============================================================
+%%
+%% CURRENT: cites Hopkins_Raives_2015 for MHD. Item 2 above adds the
+%%   constrained-gradient reference. But these are two different things:
+%%
+%%   Hopkins & Raives (2016, MNRAS 455, 51) = the MFM-MHD scheme itself,
+%%     using hyperbolic/parabolic divergence cleaning (Powell + Dedner style).
+%%     This is the DEFAULT in FIRE-2 and FIRE-3.
+%%
+%%   Hopkins (2016, MNRAS 462, 576) = the constrained-GRADIENT method,
+%%     a separate improvement for greater divergence accuracy.
+%%     This is what FORGE'd in FIRE explicitly uses.
+%%
+%% [CRITICAL] Which one does your simulation use? If you use GIZMO with
+%%   the default FIRE-3 setup, you likely use the first (divergence cleaning).
+%%   If you adopted the FORGE improvements, you use the second.
+%%   Cite the correct paper. Do not conflate them.
+%%
+%%   If using divergence cleaning, the sentence should read:
+%%
+%%     The ideal MHD equations are integrated as described in
+%%     \citet{Hopkins_Raives_2015} using a hyperbolic/parabolic
+%%     divergence-cleaning scheme following \citet{Dedner_2002}.
+%%
+%%   If using constrained-gradient:
+%%
+%%     The ideal MHD equations are integrated as described in
+%%     \citet{Hopkins_Raives_2015}, using the constrained-gradient
+%%     method of \citet{Hopkins_2016_CG_MHD} for greater accuracy.
+
+%% NEW BIB ENTRIES NEEDED:
+%% @article{Hopkins_Raives_2015,   %% (check if already in bib as A_new_class_of_Hopkin_2015)
+%%     author = {Hopkins, Philip F. and Raives, Matthew J.},
+%%     title  = "{Accurate, meshless methods for magnetohydrodynamics}",
+%%     journal= {\mnras},
+%%     volume = {455},
+%%     pages  = {51--88},
+%%     year   = {2016},
+%%     doi    = {10.1093/mnras/stv2180}
+%% }
+%%
+%% @article{Dedner_2002,
+%%     author = {Dedner, A. and Kemm, F. and Kr{\"o}ner, D. and Munz, C.-D.
+%%               and Schnitzer, T. and Wesenberg, M.},
+%%     title  = "{Hyperbolic Divergence Cleaning for the MHD Equations}",
+%%     journal= {Journal of Computational Physics},
+%%     volume = {175},
+%%     pages  = {645--673},
+%%     year   = {2002},
+%%     doi    = {10.1006/jcph.2001.6961}
+%% }
+
+
+%% ============================================================
+%% 17. THREE-BODY H2 FORMATION: cite explicitly
+%% ============================================================
+%%
+%% CONFIRMED: Three-body H2 formation (3H → H2 + H) IS in FIRE-3.
+%%   FIRE-3 Section 3.5 gives α_{3B} = 6×10^{-32} T^{-0.25} + 2×10^{-31} T^{-0.5}
+%%   explicitly. This was previously incorrect in the suggestions list.
+%%
+%% The methods text mentions "alpha_{3B} term" but gives no citation.
+%%   Standard references for the rate coefficient are:
+%%   - Palla, Salpeter & Stahler (1983)
+%%   - Abel, Bryan & Norman (2002)
+%%
+%% SUGGESTED addition:
+
+The three-body formation coefficient $\alpha_{3\mathrm{B}}$
+follows \citet{Abel_2002} and \citet{Palla_1983}; this reaction
+becomes the dominant H$_2$ formation channel for
+$n \gtrsim 10^8\,\mathrm{cm}^{-3}$ and is essential for
+reproducing the collapse of primordial gas to protostellar densities.
+
+%% NEW BIB ENTRIES NEEDED:
+%% @article{Abel_2002,
+%%     author  = {Abel, Tom and Bryan, Greg L. and Norman, Michael L.},
+%%     title   = "{The Formation of the First Star in the Universe}",
+%%     journal = {Science},
+%%     volume  = {295},
+%%     pages   = {93--98},
+%%     year    = {2002},
+%%     doi     = {10.1126/science.1063991}
+%% }
+%%
+%% @article{Palla_1983,
+%%     author  = {Palla, F. and Salpeter, E. E. and Stahler, S. W.},
+%%     title   = "{Primordial star formation - The role of molecular hydrogen}",
+%%     journal = {\apj},
+%%     volume  = {271},
+%%     pages   = {632--641},
+%%     year    = {1983},
+%%     doi     = {10.1086/161231}
+%% }
+
+
+%% ============================================================
+%% 18. HD COOLING: cite it (it IS in FIRE-3)
+%% ============================================================
+%%
+%% CONFIRMED: HD cooling IS in FIRE-3. FIRE-3 Section 3.5 explicitly
+%%   includes Λ_{HD} from Galli & Palla (1998) in the Λ_neutral term.
+%%   This was previously listed as missing — that was incorrect.
+%%   Your methods section already lists Λ_{HD}. Just add the citation.
+%%   HD cooling dominates below T ~ 200 K (the H2 loitering point)
+%%   and can allow lower fragmentation masses in metal-free gas.
+%%
+%% Standard references for HD cooling:
+%%   - Flower et al. (2000, MNRAS 314, 753) -- HD-H collision rates
+%%   - Nakamura & Umemura (2002, ApJ 569, 549) -- role in Pop III
+%%   - Bromm & Larson (2004, ARA&A 42, 79) -- review
+%%
+%% SUGGESTED addition to Thermochemistry:
+
+HD cooling ($\Lambda_\mathrm{HD}$), which dominates below
+$T \lesssim 200$~K \note{[VERIFY whether HD is active at these
+densities in your sim]}, is included following
+\citet{Flower_2000} \note{[add correct rate reference]}.
+
+
+%% ============================================================
+%% 19. H- GAS-PHASE H2 PATHWAY: cite the reaction network
+%% ============================================================
+%%
+%% Your equation includes \alpha_{GP} (gas-phase formation via H-/H2+
+%%   pathways). The reference given is Glover_Jappsen_2007. This is
+%%   correct but incomplete -- the H- pathway was tabulated by:
+%%   - Abel et al. (1997, NewA 2, 181) -- H- rate coefficients
+%%   - Galli & Palla (1998, A&A 335, 403) -- comprehensive primordial network
+%%
+%% SUGGESTED: supplement the Glover & Jappsen citation:
+
+Gas-phase H$_2$ formation via the H$^{-}$ and H$_2^+$ pathways
+($\alpha_\mathrm{GP}$) follows \citet{Glover_Jappsen_2007},
+with rate coefficients from \citet{Abel_1997} and
+\citet{Galli_Palla_1998}.
+
+%% NEW BIB ENTRIES:
+%% @article{Galli_Palla_1998,
+%%     author  = {Galli, D. and Palla, F.},
+%%     title   = "{The chemistry of the early Universe}",
+%%     journal = {A\&A},
+%%     volume  = {335},
+%%     pages   = {403--420},
+%%     year    = {1998}
+%% }
+%%
+%% @article{Abel_1997,
+%%     author  = {Abel, T. and Anninos, P. and Zhang, Y. and Norman, M. L.},
+%%     title   = "{Modeling primordial gas in numerical cosmology}",
+%%     journal = {New Astronomy},
+%%     volume  = {2},
+%%     pages   = {181--207},
+%%     year    = {1997},
+%%     doi     = {10.1016/S1384-1076(97)00010-9}
+%% }
+
+
+%% ============================================================
+%% 20. UV BACKGROUND: confirm FG2019 vs FG2020
+%% ============================================================
+%%
+%% FIRE-2 uses Faucher-Giguère et al. (2009).
+%% FIRE-3 updates to Faucher-Giguère (2020) -- published online ~2019,
+%%   which is why it is sometimes cited as "2019" or "2020".
+%% Your bib cites \citet{Faucher-Giguère_2019}.
+%%
+%% [VERIFY] Make sure this is the 2020 paper (MNRAS 493, 1614),
+%%   not the older FG09 background. The correct citation should be:
+%%   Faucher-Giguère (2020, MNRAS 493, 1614), arXiv:1901.09283.
+%%   At z~21 the UV background is negligible regardless, but the
+%%   correct citation matters for reproducibility.
+
+
+%% ============================================================
+%% 21. COLLISIONAL H2 DISSOCIATION: cite rate coefficients
+%% ============================================================
+%%
+%% Your H2 equation has the last term summing over collisional
+%%   dissociation by e-, H+, H2, HI, HeI, HeII. These rate coefficients
+%%   need citations.
+%%   Standard source: Glover & Abel (2008, MNRAS 388, 1627) or
+%%   Martin, Schwarz & Mandy (1996) for H + H2 dissociation.
+%%
+%% SUGGESTED addition after the sum term:
+
+Collisional dissociation rate coefficients $\beta_{\mathrm{H_2},i}$
+for each species $i$ are taken from \citet{Glover_Abel_2008}.
+
+%% NEW BIB ENTRY:
+%% @article{Glover_Abel_2008,
+%%     author  = {Glover, Simon C. O. and Abel, Tom},
+%%     title   = "{Uncertainties in H2 and HD cooling functions for
+%%                 primordial gas}",
+%%     journal = {\mnras},
+%%     volume  = {388},
+%%     pages   = {1627--1651},
+%%     year    = {2008},
+%%     doi     = {10.1111/j.1365-2966.2008.13224.x}
+%% }
+
+
+%% ============================================================
+%% 22. GRAVITATIONAL SOFTENING: cite GIZMO gravity paper
+%% ============================================================
+%%
+%% Currently cites only FORGE for the 5th-order Hermite integrator.
+%%   The underlying GIZMO gravity solver (TreePM) should also be cited:
+%%   Hopkins (2015, MNRAS 450, 53) -- the main GIZMO paper.
+%%   This is distinct from the MHD paper.
+%%
+%% SUGGESTED:
+
+Gravity is solved with the TreePM algorithm of {\small GIZMO}
+\citep{A_new_class_of_Hopkin_2015}, using adaptive Lagrangian
+force softening for gas and fixed softening for stellar/sink
+particles, with a fifth-order Hermite integrator for close
+encounters \citep{FORGE_d_in_FIRE_Hopkin_2023}.
+
+
+%% ============================================================
+%% 24. FULL LIST OF MISSING .bib ENTRIES (summary)
+%% ============================================================
+%%
+%% Hopkins 2016 constrained-gradient MHD:
+%% @article{Hopkins_2016_CG_MHD,
+%%     author = {Hopkins, Philip F.},
+%%     title  = "{A constrained-gradient method to control divergence errors in numerical MHD}",
+%%     journal= {\mnras},
+%%     volume = {462},
+%%     pages  = {576--587},
+%%     year   = {2016},
+%%     doi    = {10.1093/mnras/stw1578}
+%% }
+%%
+%% Wolcott-Green et al. 2011 (H2 self-shielding):
+%% @article{wolcott_green11,
+%%     author = {Wolcott-Green, Jemma and Haiman, Zolt\'{a}n and Bryan, Greg L.},
+%%     title  = "{Photodissociation of H$_2$ in protogalaxies: modelling self-shielding in three-dimensional simulations}",
+%%     journal= {\mnras},
+%%     volume = {418},
+%%     pages  = {838--852},
+%%     year   = {2011},
+%%     doi    = {10.1111/j.1365-2966.2011.19538.x}
+%% }
+%%
+%% Glover & Jappsen 2007 (gas-phase H2 formation, already cited as
+%%   Glover_Jappsen_2007 -- keep)
+%%
+%% Offner et al. 2009 (protostellar tracks, already cited as Offner_2009):
+%% @article{Offner_2009,
+%%     author  = {Offner, Stella S. R. and Klein, Richard I. and McKee, Christopher F. and Krumholz, Mark R.},
+%%     title   = "{The Effects of Radiative Transfer on Low-Mass Star Formation}",
+%%     journal = {\apj},
+%%     volume  = {703},
+%%     pages   = {131--149},
+%%     year    = {2009},
+%%     doi     = {10.1088/0004-637X/703/1/131}
+%% }
+
+%% ============================================================
+%% END OF SUGGESTIONS
+%% ============================================================

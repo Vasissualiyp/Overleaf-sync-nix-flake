@@ -1,0 +1,5 @@
+PWD /home/vasilii/Software/Overleaf-sync-nix-flake/Pop III m12f
+INPUT /nix/store/z22g7l2iaraqc2jxdjjrnd0wvm8w8xz4-texlive-combined-full-2025-final/share/texmf-var/web2c/texmf.cnf
+INPUT /nix/store/z22g7l2iaraqc2jxdjjrnd0wvm8w8xz4-texlive-combined-full-2025-final/share/texmf-var/web2c/pdftex/pdflatex.fmt
+INPUT comparison.tex
+OUTPUT comparison.log

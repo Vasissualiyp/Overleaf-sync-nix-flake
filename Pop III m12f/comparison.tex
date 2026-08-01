@@ -1,0 +1,244 @@
+%% comparison.tex
+%% Rewritten "Comparison to previous Pop III simulations" section.
+%% Replace \section{Comparison...} through the end of that section
+%% in oja_template.tex with this content.
+%% ============================================================
+
+\section{Comparison to previous Pop~III simulations}
+\label{sec:disc_comparison}
+
+Our simulation combines three features that, taken together, are
+uncommon in the existing literature: fully cosmological initial
+conditions, radiation-MHD with resolved individual protostellar
+formation (STARFORGE), and $15\kyr$ of post-collapse evolution in a
+halo progenitor of a Milky Way-mass system.
+Below we compare our results in each dimension to prior work.
+
+% -----------------------------------------------------------
+\subsection*{Fragmentation and sink counts}
+
+The $\sim 60$ sink formation events we observe over $15\kyr$ place
+our simulation at the high end of the published range.
+Early simulations with cosmological initial conditions found
+2--5 fragments per halo within the first few hundred years
+\citep{greif11, clark11}, while longer integrations over
+$\sim 5\kyr$ recovered $\sim 10$ sinks \citep{stacy12}.
+The radiation-hydrodynamic cosmological zoom-ins of
+\citet{latif_khochfar22} across five minihaloes produced up to 23
+stars per halo (55 total), with masses $0.1$--$37\,\Msun$ and a
+slope $\mathrm{d}N/\mathrm{d}M \propto M^{-1.18}$.
+The systematic study of \citet{wollenberg20} with 45 controlled
+simulations (varying rotation and turbulence) found 5--20 sinks per
+halo, confirming that fragmentation is highly stochastic and sensitive
+to initial conditions.
+
+Our fragment count likely reflects three compounding factors.
+First, our $15\kyr$ integration is substantially longer than most
+published runs, allowing many cycles of instability, collapse, and
+re-accretion.
+Second, cosmological initial conditions from the m12f progenitor
+provide asymmetric, turbulent infall that continually replenishes
+the outer disk and seeds new unstable structures.
+Third, our mass-to-flux ratio remains comfortably supercritical
+($\mu_\Phi \gg 1$) for most of the simulation, so magnetic fields
+do not suppress fragmentation here as they do in some studies
+\citep{stacy22, machida25}.
+The high fragment count is not unprecedented: \citet{latif_khochfar22}
+obtained comparable numbers with RHD (no MHD), and
+\citet{prole22} showed that sink counts increase monotonically with
+resolution without converging, suggesting our result may be a lower
+bound.
+\note{It would be worth quantifying: how many unique sink \textit{formation}
+events occur vs the $\sim 30$ surviving at $15\kyr$? Stating the total
+event count vs snapshot count separately would strengthen this comparison.}
+
+% -----------------------------------------------------------
+\subsection*{Role of the large-scale environment}
+
+A key distinction between our simulation and most previous work is
+the identity of the host halo.
+At the epoch of first collapse ($z \sim 21$), the m12f progenitor is
+a $\sim 10^5$--$10^6\,\Msun$ minihalo -- comparable in mass to those
+studied in most other work -- but it is embedded in a large-scale
+overdensity destined to grow to $M_\mathrm{vir} \sim 10^{12}\,\Msun$
+by $z = 0$.
+The most directly comparable simulation, \citet{meziani26}, targets
+the m09 halo whose progenitor at $z \sim 14$ resides in a quieter
+environment (reaching $\sim 2 \times 10^9\,\Msun$ at $z = 0$),
+and finds a \textit{single} Pop~III protostar growing to
+$\sim 27\,\Msun$ over $31\kyr$ -- in stark contrast to our
+$\sim 60$-fragment cluster.
+Although this comparison is a single pair of halos, the contrast
+suggests that large-scale environment may be a key driver of whether
+Pop~III star formation produces a single massive object or a
+protostellar cluster.
+The overdense filamentary infall geometry of the m12f progenitor
+naturally seeds higher angular momentum, more complex disk structure,
+and stronger turbulence than the more isolated m09 environment.
+\citet{ho25} showed that infall into dark-matter potential wells
+drives supersonic turbulence ($\mathcal{M} \sim 2$--$4$) across all
+minihaloes; the m12f overdensity likely places our halo toward the
+high-$\mathcal{M}$ end of this distribution.
+Testing this environmental dependence statistically will require a
+suite of cosmological RMHD zoom-ins spanning a range of $z=0$ halo
+masses.
+\note{Can we quantify the infall rate or Mach number in our simulation
+and compare directly to Meziani+2026? A concrete number (e.g.\ higher
+$\mathcal{M}$ or mass infall rate onto the disk) would make this
+environmental argument much more compelling than a qualitative claim.}
+
+% -----------------------------------------------------------
+\subsection*{Stellar mass growth and accretion rates}
+
+The total stellar mass of $\sim 200\,\Msun$ at $15\kyr$ is broadly
+consistent with canonical Pop~III accretion rates.
+\citet{stacy10} found $\dot{M} \sim 10^{-3}\,\Msun\,\mathrm{yr}^{-1}$
+sustained over $\sim 5\kyr$; integrating this rate over $15\kyr$
+gives $\sim 15\,\Msun$, far less than we find, reflecting our larger
+sink count sharing a common reservoir rather than a single accreting
+object.
+Our time-averaged rate of $\sim 10^{-2}\,\Msun\,\mathrm{yr}^{-1}$
+(across all sinks) is at the high end of the range
+$10^{-4}$--$10^{-2}\,\Msun\,\mathrm{yr}^{-1}$ found by
+\citet{hirano14} across 100 minihaloes, again consistent with a
+particularly turbulent, high-infall-rate environment.
+
+The power-law growth $M_* \propto t^{2.08}$ confirms the
+$M_* \propto t^2$ scaling found by \citet{murray16} in simulations of
+self-gravitating turbulent collapse, where the density inside the
+sphere of influence converges to $\rho \propto r^{-3/2}$ and
+Keplerian infall gives $\dot{M} \propto t$.
+Our slightly super-quadratic exponent likely reflects the additional
+contribution of continued cosmological infall sustaining the gas
+reservoir at large radii, absent in the isolated box setup of
+\citet{murray16}.
+The POPSICLE simulations of \citet{sharda_menon25} produce a single
+most-massive protostar of $\sim 65\,\Msun$ within $5\kyr$ in their
+RMHD run; our total mass of $\sim 200\,\Msun$ is distributed across
+$\sim 30$ surviving sinks at $15\kyr$, implying a characteristic
+fragment mass of $\sim 5$--$7\,\Msun$, consistent with
+fragmentation-induced starvation redistributing mass from the most
+massive object to the cluster population \citep{prole22}.
+\citet{sugimura20} and \citet{sugimura23} produced massive Pop~III
+binaries with individual masses $>30\,\Msun$ at separations
+$>2000\,\AU$; the two most massive sinks in our simulation -- which
+dominate the mass budget throughout -- may represent an analogous
+central binary, with the surrounding cluster population arising
+from subsequent disk fragmentation.
+
+% -----------------------------------------------------------
+\subsection*{Star formation efficiency}
+
+The star formation efficiency we find ($f_* \sim 50$--$80\%$ within
+the disk at $15\kyr$) is high compared to both present-day values
+($\sim 1$--$10\%$) and to other Pop~III simulations.
+\citet{hirano_sakai23} report $\epsilon_\mathrm{III} \sim 10^{-2}$
+in their large halo sample at the point of initial collapse; our
+higher integrated value reflects the longer post-collapse integration
+time and the lack of negative feedback mechanisms that would quench
+accretion.
+Radiative feedback is included in our simulation (M1 radiation
+transport), but within the $15\kyr$ of evolution covered here no
+protostar has yet grown sufficiently massive and contracted
+sufficiently to launch an ionising H{\small II} region that would
+reverse the accretion flow.
+\citet{hosokawa11} found that UV feedback halts accretion at
+$\sim 43\,\Msun$ for a single protostar on a $\sim 10^5$ yr
+Kelvin-Helmholtz timescale; with our mass distributed across
+many objects, no individual protostar yet dominates the radiative
+output, and the global accretion efficiency remains high.
+This suggests that the high SFE we observe is a transient feature of
+the early accretion phase; longer integrations incorporating
+protostellar contraction and UV feedback would be required to
+determine final stellar masses and the termination of star formation.
+\note{Confirm whether protostellar jets are active in the simulation
+by $15\kyr$. If so, their momentum injection would be the dominant
+early feedback channel before UV feedback, and should be mentioned
+here. Meziani+2026 find jets launch when $\mu_\Phi \sim \mathrm{few}$,
+which our inner disk approaches by $\sim 10\kyr$.}
+
+% -----------------------------------------------------------
+\subsection*{Protostellar mass function}
+
+Our protostellar mass function (PMF) at $15\kyr$ has a high-mass
+slope $\alpha = -0.99^{+0.14}_{-0.14}$, shallower than the Salpeter
+slope ($-2.35$) but broadly consistent with other Pop~III simulations
+that find top-heavy, log-flat distributions.
+\citet{latif_khochfar22} find $\alpha \approx -1.18$ across five
+halos with RHD; \citet{stacy16} and \citet{greif11} both report
+roughly log-flat mass functions extending from sub-solar to
+$\gtrsim 10\,\Msun$.
+We emphasise that our PMF is a snapshot at $15\kyr$, not a final IMF:
+all sinks are still actively accreting, no radiative feedback has
+terminated accretion, and the population will be further shaped by
+continued mergers, ejections, and eventual UV feedback
+\citep{hosokawa11, hosokawa16, stacy16}.
+\note{The two most massive sinks dominate the mass budget. What are
+their individual masses at $15\kyr$? If either exceeds $\sim 20$--$30\,\Msun$
+it would be useful to compare directly to Hosokawa+2011 (single-star
+UV feedback limit) and Stacy+2016 (binary with feedback).
+Also: are the most massive sinks still accreting rapidly, or has their
+accretion stalled due to local gas depletion?}
+The $\sim 52\%$ merger fraction and $\sim 23\%$ ejection fraction
+we observe are consistent with the $\sim 50\%$ and $\sim 25\%$
+values of \citet{stacy12} and the $\sim 30\%$ ejection rate of
+\citet{wollenberg20}.
+\citet{latif_khochfar22} report an unusually high ejection fraction
+of $\sim 70\%$, which they attribute to the strong three-body
+interactions driven by the radiative heating of the disk; the lower
+fraction in our simulation may reflect the slower build-up of
+radiation pressure in a multi-sink cluster where no single object
+yet dominates.
+
+% -----------------------------------------------------------
+\subsection*{Magnetic field evolution}
+
+Our mass-to-flux ratio evolves from $\mu_\Phi \sim 100$--$300$ at
+early times to $\mu_\Phi \lesssim 1$ in the inner disk by $10\kyr$,
+with magnetic energy growing by $\sim 4$ orders of magnitude.
+This evolution is more dramatic than the $\mu_\Phi \sim 10$--$100$
+reported by \citet{machida08} in idealised MHD simulations, likely
+because our longer integration time allows more flux accumulation by
+differential rotation winding and compression.
+\citet{higashi24} demonstrated that the turbulent small-scale dynamo
+amplifies fields to 30--50\% of equipartition during the primordial
+collapse phase; our highly supercritical starting point and the
+continued amplification we observe are consistent with this picture.
+
+Despite this amplification, disk fragmentation in our simulation
+remains vigorous throughout, in contrast to the strong suppression
+found in some MHD simulations.
+\citet{machida25} systematically varied initial field strength from
+$B_0 = 10^{-20}$ to $10^{-4}$ G and found that even the weakest
+field suppresses fragmentation and drives protostellar mergers within
+the first $\sim 1000$~yr -- a timescale much shorter than our run.
+\citet{stacy22} found only two secondary sinks in cosmological MHD
+runs.
+The key difference is that our simulation starts from a highly
+supercritical configuration ($\mu_\Phi \sim 300$) and remains in the
+fragmentation-permitting regime ($\mu_\Phi > 1$) for the majority of
+the $15\kyr$.
+Magnetic braking and flux-freezing act on a timescale long compared
+to the free-fall time at the disk scale, so fragmentation proceeds
+largely unimpeded while the field is amplified gradually from below.
+Only toward the end of our simulation does the inner disk approach
+the magnetically subcritical threshold; at this point,
+\citet{meziani26} find that protostellar jets are launched, a phase
+not yet reached in our $15\kyr$ window.
+\note{It would be valuable to measure the magnetic energy power spectrum
+at late times to assess whether turbulent dynamo action is contributing
+to the amplification, or whether flux-freezing and winding alone account
+for the $4$-decade magnetic energy growth. Our resolution may not be
+sufficient to resolve the turbulent dynamo (see Higashi+2024 who find
+$N_J \gtrsim 64$ cells per Jeans length is needed); explicitly stating
+the Jeans resolution achieved would let the reader judge this.}
+In contrast, \citet{sadanari21} and \citet{sadanari23} found that
+ambipolar diffusion is dynamically subdominant in primordial gas
+(diffusion heating always smaller than compressional heating), broadly
+consistent with our non-ideal MHD treatment where ideal MHD dominates
+throughout \citep{meziani26}.
+\note{The tanaka24 citation used elsewhere in the paper (``turbulent
+magnetic fields reduce but do not eliminate fragmentation'') should be
+verified -- the exact paper identity is uncertain. If this is Sadanari
+et al.\ 2024 (arXiv:2405.15045 on turbulent B-fields in first-star
+disks), update the bib key and add the reference here.}

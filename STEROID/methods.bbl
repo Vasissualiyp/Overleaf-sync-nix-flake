@@ -1,0 +1,1085 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{nty/global//global/global/global}
+  \entry{cvxpylayers}{inproceedings}{}{}
+    \name{author}{6}{}{%
+      {{hash=AA}{%
+         family={Agrawal},
+         familyi={A\bibinitperiod},
+         given={Akshay},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=AB}{%
+         family={Amos},
+         familyi={A\bibinitperiod},
+         given={Brandon},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=BS}{%
+         family={Barratt},
+         familyi={B\bibinitperiod},
+         given={Shane},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=BS}{%
+         family={Boyd},
+         familyi={B\bibinitperiod},
+         given={Stephen},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=DS}{%
+         family={Diamond},
+         familyi={D\bibinitperiod},
+         given={Steven},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=KJZ}{%
+         family={Kolter},
+         familyi={K\bibinitperiod},
+         given={J.\bibnamedelima Zico},
+         giveni={J\bibinitperiod\bibinitdelim Z\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{AA+1}
+    \strng{fullhash}{AAABBSBSDSKJZ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{booktitle}{Advances in Neural Information Processing Systems (NeurIPS)}
+    \field{title}{Differentiable Convex Optimization Layers}
+    \field{volume}{32}
+    \field{year}{2019}
+  \endentry
+
+  \entry{PPL2008}{article}{}{}
+    \name{author}{3}{}{%
+      {{hash=BR}{%
+         family={Bagnara},
+         familyi={B\bibinitperiod},
+         given={Roberto},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=HPM}{%
+         family={Hill},
+         familyi={H\bibinitperiod},
+         given={Patricia\bibnamedelima M.},
+         giveni={P\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=ZE}{%
+         family={Zaffanella},
+         familyi={Z\bibinitperiod},
+         given={Enea},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BRHPMZE1}
+    \strng{fullhash}{BRHPMZE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \verb{doi}
+    \verb 10.1016/j.scico.2007.08.001
+    \endverb
+    \field{number}{1--2}
+    \field{pages}{3\bibrangedash 21}
+    \field{title}{The {P}arma {P}olyhedra {L}ibrary: Toward a Complete Set of Numerical Abstractions for the Analysis and Verification of Hardware and Software Systems}
+    \field{volume}{72}
+    \field{journaltitle}{Science of Computer Programming}
+    \field{year}{2008}
+  \endentry
+
+  \entry{Bakarji2022}{article}{}{}
+    \name{author}{4}{}{%
+      {{hash=BJ}{%
+         family={Bakarji},
+         familyi={B\bibinitperiod},
+         given={Joseph},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=CJ}{%
+         family={Callaham},
+         familyi={C\bibinitperiod},
+         given={Jared},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=BSL}{%
+         family={Brunton},
+         familyi={B\bibinitperiod},
+         given={Steven\bibnamedelima L.},
+         giveni={S\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+      {{hash=KJN}{%
+         family={Kutz},
+         familyi={K\bibinitperiod},
+         given={J.\bibnamedelima Nathan},
+         giveni={J\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BJ+1}
+    \strng{fullhash}{BJCJBSLKJN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \verb{doi}
+    \verb 10.1038/s43588-022-00355-5
+    \endverb
+    \field{pages}{834\bibrangedash 844}
+    \field{title}{Dimensionally Consistent Learning with {B}uckingham {Pi}}
+    \field{volume}{2}
+    \field{journaltitle}{Nature Computational Science}
+    \field{year}{2022}
+  \endentry
+
+  \entry{Bemporad2002}{article}{}{}
+    \name{author}{4}{}{%
+      {{hash=BA}{%
+         family={Bemporad},
+         familyi={B\bibinitperiod},
+         given={Alberto},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={Morari},
+         familyi={M\bibinitperiod},
+         given={Manfred},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=DV}{%
+         family={Dua},
+         familyi={D\bibinitperiod},
+         given={Vivek},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=PEN}{%
+         family={Pistikopoulos},
+         familyi={P\bibinitperiod},
+         given={Efstratios\bibnamedelima N.},
+         giveni={E\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BA+1}
+    \strng{fullhash}{BAMMDVPEN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \verb{doi}
+    \verb 10.1016/S0005-1098(01)00174-1
+    \endverb
+    \field{number}{1}
+    \field{pages}{3\bibrangedash 20}
+    \field{title}{The Explicit Linear Quadratic Regulator for Constrained Systems}
+    \field{volume}{38}
+    \field{journaltitle}{Automatica}
+    \field{year}{2002}
+  \endentry
+
+  \entry{Boyd2004}{book}{}{}
+    \name{author}{2}{}{%
+      {{hash=BS}{%
+         family={Boyd},
+         familyi={B\bibinitperiod},
+         given={Stephen},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=VL}{%
+         family={Vandenberghe},
+         familyi={V\bibinitperiod},
+         given={Lieven},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Cambridge University Press}%
+    }
+    \strng{namehash}{BSVL1}
+    \strng{fullhash}{BSVL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \verb{doi}
+    \verb 10.1017/CBO9780511804441
+    \endverb
+    \field{title}{Convex Optimization}
+    \field{year}{2004}
+  \endentry
+
+  \entry{BoydADMM2011}{article}{}{}
+    \name{author}{5}{}{%
+      {{hash=BS}{%
+         family={Boyd},
+         familyi={B\bibinitperiod},
+         given={Stephen},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=PN}{%
+         family={Parikh},
+         familyi={P\bibinitperiod},
+         given={Neal},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=CE}{%
+         family={Chu},
+         familyi={C\bibinitperiod},
+         given={Eric},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=PB}{%
+         family={Peleato},
+         familyi={P\bibinitperiod},
+         given={Borja},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=EJ}{%
+         family={Eckstein},
+         familyi={E\bibinitperiod},
+         given={Jonathan},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BS+1}
+    \strng{fullhash}{BSPNCEPBEJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \verb{doi}
+    \verb 10.1561/2200000016
+    \endverb
+    \field{number}{1}
+    \field{pages}{1\bibrangedash 122}
+    \field{title}{Distributed Optimization and Statistical Learning via the Alternating Direction Method of Multipliers}
+    \field{volume}{3}
+    \field{journaltitle}{Foundations and Trends in Machine Learning}
+    \field{year}{2011}
+  \endentry
+
+  \entry{Buckingham1914}{article}{}{}
+    \name{author}{1}{}{%
+      {{hash=BE}{%
+         family={Buckingham},
+         familyi={B\bibinitperiod},
+         given={Edgar},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BE1}
+    \strng{fullhash}{BE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \verb{doi}
+    \verb 10.1103/PhysRev.4.345
+    \endverb
+    \field{number}{4}
+    \field{pages}{345\bibrangedash 376}
+    \field{title}{On Physically Similar Systems; Illustrations of the Use of Dimensional Equations}
+    \field{volume}{4}
+    \field{journaltitle}{Physical Review}
+    \field{year}{1914}
+  \endentry
+
+  \entry{volesti}{misc}{}{}
+    \name{author}{2}{}{%
+      {{hash=CA}{%
+         family={Chalkis},
+         familyi={C\bibinitperiod},
+         given={Apostolos},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=FV}{%
+         family={Fisikopoulos},
+         familyi={F\bibinitperiod},
+         given={Vissarion},
+         giveni={V\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CAFV1}
+    \strng{fullhash}{CAFV1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{note}{R package and C++ library}
+    \field{title}{volesti: Volume Approximation and Sampling of Convex Bodies}
+    \verb{url}
+    \verb https://github.com/GeomScale/volesti
+    \endverb
+    \field{year}{2021}
+  \endentry
+
+  \entry{Ciarlet2002}{book}{}{}
+    \name{author}{1}{}{%
+      {{hash=CPG}{%
+         family={Ciarlet},
+         familyi={C\bibinitperiod},
+         given={Philippe\bibnamedelima G.},
+         giveni={P\bibinitperiod\bibinitdelim G\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {SIAM}%
+    }
+    \strng{namehash}{CPG1}
+    \strng{fullhash}{CPG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \verb{doi}
+    \verb 10.1137/1.9780898719208
+    \endverb
+    \field{edition}{Classics edition}
+    \field{title}{The Finite Element Method for Elliptic Problems}
+    \field{year}{2002}
+  \endentry
+
+  \entry{Dykstra1983}{article}{}{}
+    \name{author}{1}{}{%
+      {{hash=DRL}{%
+         family={Dykstra},
+         familyi={D\bibinitperiod},
+         given={Richard\bibnamedelima L.},
+         giveni={R\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{DRL1}
+    \strng{fullhash}{DRL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \verb{doi}
+    \verb 10.1080/01621459.1983.10477029
+    \endverb
+    \field{number}{384}
+    \field{pages}{837\bibrangedash 842}
+    \field{title}{An Algorithm for Restricted Least Squares Regression}
+    \field{volume}{78}
+    \field{journaltitle}{Journal of the American Statistical Association}
+    \field{year}{1983}
+  \endentry
+
+  \entry{Girard2024}{article}{}{}
+    \name{author}{1}{}{%
+      {{hash=GA}{%
+         family={Girard},
+         familyi={G\bibinitperiod},
+         given={Alexandre},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GA1}
+    \strng{fullhash}{GA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \verb{doi}
+    \verb 10.3390/math12050709
+    \endverb
+    \field{number}{5}
+    \field{pages}{709}
+    \field{title}{Dimensionless Policies Based on the {B}uckingham {$\Pi$} Theorem: Is This a Good Way to Generalize Numerical Results?}
+    \field{volume}{12}
+    \field{journaltitle}{Mathematics}
+    \field{year}{2024}
+  \endentry
+
+  \entry{Gorard2025}{article}{}{}
+    \name{author}{5}{}{%
+      {{hash=GJ}{%
+         family={Gorard},
+         familyi={G\bibinitperiod},
+         given={Jonathan},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=HA}{%
+         family={Hakim},
+         familyi={H\bibinitperiod},
+         given={Ammar},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=QH}{%
+         family={Qin},
+         familyi={Q\bibinitperiod},
+         given={Hong},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=PK}{%
+         family={Parfrey},
+         familyi={P\bibinitperiod},
+         given={Kyle},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=JS}{%
+         family={Jha},
+         familyi={J\bibinitperiod},
+         given={Shantenu},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GJ+1}
+    \strng{fullhash}{GJHAQHPKJS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \verb{doi}
+    \verb 10.48550/arXiv.2505.03849
+    \endverb
+    \field{note}{arXiv:2505.03849}
+    \field{title}{Improved Dimensionality Reduction for Inverse Problems in Nuclear Fusion and High-Energy Astrophysics}
+    \field{year}{2025}
+  \endentry
+
+  \entry{Hormann2017}{book}{}{}
+    \name{editor}{2}{}{%
+      {{hash=HK}{%
+         family={Hormann},
+         familyi={H\bibinitperiod},
+         given={Kai},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=SN}{%
+         family={Sukumar},
+         familyi={S\bibinitperiod},
+         given={N.},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {CRC Press}%
+    }
+    \strng{namehash}{HKSN1}
+    \strng{fullhash}{HKSN1}
+    \field{labelnamesource}{editor}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \verb{doi}
+    \verb 10.1201/9781315153452
+    \endverb
+    \field{title}{Generalized Barycentric Coordinates in Computer Graphics and Computational Mechanics}
+    \field{year}{2017}
+  \endentry
+
+  \entry{Hromatko2025}{article}{}{}
+    \name{author}{4}{}{%
+      {{hash=HJK}{%
+         family={Hromatko},
+         familyi={H\bibinitperiod},
+         given={Josip\bibnamedelima Kir},
+         giveni={J\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={Sawant},
+         familyi={S\bibinitperiod},
+         given={Shambhuraj},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=IS}{%
+         family={Ile{\v{s}}},
+         familyi={I\bibinitperiod},
+         given={{\v{S}}andor},
+         giveni={{\v{S}}\bibinitperiod},
+      }}%
+      {{hash=GS}{%
+         family={Gros},
+         familyi={G\bibinitperiod},
+         given={S{\'e}bastien},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HJK+1}
+    \strng{fullhash}{HJKSSISGS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \verb{doi}
+    \verb 10.48550/arXiv.2512.08667
+    \endverb
+    \field{note}{arXiv:2512.08667}
+    \field{title}{Direct Transfer of Optimized Controllers to Similar Systems Using Dimensionless {MPC}}
+    \field{year}{2025}
+  \endentry
+
+  \entry{HiGHS2022}{article}{}{}
+    \name{author}{2}{}{%
+      {{hash=HQ}{%
+         family={Huangfu},
+         familyi={H\bibinitperiod},
+         given={Qi},
+         giveni={Q\bibinitperiod},
+      }}%
+      {{hash=HJAJ}{%
+         family={Hall},
+         familyi={H\bibinitperiod},
+         given={J.\bibnamedelima A.\bibnamedelima J.},
+         giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HQHJAJ1}
+    \strng{fullhash}{HQHJAJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \verb{doi}
+    \verb 10.1007/s12532-017-0130-5
+    \endverb
+    \field{note}{HiGHS solver: \url{https://highs.dev}}
+    \field{number}{1}
+    \field{pages}{119\bibrangedash 142}
+    \field{title}{Parallelizing the Dual Revised Simplex Method}
+    \field{volume}{10}
+    \field{journaltitle}{Mathematical Programming Computation}
+    \field{year}{2018}
+  \endentry
+
+  \entry{BuckinghamPy2021}{article}{}{}
+    \name{author}{2}{}{%
+      {{hash=KM}{%
+         family={Karam},
+         familyi={K\bibinitperiod},
+         given={Mokbel},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=ST}{%
+         family={Saad},
+         familyi={S\bibinitperiod},
+         given={Tony},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KMST1}
+    \strng{fullhash}{KMST1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \verb{doi}
+    \verb 10.1016/j.softx.2021.100851
+    \endverb
+    \field{pages}{100851}
+    \field{title}{{BuckinghamPy}: A {P}ython Software for Dimensional Analysis}
+    \field{volume}{16}
+    \field{journaltitle}{SoftwareX}
+    \field{year}{2021}
+  \endentry
+
+  \entry{LaiSchumaker2007}{book}{}{}
+    \name{author}{2}{}{%
+      {{hash=LMJ}{%
+         family={Lai},
+         familyi={L\bibinitperiod},
+         given={Ming-Jun},
+         giveni={M\bibinithyphendelim J\bibinitperiod},
+      }}%
+      {{hash=SLL}{%
+         family={Schumaker},
+         familyi={S\bibinitperiod},
+         given={Larry\bibnamedelima L.},
+         giveni={L\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Cambridge University Press}%
+    }
+    \strng{namehash}{LMJSLL1}
+    \strng{fullhash}{LMJSLL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \verb{doi}
+    \verb 10.1017/CBO9780511721588
+    \endverb
+    \field{title}{Spline Functions on Triangulations}
+    \field{year}{2007}
+  \endentry
+
+  \entry{McMullen1970}{article}{}{}
+    \name{author}{1}{}{%
+      {{hash=MP}{%
+         family={McMullen},
+         familyi={M\bibinitperiod},
+         given={Peter},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MP1}
+    \strng{fullhash}{MP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \verb{doi}
+    \verb 10.1112/S0025579300002850
+    \endverb
+    \field{number}{2}
+    \field{pages}{179\bibrangedash 184}
+    \field{title}{The Maximum Numbers of Faces of a Convex Polytope}
+    \field{volume}{17}
+    \field{journaltitle}{Mathematika}
+    \field{year}{1970}
+  \endentry
+
+  \entry{MortonCode1966}{article}{}{}
+    \name{author}{1}{}{%
+      {{hash=MGM}{%
+         family={Morton},
+         familyi={M\bibinitperiod},
+         given={G.\bibnamedelima M.},
+         giveni={G\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MGM1}
+    \strng{fullhash}{MGM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{title}{A Computer Oriented Geodetic Data Base and a New Technique in File Sequencing}
+    \field{journaltitle}{IBM Technical Report}
+    \field{year}{1966}
+  \endentry
+
+  \entry{Nesterov1998}{article}{}{}
+    \name{author}{2}{}{%
+      {{hash=NY}{%
+         family={Nesterov},
+         familyi={N\bibinitperiod},
+         given={Yurii},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=NA}{%
+         family={Nemirovskii},
+         familyi={N\bibinitperiod},
+         given={Arkadii},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{NYNA1}
+    \strng{fullhash}{NYNA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \verb{doi}
+    \verb 10.1287/moor.23.1.1
+    \endverb
+    \field{number}{1}
+    \field{pages}{1\bibrangedash 38}
+    \field{title}{Multi-Parameter Surfaces of Analytic Centers and Long-Step Surface-Following Interior Point Methods}
+    \field{volume}{23}
+    \field{journaltitle}{Mathematics of Operations Research}
+    \field{year}{1998}
+  \endentry
+
+  \entry{Opdahl2021}{article}{}{}
+    \name{author}{2}{}{%
+      {{hash=OH}{%
+         family={Opdahl},
+         familyi={O\bibinitperiod},
+         given={Hanna},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=JD}{%
+         family={Jensen},
+         familyi={J\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{OHJD1}
+    \strng{fullhash}{OHJD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{O}
+    \field{sortinithash}{O}
+    \verb{doi}
+    \verb 10.3390/ma14082079
+    \endverb
+    \field{note}{PMC8074371}
+    \field{number}{8}
+    \field{pages}{2079}
+    \field{title}{Dimensional Analysis and Optimization of {IsoTruss} Structures with Outer Longitudinal Members in Uniaxial Compression}
+    \field{volume}{14}
+    \field{journaltitle}{Materials}
+    \field{year}{2021}
+  \endentry
+
+  \entry{RomeroObon2025}{article}{}{}
+    \name{author}{7}{}{%
+      {{hash=ROM}{%
+         family={Romero-Obon},
+         familyi={R\bibinithyphendelim O\bibinitperiod},
+         given={Miquel},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SOV}{%
+         family={Sancho-Ochoa},
+         familyi={S\bibinithyphendelim O\bibinitperiod},
+         given={Virginia},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=REHK}{%
+         family={Rouaz-El-Hajoui},
+         familyi={R\bibinithyphendelim E\bibinithyphendelim H\bibinitperiod},
+         given={Khadija},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=PLP}{%
+         family={P{\'e}rez-Lozano},
+         familyi={P\bibinithyphendelim L\bibinitperiod},
+         given={Pilar},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=SPM}{%
+         family={Su{\~n}{\'e}-Pou},
+         familyi={S\bibinithyphendelim P\bibinitperiod},
+         given={Marc},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SNJM}{%
+         family={Su{\~n}{\'e}-Negre},
+         familyi={S\bibinithyphendelim N\bibinitperiod},
+         given={Josep\bibnamedelima Mar{\'\i}a},
+         giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=GME}{%
+         family={Garc{\'\i}a-Montoya},
+         familyi={G\bibinithyphendelim M\bibinitperiod},
+         given={Encarna},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ROM+1}
+    \strng{fullhash}{ROMSOVREHKPLPSPMSNJMGME1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \verb{doi}
+    \verb 10.3390/ph18071033
+    \endverb
+    \field{number}{7}
+    \field{pages}{1033}
+    \field{title}{Scale-Agnostic Models Based on Dimensionless Quality by Design as Pharmaceutical Development Accelerator}
+    \field{volume}{18}
+    \field{journaltitle}{Pharmaceuticals}
+    \field{year}{2025}
+  \endentry
+
+  \entry{SalazarMeza2023}{article}{}{}
+    \name{author}{7}{}{%
+      {{hash=SMM}{%
+         family={Salazar-Meza},
+         familyi={S\bibinithyphendelim M\bibinitperiod},
+         given={Marco},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=MRO}{%
+         family={Mart{\'\i}nez-Romero},
+         familyi={M\bibinithyphendelim R\bibinitperiod},
+         given={Oscar},
+         giveni={O\bibinitperiod},
+      }}%
+      {{hash=RHJE}{%
+         family={Resendiz-Hern{\'a}ndez},
+         familyi={R\bibinithyphendelim H\bibinitperiod},
+         given={Jos{\'e}\bibnamedelima Emiliano},
+         giveni={J\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=OTD}{%
+         family={Olvera-Trejo},
+         familyi={O\bibinithyphendelim T\bibinitperiod},
+         given={Daniel},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=EDJA}{%
+         family={Estrada-D{\'\i}az},
+         familyi={E\bibinithyphendelim D\bibinitperiod},
+         given={Jorge\bibnamedelima Alfredo},
+         giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=RHCA}{%
+         family={Ram{\'\i}rez-Herrera},
+         familyi={R\bibinithyphendelim H\bibinitperiod},
+         given={Claudia\bibnamedelima Ang{\'e}lica},
+         giveni={C\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=EZA}{%
+         family={El{\'\i}as-Z{\'u}{\~n}iga},
+         familyi={E\bibinithyphendelim Z\bibinitperiod},
+         given={Alex},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SMM+1}
+    \strng{fullhash}{SMMMRORHJEOTDEDJARHCAEZA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \verb{doi}
+    \verb 10.3390/polym15183779
+    \endverb
+    \field{note}{PMC10534782}
+    \field{number}{18}
+    \field{pages}{3779}
+    \field{title}{Modeling the Ultrasonic Micro-Injection Molding Process Using the {B}uckingham {P}i Theorem}
+    \field{volume}{15}
+    \field{journaltitle}{Polymers}
+    \field{year}{2023}
+  \endentry
+
+  \entry{Sarazin2019}{article}{}{}
+    \name{author}{10}{}{%
+      {{hash=SY}{%
+         family={Sarazin},
+         familyi={S\bibinitperiod},
+         given={Y.},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=HJ}{%
+         family={Hillairet},
+         familyi={H\bibinitperiod},
+         given={J.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=DJL}{%
+         family={Duchateau},
+         familyi={D\bibinitperiod},
+         given={J.-L.},
+         giveni={J\bibinithyphendelim L\bibinitperiod},
+      }}%
+      {{hash=GK}{%
+         family={Gaudimont},
+         familyi={G\bibinitperiod},
+         given={K.},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=VR}{%
+         family={Varennes},
+         familyi={V\bibinitperiod},
+         given={R.},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=GX}{%
+         family={Garbet},
+         familyi={G\bibinitperiod},
+         given={X.},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=GP}{%
+         family={Ghendrih},
+         familyi={G\bibinitperiod},
+         given={Ph.},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=GR}{%
+         family={Guirlet},
+         familyi={G\bibinitperiod},
+         given={R.},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=PB}{%
+         family={P{\'e}gouri{\'e}},
+         familyi={P\bibinitperiod},
+         given={B.},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=TA}{%
+         family={Torre},
+         familyi={T\bibinitperiod},
+         given={A.},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SY+1}
+    \strng{fullhash}{SYHJDJLGKVRGXGPGRPBTA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \verb{doi}
+    \verb 10.1088/1741-4326/ab48a5
+    \endverb
+    \field{number}{1}
+    \field{pages}{016010}
+    \field{title}{Impact of Scaling Laws on Tokamak Reactor Dimensioning}
+    \field{volume}{60}
+    \field{journaltitle}{Nuclear Fusion}
+    \field{year}{2020}
+  \endentry
+
+  \entry{Scibilia2009}{inproceedings}{}{}
+    \name{author}{3}{}{%
+      {{hash=SF}{%
+         family={Scibilia},
+         familyi={S\bibinitperiod},
+         given={Francesco},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=OS}{%
+         family={Olaru},
+         familyi={O\bibinitperiod},
+         given={Sorin},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=HM}{%
+         family={Hovd},
+         familyi={H\bibinitperiod},
+         given={Morten},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SFOSHM1}
+    \strng{fullhash}{SFOSHM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{booktitle}{Proceedings of the European Control Conference (ECC)}
+    \field{pages}{2833\bibrangedash 2838}
+    \field{title}{Approximate Explicit Linear {MPC} via {D}elaunay Tessellation}
+    \field{year}{2009}
+  \endentry
+
+  \entry{Strohmer2009}{article}{}{}
+    \name{author}{2}{}{%
+      {{hash=ST}{%
+         family={Strohmer},
+         familyi={S\bibinitperiod},
+         given={Thomas},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=VR}{%
+         family={Vershynin},
+         familyi={V\bibinitperiod},
+         given={Roman},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{STVR1}
+    \strng{fullhash}{STVR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \verb{doi}
+    \verb 10.1007/s00041-008-9030-4
+    \endverb
+    \field{number}{2}
+    \field{pages}{262\bibrangedash 278}
+    \field{title}{A Randomized {K}aczmarz Algorithm with Exponential Convergence}
+    \field{volume}{15}
+    \field{journaltitle}{Journal of Fourier Analysis and Applications}
+    \field{year}{2009}
+  \endentry
+
+  \entry{cgal}{misc}{}{}
+    \name{author}{1}{}{%
+      {{hash=T}{%
+         family={{The CGAL Project}},
+         familyi={T\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{T1}
+    \strng{fullhash}{T1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \field{note}{Version 6.x}
+    \field{title}{{CGAL} User and Reference Manual}
+    \verb{url}
+    \verb https://doc.cgal.org/
+    \endverb
+    \field{year}{2024}
+  \endentry
+
+  \entry{Tibshirani2017}{inproceedings}{}{}
+    \name{author}{1}{}{%
+      {{hash=TRJ}{%
+         family={Tibshirani},
+         familyi={T\bibinitperiod},
+         given={Ryan\bibnamedelima J.},
+         giveni={R\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{TRJ1}
+    \strng{fullhash}{TRJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \field{booktitle}{Advances in Neural Information Processing Systems (NeurIPS)}
+    \field{title}{{D}ykstra's Algorithm, {ADMM}, and Coordinate Descent: Connections, Insights, and Extensions}
+    \field{volume}{30}
+    \field{year}{2017}
+  \endentry
+
+  \entry{Tondel2003}{article}{}{}
+    \name{author}{3}{}{%
+      {{hash=TP}{%
+         family={T{\o}ndel},
+         familyi={T\bibinitperiod},
+         given={P{\aa}l},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=JTA}{%
+         family={Johansen},
+         familyi={J\bibinitperiod},
+         given={Tor\bibnamedelima Arne},
+         giveni={T\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=BA}{%
+         family={Bemporad},
+         familyi={B\bibinitperiod},
+         given={Alberto},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{TPJTABA1}
+    \strng{fullhash}{TPJTABA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \verb{doi}
+    \verb 10.1016/S0005-1098(02)00308-4
+    \endverb
+    \field{number}{5}
+    \field{pages}{945\bibrangedash 950}
+    \field{title}{Evaluation of Piecewise Affine Control via Binary Search Tree}
+    \field{volume}{39}
+    \field{journaltitle}{Automatica}
+    \field{year}{2003}
+  \endentry
+\enddatalist
+\endinput

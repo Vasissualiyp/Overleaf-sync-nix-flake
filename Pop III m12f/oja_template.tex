@@ -1,0 +1,2339 @@
+% TESTING REMOTE 2
+% Unofficial LaTeX template for publishing 
+% in the Open Journal of Astrophysics
+% v1.0 released September 6, 2015 (matches openjournal.cls)
+% Author: Emmanuel Frion
+
+
+% Basic setup
+\documentclass[twocolumn]{openjournal}
+% Available options:
+% [twocolumn] - two-column mode
+% [onecolumn] - (default) main text in one-column mode
+% [apj]       - typeset in the style of ApJ.
+% [apjl]      - (default) typeset in the style of ApJ Letters 
+% [tighten]   - some adjustments to approximate grid typesetting
+% [numberedappendix]   - number appendix sections as A, B, etc
+% [appendixfloats]  - use separate numbering for floats within appendix
+% [twocolappendix]  - make appendix in two-col mode in a two-col paper
+% [revtex4]   - force using revtex4 (rather than 4-1)
+
+% Remove this package
+\usepackage{lipsum}
+
+%% Convenience macros
+\newcommand{\note}[1]{\textcolor{red}{\textbf{[#1]}}}
+\newcommand{\Msun}{M_\odot}
+\newcommand{\kyr}{\,\mathrm{kyr}}
+\newcommand{\Myr}{\,\mathrm{Myr}}
+\newcommand{\AU}{\,\mathrm{AU}}
+\newcommand{\kpc}{\,\mathrm{kpc}}
+\newcommand{\gcm}{\,\mathrm{g\,cm^{-3}}}
+\newcommand{\Lhat}{\hat{L}}
+\newcommand{\vK}{v_\mathrm{K}}
+\newcommand{\Mdisk}{M_\mathrm{disk}}
+\newcommand{\Mstar}{M_*}
+\newcommand{\rdisk}{r_\mathrm{disk}}
+\newcommand{\tform}{t_1}
+
+% Source - https://tex.stackexchange.com/a/33547
+% Posted by egreg, modified by community. See post 'Timeline' for change history
+% Retrieved 2026-06-08, License - CC BY-SA 3.0
+\newcommand{\appropto}{\mathrel{\vcenter{
+  \offinterlineskip\halign{\hfil$##$\cr
+    \propto\cr\noalign{\kern2pt}\sim\cr\noalign{\kern-2pt}}}}}
+
+
+%% Figure paths — relative to tex/ directory
+\newcommand{\figdir}{figures}
+\newcommand{\figfull}{\figdir/full}
+\newcommand{\figcut}{cutout}
+
+% In case of issues with doi formatting, uncomment these lines
+% \let\olddoi\doi
+% \renewcommand{\doi}[1]{\href{https://doi.org/#1}{DOI: \nolinkurl{#1}}}
+
+% Optional useful packages
+\usepackage{xcolor}
+\usepackage{textgreek}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+
+\usepackage{hyperref}
+\hypersetup{
+    unicode, 
+    colorlinks=true,
+    linkcolor=linkcolor,
+    citecolor=linkcolor,
+    filecolor=linkcolor,
+    urlcolor=linkcolor,
+}
+\usepackage{color,colortbl}
+\definecolor{linkcolor}{rgb}{0.0,0.3,0.5}
+
+
+\newcommand{\red}[1]{{\textcolor{red}{#1}}}
+\newcommand{\blue}[1]{{\textcolor{blue}{#1}}}
+\newcommand{\cut}[1]{{\red{\sout{#1}}}}
+\newcommand{\add}[1]{{\blue{#1}}}
+\definecolor{darkgreen}{rgb}{0.13, 0.55, 0.13}
+\definecolor{rubinered}{rgb}{0.82, 0.0, 0.34}
+\definecolor{orange(ryb)}{rgb}{0.98, 0.4, 0.01}
+\definecolor{scut}{rgb}{0.58, 0.42, 0.11}
+\newcommand{\skcomment}[1]{{\textcolor{darkgreen}{[SK: #1]}}}
+\newcommand{\skcut}[1]{{\textcolor{scut}{\sout{#1}}}}
+\newcommand{\skadd}[1]{{\textcolor{orange(ryb)}{#1}}}
+
+
+\usepackage{tensind}
+\tensordelimiter{?}
+\DeclareGraphicsExtensions{.bmp,.png,.jpg,.pdf}
+\usepackage{verbatim}
+\usepackage[normalem]{ulem}
+\usepackage[markup=default,ulem=true]{changes}
+\usepackage{orcidlink}
+\usepackage{soul}
+
+\urlstyle{same}
+
+% Define path to put your plots, figures, etc...
+\graphicspath{ {./light/} }
+
+\begin{document}
+\title{Forged in fragments: Population III star formation in Milky Way progenitor halo}
+
+\author{Vasilii Pustovoit\orcidlink{0000-0000-0000-0000}}
+\email{vpustovoit@cita.utoronto.ca}
+\affiliation{Canadian Institute for Theoretical Astrophysics}
+\affiliation{University of Toronto, Department of Physics}
+
+\author{Shivan Khullar\orcidlink{0000-0000-0000-0000}}
+\email{skhullar@flatironinstitute.org}
+\affiliation{Your nice institute / university}
+\affiliation{Your second nice institute / university}
+
+\author{AND COLLABORATORS\orcidlink{0000-0000-0000-0000}}
+%\email{author1@you.com}
+%\affiliation{Your nice institute / university}
+%\affiliation{Your second nice institute / university}
+
+\begin{abstract}
+We present a radiation-magnetohydrodynamic (RMHD) cosmological zoom-in simulation
+of Population III star formation, drawing initial conditions from the FIRE m12f
+halo at high redshift. Starting from a self-consistent cosmological environment,
+we follow the collapse of a primordial gas cloud through the formation of an
+accretion disk that becomes gravitationally unstable within $\sim 3\kyr$ of
+the first protostar's formation. Prominent spiral arms develop and fragment
+vigorously, producing $\sim 60$ sink formation events over the $\sim 15\kyr$
+of post-collapse evolution, with a total stellar mass reaching $> 150\,\Msun$.
+The stellar mass grows as $M_* \appropto t^{2}$,
+confirming the prediction of accelerating accretion in
+self-gravitating turbulent collapse,
+at rates of $\dot{M} \sim 10^{-3}$--$10^{-2}\,\Msun\,\mathrm{yr}^{-1}$.
+The disk is initially magnetically supercritical ($\mu \sim 100$--$300$)
+but the mass-to-flux ratio decreases by two orders of magnitude over
+the simulation, with the inner disk approaching and locally crossing
+the critical value ($\mu \lesssim 1$) by $15\kyr$.
+Magnetic energy grows by $\sim 4$ orders of magnitude, driven by
+flux-freezing compression and differential rotation.
+The star formation efficiency reaches $\sim 80\%$ within the disk
+and $\sim 50\%$ within a $0.1$ pc aperture.
+Our results demonstrate that cosmologically-realistic initial conditions,
+which produce asymmetric infall and complex angular momentum structure,
+lead to vigorous fragmentation and a protostellar population
+whose properties differ from those found in idealised setups.
+\end{abstract}
+
+
+
+
+\section{Introduction}
+\label{sec:intro}
+
+The first generation of stars, Population~III (Population III), formed from
+metal-free primordial gas in dark-matter minihaloes at redshifts
+$z \sim 20$--$30$ \citep{abel02, bromm02}.
+Because molecular hydrogen (H$_2$) was the only efficient gas coolant
+at these epochs, the primordial gas could cool to a temperature floor of
+$T \sim 200$~K at densities $n \sim 10^4\,\mathrm{cm}^{-3}$, before
+reaching local thermodynamic equilibrium in its ro-vibrational levels
+\citep{bromm02, klessen_glover23}.
+The Jeans mass at this point, $M_J \sim 10^3\,\Msun$, is orders of
+magnitude larger than that of present-day star-forming cores, leading
+to the early expectation that Population III stars were predominantly massive
+and formed in isolation within each minihalo
+\citep{abel02, bromm02, yoshida08}.
+These early simulations bridged cosmological collapse down to
+protostellar densities ($n \sim 10^{21}\,\mathrm{cm}^{-3}$), resolving
+the characteristic stages of primordial collapse: H$_2$ three-body
+formation heating at $n \gtrsim 10^8\,\mathrm{cm}^{-3}$,
+collision-induced emission cooling at $n \gtrsim 10^{14}\,\mathrm{cm}^{-3}$,
+and a second collapse driven by H$_2$ dissociation at
+$n \sim 10^{16}\,\mathrm{cm}^{-3}$ \citep{yoshida08, wollenberg20}.
+
+This picture of isolated, monolithic Population III star formation was
+overturned by simulations that continued to follow the system
+\textit{after} the initial protostar formed.
+The infalling gas inevitably carries angular momentum, seeding a
+self-gravitating accretion disk prone to gravitational instability and
+fragmentation \citep{stacy10, clark11, greif11}.
+Rather than a single object, a protostellar \textit{cluster} arises:
+\citet{greif11} found 2--5 fragments in five minihaloes within
+$\sim 100$~yr of the first protostar; \citet{stacy10, stacy12} followed
+systems for $\sim 5\kyr$ and found $\sim 10$ sinks with a primary
+reaching $20$--$40\,\Msun$.
+\citet{wollenberg20} systematically explored 45 controlled simulations
+varying initial rotation and turbulence and found 5--20 sinks per halo,
+with fragmentation strongly stochastic from realization to realization.
+The protostellar cluster is shaped by competitive accretion
+\citep{bonnell01}, fragmentation-induced starvation
+\citep{wollenberg20}, protostellar mergers, and dynamical ejections,
+with ejection rates of $\sim 25$--$30\%$ found across multiple studies
+\citep{greif11, stacy12, wollenberg20}.
+
+The Population III initial mass function (IMF) inferred from these simulations
+is broadly top-heavy, spanning sub-solar to $\gtrsim 100\,\Msun$,
+but highly variable from halo to halo.
+\citet{hirano14} surveyed 100 minihaloes and found accretion rates of
+$10^{-4}$--$10^{-2}\,\Msun\,\mathrm{yr}^{-1}$ and final masses of
+$\sim 10$--$1000\,\Msun$; \citet{susa14} found masses spanning
+1--$>100\,\Msun$ across several tens of halos.
+When radiative feedback is included, accretion onto a single protostar
+can be halted at $\sim 43\,\Msun$ \citep{hosokawa11}, though
+episodic accretion from a fragmenting disk can produce intermittent
+feedback and final masses from $\sim 10$ to several hundred $\Msun$
+\citep{hosokawa16, stacy16}.
+The large statistical survey of \citet{hirano_sakai23} across
+$>100$ cosmological halos confirms that the Population III IMF is not
+universal: the outcome depends on halo mass, angular momentum, and
+baryon streaming velocity, and a single simulation cannot be
+over-generalised.
+
+Turbulence plays a fundamental role in shaping fragmentation and the
+resulting mass distribution.
+\citet{ho25} demonstrated that cosmological infall into dark-matter
+potential wells universally drives supersonic turbulence in Population III
+minihaloes, with Mach numbers $\mathcal{M} \sim 2$--$4$ that increase
+with halo mass.
+\citet{wollenberg20} confirmed that the degree of initial turbulence
+strongly affects the number of fragments and the resulting mass
+distribution, with higher initial turbulent velocities producing more
+fragments and more stochastic outcomes.
+\citet{prieto11} showed that turbulent fragmentation in a larger,
+$3 \times 10^7\,\Msun$ halo at $z \sim 11$ produces $\sim 25$
+gravitationally unstable clumps, proposing that infall-driven turbulence
+may be the dominant fragmentation mechanism when halo masses exceed the
+canonical $10^6\,\Msun$ minihalo scale.
+
+Magnetic fields can further modify Population III star formation, though their
+net effect remains debated.
+Even trace cosmological seed fields are amplified during gravitational
+collapse by flux-freezing and winding, driving the mass-to-flux ratio
+toward criticality over timescales of a few kyr
+\citep{machida08, sharda21, higashi24}.
+Idealised MHD simulations suggest that strong fields can suppress disk
+fragmentation \citep{hirano_machida22}, and cosmological MHD runs
+by \citet{stacy22} found only two secondary sinks.
+In contrast, \citet{prole22} and \citet{tanaka24} found that even
+dynamically significant fields reduce but do not eliminate fragmentation.
+\citet{sharda_menon25} performed the first
+3D radiation-MHD Population III simulations with non-equilibrium chemistry,
+turbulence, and ionising feedback, finding that magnetic fields are more
+effective than radiation in limiting protostellar masses at early times,
+capping the most massive star at $\sim 65\,\Msun$ within $5\kyr$
+\citep[see also][]{prole25}.
+These conflicting results indicate that the outcome depends sensitively
+on initial field strength, field geometry, resolution, and simulation
+duration \citep{klessen_glover23}.
+
+While many Population III simulations now use cosmological initial conditions
+\citep{greif11, stacy16, hirano_sakai23, latif_khochfar22, meziani26},
+simulations that \textit{simultaneously} combine cosmological ICs,
+full radiation-MHD, and resolved individual protostellar formation remain
+few. \cite{meziani26} use the FORGE'd in FIRE framework \citep{FORGE_d_in_FIRE_Hopkin_2023} to study Population III star formation in an ultra-faint dwarf galaxy progenitor, with a DM halo mass of $10^{7} M_\odot$  at z=21 and $10^{12} M_\odot$ at z=0. A minihalo embedded in a strong overdensity destined to grow to Milky Way mass may experience qualitatively different infall rates, tidal torques, and angular momentum injection compared to one in a quieter
+environment destined to remain a dwarf galaxy. Therefore, in this paper, we zoom-in to the formation of the first stars in a massive halo $10^{7} M_\odot$ that eventually grows to Milky Way mass at z=0.
+
+Whether the environmental difference between a MW-progenitor (Milky Way) and a
+UFD-progenitor (Ultra Faint Dwarf) drives a qualitatively different outcome is an open question.
+In this work, we address this question directly.
+We perform a cosmological radiation-magnetohydrodynamic (RMHD) zoom-in
+simulation of Population III star formation in the FIRE m12f initial conditions 
+\citep{FIRE_2, wetzel23}, which in turn were taken from the AGORA project
+\citep{AGORA2014, AGORA2016}. The ICs constitute a halo destined to become a
+$M_\mathrm{vir} \sim 10^{12}\,\Msun$ Milky Way analogue by $z = 0$.
+We use the FORGE'd in FIRE framework \citep{FORGE_d_in_FIRE_Hopkin_2023,
+meziani26}, combining FIRE-3 \citep{FIRE_3_Updated_Hopkin} large-scale
+physics with STARFORGE \citep{STARFORGE_Towa_Grudic_2021} protostellar
+physics, and evolve the system for $\sim 15\kyr$ after the first
+protostar forms, reaching a gas mass resolution of
+$\Delta m \sim 10^{-3}\,\Msun$.
+We study the thermodynamic collapse, disk formation and fragmentation,
+magnetic field amplification, and protostellar mass assembly in this
+environment, providing the first cosmological RMHD simulation that
+resolves individual Population III protostellar formation in a MW-progenitor halo.
+
+The rest of the paper is organised as follows.
+\autoref{sec:methods} describes the simulation setup, physics
+modules, refinement strategy, and analysis methods.
+\autoref{sec:results} presents the disk morphology, thermodynamic
+and energetic evolution, disk stability, and magnetic field structure.
+\autoref{sec:massevol} discusses the star formation history,
+accretion rates, and protostellar mass function.
+\autoref{sec:disc_comparison} compares our results to previous
+Population III simulations.
+We state our conclusions in \autoref{sec:conclusions}.
+
+
+%% ============================================================
+\section{Simulation and Methods}
+\label{sec:methods}
+%% ============================================================
+\subsection{Simulation details}
+
+
+
+For this paper we utilise the FORGE'd in FIRE framework of
+\citet{FORGE_d_in_FIRE_Hopkin_2023}, extended to the primordial
+star-formation regime similar to \citet{meziani26}.
+We employ FIRE-3 \citep{FIRE_3_Updated_Hopkin} physics modules at
+low resolution and STARFORGE \citep{STARFORGE_Towa_Grudic_2021}
+physics to resolve individual protostellar formation. We briefly review these below and refer the reader to \citet{FIRE_3_Updated_Hopkin, FORGE_d_in_FIRE_Hopkin_2023, STARFORGE_Towa_Grudic_2021}. Numerical parameters not specified below are identical to those described in the above references.
+
+\subsubsection{Code and gravity solver}
+\label{sec:hydro}
+
+The governing equations solved by the code are the ideal MHD equations
+in conservative form \citep{A_new_class_of_Hopkin_2015, Hopkins_Raives_2015}:
+\begin{equation}
+  \frac{\partial \mathbf{U}}{\partial t} + \nabla \cdot \mathbf{F} = \mathbf{S},
+  \label{eq:mhd_conservation}
+\end{equation}
+where the state vector of conserved quantities and the flux tensor are
+\begin{equation}
+  \mathbf{U} =
+  \begin{pmatrix} \rho \\ \rho\mathbf{v} \\ \rho e \\ \mathbf{B} \end{pmatrix},
+  \qquad
+  \mathbf{F} =
+  \begin{pmatrix}
+    \rho\mathbf{v} \\
+    \rho\mathbf{v}\otimes\mathbf{v} + P_{T}\,\mathcal{I} - \mathbf{B}\otimes\mathbf{B} \\
+    (\rho e + P_{T})\mathbf{v} - (\mathbf{v}\cdot\mathbf{B})\mathbf{B} \\
+    \mathbf{v}\otimes\mathbf{B} - \mathbf{B}\otimes\mathbf{v}
+  \end{pmatrix}.
+  \label{eq:mhd_flux}
+\end{equation}
+Here $\rho$ is the mass density, $\mathbf{v}$ the velocity,
+$\mathbf{B}$ the magnetic field (in Gaussian units with $4\pi$ absorbed),
+$e = u + |\mathbf{B}|^{2}/(2\rho) + |\mathbf{v}|^{2}/2$ the total specific energy,
+$P_{T} = P + |\mathbf{B}|^{2}/2$ the total (thermal plus magnetic) pressure,
+and $\mathcal{I}$ the identity tensor.
+$\mathbf{S}$ includes source terms for self-gravity and the Powell divergence-cleaning
+scheme \citep{Hopkins_Raives_2015} that maintains $\nabla\cdot\mathbf{B}\approx 0$.
+
+The FORGE'd in FIRE framework is based on GIZMO Meshless Finite Mass (MFM) code
+\citep{A_new_class_of_Hopkin_2015}.
+It is a mesh-free Lagrangian Godunov method in which
+the fluid equations are solved on a set of moving partition-generating points
+whose masses are conserved exactly (no inter-particle mass flux), while
+fluxes of momentum, energy, and magnetic flux are exchanged through
+effective interparticle faces defined by a kernel-weighted partition of unity
+applied to the particle distribution \citep{A_new_class_of_Hopkin_2015}.
+
+Gravity is solved with the TreePM algorithm \citep{A_new_class_of_Hopkin_2015},
+which combines a particle-mesh grid for large-scale forces with an oct-tree
+for short-range forces \citep{Barnes_Hut_1986}, as in \citet{Springel_2010b}.
+Gas particles use adaptive Lagrangian gravitational softening matching the
+hydrodynamic kernel radius.
+Sink/star particles use a fixed Plummer-equivalent softening
+$\epsilon \approx 20$ AU.
+Direct $N$-body summation is used for all sink--sink and sink--gas
+gravitational interactions, with direct summation applied for
+sink--sink separations below $1000\,\mathrm{AU}$ to accurately
+resolve close binaries and dynamical ejections
+\citep{STARFORGE_Towa_Grudic_2021}.
+
+
+
+\subsubsection{Initial Conditions}
+\label{sec:ics}
+
+We use initial conditions (ICs) developed as part of the FIRE
+collaboration \citep{FIRE_2}, specifically the m12f halo from the
+Latte suite of Milky Way-mass zoom-in simulations
+\citep{wetzel23}.
+The m12f halo has a virial mass $M_\mathrm{vir} \sim 1$--$2 \times 10^{12}\,\Msun$
+at $z = 0$ and was selected as an isolated system with a relatively
+quiescent late-time merger history, making it a Milky Way analogue.
+At the redshift of first collapse in our simulation ($z \sim 21$),
+CDM part of the progenitor halo has a mass of $2 \times 10^{7}\,\Msun$,
+typical of the minihaloes in which Population III stars are expected to form.
+This value was obtained from running the ROCKSTAR halo finder
+\citep{rockstar_behroozi12} on our snapshot.
+
+We adopt pre-generated ICs at $z = 99$ in a $60\,\mathrm{Mpc}/h$ comoving
+cosmological box.
+The box contains a zoom-in region of comoving extent $\sim 3\,\mathrm{Mpc}/h$,
+within which the FIRE galaxy forms at $z = 0$.
+Only the zoom-in region contains baryonic particles and
+high-resolution dark matter (DM) particles; the remainder of
+the volume is populated with low-resolution DM particles.
+As in the FIRE-2 Latte simulations, we adopt cosmological parameters
+from WMAP-7 \citep{komatsu11}:
+$h = 0.702$,
+$\Omega_m = 0.272$,
+$\Omega_\Lambda = 0.728$,
+$\Omega_b = 0.0455$,
+$\sigma_8 = 0.807$, and
+$n_s = 0.961$
+
+The full simulation snapshot contains $\sim 88$ million CDM particles
+and FIRE-resolution gas particles whose smoothing lengths
+($\sim$\,kpc) far exceed the protostellar disk scale.
+We extract spatial cutouts centred on the most-massive sink particle
+with a physical radius of $1 \kpc$ (22 ckpc).
+The cutout sphere retains only the gas, high-resolution DM, and sink/star particles.
+All analysis presented in this manuscript is of this cutout simulation.
+
+Over the $\sim 15$ kyr of post-collapse evolution studied here, the
+sound-crossing time across the cutout radius
+($r_\mathrm{cut} \approx 1$ kpc) is
+$\sim r_\mathrm{cut}/c_s \gtrsim 10$ kyr for $T \lesssim 10^4$ K,
+comparable to or longer than our integration time.
+The large-scale structure outside the cutout therefore has no causal
+influence on the disk dynamics on these timescales, and the cutout
+fully captures the relevant physics.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\columnwidth]{profile_resolution.pdf}
+  \caption{
+  Top: Radial profile of gas particle mass (resolution). 
+  Scatter plot shows particle distribution at the time of first sink formation;
+  solid line and shaded region correspond to the mean and $\pm 1\sigma$ for
+  radial profiles across all snapshots after first sink formation. 
+  Horizontal lines correspond to $1/2 \Delta m$ of previous resolution region,
+  since our particle splitting algorithm is subdividing parent particles in 2 
+  for each new level of split.
+  Bottom: Same as Top, but for radial profile of equivalent cell size 
+  $\Delta x = (\Delta m / \rho)^{1/3}$.
+  }
+  \label{fig:profile_resolution}
+\end{figure}
+
+\subsubsection{Refinement strategy}
+\label{sec:refinement}
+
+We first evolve the full cosmological simulation with FIRE-3 physics until
+first $10^5 M_\odot$ stellar population (SSP) particle forms.
+We then restart from the preceding snapshot with an additional
+``hyper-refinement'' layer applied globally \citep{FORGE_d_in_FIRE_Hopkin_2023}.
+
+We refine gas cells (splitting into pairs of equal-mass daughter cells)
+whenever their mass exceeds a fraction $f_J$ of the local Jeans mass: 
+\begin{equation}
+\begin{aligned}
+\Delta m & > f_J M_J \\
+& = f_J \frac{\pi}{6} \rho \lambda_J^3 \\
+& = f_J \frac{\pi}{6} \rho \left( \frac{\pi c_s^2}{G \rho} \right)^{3/2} \\
+& = f_J \frac{\pi^{5/2}}{6} \left( \frac{k_B T}{\mu m_H G} \right)^{3/2} \rho^{-1/2} \\
+& = f_J M_0 \left( \frac{T}{10^4 \text{ K}} \right)^{1.5} \left( \frac{n_H}{\text{cm}^{-3}} \right)^{-0.5}
+\end{aligned}
+\end{equation}
+The last line follows from substituting the thermal Jeans length
+$\lambda_J = (\pi c_s^2 / G\rho)^{1/2}$ and $c_s^2 = k_B T/(\mu m_H)$
+into $M_J = (\pi/6)\rho\lambda_J^3$, and normalizing at
+$T_0 = 10^4$ K and $n_0 = 1$ cm$^{-3}$.
+We use $f_J = 10^{-2}$, corresponding to
+$\sim 100$ resolution elements per Jeans mass and satisfying the
+\citet{truelove97} criterion, since we resolve $100^{1/3} \approx 4.6 > 4$ cells
+per Jeans length. 
+This is sufficient since MFM does not suffer from artificial fragmentation even
+while refining \citep[in prep.]{khullar2026}. We also speculate that since MFM
+is generally less diffusive than AMR, the more stringent criteria of 30 cells
+per Jeans length needed to resolve effects like magnetic dynamo amplification
+\citep{Federrath2011} does not necessarily apply here. Since our simulation
+produces magnetic amplification by up to 4 orders of magnitude (see 
+\autoref{sec:bfield}), we leave detailed numerical checks to future work.
+
+Only gas particles get split, DM particles stay at the same resolution.
+This is a fine approximation because dark matter's potential is smooth at these 
+scales, and splitting of these particles should not change the results of our 
+simulation.
+
+At our highest refinement level, the gas mass resolution is
+$\Delta m \approx 10^{-3}\,\Msun$ and the spatial resolution is
+$\Delta x \approx 2$ AU, sufficient to resolve densities
+up to $n \sim 10^{15}\,\mathrm{cm}^{-3}$.
+
+\autoref{fig:profile_resolution} shows the radial profile of the 
+length scale of gas particles $\lambda = \left( m / \rho \right)^{1/3}$.
+It exhibits the refinement profile, described in \autoref{sec:refinement}
+at all times, except the earilest one.
+Initial profile at $t-t_1=-0.5$ (0.5 kyrs before the first sink formation)
+is  limited by the refinement scale inside of 100 AU radius (the center was not yet
+refined to the highest resolution). But by the time of first sink
+formation, the refinement reaches highest resolution that we expect from our
+scheme, (around $10^{-3} M_\odot$ or a few AU) so the inner star forming disk
+region is fully refined.
+
+\subsection{Resolved physics}
+%% ============================================================
+\subsubsection{Magnetic fields}
+\label{sec:mhd}
+
+We integrate the ideal MHD equations as described in \citet{Hopkins_Raives_2015},
+using the constrained-gradient method and divergence cleaning
+\citep{Hopkins_2016_CG_MHD} for divergence control, which has been
+validated for magnetorotational instability dynamics
+\citep{FORGE_d_in_FIRE_Hopkin_2023}.
+
+We include Spitzer--Braginskii thermal conduction and viscosity via
+\citet{Hopkins_2017}. For metal-free gas at the temperatures
+($T \sim 200$--$10^{4}$ K) and free-electron fractions relevant here,
+these transport timescales exceed the local dynamical timescale by many
+orders of magnitude \citep{meziani26}, so ideal MHD dominates throughout
+the simulation.
+
+The initial magnetic field is a trace cosmological seed field of
+$|B_0| \sim 10^{-15}$ G
+amplified self-consistently by gravitational compression,
+differential rotation, and the turbulent dynamo.
+
+
+%% ============================================================
+\subsubsection{Radiation}
+\label{sec:rad}
+
+We solve radiation transport with the M1 moments method
+\citep{Levermore_1984}, as implemented in {\small GIZMO} and described in
+\citet{FORGE_d_in_FIRE_Hopkin_2023,STARFORGE_Towa_Grudic_2021, Hopkins_Grudic_2019, Hopkins2020}
+across five frequency bands: H-ionizing, Lyman-Werner (LW)/photo-electric,
+Near-UV (NUV), optical--NIR, and an adaptive-wavelength FIR band that tracks
+the evolving dust emission temperature \citep{FIRE_3_Updated_Hopkin}.
+Gas, dust, and radiation temperatures are evolved separately with
+appropriate coupling terms, allowing self-consistent treatment of
+both optically thin and optically thick regimes.
+We use a reduced speed of light $\tilde{c} = 10^{-3} c$
+following \citet{FORGE_d_in_FIRE_Hopkin_2023}.
+
+The Lyman-Werner (LW) band is combined with the photo-electric (PE)
+heating band into a single radiation frequency bin. This is justified
+because both LW and PE photons originate from the same protostellar
+sources and have similar mean free paths at the densities resolved here.
+H$_2$ photo-dissociation by LW photons is accounted for through the
+$\Gamma_{\mathrm{H_2}}$ destruction term in \autoref{eq:nh2}.
+
+%% ============================================================
+\subsubsection{Thermochemistry}
+\label{sec:thermo}
+
+We solve gas thermodynamics and chemistry as in \citep{FIRE_3_Updated_Hopkin}.
+The following cooling functions are employed and are relevant to our setup:
+$\Lambda_{\rm H}$ (atomic H cooling);
+$\Lambda_{\rm HD}$ (HD cooling, \citealt{Galli_Palla_1998});
+$\Lambda_{\rm H_2}$ (H$_2$ cooling);
+$\Lambda_{\rm H_2}^{\rm thin},\, \Lambda_{\rm H_2}^{\rm thick}$
+(H$_2$ interactions with $e^-,\,{\rm H}^+,\,{\rm H}_2,\,{\rm H},\,{\rm He}$
+in optically thin and thick regimes).
+We follow non-equilibrium H and He chemical networks.
+Default FIRE-3 thermochemistry includes cooling due to metal lines, but we do
+not evolve our simulation past the point of supernova-driven metal enrichment,
+thus making all metal cooling contributions effectively zero (as expected in
+the Population III formation regime).
+
+Since we simulate metal-free primordial gas, the dust-to-gas ratio is zero
+and the dust term in the H$_2$ formation equation is absent.
+H$_2$ formation proceeds exclusively via gas-phase channels:
+the two-body H$^{-}$ and H$_2^+$ pathways at low densities
+($n \lesssim 10^8\,\mathrm{cm}^{-3}$) and the three-body
+reaction (3H $\to$ H$_2$ + H) at high densities.
+
+Molecular fraction of H$_2$ evolves in every cell according to (eq. 6 from
+\citealt{FIRE_3_Updated_Hopkin}), with the dust formation term set to zero:
+\begin{equation}
+\begin{split}
+\frac{d \bar{n}_{\rm H_2}}{dt} ={}& \alpha_{\mathrm{GP}}C_2 \bar{n}_{\rm HI} \bar{n}_{\rm H} + \alpha_{3\mathrm{B}}C_3 \bar{n}_{\rm HI}\tfrac{ \bar{n}_{\rm H_2}}{8}\!\left( \bar{n}_{\rm HI}+\tfrac{ \bar{n}_{\rm H_2}}{8}\right) \\
+& - \Gamma_{\mathrm{\rm H_2}} \bar{n}_{\rm H_2} - \xi_{\mathrm{\rm H_2}} \bar{n}_{\rm H_2} - \sum_{i}\beta_{\mathrm{\rm H_2},i}C_2 \bar{n}_{\rm H_2} \bar{n}_{i}
+\end{split}
+\label{eq:nh2}
+\end{equation}
+
+Here $\bar{n}_x$ is volume-averaged number density of $x$ inside of a cell.
+$C_m = \left< n^m \right> / \left< n \right>^m$ is the $m^{\text{th}}$-order
+clumping factor.
+$\alpha_\mathrm{GP}$ is the gas-phase formation rate coefficient via the
+H$^{-}$ and H$_2^+$ pathways \citep{Glover_Jappsen_2007,Abel_1997,Galli_Palla_1998}.
+The three-body formation coefficient $\alpha_{3\mathrm{B}}$
+\citep{abel02,Palla_1983} becomes the dominant H$_2$ formation channel
+for $n \gtrsim 10^8\,\mathrm{cm}^{-3}$.
+$\Gamma_{\mathrm{H_2}}$ is the coefficient associated with LW and ionizing photon
+dissociation.
+$\xi_{\mathrm{H_2}}$ accounts for cosmic-ray-induced ionization and dissociation
+($\xi_{\mathrm{H_2}} \approx 3\times10^{-17}$ s$^{-1}$, the Milky Way value;
+this rate is unconstrained at $z \sim 21$ and primarily affects H$_2$ formation
+at $n \lesssim 10^7$ cm$^{-3}$, with negligible impact at the densities resolved here).
+The last sum runs over collisional dissociation contributions from
+$e^-, \rm H^+, H_2, HI, HeI, HeII$, with rate coefficients $\beta_{\rm H_2, i}$ from \citet{Glover_Abel_2008}.
+
+Thermodynamic energy release from H$_2$ dissociation
+($\sim 4.5$ eV per molecule) is not explicitly tracked in the gas energy equation.
+This is acceptable because we do not have enough resolution to reach number
+densities of $n \approx 10^{16} \mathrm{cm}^{-3}$, where H$_2$ dissociation
+kicks in and becomes a non-negligible thermodynamic variable. 
+\citep{klessen_glover23} In addition, the
+protostellar evolution tracks of \citet{Offner_2009} self-consistently evolve
+the stellar radius without requiring the gas to track dissociation energy
+explicitly.
+
+At $z \sim 21$, the meta-galactic UV background \citep{Faucher-Giguere_2019} is
+negligible compared to local protostellar radiation resolved in the simulation.
+H$_2$ self-shielding against Lyman-Werner photons is included using the
+shielding function of \citet{Gnedin_Draine_2014} (their Eq. 3), applied with a
+local Sobolev column density $N\mathrm{H} \sim \rho / |\nabla \rho|$, with
+turbulent line broadening accounted for following a Burgers velocity spectrum.
+
+%% ============================================================
+%\subsubsection{Cosmic rays}
+%\label{sec:cr}
+
+
+The simulation does not include cosmic-ray transport.
+In our simulation, which covers only $\sim 15$ kyr of post-collapse
+evolution and does not include supernovae, cosmic-ray injection from
+stellar feedback is negligible; the initial cosmic-ray background
+at $z \sim 21$ contributes subdominantly to H$_2$ dissociation and
+ionization relative to the resolved radiation field.
+
+%% ============================================================
+\subsubsection{Stellar formation and evolution}
+\label{sec:stars}
+
+We resolve the formation of individual protostars in the densest region
+of our simulation using the STARFORGE \citep{STARFORGE_Towa_Grudic_2021}
+formation and evolution modules.
+A gas particle becomes a sink (protostar) particle when
+it meets the full STARFORGE formation criteria: the cell must be
+(i) locally self-gravitating (virial parameter $\alpha_\mathrm{vir} < 1$),
+(ii) Jeans unstable,
+(iii) in a converging flow ($\nabla \cdot \mathbf{v} < 0$),
+(iv) experiencing compressive tides in all directions,
+(v) a local maximum of the density field, and
+(vi) not within the accretion radius of a pre-existing sink
+\citep{STARFORGE_Towa_Grudic_2021}.
+
+Once formed, sink particles accrete bound gas whose circularised orbit falls
+within the sink radius.
+Each sink evolves along protostellar tracks following \citet{Offner_2009},
+explicitly tracking the stellar radius, luminosity, and effective temperature
+as a function of the instantaneous mass and accretion rate.
+Protostellar jets are launched with a mass-loading proportional to the
+surface accretion rate and a launch velocity comparable to the escape
+velocity from the protostellar surface \citep{STARFORGE_Towa_Grudic_2021}.
+
+
+\subsection{Postprocessing methods}
+
+\subsubsection{Disk identification}
+\label{sec:diskid}
+
+To compute velocity dispersion, local Toomre $Q$, and other disk
+properties, we identify gas particles belonging to the disk at
+each snapshot using the following procedure:
+
+\begin{enumerate}
+  \item We place the disk centre at the most massive sink
+    particle. This is more stable than the mass-weighted
+    centre-of-mass (COM) of all sinks once secondary sinks form
+    at large separations. Before any sinks form, the centre is
+    placed at the densest gas particle within a refinement region.
+  \item We compute a mass-weighted COM velocity $v_\mathrm{COM}$ from gas particles within $r < r_\mathrm{search} = 10^{-5}\kpc \approx 2060\AU$ and subtract it from all particle velocities.
+  \item We compute the disk normal $\Lhat$ from the
+    total angular momentum
+    $\mathbf{L} = \sum_i m_i\,(\mathbf{r}_i \times \mathbf{v}_i)$
+    summed over particles within $r_\mathrm{search}$, using the
+    COM-subtracted velocities from the previous step. The sign
+    of $\Lhat$ is fixed so that $L_z > 0$ to prevent
+    frame-to-frame flipping.
+  \item We project particle positions and velocities onto the
+    disk-plane coordinate system
+    $(r_\mathrm{cyl},\,\phi,\,z,\,v_r,\,v_\phi,\,v_z)$.
+  \item We apply geometric and density cuts:
+    $r_\mathrm{cyl} < r_\mathrm{max} = 10^{-5}\kpc$,
+    $|z|/r_\mathrm{cyl} < 0.3$ (aspect ratio), and
+    $\rho > \rho_\mathrm{thresh} = 10^{-15}\gcm$.
+  \item We apply kinematic cuts:
+    $v_\phi > 0$ (co-rotating) and
+    $v_\phi / v_K > f_\mathrm{kep} = 0.3$, where
+    $v_K = \sqrt{G M_\mathrm{enc}(<r)/r}$ is the Keplerian speed
+    computed from the cumulative enclosed gas mass plus the total
+    sink mass placed at the origin.
+  \item We extend the kinematically selected set to its bounding
+    cylinder (100th percentile in $r_\mathrm{cyl}$ and $|z|$) to
+    recover any disk material just outside the strict kinematic
+    boundary.
+\end{enumerate}
+
+\begin{figure*}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{Zoom1.png}
+  \caption{Multi-scale density projection of the simulation at
+  $t - \tform \approx 15 \kyr$, illustrating the dynamic range
+  from the cosmic web (box size of $ \approx 100 \kpc$) to the center of the
+protostellar disk (resolving AU scales).
+  White boxes mark the region shown in the next panel.
+  White star symbols mark sink particles. }
+  \label{fig:zoom}
+\end{figure*}
+
+
+
+Particles passing all cuts are labelled as disk members.
+The disk radius $\rdisk$ is taken as the 90th-percentile
+cylindrical radius of disk members.
+
+%% ============================================================
+\section{Results}
+\label{sec:results}
+%% ============================================================
+
+In this section we present results from our cosmological RMHD simulation
+of Population III star formation. We organize the discussion as follows:
+\autoref{sec:collapse} examines the thermodynamic and energetic
+evolution during the pre-stellar collapse and early disk phase;
+\autoref{sec:disk} characterizes the disk structure and gravitational
+stability; \autoref{sec:bfield} describes the magnetic field evolution;
+and \autoref{sec:massevol} covers the star formation history, accretion
+rates, and protostellar mass function.
+
+\autoref{fig:zoom} presents a multi-scale density projection
+of the simulation at $t - \tform \approx 15\kyr$, illustrating the
+range of scales our simulation resolves after the onset of active
+star formation.
+
+
+\begin{figure*}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{phase_combined.pdf}
+  \caption{ Phase diagram (temperature and H$_2$ fraction vs.\ number density)
+  at three representative epochs: pre-stellar ($t - \tform \approx -0.5\kyr$,
+  left), first sink formation ($t - \tform = 0$, middle), and
+  post-first-sink ($t - \tform = 1.2\kyr$, right).
+  Green points correspond to disk-identified particles, red points correspond
+  to points in our cutout simulation that have not been identified as disk,
+  and blue points correspond to points in the full-box simulation right before
+  the cutout was applied (only included in the leftmost plots). $f_{\rm H_2}=0$
+  for most of particles in the low-density region (blue particles), thus missing from the bottom-left panel.
+  The dashed curves in the temperature panels show the theoretical $T$--$n$
+  tracks for primordial ($Z=0$) and metal-enriched ($Z=10^{-4}\,Z_\odot$) gas
+  from \citet{klessen_glover23} (KG23); shaded bands indicate the median $\pm$
+  standard deviation of the fits over the time intervals
+  $-0.5\,\mathrm{kyr} \le t - \tform \le 0$ (middle) and
+  $0 \le t - \tform \le 1.2\,\mathrm{kyr}$ (right), respectively.}
+  \label{fig:phases}
+\end{figure*}
+
+\subsection{Collapse}
+\label{sec:collapse}
+
+The assembly of a primordial protostar proceeds through a sequence of thermally regulated stages: the gas cools via H$_2$ line emission until line optical depth and three-body reactions convert the flow into a fully molecular, opaque core, at which point compressional heating halts the collapse and a protostellar seed forms.
+We examine the thermodynamic state of the infalling gas and the kinematics of the large-scale accretion flow that feeds the disk.
+
+\subsubsection{Thermodynamics}
+\label{sec:thermo}
+
+The thermal and chemical state of the gas encodes the balance between the competing processes of compressional heating and molecular cooling.
+The temperature--density phase trajectory is therefore a direct diagnostic of which physical process dominates at each stage of collapse, and $f_{H_2}$ molecular fraction phase plot shows the efficiency of molecular cooling. We include these
+phase space plots in \autoref{fig:phases} for three representative epochs (pre-stellar,
+first sink formation, post-first sink formation). Disk particles (identified by
+the algorithm of \autoref{sec:diskid}) are marked in green, particles that
+are a part of full simulation but not cutout are marked in blue, and particles
+that are present in cutout simulation but not identified as disk particles are
+marked in red.
+
+At the pre-stellar epoch ($t - \tform = -0.5\kyr$; \autoref{fig:phases}, left
+panels), the gas occupies a narrow track spanning $n \sim
+10^7$--$10^{10}\,\mathrm{cm}^{-3}$ and $T \sim 200$--$800$ K. This track traces
+the initial slow collapse, during which H$_2$ ro-vibrational cooling brings the
+gas down to the $\sim 200$ K temperature floor, followed by gradual
+compressional heating as H$_2$ line cooling saturates and becomes optically
+thick. The H$_2$ fraction (lower panel) rises modestly from $f_{\mathrm{H}_2}
+\sim 10^{-2.5}$ at $n \sim 10^7\,\mathrm{cm}^{-3}$ to $f_{\mathrm{H}_2} \sim
+10^{-1.3}$ at $n \sim 10^{10}\,\mathrm{cm}^{-3}$, driven primarily by two-body
+formation channels (H$^-$ and H$_2^+$ pathways). Note that increase in H$_2$
+fraction coincides with cooling of the gas, since H$_2$ is much more efficient
+coolant compared to atomic H. The low-density gas particles ($n \leq 10^{-5}$
+cm$^{-3}$) in the left column correspond to low-resolution gas in the original zoom-in box before re-simulation (blue markers). Most of those particles have
+$f_{\rm H_2} = 0$, thus not present in the bottom plot.
+This part of the simulation domain is outside our region of interest and does not change significantly over our integration time of $\approx 15 \, \rm kyr$.
+
+The $T$--$n$ track at the moment of first sink collapse ($t - \tform = 0$)
+follows the $Z = 10^{-4}\,Z_\odot$ metallicity track of
+\citet{omukai00, klessen_glover23} rather than the zero-metallicity track.
+We speculate that this slight offset may reflect small departures from
+chemical equilibrium in the collapsing gas; we do not impose a metallicity
+floor, so trace metal enrichment from surrounding regions cannot be ruled
+out as a contributing factor. By the later epoch ($t - \tform = 1.2\kyr$),
+the median of the phase distribution shifts back toward the $Z = 0$ track,
+suggesting that the gas at this stage is governed more by primordial
+H$_2$ chemistry. We defer a systematic one-zone test of this offset to
+future work.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\columnwidth]{energy_evolution.pdf}
+  \caption{Top: Time evolution of the main energy components computed for
+disk-identified particles: rotational kinetic energy $E_\mathrm{rot}$ (yellow),
+turbulent kinetic energy $E_\mathrm{turb}$ (cyan), total kinetic energy
+$E_\mathrm{kin} = E_\mathrm{rot} + E_\mathrm{turb}$ (green), gravitational
+potential energy $|E_\mathrm{pot}|$ (red), thermal energy $E_\mathrm{therm}$
+(orange), and magnetic energy $E_\mathrm{mag}$ (magenta). \\ 
+Bottom: pure kinematic virial ratio 
+$\alpha_{\text{kin}} = 2 E_\mathrm{kin}/|E_\mathrm{pot}|$
+(black); virial ratio with added thermal component (orange)
+$\alpha_{\text{kin+th}} = 2 \left(  E_\mathrm{kin} + E_\mathrm{therm} \right)/|E_\mathrm{pot}|$
+, and with added
+thermal and magnetic components (purple),
+$\alpha_{\text{vir}} = 2 \left(  E_\mathrm{kin} + E_\mathrm{therm} + E_\mathrm{mag} \right)/|E_\mathrm{pot}|$
+. The dashed red line marks virial
+equilibrium ($= 1$). The disk starts sub-virial and reaches equilibrium by
+$\sim 2\kyr$. 
+The inclusion of thermal energy reveals that the disk is thermally supported
+and near virial equilibrium at all times. Magnetic energy provides negligible
+additional support to the virial ratio. }
+  \label{fig:energy_evol}
+\end{figure}
+
+
+By $t - \tform = 0$ (\autoref{fig:phases}, middle panels), the gas has
+collapsed to much higher densities
+($n \sim 10^{13}\,\mathrm{cm}^{-3}$) and the thermal track has
+extended significantly.
+At intermediate densities ($n \sim 10^8$--$10^{10}\,\mathrm{cm}^{-3}$),
+compressional heating outpaces H$_2$ line cooling, which saturates
+as the lines become optically thick, and the temperature rises
+steadily through $T \sim 500$--$800$ K.
+The H$_2$ fraction increases steeply in this regime as three-body
+formation reactions (3H $\to$ H$_2$ + H) become efficient at
+$n \gtrsim 10^8\,\mathrm{cm}^{-3}$, converting the gas to fully
+molecular ($f_{\mathrm{H}_2} \to 1$) by
+$n \sim 10^{11}$--$10^{12}\,\mathrm{cm}^{-3}$. 
+Note that unlike in the pre-stellar regime, we see an increase in temperature
+associated with increase in H$_2$ fraction. This is a second-order effect:
+H$_2$ cools the gas very effectively, reducing thermal pressure, allowing the
+gas to continue the infall process. This makes the gas opaque to H$_2$ lines,
+heating it up. \citep{ripamonti_fragmentation_2004}
+
+
+At $t - \tform = 1.2\kyr$ (\autoref{fig:phases}, right panels), the phase
+diagram has broadened substantially. The gas has separated into 2 parts: a
+continuously-infalling branch with $T < 2000$ K and $n < 10^{10}$ cm$^{-3}$,
+and a hot branch at $T \sim 2000$--$8000$ K from shock-heated and adiabatically
+compressed gas. 
+The H$_2$ fraction now shows a bimodality at high densities: gas that has been
+heated to $T \gtrsim 2000$ K via radiation produced by the first formed sink
+undergoes collisional H$_2$ dissociation.
+We note that while our thermochemical model does not couple
+H$_2$ dissociation to thermodynamics, the $\beta_{{\rm H}_2, i}$
+terms in \autoref{eq:nh2} can still drive partial dissociation of H$_2$.
+
+A low-$f_{\mathrm{H}_2}$ population 
+($f_{\mathrm{H}_2} \sim 10^{-3}$--$10^{-5}$) is produced at 
+$n \sim 10^{10}$--$10^{12}\,\mathrm{cm}^{-3}$, while
+the lower-density gas keeps following the infall trajectory, driven by 2-body
+H$_2$ production pathway that the collapse started with (i.e. left panels).
+\citep{klessen_glover23}
+%The observed temperature floor at higher densities is a result of LW radiation
+%produced by the first formed sink. In the surrounding lower-density
+%gas, H$_2$ is photodissociated, removing the primary coolant and allowing
+%compressional heating to maintain elevated temperatures. The disk itself,
+%however, is dense enough for H$_2$ self-shielding: the high column density
+%attenuates incoming LW photons before they can dissociate H$_2$ in the disk
+%interior, allowing it to retain its molecular hydrogen and cool more
+%efficiently to lower temperatures.
+
+At later times, the three-body pathway to H$_2$ production becomes dominant way
+of converting atomic hydrogen to molecular in collapsing regions. This results
+in constantly increasing fraction of molecular hydrogen in the disk with time.
+
+
+\subsubsection{Pre-stellar outside-in collapse}
+
+A gravitationally supercritical core -- one in which the enclosed mass exceeds the local Jeans mass -- collapses outside-in: the outer shells fall inward faster than the inner ones because the excess of gravity over thermal pressure gradient increases with radius.
+This contrasts with the inside-out expansion wave picture of \citet{Shu_1977}, which applies only when a core is marginally critical.
+Here we characterize the accretion geometry and confirm that the simulated collapse is indeed driven from the outside in.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.95\columnwidth]{profile_shell_mass_accretion.pdf}
+  \caption{First plot: Radial density profiles through simulation time. 
+The x-axis begins at $\sim 1\,\mathrm{AU}$, corresponding to the
+resolution limit of the simulation. The fit for the region outside of the disk
+is consistently $\rho \propto r^{-1.7}$ accross all times. \\
+Second plot: Gas mass in a ball vs radius of the ball before
+the formation of the first sink. The fit is roughly $M \propto r^1.3$.\\
+Third plot: rate of change of gas mass in shell of radius $r$. At later times
+the inner region gains mass slower than at the eariler times 
+(mostly close to the time of the first sink forming). There is a characteristic
+"flattening" at smaller radii inside of the disk before the first star has formed.
+Outer shells gain mass faster at all times -- a characteristic of "outside-in" 
+collapse.
+Smallest shells have a drop in $\dot{M}_{\text{shell}} $, associated with 
+coming close to the resolution limit.\\
+Bottom plot: evolution of radial profile of kinematic virial parameter with 
+time. The disk starts clearly sub-virial in the region inside of the disk 
+($ < 10^{-2} $ pc), with virial parameter increasing by orders of magnitude
+at later times.}
+  \label{fig:shell_mass_accretion}
+\end{figure}
+
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\columnwidth]{profile_density.pdf}
+  \caption{Radial density profiles at three different times before the
+first bulk star formation event at $t-t_1 \approx 1.2\,\kyr$.
+The density increases with decreasing radius, and follows a power law
+relationship that steepens with time.}
+
+\label{fig:density_profile}
+\end{figure}
+
+We compute the gas mass in spherical shells
+centered on the densest particle in the disk (which will later correspond
+to the first sink particle location).
+We perform this calculation for every snapshot, with a time interval
+between snapshots of $\Delta t \approx 0.1\,\mathrm{kyr}$, and show the
+shell mass profiles in the top panel of \autoref{fig:shell_mass_accretion}.
+We show the rate of mass change per shell, $\Delta m / \Delta t$, in the bottom panel.
+
+The fact that the outer layers gain mass faster demonstrates an
+outside-in collapse. This contrasts with the inside-out model of
+\citet{Shu_1977} and aligns with the collapse dynamics of gravitationally
+unstable Bonnor-Ebert spheres
+\citep{Ebert_1955, Bonnor_1956, Larson_1969, Penston_1969}.
+\autoref{fig:kinematics_wide} confirms this: the infall velocity ($-v_r$) is
+supersonic in the envelope outside the disk ($r > 2500$ AU), which is a
+definitive signature of outside-in dynamics. Within the disk ($r < 2500$ AU),
+the flow becomes predominantly subsonic. This abrupt deceleration occurs
+because the infalling gas encounters an accretion shock as it strikes the
+dense, rotationally supported disk material. 
+
+
+
+
+\subsection{Disk evolution}
+\label{sec:disk}
+
+Once the accretion flow acquires sufficient angular momentum to form a centrifugal barrier, a rotationally supported disk grows around the central protostar.
+The subsequent evolution is governed by the competition between gravitational instability (which fragments the outer disk into secondary protostars), magnetic braking (which removes angular momentum and regulates the disk mass), and accretion-driven turbulence (which provides additional pressure support).
+We characterize this evolution through the disk energetics, its morphology, and its gravitational stability.
+
+\subsubsection{Energetics}
+\label{sec:energyevol}
+
+In this section, we consider the interplay of the gravitational, kinetic, 
+thermal and magnetic energies for the particles identified in the disk. 
+We compute the following energy components:
+potential $E_{\text{pot}}$, 
+rotational $E_{\text{rot}}$, 
+turbulent $E_{\text{turb}}$, 
+thermal $E_{therm}$,
+and magnetic $E_{\text{mag}}$, using Equations \ref{eq:Energies}:
+
+\begin{subequations}
+\label{eq:Energies} 
+\begin{align}
+    E_\mathrm{pot} &= -G \sum_{\substack{i < j \\ i,j \in \mathrm{disk}}}
+        \frac{m_i \, m_j}{\sqrt{|\mathbf{r}_i - \mathbf{r}_j|^2 + \epsilon^2}} \\
+    &-\; G \sum_{s \in \mathrm{sinks}} \sum_{i \in \mathrm{disk}}
+        \frac{m_s \, m_i}{\sqrt{|\mathbf{r}_s - \mathbf{r}_i|^2 + \epsilon^2}}, \nonumber \\
+    E_\mathrm{rot}  &= \tfrac{1}{2}\sum_{i \in \mathrm{disk}} m_i v_{\phi,i}^2, \\
+    E_\mathrm{turb} &= \tfrac{1}{2}\sum_{i \in \mathrm{disk}} m_i |\mathbf{v}_i 
+        - v_{\phi,i}\hat{\boldsymbol{\phi}} - v_{r,i}\hat{\boldsymbol{r}}|^2, \\
+    E_\mathrm{therm} &= \sum_{i \in \mathrm{disk}} m_i u_i, \\
+    E_\mathrm{mag}   &= \sum_{i \in \mathrm{disk}} \frac{|\mathbf{B}_i|^2}{8\pi}
+    \frac{m_i}{\rho_i}
+\end{align}
+\end{subequations}
+
+where $i$ denotes all gas particles identified as disk members 
+(see \autoref{sec:diskid}), 
+$m_i$ is the mass of particle, $\textbf{v}_i$ is the total velocity vector,
+$v_{\phi, i}, v_{r, i}$ are bulk velocity profile fits for azimuthal and radial 
+components for each annulus (both are functions of $r$ only), 
+$\textbf{B}_i$ is the magnetic field vector, 
+$\rho_i$ is the density, $u_i$ is the internal energy.
+
+\autoref{fig:energy_evol} shows the time evolution of the main energy
+components computed for disk-identified particles. Throughout the simulation,
+$|E_\mathrm{pot}|$ dominates over all other components, confirming that the
+disk is gravitationally bound. $E_\mathrm{rot}$ and $E_\mathrm{turb}$
+are the main support terms and track each other to within a factor of $\sim 2$,
+with $E_\mathrm{rot}$ slightly exceeding $E_\mathrm{turb}$. $E_\mathrm{therm}$
+starts comparable to the kinetic energies at early times but becomes
+subdominant at late times as the gravitational potential well deepens faster than the gas heats.
+
+%(see \autoref{sec:diskid}).
+
+
+The magnetic energy,
+$E_\mathrm{mag}$, grows
+over the $\sim 15\kyr$ simulation, from $\sim 10^{42}$ erg at
+$t - \tform \approx -0.5\kyr$ to $\sim 10^{45.5}$ erg at $15\kyr$. This growth
+is driven by a combination of flux-freezing compression during the collapse, 
+field-line winding
+by differential rotation, and potentially the small-scale turbulent dynamo
+\citep{sharda21}. Despite this rapid amplification, $E_\mathrm{mag}$ remains
+below $E_\mathrm{therm}$ throughout the simulation, though the gap narrows at
+late times -- consistent with the declining mass-to-flux ratios discussed in
+\autoref{sec:bfield}.
+
+
+The bottom panel shows the virial ratio $2 E_\mathrm{kin} / |E_\mathrm{pot}|$.
+At early times ($t - \tform < 0$), the virial ratio is $\sim 0.6$--$0.7$,
+indicating a \textit{sub-virial}, contracting state, i.e. the system has
+insufficient kinetic energy to balance gravity.
+
+The virial ratio rises as the disk forms and spins up, reaching $\sim 1.0$ by
+$t - \tform \approx 2\kyr$. From $2$ kyr onward, the virial ratio oscillates
+around unity, indicating that the disk has achieved and maintains approximate
+virial equilibrium through a balance of rotational support, turbulent pressure,
+and gravitational collapse. A dip in virial ratio after 11 kyr likely
+corresponds to the slow-down of stellar accretion rate (when less gas
+is accreted per unit time, less gravitational energy is converted to
+kinetic energy, reducing the kinetic-to-potential ratio), which can also
+be observed in \autoref{fig:mass_evol_rates}. The ``bounce-back" times also
+align with the ``bounce-back" in the stellar accretion rate values.
+
+The virial ratio never approaches the unbound threshold of $2$,
+confirming that the system remains gravitationally bound throughout.
+
+
+\subsubsection{Disk morphology and evolution}
+\label{sec:morphology}
+
+As the disk accretes mass and angular momentum, its morphology undergoes a characteristic sequence: an initially smooth, centrally concentrated structure gives way to spiral arms as the Toomre parameter drops below 1, and those arms subsequently fragment into secondary sinks.
+The radial velocity structure simultaneously transitions from subsonic infall within the disk to supersonic infall in the surrounding envelope.
+This signifies a presence of the accretion shock at the disk boundary.
+
+%\begin{comment}
+%\begin{figure*}[!htbp]
+%  \centering
+%  \includegraphics[width=\textwidth]{light/profile_kinematics_combined.pdf}
+%  \caption{ Radial profiles of inward radial velocity $-v_r$, azimuthal velocity 
+%  $v_{\phi}$, sound speed $c_s$, magnitude of turbulent velocity 
+%  $\left| \delta v \right|$, radial turbulent velocity dispersion $\sigma_r$,
+%  Keplerian speed $v_K$. 
+%  Bright lines show functions with spline smoothing, dim lines show actual data.
+%  $\sigma_r$ grows with time, as well as $\left| \delta v \right|$. Radial 
+%  infall $(v_r)$ speeds up until the bulk star formation events  ($1.3-3.6\kyr$), 
+%  and slows down afterwards. Disk rotation $(v_{\phi})$ is constantly speeding 
+%  up.} 
+%\label{fig:kinematics}
+%\end{figure*}
+%\end{comment}
+
+\begin{figure*}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{profile_kinematics_wide.pdf}
+\caption{ Radial profiles of inward radial velocity $-v_r$, azimuthal velocity 
+$v_{\phi}$, sound speed $c_s$, magnitude of turbulent velocity 
+$\left| \delta v \right|$, radial/azimuthal/vertical turbulent velocity dispersion 
+$\sigma_r/\sigma_\phi/\sigma_z$,
+Keplerian speed $v_K$ of gas particles in the disks. 
+Bright lines show functions with spline smoothing, dim lines show actual data.
+$\sigma_r$ grows with time, as well as $\left| \delta v \right|$. Radial 
+infall $(v_r)$ speeds up until the bulk star formation events  ($1.3-3.6\kyr$), 
+and slows down afterwards. Disk rotation $(v_{\phi})$ is constantly speeding 
+up, leveling off outside of the disk ($r \gtrsim 2500$ AU). 
+$\sigma_r, \sigma_{\phi}, \sigma_z$ track each other very closely, but
+$\sigma_z$ decouples from the other two by the $\Delta t \gtrsim 9$ kyr time 
+outside of the disk. Turbulence is supersonic at all times, tracking Keplerian
+speed $v_K$ closely for most times outside of the disk, but falling below it 
+inside of the disk.} 
+\label{fig:kinematics_wide}
+\end{figure*}
+
+\autoref{fig:kinematics_wide} shows radial profiles of velocity components of
+gas particles in the disk, as well as turbulent velocity magnitude and dispersion.
+We plot $-v_{r}$ (negated so that positive values indicate radially inward flow) to simplify comparison.
+
+The general trend is that $v_{\phi},\, \left| \delta v \right|, \sigma_r$ increase
+with time everywhere. $v_r$ is negative and thus gas is mostly infalling for 
+the whole simulation, with $|v_r|$ increasing until stabilizing at around
+1.3-3.6 kyr (bulk star formation events), and dropping after stars are fully 
+formed. $c_s$ rises until 1.3 kyr, after which it stabilizes.
+It is clear that the turbulence starts off as sonic or sub-sonic, 
+ but becomes greatly supersonic once the sink forms. 
+
+\autoref{fig:combined_density} shows face-on and edge-on surface density
+projections at six representative epochs spanning the full
+$\sim 15\kyr$ evolution after the formation of the first sink
+($\tform$).
+
+\begin{figure*}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{combined_density.pdf}
+  \caption{ Face-on and edge-on surface density projections at six epochs.
+  Each panel shows a $4100 \times 4100\AU$ region centred on the
+  most massive sink. Star symbols mark sink particles within the
+  image box. }
+  \label{fig:combined_density}
+\end{figure*}
+
+
+At the pre-stellar epoch ($t - \tform = -0.5\kyr$), the gas is
+centrally concentrated without significant rotational support,
+appearing as an elongated, filamentary structure.
+By the time the first sink forms ($t - \tform = 0$), a compact
+central concentration has developed.
+A coherent disk with recognisable rotational structure emerges within
+$\sim 1\kyr$.
+By $t - \tform \approx 3.6\kyr$, the disk develops prominent
+two-armed spiral structure as it becomes gravitationally unstable
+(\autoref{sec:stability}), with multiple sink particles visible
+along the spiral arms.
+By $t - \tform \approx 9.5\kyr$, the disk hosts $\sim 20$ visible
+sink particles embedded in a multi-armed, irregular spiral pattern
+extending to $\sim 2000\AU$, with several sinks located far from
+the centre.
+t
+%The mild tilt that is observed in the edge-on maps is most definitely the 
+%imperfection of our disk plane identification algorithm, and not a disk property.
+
+
+%\autoref{fig:combined_vdisp} show the
+%streaming-subtracted velocity dispersion $|\delta v|$.
+%At early times ($t - \tform \lesssim 1\kyr$), the velocity
+%dispersion is low ($|\delta v| \sim 1$--$3$ km\,s$^{-1}$)
+%and relatively uniform.
+%By the onset of spiral structure ($t - \tform \approx 3.6\kyr$),
+%elevated dispersion of $\sim 5$--$6$ km\,s$^{-1}$ traces the spiral arms
+%and shock-heated regions.
+%At late times ($t - \tform \approx 9.5\kyr$), the velocity dispersion
+%reaches $\sim 10$--$18$ km\,s$^{-1}$ near the central concentration
+%and around individual sinks, with values of $\sim 3$--$5$ km\,s$^{-1}$
+%in the inter-arm regions.
+%The edge-on view (\autoref{fig:edgeon_vdisp}) confirms that the
+%highest dispersions are concentrated in the disk midplane, particularly
+%in the immediate vicinity of sink particles.
+
+
+Radial density profile evolution is shown on \autoref{fig:density_profile}.
+It is clear that the density profile is following a steepening power law
+$\rho \propto r^{- \alpha}$, with $\alpha \approx 1.2$ at the time before
+the first sink forms, $\alpha \approx 1.8$ at the point of formation
+of the first sink, and $\alpha \approx 2.1$ by the time of a 
+first bulk star formation event, at the point when the spiral arms have formed.
+
+
+%\begin{figure*}[!htbp]
+%  \centering
+%  \includegraphics[width=\textwidth]{combined_vdisp.pdf}
+%  \caption{Face-on projection of the streaming-subtracted velocity
+%  dispersion $|\delta v|$ at six epochs.
+%  The streaming motion ($\bar{v}_r(r)$, $\bar{v}_\phi(r)$) is subtracted
+%  in radial bins before computing the residual.
+%  The colour scale spans $\sim 2$--$15$ km\,s$^{-1}$.
+%  }
+%  \label{fig:combined_vdisp}
+%\end{figure*}
+
+
+\subsubsection{Disk stability and fragmentation}
+\label{sec:stability}
+
+Whether a self-gravitating disk fragments into bound clumps, or instead disperses the accumulated mass through spiral-arm shocks and turbulent transport depends on the ratio of stabilising pressures (thermal, turbulent) to the destabilising self-gravity of the gas.
+The Toomre parameter, defined in \autoref{eq:toomreq} \citep{Toomre_1964}, quantifies this balance locally: $Q < 1$ marks regions where perturbations on the disk scale grow faster than orbital shear can wind them up.
+We track the spatial and temporal evolution of $Q$ to identify when and where fragmentation occurs, and how sink-driven velocity dispersion subsequently self-regulates the disk back toward marginal stability.
+
+To characterize non-thermal motions in the disk, we decompose
+particle velocities into radial and azimuthal components
+$(v_r, v_\phi)$ in the disk-plane coordinate system.
+We subdivide the disk into concentric cylindrical annuli and compute
+the mass-weighted mean velocity in each annulus, yielding radial
+profiles $\bar{v}_r(r)$ and $\bar{v}_\phi(r)$.
+
+The residual (streaming-subtracted) velocity for each particle is
+$\vec{\delta v} = (v_r - \bar{v}_r,\; v_\phi - \bar{v}_\phi,\; v_z)$.
+The velocity dispersion $\sigma_v$ is computed as the root-mean-square
+of $|\vec{\delta v}|$ within each annulus.
+
+The Toomre $Q$ parameter quantifies the gravitational stability
+of a differentially rotating disk:
+\begin{equation}
+\label{eq:toomreq}
+Q = \frac{c_s \kappa}{\pi G \Sigma},
+\end{equation}
+where $c_s$ is the sound speed, $\kappa$ the epicyclic frequency,
+and $\Sigma$ the surface density.
+
+For the local Toomre $Q$ calculation we replace $c_s$ with
+$\zeta = \sqrt{\sigma_r^2 + c_s^2}$, which includes both thermal
+and turbulent contributions, since supersonic turbulence provides
+additional effective pressure support.
+
+For each snapshot the gas is binned into 20 annular bins in the face-on frame.
+In each annulus $b$ we compute mass-weighted quantities:
+\begin{equation}
+    \Sigma_b = \frac{\sum_{i\in b} m_i}{\pi(r_{\mathrm{hi},b}^2 - r_{\mathrm{lo},b}^2)},
+    \qquad
+    \sigma_{r,b} = \sqrt{\frac{\sum_{i\in b} m_i\,v_{r,i}^2}{\sum_{i\in b} m_i} - \bar{v}_{r,b}^2}
+\end{equation}
+The angular velocity is measured directly from the rotation profile:
+\begin{equation}
+    \Omega_b = \frac{|\bar{v}_{\phi,b}|}{r_b}
+\end{equation}
+where $\bar{v}_{\phi,b}$ is the mass-weighted mean azimuthal velocity in annulus
+$b$ and $r_b$ is the bin center. The epicyclic frequency is computed numerically
+from the measured rotation curve via \citep{Pringle_King_2007}.
+\begin{equation}
+    \kappa_b^2 = \frac{2\,\Omega_b}{r_b}\,\frac{\mathrm{d}(r^2\,\Omega)}{\mathrm{d}r}\bigg|_{r_b}
+\end{equation}
+The Toomre parameter per annulus is then
+\begin{equation}
+    Q_b = \frac{\zeta_b \,\kappa_b}{\pi\,G\,\Sigma_b}
+\end{equation}
+
+A pixel-by-pixel face-on $Q$ map is produced by computing 
+local mass-weighted quantites for all of the relevant parameters:
+\begin{equation}
+    Q(x,y) = \frac{\zeta_b (x,y)\;\kappa(r_{x,y})}{\pi\,G\,\Sigma(x,y)}
+\end{equation}
+where $r_{x,y} = \sqrt{x^2 + y^2}$, and $\zeta = \sqrt{\sigma_r^2 + c_s^2}$, 
+which sums over thermal and turbulent contributions.
+
+The Toomre $Q$ parameter measures the gravitational stability of the
+disk.
+\autoref{fig:toomre_Q_merged} (top) shows face-on maps of the local $Q$,
+computed using the streaming-subtracted velocity dispersion
+$\sigma_v$ in place of $c_s$.
+At the pre-stellar epoch ($t - \tform = -0.5\kyr$), the gas is
+broadly unstable with $Q \lesssim 1$ throughout most of the region.
+By $t - \tform = 0$, the central region near the first sink begins to
+stabilise, while the surroundings remain marginally unstable.
+At $t - \tform \approx 1.3\kyr$, a clear boundary emerges between
+a stabilised inner region and an unstable outer envelope.
+By the time spiral arms have developed ($t - \tform \approx 3.6\kyr$),
+a ring of $Q < 1$ material traces the spiral arms, while the inner disk
+is stabilised ($Q > 1$) by the strong velocity dispersion generated
+near the central sinks.
+
+The radial Toomre $Q$ profile (\autoref{fig:profile_toomre_Q}) quantifies
+its evolution.
+At the pre-stellar epoch ($t - \tform = -0.5\kyr$), $Q$
+is below unity at all radii ($Q \sim 0.2$--$0.3$), reflecting a
+globally unstable collapsing core.
+As the first sink forms and accretes, the inner $Q$ rises:
+by $t - \tform = 1.3\kyr$ (green), $Q \approx 1$ throughout, consistent
+with a marginally stable state.
+By $t - \tform = 9.5\kyr$ (brown), 
+$Q$ is mostly stable in the whole disk, with central region being the most
+stable. At later times a radial gradient develops, with the inner disk more
+stable ($Q \gg 1$) and the outer spiral arms remaining near or below
+$Q \sim 1$.
+
+\begin{figure*}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{toomre_Q_merged.pdf}
+  \caption{Top: Face-on maps of the local Toomre $Q$ parameter at six epochs.
+The black contour marks $Q = 1$. \\
+Bottom: Evolution of radial profile of Toomre $Q$ (heatmap), and sink formations,
+mergers, and radial positions' evolution (lines). \\
+At early times the gas is globally unstable ($Q < 1$); at late times
+the inner disk is strongly stabilised while the outer spiral arms
+remain near or below $Q = 1$.
+Radial profile of Toomre $Q$ at six epochs. The horizontal
+dashed line marks $Q = 1$. At early times the entire region has
+$Q < 1$; at late times a radial gradient develops, with
+$Q > 10^3$ at $r < 100\AU$ falling to $Q \sim 1$ at $r \sim 2000\AU$.
+  }
+  \label{fig:toomre_Q_merged}
+\end{figure*}
+
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\columnwidth]{profile_toomre_Q.png}
+  \caption{Toomre Q radial profiles time evolution.
+The disk starts with $Q < 1$ inside and $Q \approx 1$ near the edge,
+but $Q$ rises with disk evolution, since gas is removed from the disk because of 
+star formation events. Center of the disk is extremely stable ($Q \gtrsim 10^2$) 
+by the 15 kyr mark, preventing any further star fromation in the middle. }
+  \label{fig:profile_toomre_Q}
+\end{figure}
+
+\autoref{fig:toomre_Q_merged} (bottom) shows the space--time evolution of the
+azimuthally-averaged Toomre $Q$ radial profile.
+Lines on the plot correspond to evolution of radial positions of sinks
+($r(t)$).
+
+The disk begins in a predominantly unstable state ($Q < 1$, red)
+at all radii.
+The first sink forms at the centre, and within $\sim 1\kyr$ the
+$Q = 1$ contour (black line) begins to propagate outward from
+the centre, tracing a wave of stabilisation driven by the velocity
+dispersion generated during the initial collapse.
+A second stabilisation wave is launched by the formation of a
+second sink near the centre at $\Delta t \approx 1\kyr$.
+These waves propagate outward at speeds of $\sim 2$--$3\,c_s$.
+
+%The physical origin of this transient stabilisation is kinematic
+%rather than thermodynamic.
+%The waves are clearly visible in the radial velocity dispersion
+%heatmap (\autoref{fig:sigma_r_heatmap}), where rising
+%$\sigma_r$ at progressively larger radii traces the outward-moving
+%shocks.
+%No corresponding features appear in the surface density heatmap
+%(\autoref{fig:sigma_heatmap}), confirming that the stabilisation
+%is driven by increased velocity dispersion (i.e.\ effective pressure),
+%not by density changes.
+
+After $t - \tform \approx 3\kyr$, the $Q = 1$ boundary has
+swept through most of the disk.
+At this point, a burst of sink formation occurs, with sinks
+appearing at $r \sim 300$--$800\AU$ clustered around
+$\Delta t \approx 3$--$4\kyr$.
+This burst takes out a lot of gas mass from the disk, stabilizing it. A lot of 
+sinks also merge shortly after being produced in this event.
+
+\deleted{\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\columnwidth]{sink_count_history_loglog.pdf}
+  \caption{Time evolution of the number of sinks in the
+simulation. The dashed line shows a $N \propto t^{1.5}$ power law for
+comparison \citep{li_klein_mckee18}. Bulk star formation events in the spiral
+arms (visible in the bottom panels of \autoref{fig:toomre_Q_merged}) are
+seen to rapidly increase the number of sinks at
+$t - t_1 \approx 3$--$4\,\mathrm{kyr}$ and $7$--$8\,\mathrm{kyr}$.}
+\label{fig:num_sinks}
+\end{figure}}
+
+A similar burst, yet producing less sinks, happens later in time 
+at around $\Delta t \approx 7$--$8\kyr$.
+It is preceded by ``infalling region of instability" (patch with marginally
+higher $Q$ values,) which disapperas for the same reasons as it does
+in the first bulk formation scenario.
+Much fewer sinks merge in this event, compared to the first one.
+Last star in the disk in our simulation forms in this event at around
+$\Delta t \approx 8\kyr$.
+All the sink formation history can also be seen on the number of sinks evolution plot in
+\autoref{fig:num_sinks}, with clear jumps in number of sinks at $\Delta t
+\approx 3-4, 7-8 \kyr$. 1 sink forms in the first kyr of the
+simulation, then only its companion forms as a stable second sink at 1
+kyr, and the simulation has only 2 sinks for most of the time until onset of
+bulk star formation event at $\delta t \approx 3-4 \kyr$. During that event,
+$\approx 20$ sinks form and survive (with a few of them being absorbed into
+larger ones shortly after formation). 
+Extra $\approx 8$ non-merging sinks form during the second star
+formaion event during the second collapse of the spiral arm.
+Final number of sinks is $32$, 
+
+%\begin{figure}[!htbp]
+%  \centering
+%  \includegraphics[width=\columnwidth]{sigma_heatmap.pdf}
+%  \caption{Space--time evolution of the surface density $\Sigma$ profile.
+%  The colour scale is logarithmic, spanning $\sim 1$--$10^3$ g\,cm$^{-2}$.
+%  Unlike the $Q$ heatmap (\autoref{fig:Q_heatmap}), no outward-propagating
+%  features are visible, confirming that the transient stabilisation is
+%  driven by velocity dispersion rather than density changes.
+%  Yellow stars mark sink formation events.
+%  }
+%  \label{fig:sigma_heatmap}
+%\end{figure}
+%
+%\begin{figure}[!htbp]
+%  \centering
+%  \includegraphics[width=\columnwidth]{sigma_r_heatmap.pdf}
+%  \caption{Space--time evolution of the radial velocity dispersion
+%  $\sigma_r$ profile.
+%  The colour scale spans $\sim 0.1$--$30$ km\,s$^{-1}$.
+%  Outward-propagating ridges of elevated $\sigma_r$ at early times
+%  correspond to shocks launched by sink formation.
+%  At late times, $\sigma_r$ is elevated throughout the disk.
+%  Yellow stars mark sink formation events.
+%  }
+%  \label{fig:sigma_r_heatmap}
+%\end{figure}
+
+%\subsubsection{Disk stability and the self-regulation cycle}
+%\label{sec:disc_stability}
+%
+%Our results reveal a characteristic cycle of gravitational instability,
+%fragmentation, shock-driven stabilisation, and renewed instability.
+%The initial collapse produces a globally unstable ($Q < 1$) disk
+%that fragments within $\sim 3\kyr$.
+%Each fragmentation event launches an outward-propagating shock
+%that temporarily raises the local velocity dispersion and drives
+%$Q$ above unity.
+%Continued mass infall from the envelope then replenishes the surface
+%density and drives $Q$ back below unity, triggering renewed
+%instability.
+%
+%This self-regulating behaviour is qualitatively similar to the
+%``gravitoturbulence'' paradigm established by \citet{gammie01}
+%for present-day protostellar disks, where gravitational instability
+%generates turbulent heating that maintains the disk in a state of
+%marginal stability ($Q \sim 1$).
+%However, there are important quantitative differences.
+%First, the turbulent Mach numbers in our disk are much larger
+%($\mathcal{M} \sim 3$--$4$ at late times) than in the subsonic
+%gravitoturbulence typical of T Tauri disks ($\mathcal{M} \lesssim 1$).
+%This implies that compressive, shock-driven turbulence -- rather than
+%subsonic gravitational stirring -- is the primary agent of
+%stabilisation.
+%Second, the disk does not settle into a quasi-steady state with
+%$Q \approx 1$ everywhere.
+%Instead, a steep radial gradient develops: $Q \gg 1$ in the inner
+%disk (stabilised by the deep potential well and strong turbulence)
+%and $Q \sim 1$ or below in the outer disk (where infall continually
+%drives instability).
+%This suggests that fragmentation is an ongoing process in the outer
+%disk, not a single event.
+
+
+
+\subsection{Magnetic fields}
+\label{sec:bfield}
+
+Magnetic fields are amplified during the collapse by compression along field lines and by differential rotation within the disk once it forms.
+The two relevant amplification channels -- flux freezing (compression-driven, $B \propto \rho^{2/3}$) and rotational winding (differential-rotation-driven, $B_\phi \propto r \partial\Omega/\partial r \cdot B_z$) -- leave distinguishable imprints in the spatial structure and scaling of the field.
+We characterize the resulting field morphology and its evolution through the vertical ($B_z$) and toroidal ($B_\phi$) components, and we quantify the coupling between matter and field through the mass-to-flux ratio $\mu = M/\Phi_B$ normalized to the critical value.
+
+%\subsubsection{Magnetic field structure}
+%\label{sec:bfieldstruct}
+
+Figures \ref{fig:combined_Btor}--\ref{fig:combined_Bz}
+show face-on ($z=0$ slice) and edge-on ($x=0$ slice) views of the
+toroidal and vertical components of the magnetic field at six epochs.
+
+At the pre-stellar epoch, $B_z$ shows large-scale coherent structure
+with a preferred sign, pointing towards primordial field orientation.
+As the disk forms and develops spiral structure, $B_z$ is amplified
+in the disk midplane and develops sign reversals that trace the
+spiral arms, with field strengths reaching
+$|B_z| \sim 10^{-2}$--$10^{-1}$ G at late times.
+
+The toroidal component $B_\phi$ (\autoref{fig:combined_Btor}) develops
+an antisymmetric pattern by $t - \tform \approx 1.3\kyr$:
+the field exhibits opposite signs on either side of the disk midplane,
+as confirmed by the edge-on view.
+This field can be achieved if we assume that primordial B-field
+was directed in +x +y direction diagonally.
+By $t - \tform \approx 3.6\kyr$, $B_\phi$ displays a clear
+two-armed spiral pattern with alternating positive and negative
+regions, reaching strengths of $|B_\phi| \sim 10^{-1}$ G.
+This antisymmetric, wound-up morphology is characteristic of field
+amplification by differential rotation and is consistent with
+a large-scale disk dynamo. By late times ($15\kyr$,) the toroidal
+component of the field is directed mostly opposite with respect to the
+direction of rotation of the disk.
+
+% SPECULATION
+Why did the toroidal field end up being anti-parallel to the direction of 
+rotation? A clue might be located in the fourth face-on plot, 
+corresponding to $\Delta t \approx 3.6\kyr$, roughly the time of first
+bulk star formation event. 
+It is clear that at this state, the spacial distribution of the toroidal field
+is evenly distributed between positive ($B_{tor} > 0$, red) and negative
+($B_{tor} < 0$, blue) components, with each of two of spiral arms corresponding
+to one of them. However, the spiral arm with denser gas corresponds to
+$B_{tor} < 0$ regime, and the magnetic field is amplified in there during 
+collapse via flux-freezing mechanism. At later times this amplification is
+dispersed arond the whole disk region, making $B_{tor} < 0$ regime dominant.
+
+We define mass-to-flux ration per annulus $b$ as:
+\begin{equation}
+    \mu_{\Phi,b} = \frac{2\pi\sqrt{G}\,\Sigma_b}{|B_{z,b}|}
+\end{equation}
+
+The mass-to-flux ratio $\mu_\Phi$ (\autoref{fig:profile_mf})
+evolves significantly over time.
+
+At early times ($t - \tform \leq 1.3\kyr$), $\mu_\Phi \sim 100$--$300$
+at all radii, indicating an extremely magnetically supercritical
+state in which gravity overwhelms magnetic support by more than
+two orders of magnitude.
+The mass-to-flux ratio then declines steadily as the field is
+amplified by compression and winding:
+by $t - \tform = 3.6\kyr$ (red), $\mu_\Phi$ has dropped to
+$\sim 10$--$100$.
+By $t - \tform = 6.3\kyr$ (purple), $\mu_\Phi$ exhibits large
+radial scatter, with values ranging from $\sim 1$ to $\sim 100$
+and dipping below the critical value ($\mu_\Phi < 1$) at some
+inner radii.
+At the latest epoch ($t - \tform = 9.5\kyr$, brown), significant
+portions of the inner disk ($r \sim 200$--$500\AU$) have
+$\mu_\Phi < 1$, indicating that the disk has become locally
+\textit{magnetically subcritical} -- a state where magnetic
+pressure and tension can in principle support the gas against
+gravitational collapse.
+
+
+This transition from $\mu_\Phi \sim 300$ to $\mu_\Phi \lesssim 1$
+over $\sim 10\kyr$ represents a decrease of more than two orders
+of magnitude and implies a corresponding amplification of the
+magnetic field by flux-freezing compression, differential rotation
+winding, and possibly the turbulent dynamo.
+
+%\begin{figure*}[!htbp]
+%  \centering
+%  \includegraphics[width=\textwidth]{combined_Bpol.pdf}
+%  \caption{Face-on ($z=0$ slice) and edge-on ($x=0$ slice) of the poloidal
+%magnetic field component $B_{pol} = \sqrt{B_z^2 + B_r^2} \cdot \hat{B}_r $ at
+%six epochs.
+%  }
+%  \label{fig:combined_Bpol}
+%\end{figure*}
+
+\begin{figure*}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{combined_Btor.pdf}
+  \caption{Face-on ($z=0$ slice) and edge-on ($x=0$ slice) of the toroidal
+magnetic field component $B_{\phi}$ at six epochs.
+  }
+  \label{fig:combined_Btor}
+\end{figure*}
+
+\begin{figure*}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{combined_Bz.pdf}
+  \caption{Face-on ($z=0$ slice) and edge-on ($x=0$ slice) of the vertical
+magnetic field component $B_{z}$ at six epochs.
+  }
+  \label{fig:combined_Bz}
+\end{figure*}
+
+\autoref{fig:phase_Bfield} shows evolution of phase plot of magnetic field
+magnitude $\left| B \right|$ through the 6 epochs we have been discussing.
+There is an evolving power law relationship that evolves as 
+$\left| B \right| \propto n^{2/3}  \rightarrow \left| B \right| \propto n^{1}$.
+
+%This shows that B-field amplification via dynamo is properly resolved in our
+%simulation. but even with this 
+\note{TODO: More explanations needed. What does this mean? Do we resolve dynamo?}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\columnwidth]{phase_Bfield.pdf}
+  \caption{ Evolution of phase plot of magnitude of magnetic field 
+$\left| B \right|$ vs number density $n$. Green points correspond to particles,
+identified as inside of the disk, and red points correspond to particles in the
+cutout simulation that are outside of the disk. $\left| B \right|$
+spans 3 orders of magnitude at the point of first sink formation,
+and up to 4 orders of magnitude at later times. }
+  \label{fig:phase_Bfield}
+\end{figure}
+
+
+%\begin{figure*}[!htbp]
+%  \centering
+%  \includegraphics[width=\textwidth]{combined_Btor.pdf}
+%  \caption{Face-on projection of the toroidal magnetic field component
+%  $B_\phi$ at six epochs.
+%  The colour scale uses symmetric-log normalisation.
+%  The field develops an antisymmetric spiral pattern characteristic
+%  of winding by differential rotation.
+%  }
+%  \label{fig:combined_Btor}
+%\end{figure*}
+
+%\subsubsection{Magnetic field amplification and the approach to subcriticality}
+%\label{sec:disc_bfield}
+%
+%The most striking feature of the magnetic field evolution is the
+%dramatic decrease in the mass-to-flux ratio from $\mu_\Phi \sim 300$
+%to $\mu_\Phi \lesssim 1$ over $\sim 10\kyr$.
+%At early times, magnetic fields are dynamically irrelevant; by the
+%end of the simulation, portions of the inner disk have become
+%magnetically subcritical.
+%
+%This rapid amplification has several drivers.
+%Flux-freezing during the initial gravitational collapse amplifies
+%the field as $B \propto \rho^{2/3}$ for isotropic compression.
+%Once the disk forms, differential rotation winds the vertical field
+%into a toroidal component, as evidenced by the antisymmetric
+%$B_\phi$ morphology (\autoref{fig:combined_Btor}).
+%Additionally, the supersonic turbulence in the disk may drive a
+%small-scale turbulent dynamo that amplifies the field on timescales
+%shorter than the orbital period \citep{sharda21}.
+%\citet{higashi24} showed that the turbulent dynamo in collapsing
+%primordial clouds can amplify fields by $10^{12}$--$10^{15}$,
+%reaching $3$--$100\%$ of equipartition; our observed growth of
+%$E_\mathrm{mag}$ by four orders of magnitude
+%(\autoref{sec:energyevol}) is consistent with these combined
+%amplification mechanisms.
+%
+%The approach to subcriticality ($\mu_\Phi \sim 1$) at late times
+%suggests that magnetic fields may begin to play a dynamically
+%important role in regulating fragmentation and angular momentum
+%transport if the simulation were continued further.
+%The parameter survey of \citet{machida25} maps out this transition:
+%their weak-field models ($\mu_\Phi \gg 1$) produce multiple
+%protostars and vigorous fragmentation, while amplified fields
+%eventually drive mergers and suppress multiplicity.
+%Our $\mu_\Phi$ evolution from $\sim 300$ to $\sim 1$ over $10\kyr$
+%places our simulation squarely in the weak-to-transitional regime
+%of \citeauthor{machida25}, consistent with the observed vigorous
+%fragmentation in our disk.
+%\citet{hirano_machida22} found that exponential dynamo amplification
+%eliminates fragmentation entirely within $\sim 1000$ yr in idealised
+%simulations; the persistence of fragmentation in our cosmological
+%setup despite declining $\mu_\Phi$ likely reflects the continuous
+%replenishment of magnetically supercritical gas by large-scale
+%cosmological infall, which sustains disk instability even as the
+%inner disk approaches subcriticality.
+%
+%The POPSICLE simulations \citep{sharda_menon25, prole25} provide
+%a complementary perspective: magnetic fields limit the most massive
+%protostar to $\sim 65\,\Msun$ within $5\kyr$ even without radiation
+%feedback, establishing that the transition to $\mu_\Phi \sim 1$
+%corresponds to the onset of effective magnetic braking.
+%The recent cosmological RMHD simulation by \citet{meziani26}
+%(FORGE'd in FIRE) shows that at $\mu_\Phi$ of order a few, magnetic
+%fields launch protostellar jets that regulate accretion over
+%$\sim 30\kyr$.
+%Our simulation captures the approach to this jet-launching regime
+%but does not yet resolve jet formation, suggesting that the
+%$\mu_\Phi \sim 1$ state we observe at $10\kyr$ marks the onset of
+%a qualitatively new evolutionary phase.
+%
+%We note that our simulation employs ideal MHD; non-ideal effects
+%such as ambipolar diffusion, which \citet{sadanari23} showed can
+%partially decouple the field from the gas in primordial environments,
+%could slow the approach to subcriticality and sustain fragmentation
+%for longer than our ideal-MHD treatment predicts.
+
+
+%\subsection{Kinematic properties of the disk}
+%\label{sec:velocity}
+%
+%\autoref{fig:vel_profiles} shows radial profiles of $v_r$,
+%$v_\phi$, and the streaming-subtracted turbulent velocity
+%$|\delta v|$ at six epochs.
+%
+%\textit{Radial velocity.}
+%At early times ($t - \tform \leq 0$), the radial velocity is
+%uniformly negative at all radii, with $v_r \sim -0.5$ to
+%$-2$ km\,s$^{-1}$, reflecting coherent infall.
+%By $t - \tform = 1.3\kyr$ (green), the infall has intensified to
+%$v_r \approx -2$ km\,s$^{-1}$ at all radii.
+%At $t - \tform = 3.6\kyr$ (red), a change occurs: the inner
+%disk ($r \lesssim 500\AU$) shows $v_r$ near zero or slightly
+%positive, while the outer disk ($r > 500\AU$) exhibits strong
+%infall reaching $v_r \approx -3$ km\,s$^{-1}$.
+%This marks the point where the inner disk has become rotationally
+%supported while the outer regions are still actively accreting.
+%At the latest epochs ($t - \tform = 6.3$ and $9.5\kyr$), $v_r$
+%oscillates between positive and negative values at different radii,
+%with amplitudes of $\sim 2$--$5$ km\,s$^{-1}$, reflecting the
+%complex radial streaming motions associated with spiral arms and
+%gravitational torques.
+%
+%\textit{Azimuthal velocity.}
+%The azimuthal velocity $v_\phi$ grows steadily as the disk
+%builds angular momentum support.
+%At the pre-stellar epoch, $v_\phi < 2$ km\,s$^{-1}$ everywhere.
+%By $t - \tform = 3.6\kyr$, $v_\phi \approx 6$--$8$ km\,s$^{-1}$
+%at $r \sim 100$--$500\AU$.
+%At $t - \tform = 9.5\kyr$, $v_\phi$ reaches $\sim 15$ km\,s$^{-1}$
+%at the innermost resolved radii ($r \sim 50\AU$), declining to
+%$\sim 7$ km\,s$^{-1}$ at $r \sim 1500\AU$ -- a profile roughly
+%consistent with Keplerian rotation around the total enclosed mass.
+%
+%\textit{Velocity dispersion.}
+%The streaming-subtracted turbulent velocity $|\delta v|$ is
+%$\sim 1$--$3$ km\,s$^{-1}$ at early times.
+%Following the onset of gravitational instability, it rises
+%dramatically: by $t - \tform = 6.3\kyr$, $|\delta v|$ reaches
+%$\sim 10$ km\,s$^{-1}$ at $r \sim 300$--$500\AU$, and by
+%$9.5\kyr$, $|\delta v| \sim 10$--$18$ km\,s$^{-1}$ in the inner
+%disk, comparable to or exceeding $v_\phi$ at some radii.
+%This indicates that non-circular motions driven by gravitational
+%instability and spiral shocks are as dynamically important as
+%rotation in the inner disk at late times.
+%
+%\begin{figure}[!htbp]
+%  \centering
+%  \includegraphics[width=\columnwidth]{velocity_profiles.pdf}
+%  \caption{Radial profiles of $v_r$ (top), $v_\phi$ (middle), and
+%  streaming-subtracted $|\delta v|$ (bottom) at six epochs. The three
+%  panels share the $x$-axis. At early times the flow is dominated by
+%  coherent infall; at late times $v_\phi$ reaches Keplerian values
+%  and $|\delta v|$ rivals $v_\phi$ in the inner disk.
+%  }
+%  \label{fig:vel_profiles}
+%\end{figure}
+%
+%The turbulent Mach number $\mathcal{M} = |\delta v|/c_s$
+%(\autoref{fig:profile_mach}) reveals the evolving role of
+%thermal versus turbulent pressure support.
+%At the pre-stellar epoch, the gas is transonic at small radii
+%($\mathcal{M} \sim 0.5$--$1$), becoming mildly supersonic
+%($\mathcal{M} \sim 1$--$2$) at $r > 200\AU$.
+%By $t - \tform = 3.6\kyr$, the flow is supersonic
+%($\mathcal{M} \gtrsim 1$) at essentially all radii.
+%At the latest epoch ($t - \tform = 9.5\kyr$, brown curve),
+%$\mathcal{M} \sim 3$--$4$ throughout the disk, reaching values
+%as high as $\sim 4$ even at the smallest resolved radii.
+%At large radii ($r > 10^4\AU$), all epochs converge to
+%$\mathcal{M} \sim 3$, reflecting the ambient supersonic
+%turbulence in the infalling envelope.
+%
+%\begin{figure}[!htbp]
+%  \centering
+%  \includegraphics[width=\columnwidth]{profile_mach.pdf}
+%  \caption{Turbulent Mach number $\mathcal{M} = |\delta v|/c_s$ as a
+%  function of radius at six epochs.
+%  The horizontal dashed line marks $\mathcal{M} = 1$.
+%  The gas transitions from transonic at early times to uniformly
+%  supersonic ($\mathcal{M} \sim 3$--$4$) at all radii by $9.5\kyr$.
+%  }
+%  \label{fig:profile_mach}
+%\end{figure}
+%
+%
+%\subsection{Density structure}
+%\label{sec:density}
+%
+%The azimuthally-averaged density profile (\autoref{fig:profile_density})
+%follows a power law $\rho \propto r^{-k}$ with the fitted slopes
+%shown in each legend entry.
+%The pre-stellar core ($t - \tform = -0.5\kyr$) has a shallow profile
+%$k \approx 1.2$, shallower than the $k = 3/2$ expected for an
+%adiabatically contracting isothermal sphere.
+%The profile steepens during the collapse phase:
+%$k \approx 1.8$ at $t - \tform = 0$ and $k \approx 2.1$ at $1.3\kyr$.
+%At later times ($t - \tform \gtrsim 3\kyr$), the azimuthal average
+%becomes increasingly difficult to interpret because prominent spiral
+%arms and dense clumps produce sharp density peaks at
+%$r \sim 200$--$1000\AU$ that dominate the radial profile.
+%The fitted slopes at these epochs ($k \approx 2.4$ at $3.6\kyr$,
+%$k \approx 1.5$ at $6.3\kyr$, $k \approx 1.2$ at $9.5\kyr$) should
+%therefore be treated with caution, as they are sensitive to the
+%positions and number of spiral arms intersected by each radial bin
+%rather than reflecting a smooth underlying profile.
+%The apparent flattening at late times is likely driven by this
+%substructure rather than by a physical change in the
+%large-scale density distribution.
+%
+%The central densities reach $\rho \sim 10^{-10}\gcm$ in the inner
+%disk, declining to $\rho \sim 10^{-14}$--$10^{-15}\gcm$ at
+%$r \sim 2000\AU$.
+%
+%\begin{figure}[!htbp]
+%  \centering
+%  \includegraphics[width=\columnwidth]{profile_density.pdf}
+%  \caption{Azimuthally-averaged density profile $\rho(r)$ at six epochs.
+%  Dashed lines show power-law fits; the fitted slope $k$ is given in
+%  each legend entry.
+%  The profile steepens during the initial collapse ($k = 1.2 \to 2.1$).
+%  At later times, prominent spiral arms and dense clumps produce
+%  peaks and valleys that make the azimuthal average difficult to
+%  interpret; the fitted slopes at $t - \tform \gtrsim 3\kyr$ should
+%  be treated with caution.
+%  }
+%  \label{fig:profile_density}
+%\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\columnwidth]{profile_mass_to_flux.pdf}
+  \caption{Dimensionless mass-to-flux ratio $\mu_\Phi$ as a function
+  of radius at six epochs. The dashed line marks the critical value
+  $\mu_\Phi = 1$. The disk evolves from highly supercritical
+  ($\mu_\Phi \sim 100$--$300$) at early times to partially subcritical
+  ($\mu_\Phi < 1$) at some inner radii by $9.5\kyr$.
+  }
+  \label{fig:profile_mf}
+\end{figure}
+
+\subsection{Star Formation and the IMF}
+\label{sec:massevol}
+
+The rate at which gas is converted into stars is set by the competition between the accretion luminosity (which heats the disk and raises the Jeans mass, suppressing further fragmentation) and the gravitational instability of the disk (which drives fragmentation and seeds new protostars).
+The proto-stellar mass function (PMF) encodes the integrated outcome of these competing processes at the epoch of observation.
+We quantify the total stellar mass growth, the instantaneous star formation efficiency within the disk, and the shape of the PMF to constrain which physical mechanism dominates the mass budget.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\columnwidth]{mass_evolution.pdf}
+  \caption{Top: time evolution of the stellar mass (all sinks; orange),
+  disk gas mass (cyan solid), gas within a $0.1$ pc aperture
+  (cyan dashed), and total mass (disk + stars, grey solid;
+  aperture + stars, grey).
+  The best-fit power law $M_* \propto t^{2.08}$ is shown as a
+  dashed red line; the reference $t^2$ scaling as a dotted pink line.
+  Bottom: star formation efficiency $f_*$ within the disk
+  (green solid) and within the $0.1$ pc aperture (green dashed).
+  }
+  \label{fig:mass_evol}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\columnwidth]{mass_evolution_individual_loglog.pdf}
+  \caption{Evolution of masses of individual sinks. Dashed line represents 
+ideal $M_{*} \propto t^2$ law, which is being followed for total mass of all
+the sinks (black line). At earlier times, before the first bulk star formation
+event at 2-3 kyr, all of stellar mass is concentrated in the 2 central sinks
+(top blue lines). These massive sinks reach mass of around $20 M_\odot$ by
+the 15 kyr mark, with their accretion slowing down compared to less massive 
+sinks, which still accrete rapidly. }
+  \label{fig:mass_evol_individual}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\columnwidth]{mass_evolution_rates.pdf}
+  \caption{Top: stellar accretion rate (magenta) and gas depletion
+  rate within the aperture (cyan dashed).
+  Bottom: sphere of influence radius $r_\mathrm{SOI}$
+  ($M_\mathrm{gas,enc} = M_*$; orange), growing from $\sim 80\AU$
+  to $\sim 10^4\AU$ over the simulation.
+  }
+  \label{fig:mass_evol_rates}
+\end{figure}
+
+\added{\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\columnwidth]{sink_count_history_loglog.pdf}
+  \caption{Time evolution of the number of sinks in the
+simulation. The dashed line shows a $N \propto t^{1.5}$ power law for
+comparison \citep{li_klein_mckee18}. Bulk star formation events in the spiral
+arms (visible in the bottom panels of \autoref{fig:toomre_Q_merged}) are
+seen to rapidly increase the number of sinks at
+$t - t_1 \approx 3$--$4\,\mathrm{kyr}$ and $7$--$8\,\mathrm{kyr}$.}
+\label{fig:num_sinks}
+\end{figure}}
+
+\autoref{fig:mass_evol} shows the time evolution of gas, stellar
+(sink), and total mass within a $0.1$ pc aperture centred on the
+disk.
+
+The total stellar mass (orange, all sinks combined) grows from
+$\sim 1\,\Msun$ at $t - \tform = 1\kyr$ to $\sim 200\,\Msun$ by
+$15\kyr$, with a best-fit power law $M_* \propto (t - t_0)^{2.08}$
+(dashed red line).
+This is consistent with the $M_* \propto t^2$
+scaling predicted by models of accelerating accretion from a
+turbulent collapsing core \citep{mckee03}.
+\citet{murray16} confirmed this scaling in high-resolution AMR
+simulations of self-gravitating turbulent collapse, finding that
+the density inside the stellar sphere of influence evolves to a
+time-independent attractor $\rho(r,t) \to \rho(r) \propto r^{-3/2}$,
+which, combined with Keplerian infall velocities, yields a mass
+accretion rate $\dot{M} \propto t$ and thus $M_* \propto t^2$.
+Our measured exponent of $2.08$ extends the \citet{murray16} result from
+parsec-scale molecular cloud collapse to the sub-AU scales of
+Population III accretion disks.
+
+The disk gas mass (cyan solid) starts at $\sim 50\,\Msun$ and
+remains roughly constant for the first $\sim 3\kyr$, as infall
+from the envelope replenishes gas consumed by sink accretion.
+At later times, the disk gas mass begins to decline as the star
+formation efficiency rises.
+%SPECULATION
+The gas mass within the $0.1$ pc aperture (cyan dashed) is
+approximately constant at $\sim 200\,\Msun$ throughout the
+simulation, yet its evolution follows one for the disk gas mass up until 
+$\Delta \approx 11\kyr$, after which we see an increase in aperture gas mass,
+while disk gas mass stays constant. The reason for this is probably a large
+amount of infalling gas suddenly entering the aperture, resulting in a 
+positive $\dot{M} _{gas,apert}$ (i.e. more gas is entering the system
+than is being converted to stellar mass). This sudden rise in the gas mass
+also ``ignites" the stellar accretion again after its slow-down, driven by the 
+depletion of initial accessible reservoirs in the original disk, 
+and one can see this ``bounce-back" in \autoref{fig:mass_evol_rates}.
+In addition to the increased accretion rates, we also see that the 
+gas depletion rate ($- \dot{M}_{gas, apert}$) is not on the plot,
+which is the case since the total amount of gas is increasing, thus the gas
+depletion rate becoming negative right at the time of the ``bounce-back".
+
+The lower panel of \autoref{fig:mass_evol} shows the star
+formation efficiency (SFE) $f_* = M_* / (M_\mathrm{gas} + M_*)$.
+Within the disk alone, $f_*$ rises steeply from $\sim 2\%$ at
+$1\kyr$ to $\sim 80\%$ by $10\kyr$.
+Within the $0.1$ pc aperture, $f_*$ reaches $\sim 50\%$ by $10\kyr$.
+These are high efficiencies compared to present-day star formation,
+but it is also not unexpected, since we did not pick an object, similar to 
+a $z=0$ giant molecular cloud (GMC) to compare our results with.
+Even our aperture will have less gas mass than present-day GMC,
+thus resulting in higher SFE.
+
+
+\autoref{fig:mass_evol_rates} shows the corresponding mass rates.
+The stellar accretion rate (magenta) fluctuates around
+$\sim 5 \times 10^{-3}\,\Msun\,\mathrm{yr}^{-1}$ at early times,
+rising to $\sim 10^{-2}\,\Msun\,\mathrm{yr}^{-1}$ at late times
+with strong variability.
+These rates are consistent with the canonical Population III accretion
+rate $\dot{M} \sim c_s^3/G \sim 10^{-3}\,\Msun\,\mathrm{yr}^{-1}$
+set by the sound speed in $\sim 200$--$1000$ K gas
+\citep{abel02, stacy10}.
+The lower panel shows the sphere of influence radius
+$r_\mathrm{SOI}$, defined as the radius where the enclosed
+gas mass equals the total stellar mass
+($M_\mathrm{gas,enc} = M_*$).
+This grows from $\sim 80\AU$ at $1\kyr$ to $\sim 10^4\AU$ by
+$10\kyr$. It drops slightly with the new gas entering the aperture.
+
+
+\subsubsection{Initial mass function}
+\label{sec:imf}
+
+\autoref{fig:imf} shows the initial mass function (IMF) of the
+sinks at $t - \tform = 15\kyr$, compared to the
+present-day \citet{kroupa01} and \citet{chabrier03} initial mass
+functions (IMFs).
+The high-mass slope of the IMF is well fitted by a power law
+$\mathrm{d}N/\mathrm{d}M \propto M^{\alpha}$ with $\alpha =
+-0.99^{+0.14}_{-0.14}$, shallower than Salpeter slope ($\alpha = -2.35$) and
+the Kroupa high-mass slope ($\alpha = -2.3$).
+
+%We emphasise that this is a \textit{protostellar} mass function,
+%not a final IMF: the simulation covers only $15\kyr$ of evolution,
+%sinks are still actively accreting, and radiative feedback has not
+%yet terminated accretion onto any object.
+
+\autoref{fig:mass_evol_individual} shows integrated accretion history of 
+individual sinks. We can clearly see that 2 of the heaviest sinks are the 
+first 2 sinks that formed in the simulation, and are located in the center
+of the disk. A lot of low-mass ($< 3 M_\odot$) sinks stop accreting 
+relatively early because they get ejected out of the disk, thus limiting
+the amount of gas, available to them. In our simulation, we have seen 
+14 out of $32$ present sinks being ejected out of the disk by the 
+15 kyr time. With 62 total sink particles that were observed during the whole 
+simulation time, the fraction of $\sim 52\%$ sinks being merged and $23\%$ 
+of sinks being ejected from the disk is consistent with values, expeced in the
+literature (compared to $50\%$ and $25\%$ respectively of \citep{Stacy_Bromm_2013},
+or $30\%$ of ejections of \citep{wollenberg20}).
+
+At the same figure it can be seen that the accretion in the center of the disk
+(heaviest 2 sinks) mostly halts, which is a consequence of depletion of 
+gas reservoir. This gas depletion is shown an drop in stelllar accretion rate
+in \autoref{fig:mass_evol_rates}. The ``bounce-back", described in detail in 
+\autoref{sec:massevol}, seems to mostly target the non-central sinks, since
+we still observe their growth after $\Delta t \approx 11\kyr$. 
+This competitive accretion in the cluster environment may preferentially feed the
+most massive objects \citep{bonnell01}, flattening the IMF slope.
+
+%The remaining sinks continue to grow, and the final masses will be
+%further modified by protostellar mergers and radiative feedback
+%\citep{hosokawa11, hosokawa16, stacy12}.
+
+%The key question is whether supersonic turbulence is present in
+%primordial minihaloes.
+%\citet{ho25} recently demonstrated that gas infall into dark
+%matter potential wells universally drives supersonic turbulence
+%in Population III minihaloes, with Mach numbers $\mathcal{M} \sim
+%1.8$--$4.2$ that increase with halo mass.
+%Our simulation confirms this: the disk is supersonically
+%turbulent at all radii by late times ($\mathcal{M} \sim 3$--$4$),
+%with the turbulence sustained by continued cosmological infall.
+%Because the high-mass IMF slope depends on the turbulent power
+%spectrum rather than on metallicity or cooling physics, infall-driven
+%turbulence in primordial gas can produce a fragmentation pattern
+%whose mass function slope is close to that observed in the
+%present-day universe.
+%
+%Two effects may explain why our slope ($\alpha = -1.82$) is
+%moderately shallower than Salpeter ($-2.35$).
+%First, \citet{padoan07} predicted that the Population III IMF should differ
+%from the present-day IMF because primordial gas lacks dynamically
+%significant magnetic fields; MHD turbulence produces a steeper
+%high-mass slope than purely hydrodynamic turbulence, and our
+%simulation -- while including MHD -- starts highly supercritical
+%($\mu_\Phi \sim 300$), so magnetic effects on fragmentation are
+%subdominant for most of the evolution.
+%Second, the STARFORGE simulations of \citet{guszejnov22} showed
+%that while the \textit{peak} of the IMF is set by protostellar
+%jet feedback, the \textit{high-mass slope} is influenced primarily
+%by turbulence and magnetisation.
+%In Population III star formation, where jets have not yet launched and
+%magnetic braking is weak, the turbulence-set slope may appear
+%more cleanly, shifted slightly shallower than the MHD + jet
+%regime that governs present-day star formation.
+%
+%The peak of the IMF also appears shifted to somewhat higher
+%masses ($\sim 0.3$--$1\,\Msun$) compared to the Kroupa/Chabrier
+%peak at $\sim 0.1$--$0.2\,\Msun$.
+%This is qualitatively expected: the higher gas temperatures in
+%primordial gas ($T \sim 200$--$1000$ K vs $\sim 10$ K) raise
+%the Jeans mass, shifting the characteristic fragmentation scale
+%upward.
+%However, we caution that with only $\sim 60$ sinks this comparison
+%is subject to significant low-number statistics; the exact position
+%and shape of the peak are not well constrained by our single
+%simulation.
+%A larger statistical sample of halos would be needed to determine
+%whether the peak is robustly shifted or reflects stochastic
+%variation.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{./light/IMF2.png}
+  \caption{Protostellar mass function at $t - \tform = 15\kyr$
+  (blue solid histogram) compared to the \citet{chabrier03} (dashed)
+  and \citet{kroupa01} (dotted) present-day IMFs.
+  The best-fit high-mass power-law slope is
+  $\alpha = -0.99^{+0.14}_{-0.14}$ (light blue dashed line),
+  shallower than but comparable to the Salpeter slope ($-2.35$).
+  The grey shaded region marks masses below the completeness limit
+  of the simulation.
+  As this is a initial mass function measured at $15\kyr$,
+  the final masses will be modified by continued accretion,
+  mergers, ejections, and radiative feedback.
+}
+  \label{fig:imf}
+\end{figure}
+
+
+
+
+\section{Comparison to previous Population III simulations}
+\label{sec:disc_comparison}
+
+We observe a gravitationally unstable, magnetized disk that fragments prolifically and accretes at $\dot{M} \sim 10^{-3}$--$10^{-2}\,\Msun\,\mathrm{yr}^{-1}$.
+This picture is consistent with the broad expectations of Population III star formation theory, but the combination of the regime of cosmological initial conditions, resolved protostellar sinks, radiation-MHD, and $15\kyr$ of post-collapse evolution exceeds what any single prior study has achieved simultaneously.
+
+Our simulation combines three features that, taken together, are
+uncommon in the existing literature: fully cosmological initial
+conditions, radiation-MHD with resolved individual protostellar
+formation (STARFORGE), and $15\kyr$ of post-collapse evolution in a
+halo progenitor of a Milky Way-mass system.
+Below we compare our results in each dimension to prior work.
+
+% -----------------------------------------------------------
+\subsection{Fragmentation and sink counts}
+
+he total number of protostellar sinks formed in a simulation is a coarse but widely reported diagnostic of disk fragmentation: it captures the net outcome of the competition between gravitational instability (which seeds new fragments) and their subsequent mergers, ejections, and accretion onto the primary.
+Comparing sink counts across simulations is complicated by the spread in integration times and sink radii, but it nevertheless reveals whether a given numerical setup is producing qualitatively more or less fragmentation than the community baseline.
+
+The $\sim 60$ sink formation events we observe over $15\kyr$ place
+our simulation at the high end of the published range.
+Early simulations with cosmological initial conditions found
+2--5 fragments per halo within the first few hundred years
+\citep{greif11, clark11}, while longer integrations over
+$\sim 5\kyr$ recovered $\sim 10$ sinks \citep{stacy12}.
+The radiation-hydrodynamic cosmological zoom-ins of
+\citet{latif_khochfar22} across five minihaloes produced up to 23
+stars per halo (55 total), with masses $0.1$--$37\,\Msun$ and a
+slope $\mathrm{d}N/\mathrm{d}M \propto M^{-1.18}$.
+The systematic study of \citet{wollenberg20} with 45 controlled
+simulations (varying rotation and turbulence) found 5--20 sinks per
+halo, confirming that fragmentation is highly stochastic and sensitive
+to initial conditions.
+
+Our fragment count likely reflects three compounding factors.
+First, our $15\kyr$ integration is substantially longer than most
+published runs, allowing many cycles of instability, collapse, and
+re-accretion.
+Second, cosmological initial conditions from the m12f progenitor
+provide asymmetric, turbulent infall that continually replenishes
+the outer disk and seeds new unstable structures.
+Third, our mass-to-flux ratio remains comfortably supercritical
+($\mu_\Phi \gg 1$) for most of the simulation, so magnetic fields
+do not suppress fragmentation here as they do in some studies
+\citep{stacy22, machida25}.
+The high fragment count is not unprecedented: \citet{latif_khochfar22}
+obtained comparable numbers with RHD (no MHD), and
+\citet{prole22} showed that sink counts increase monotonically with
+resolution without converging, suggesting our result may be a lower
+bound.
+Of the 62 total sink formation events, 32 survive to $15\kyr$; the
+remainder were lost to mergers ($\sim 52\%$ of all events) or ejected
+from the disk ($\sim 23\%$), consistent with the rates reported by
+\citet{stacy12} and \citet{wollenberg20}.
+
+% -----------------------------------------------------------
+\subsection{Role of the large-scale environment}
+
+The properties of the first collapsing core are set by the large-scale accretion history of the host minihalo, which in turn depends on where that halo sits within the cosmic web.
+A halo in an overdense filament accretes faster and with more angular momentum than an isolated one, biasing the collapse toward a more massive, rotationally supported structure.
+Because our halo is a progenitor of a Milky Way-mass system, its large-scale environment is atypical of the field minihalos studied in most prior work.
+
+At the epoch of first collapse ($z \sim 21$), our m12f progenitor is
+a $\sim 10^5$--$10^6\,\Msun$ minihalo -- comparable in mass to those
+studied in most other work -- but it is embedded in a large-scale
+overdensity destined to grow to $M_\mathrm{vir} \sim 10^{12}\,\Msun$
+by $z = 0$.
+The most directly comparable simulation, \citet{meziani26}, targets
+the m09 halo whose progenitor at $z \sim 14$ resides in a quieter
+environment (reaching $\sim 2 \times 10^9\,\Msun$ at $z = 0$),
+and finds a \textit{single} Population III protostar growing to
+$\sim 27\,\Msun$ over $31\kyr$ -- in stark contrast to our
+$\sim 60$-fragment cluster.
+Although this comparison is a single pair of halos, the contrast
+suggests that large-scale environment may be a key driver of whether
+Population III star formation produces a single massive object or a
+protostellar cluster.
+The overdense filamentary infall geometry of the m12f progenitor
+naturally seeds higher angular momentum, more complex disk structure,
+and stronger turbulence than the more isolated m09 environment.
+\citet{ho25} showed that infall into dark-matter potential wells
+drives supersonic turbulence ($\mathcal{M} \sim 2$--$4$) across all
+minihaloes; the m12f overdensity likely places our halo toward the
+high-$\mathcal{M}$ end of this distribution.
+Testing this environmental dependence statistically will require a
+suite of cosmological RMHD zoom-ins spanning a range of $z=0$ halo
+masses.
+The kinematic structure of our simulation supports this picture: the
+radial velocity $v_r$ is subsonic within the disk but transitions to
+supersonic outside it, indicating that the outer envelope is in a
+state of continuous supersonic infall that feeds the disk from above.
+
+% -----------------------------------------------------------
+\subsection{Stellar mass growth and accretion rates}
+
+The total stellar mass assembled by a given time is the integral of the disk accretion rate over all active sinks, so it reflects both the efficiency of angular momentum transport (which determines how quickly gas drains inward through the disk) and the number of competing accretion regions (which determines how the common reservoir is partitioned among the protostars).
+A large sink count spreading the accretion over many objects can produce a similar total mass to a single rapidly accreting protostar while leaving a completely different PMF.
+We compare our integrated mass growth and accretion rates to prior work to disentangle these effects.
+
+The total stellar mass of $\sim 200\,\Msun$ at $15\kyr$ is broadly
+consistent with canonical Population III accretion rates.
+\citet{stacy10} found $\dot{M} \sim 10^{-3}\,\Msun\,\mathrm{yr}^{-1}$
+sustained over $\sim 5\kyr$; integrating this rate over $15\kyr$
+gives $\sim 15\,\Msun$, far less than we find, reflecting our larger
+sink count sharing a common reservoir rather than a single accreting
+object.
+Our time-averaged rate of $\sim 10^{-2}\,\Msun\,\mathrm{yr}^{-1}$
+(across all sinks) is at the high end of the range
+$10^{-4}$--$10^{-2}\,\Msun\,\mathrm{yr}^{-1}$ found by
+\citet{hirano14} across 100 minihaloes, again consistent with a
+particularly turbulent, high-infall-rate environment.
+
+The power-law growth $M_* \propto t^{2.08}$ confirms the
+$M_* \propto t^2$ scaling found by \citet{murray16} in simulations of
+self-gravitating turbulent collapse, where the density inside the
+sphere of influence converges to $\rho \propto r^{-3/2}$ and
+Keplerian infall gives $\dot{M} \propto t$.
+Our slightly super-quadratic exponent likely reflects the additional
+contribution of continued cosmological infall sustaining the gas
+reservoir at large radii, absent in the isolated box setup of
+\citet{murray16}.
+The POPSICLE simulations of \citet{sharda_menon25} produce a single
+most-massive protostar of $\sim 65\,\Msun$ within $5\kyr$ in their
+RMHD run; our total mass of $\sim 200\,\Msun$ is distributed across
+$\sim 30$ surviving sinks at $15\kyr$, implying a characteristic
+fragment mass of $\sim 5$--$7\,\Msun$, consistent with
+fragmentation-induced starvation redistributing mass from the most
+massive object to the cluster population \citep{prole22}.
+\citet{sugimura20} and \citet{sugimura23} produced massive Population III
+binaries with individual masses $>30\,\Msun$ at separations
+$>2000\,\AU$; the two most massive sinks in our simulation -- which
+dominate the mass budget throughout -- may represent an analogous
+central binary, with the surrounding cluster population arising
+from subsequent disk fragmentation.
+
+% -----------------------------------------------------------
+\subsection{Star formation efficiency}
+
+Star formation efficiency ($f_* = M_*/M_\mathrm{gas}$) measures the fraction of the available gas reservoir that has been converted into stars by a given epoch.
+In primordial gas, the man mechanisms that would suppress $f_*$ in present-day molecular clouds (dust-driven radiation pressure and stellar winds) are absent or greatly weakened, so the efficiency is expected to be high.
+However, it is not clear how high exactly. Photoionization and accretion luminosity heating remain active, and whether they can quench accretion before the disk is exhausted determines the ultimate yield.
+
+The star formation efficiency we find ($f_* \sim 50$--$80\%$ within
+the disk at $15\kyr$) is high compared to both present-day values
+($\sim 1$--$10\%$) and to other Population III simulations.
+\citet{hirano_sakai23} report $\epsilon_\mathrm{III} \sim 10^{-2}$
+in their large halo sample at the point of initial collapse; our
+higher integrated value reflects the longer post-collapse integration
+time and the lack of negative feedback mechanisms that would quench
+accretion.
+Radiative feedback is included in our simulation (M1 radiation
+transport), but within the $15\kyr$ of evolution covered here no
+protostar has yet grown sufficiently massive and contracted
+sufficiently to launch an ionising H{\small II} region that would
+reverse the accretion flow.
+\citet{hosokawa11} found that UV feedback halts accretion at
+$\sim 43\,\Msun$ for a single protostar on a $\sim 10^5$ yr
+Kelvin-Helmholtz timescale; with our mass distributed across
+many objects, no individual protostar yet dominates the radiative
+output, and the global accretion efficiency remains high.
+This suggests that the high SFE we observe is a transient feature of
+the early accretion phase; longer integrations incorporating
+protostellar contraction and UV feedback would be required to
+determine final stellar masses and the termination of star formation.
+Protostellar jets are active in the simulation but have not yet
+launched strongly enough to disrupt the global accretion flow at
+$15\kyr$: none of our protostars has yet contracted onto the main
+sequence, so the jet driving power remains limited.
+Jets are expected to become progressively more important at later
+times as individual protostars contract and their surface escape
+velocities increase, potentially quenching accretion and reducing
+the SFE from its current high value \citep{STARFORGE_Towa_Grudic_2021,
+meziani26}.
+
+% -----------------------------------------------------------
+\subsection{Protostellar mass function}
+
+The slope and peak of the protostellar mass function encode the dominant mass-setting mechanism: competitive accretion (which weights the PMF toward high masses with $\mathrm{d}N/\mathrm{d}\ln M \propto M^{-1}$), thermal Jeans fragmentation (which sets the peak near the local Jeans mass and produces a roughly log-normal distribution), and protostellar feedback (which imposes an upper cutoff wherever radiation pressure or HII regions terminate accretion).
+The top-heavy, log-flat PMF observed in most Population III simulations points toward a regime dominated by competitive accretion and absent of the feedback mechanisms that steepen the present-day IMF.
+We compare our slope and peak to the literature to assess how robustly this signature is recovered across different numerical methods and initial conditions.
+
+Our protostellar mass function (PMF) at $15\kyr$ has a high-mass
+slope $\alpha = -0.99^{+0.14}_{-0.14}$, shallower than the Salpeter
+slope ($-2.35$) but broadly consistent with other Population III simulations
+that find top-heavy, log-flat distributions.
+\citet{latif_khochfar22} find $\alpha \approx -1.18$ across five
+halos with RHD; \citet{stacy16} and \citet{greif11} both 
+report
+roughly log-flat mass functions extending from sub-solar to
+$\gtrsim 10\,\Msun$.
+We emphasise that our PMF is a snapshot at $15\kyr$, not a final IMF:
+all sinks are still actively accreting, no radiative feedback has
+terminated accretion, and the population will be further shaped by
+continued mergers, ejections, and eventual UV feedback
+\citep{hosokawa11, hosokawa16, stacy16}.
+The two most massive sinks, both located at the center of the disk,
+have each reached $\sim 25\,\Msun$ by $15\kyr$ -- approaching the
+$\sim 43\,\Msun$ UV-feedback threshold of \citet{hosokawa11} -- with
+their accretion rates flattening due to local gas depletion in the
+inner disk.
+The outer sinks, by contrast, continue to grow by accreting from the
+surrounding envelope, so the cluster mass budget shifts progressively
+outward.
+The $\sim 52\%$ merger fraction and $\sim 23\%$ ejection fraction
+we observe are consistent with the $\sim 50\%$ and $\sim 25\%$
+values of \citet{stacy12} and the $\sim 30\%$ ejection rate of
+\citet{wollenberg20}.
+\citet{latif_khochfar22} report an unusually high ejection fraction
+of $\sim 70\%$, which they attribute to the strong three-body
+interactions driven by the radiative heating of the disk; the lower
+fraction in our simulation may reflect the slower build-up of
+radiation pressure in a multi-sink cluster where no single object
+yet dominates.
+
+% -----------------------------------------------------------
+\subsection{Magnetic field evolution}
+
+The amplification of primordial seed fields during the collapse and disk phase is one of the most uncertain aspects of Population III star formation: the initial field strength is poorly constrained, and the relevant dynamo mechanisms (turbulent small-scale, large-scale differential rotation) operate on overlapping timescales.
+We compare the evolution of our mass-to-flux ratio and magnetic energy to the MHD simulations that do resolve the disk phase, to assess whether the rapid amplification we observe is generic or a consequence of our particular choice of seed field and numerical method.
+
+Our mass-to-flux ratio evolves from $\mu_\Phi \sim 100$--$300$ at
+early times to $\mu_\Phi \lesssim 1$ in the inner disk by $10\kyr$,
+with magnetic energy growing by $\sim 4$ orders of magnitude.
+This evolution is more dramatic than the $\mu_\Phi \sim 10$--$100$
+reported by \citet{machida08} in idealised MHD simulations, likely
+because our longer integration time allows more flux accumulation by
+differential rotation winding and compression.
+\citet{higashi24} demonstrated that the turbulent small-scale dynamo
+amplifies fields to 30--50\% of equipartition during the primordial
+collapse phase; our highly supercritical starting point and the
+continued amplification we observe are consistent with this picture.
+
+Despite this amplification, disk fragmentation in our simulation
+remains vigorous throughout, in contrast to the strong suppression
+found in some MHD simulations.
+\citet{machida25} systematically varied initial field strength from
+$B_0 = 10^{-20}$ to $10^{-4}$ G and found that even the weakest
+field suppresses fragmentation and drives protostellar mergers within
+the first $\sim 1000$~yr -- a timescale much shorter than our run.
+\citet{stacy22} found only two secondary sinks in cosmological MHD
+runs.
+The key difference is that our simulation starts from a highly
+supercritical configuration ($\mu_\Phi \sim 300$) and remains in the
+fragmentation-permitting regime ($\mu_\Phi > 1$) for the majority of
+the $15\kyr$.
+Magnetic braking and flux-freezing act on a timescale long compared
+to the free-fall time at the disk scale, so fragmentation proceeds
+largely unimpeded while the field is amplified gradually from below.
+Only toward the end of our simulation does the inner disk approach
+the magnetically subcritical threshold; at this point,
+\citet{meziani26} find that protostellar jets are launched, a phase
+not yet reached in our $15\kyr$ window.
+The magnetic energy power spectrum is consistent with a Burgers
+spectrum ($P_B \propto k^{-2}$) at most times, oscillating between
+Burgers and Kolmogorov regimes but remaining closer to Burgers,
+indicating shock-dominated rather than purely subsonic turbulent
+amplification.
+A detailed analysis of the magnetic power spectrum and its implications
+for dynamo action in primordial disks is deferred to a companion paper.
+In contrast, \citet{sadanari21} and \citet{sadanari23} found that
+ambipolar diffusion is dynamically subdominant in primordial gas
+(diffusion heating always smaller than compressional heating), broadly
+consistent with our non-ideal MHD treatment where ideal MHD dominates
+throughout \citep{meziani26}.
+\citet{tanaka24} similarly found in primordial disk simulations that
+turbulent magnetic fields reduce but do not eliminate fragmentation,
+consistent with our result.
+
+
+
+%% ============================================================
+\section{Conclusions}
+\label{sec:conclusions}
+%% ============================================================
+
+We have presented a radiation-magnetohydrodynamic cosmological zoom-in
+simulation of Population III star formation, following the collapse of
+primordial gas in the FIRE m12f halo from cosmological initial
+conditions through the formation and evolution of a protostellar
+accretion disk over $\sim 15\kyr$.
+Our main conclusions are:
+
+\begin{enumerate}
+  \item \textbf{Vigorous disk fragmentation.}
+    The accretion disk becomes gravitationally unstable within
+    $\sim 3\kyr$ of the first protostar's formation, developing
+    spiral arms that fragment into $\sim 60$ sink formation events
+    over $15\kyr$, producing a total stellar mass of
+    $> 150\,\Msun$.
+
+  %\item \textbf{Supersonic turbulence.}
+  %  The disk transitions from transonic at early times
+  %  ($\mathcal{M} \sim 0.5$--$1$) to uniformly supersonic at late
+  %  times ($\mathcal{M} \sim 3$--$4$ at all radii), with turbulent
+  %  velocity dispersions reaching $\sim 10$--$18$ km\,s$^{-1}$ in the
+  %  inner disk, comparable to or exceeding the rotational velocity.
+
+  \item \textbf{Magnetic field amplification toward subcriticality.}
+    The mass-to-flux ratio drops from $\mu_\Phi \sim 100$--$300$ at
+    early times to $\mu_\Phi \lesssim 1$ at some inner radii by
+    $10\kyr$, driven by flux-freezing, differential rotation winding,
+    and possibly the turbulent dynamo.
+    Magnetic energy grows by $\sim 4$ orders of magnitude.
+    The inner disk eventually crosses the magnetically
+    subcritical threshold.
+
+  \item \textbf{Sub-virial start to virial equilibrium.}
+    The disk starts in a sub-virial state
+    ($2 E_\mathrm{kin}/|E_\mathrm{pot}| \approx 0.6$) and reaches
+    virial equilibrium within $\sim 2\kyr$, thereafter self-regulating
+    around $2 E_\mathrm{kin}/|E_\mathrm{pot}| \approx 1$.
+
+  \item \textbf{Accelerating accretion and high SFE.}
+    The stellar mass grows as $M_* \appropto t^{2}$ at
+    accretion rates of $\sim 10^{-3}$--$10^{-2}\,\Msun\,\mathrm{yr}^{-1}$.
+    The star formation efficiency reaches $\sim 80\%$ within the disk
+    and $\sim 50\%$ within a $0.1$ pc aperture.
+
+  %\item \textbf{Density profile evolution.}
+  %  The density profile steepens from $\rho \propto r^{-1.2}$
+  %  (pre-stellar) to $r^{-2.1}$ during the initial collapse phase.
+  %  At later times, prominent spiral arms and dense clumps
+  %  dominate the azimuthal average, making the radial profile
+  %  difficult to characterize with a single power law.
+
+  \item \textbf{Top-heavy initial mass function.}
+    The initial mass function has a high-mass slope
+    $\alpha = -0.99^{+0.14}_{-0.14}$, shallower than the
+    Salpeter/Kroupa value ($-2.35$/$-2.3$). 
+
+  \item \textbf{Cosmological ICs matter.}
+    The use of cosmological initial conditions produces asymmetric
+    infall, complex angular momentum structure, and turbulent
+    boundary conditions that promote vigorous fragmentation and
+    a rich protostellar population, distinct from what is found in
+    idealised setups. Continued accretion from LSS onto the protostellar disk
+    modifies the IMF, flattening the slope.
+\end{enumerate}
+
+
+\bibliographystyle{abbrvnat}
+\bibliography{oja_template}
+
+\end{document}
+

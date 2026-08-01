@@ -1,0 +1,11 @@
+# Fdb version 4
+["pdflatex"] 1784673485.40335 "next_todo.tex" "next_todo.pdf" "next_todo" 1784673485.55958 2
+  "/nix/store/z22g7l2iaraqc2jxdjjrnd0wvm8w8xz4-texlive-combined-full-2025-final/share/texmf-var/web2c/pdftex/pdflatex.fmt" 1 3637258 14776f72e0d5d6c907892169cbc60c5a ""
+  "/nix/store/z22g7l2iaraqc2jxdjjrnd0wvm8w8xz4-texlive-combined-full-2025-final/share/texmf-var/web2c/texmf.cnf" 1 44359 62e559557a72fb24e6298cca1f8bfa7d ""
+  "next_todo.aux" 1784673477.4028 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "next_todo.tex" 1782506052.50565 606 f6b8eeb51b2593a6121a4d234457bc83 ""
+  (generated)
+  "next_todo.aux"
+  "next_todo.log"
+  "next_todo.pdf"
+  (rewritten before read)

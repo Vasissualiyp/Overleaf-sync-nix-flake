@@ -1,0 +1,12 @@
+*.aux
+*.bbl
+*.log
+*.fls
+*.out
+*.gz
+suggestions.tex
+*.fdb_latexmk
+oja_template.pdf
+*.bak
+*(busy)
+oja_templateNotes.bib
