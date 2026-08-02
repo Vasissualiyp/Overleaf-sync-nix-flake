@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1785225642.0354 "oja_template.tex" "oja_template.pdf" "oja_template" 1785225642.89177 2
+["pdflatex"] 1785571231.0719 "oja_template.tex" "oja_template.pdf" "oja_template" 1785571232.01241 2
   "/nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/map/fontname/texfonts.map" 1 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/tfm/public/latex-fonts/lasy6.tfm" 1 520 4889cce2180234b97cad636b6039c722 ""
   "/nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/tex/generic/babel-english/english.ldf" 1 7008 9ff5fdcc865b01beca2b0fe4a46231d4 ""
@@ -149,7 +149,7 @@
   "/nix/store/z22g7l2iaraqc2jxdjjrnd0wvm8w8xz4-texlive-combined-full-2025-final/share/texmf-var/web2c/pdftex/pdflatex.fmt" 1 3637258 14776f72e0d5d6c907892169cbc60c5a ""
   "/nix/store/z22g7l2iaraqc2jxdjjrnd0wvm8w8xz4-texlive-combined-full-2025-final/share/texmf-var/web2c/texmf.cnf" 1 44359 62e559557a72fb24e6298cca1f8bfa7d ""
   "oja_template.aux" 1785163196.03516 36627 d722619366fb5f4c91e24e6f8b4bd638 "pdflatex"
-  "oja_template.tex" 1785225641.63021 119924 f61fe347dc86d68a3c38719188f47117 ""
+  "oja_template.tex" 1785571229.68266 120476 7f2548c828a3bb70b9cba353d00e3f4f ""
   "openjournal.cls" 1778270390.20409 52009 aa359396071034e4bd96379ff861deae ""
   (generated)
   "oja_template.aux"
