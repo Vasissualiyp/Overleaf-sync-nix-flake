@@ -526,7 +526,7 @@
     \field{year}{2025}
   \endentry
 
-  \entry{HiGHS2022}{article}{}{}
+  \entry{HiGHS2018}{article}{}{}
     \name{author}{2}{}{%
       {{hash=HQ}{%
          family={Huangfu},
@@ -1021,27 +1021,6 @@
     \verb https://doc.cgal.org/
     \endverb
     \field{year}{2024}
-  \endentry
-
-  \entry{Tibshirani2017}{inproceedings}{}{}
-    \name{author}{1}{}{%
-      {{hash=TRJ}{%
-         family={Tibshirani},
-         familyi={T\bibinitperiod},
-         given={Ryan\bibnamedelima J.},
-         giveni={R\bibinitperiod\bibinitdelim J\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{TRJ1}
-    \strng{fullhash}{TRJ1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{T}
-    \field{sortinithash}{T}
-    \field{booktitle}{Advances in Neural Information Processing Systems (NeurIPS)}
-    \field{title}{{D}ykstra's Algorithm, {ADMM}, and Coordinate Descent: Connections, Insights, and Extensions}
-    \field{volume}{30}
-    \field{year}{2017}
   \endentry
 
   \entry{Tondel2003}{article}{}{}

@@ -19,47 +19,49 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: methods-blx.bib
 Database file #2: methods.bib
+Warning--I didn't find a database entry for "HiGHS2022"
 Biblatex version: 3.21
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-You've used 30 entries,
+You've used 29 entries,
             6402 wiz_defined-function locations,
-            1424 strings with 14993 characters,
-and the built_in function-call counts, 269603 in all, are:
-= -- 22675
-> -- 3210
-< -- 811
-+ -- 7607
-- -- 1274
-* -- 20317
-:= -- 31755
+            1422 strings with 14872 characters,
+and the built_in function-call counts, 264351 in all, are:
+= -- 22296
+> -- 3132
+< -- 789
++ -- 7514
+- -- 1250
+* -- 19926
+:= -- 31245
 add.period$ -- 0
-call.type$ -- 30
-change.case$ -- 349
+call.type$ -- 29
+change.case$ -- 339
 chr.to.int$ -- 42
-cite$ -- 58
-duplicate$ -- 26852
-empty$ -- 23691
-format.name$ -- 2139
-if$ -- 53971
+cite$ -- 56
+duplicate$ -- 26355
+empty$ -- 23158
+format.name$ -- 2092
+if$ -- 52850
 int.to.chr$ -- 0
-int.to.str$ -- 62
+int.to.str$ -- 60
 missing$ -- 0
-newline$ -- 1085
-num.names$ -- 1266
-pop$ -- 10803
+newline$ -- 1064
+num.names$ -- 1225
+pop$ -- 10471
 preamble$ -- 1
-purify$ -- 538
+purify$ -- 526
 quote$ -- 0
-skip$ -- 5236
+skip$ -- 5077
 stack$ -- 0
-substring$ -- 44583
-swap$ -- 4630
-text.length$ -- 823
-text.prefix$ -- 29
+substring$ -- 43851
+swap$ -- 4514
+text.length$ -- 801
+text.prefix$ -- 28
 top$ -- 1
-type$ -- 1008
+type$ -- 974
 warning$ -- 0
-while$ -- 3701
+while$ -- 3649
 width$ -- 0
-write$ -- 1056
+write$ -- 1036
+(There was 1 warning)

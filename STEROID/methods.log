@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/nixos.org) (preloaded format=pdflatex 1980.1.1)  29 JUL 2026 19:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/nixos.org) (preloaded format=pdflatex 1980.1.1)  6 AUG 2026 09:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -702,116 +702,119 @@ Package biblatex Info: ... file 'methods.bbl' found.
  (./methods.bbl)
 Package biblatex Info: Reference section=0 on input line 37.
 Package biblatex Info: Reference segment=0 on input line 37.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 43.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 44.
  (/nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 43.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 44.
  (/nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {/nix/store/z22g7l2iaraqc2jxdjjrnd0wvm8w8xz4-texlive-combined-full-2025-final/share/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
-
-Package hyperref Warning: The anchor of a bookmark and its parent's must not
-(hyperref)                be the same. Added a new anchor on input line 177.
-
-./methods.tex:214: Use of \cref@override@label@type doesn't match its definition.
+./methods.tex:211: Use of \cref@override@label@type doesn't match its definition.
 \refstepcounter@optarg ...cref@currentlabel \@nil 
                                                   {\@tempa }}
-l.214 \begin{proposition}
+l.211 \begin{proposition}
                          
 If you say, e.g., `\def\a1{...}', then you must always
 put `1' after `\a', since control sequence names are
 made up of letters only. The macro here has not been
 followed by the required stuff, so I'm ignoring it.
 
-Package hyperref Info: bookmark level for unknown proposition defaults to 0 on input line 215.
+Package hyperref Info: bookmark level for unknown proposition defaults to 0 on input line 212.
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
-(hyperref)                be the same. Added a new anchor on input line 241.
+(hyperref)                be the same. Added a new anchor on input line 233.
 
-[2]
-Overfull \hbox (15.33702pt too wide) in paragraph at lines 293--297
- \T1/cmr/bx/n/10 4.5. STEROID: Ver-tex Enu-mer-a-tion + De-lau-nay Tri-an-gu-la-tion.[][] \T1/cmr/m/n/10 STEROID|
+
+Overfull \hbox (19.47404pt too wide) in paragraph at lines 235--241
+\T1/cmr/m/n/10 pivot steps in prac-tice; in-te-rior point achieves poly-no-mial worst-case $\OML/cmm/m/it/10 O\OT1/cmr/m/n/10 ((\OML/cmm/m/it/10 n[]m\OT1/cmr/m/n/10 )[] [](1\OML/cmm/m/it/10 ="\OT1/cmr/m/n/10 ))$\T1/cmr/m/n/10 .|
  []
 
+[2]
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 302.
 
-[3] [4]
-./methods.tex:419: Use of \cref@override@label@type doesn't match its definition.
+
+Overfull \hbox (14.58508pt too wide) in paragraph at lines 302--310
+\T1/cmr/m/n/10 STEROID first con-verts $\OMS/cmsy/m/n/10 P$ \T1/cmr/m/n/10 to its V-representation---a list of ver-tices $\OML/cmm/m/it/10 W \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 f\OT1/cmr/bx/n/10 w[]\OML/cmm/m/it/10 ; [] ; \OT1/cmr/bx/n/10 w[]\OMS/cmsy/m/n/10 g$\T1/cmr/m/n/10 ---|
+ []
+
+[3]
+./methods.tex:426: Use of \cref@override@label@type doesn't match its definition.
 \refstepcounter@optarg ...cref@currentlabel \@nil 
                                                   {\@tempa }}
-l.419 \begin{theorem}
+l.426 \begin{theorem}
                      
 If you say, e.g., `\def\a1{...}', then you must always
 put `1' after `\a', since control sequence names are
 made up of letters only. The macro here has not been
 followed by the required stuff, so I'm ignoring it.
 
-Package hyperref Info: bookmark level for unknown theorem defaults to 0 on input line 420.
-./methods.tex:426: Use of \cref@override@label@type doesn't match its definition.
+Package hyperref Info: bookmark level for unknown theorem defaults to 0 on input line 427.
+[4]
+./methods.tex:433: Use of \cref@override@label@type doesn't match its definition.
 \refstepcounter@optarg ...cref@currentlabel \@nil 
                                                   {\@tempa }}
-l.426 \begin{proof}
+l.433 \begin{proof}
                    
 If you say, e.g., `\def\a1{...}', then you must always
 put `1' after `\a', since control sequence names are
 made up of letters only. The macro here has not been
 followed by the required stuff, so I'm ignoring it.
 
-Package hyperref Info: bookmark level for unknown proof defaults to 0 on input line 427.
-./methods.tex:438: Use of \cref@override@label@type doesn't match its definition.
+Package hyperref Info: bookmark level for unknown proof defaults to 0 on input line 434.
+./methods.tex:445: Use of \cref@override@label@type doesn't match its definition.
 \refstepcounter@optarg ...cref@currentlabel \@nil 
                                                   {\@tempa }}
-l.438 \begin{remark}
+l.445 \begin{remark}
                     
 If you say, e.g., `\def\a1{...}', then you must always
 put `1' after `\a', since control sequence names are
 made up of letters only. The macro here has not been
 followed by the required stuff, so I'm ignoring it.
 
-Package hyperref Info: bookmark level for unknown remark defaults to 0 on input line 439.
+Package hyperref Info: bookmark level for unknown remark defaults to 0 on input line 446.
 
-Overfull \hbox (16.63457pt too wide) in paragraph at lines 458--460
+Overfull \hbox (16.63457pt too wide) in paragraph at lines 466--468
 []\T1/cmr/m/n/10 Preprocessing is dom-i-nated by the De-lau-nay tri-an-gu-la-tion, with worst-case $\OML/cmm/m/it/10 O\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 V[]\OT1/cmr/m/n/10 )$|
  []
 
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
-(hyperref)                be the same. Added a new anchor on input line 495.
+(hyperref)                be the same. Added a new anchor on input line 505.
 
 [5]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 552.
+(hyperref)                removing `math shift' on input line 564.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\to' on input line 552.
+(hyperref)                removing `\to' on input line 564.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 552.
+(hyperref)                removing `math shift' on input line 564.
 
-./methods.tex:573: Use of \cref@override@label@type doesn't match its definition.
+./methods.tex:588: Use of \cref@override@label@type doesn't match its definition.
 \refstepcounter@optarg ...cref@currentlabel \@nil 
                                                   {\@tempa }}
-l.573 \begin{definition}
+l.588 \begin{definition}
                         
 If you say, e.g., `\def\a1{...}', then you must always
 put `1' after `\a', since control sequence names are
 made up of letters only. The macro here has not been
 followed by the required stuff, so I'm ignoring it.
 
-Package hyperref Info: bookmark level for unknown definition defaults to 0 on input line 574.
+Package hyperref Info: bookmark level for unknown definition defaults to 0 on input line 589.
 [6]
-./methods.tex:584: Use of \cref@override@label@type doesn't match its definition.
+./methods.tex:599: Use of \cref@override@label@type doesn't match its definition.
 \refstepcounter@optarg ...cref@currentlabel \@nil 
                                                   {\@tempa }}
-l.584 \begin{proposition}
+l.599 \begin{proposition}
                          
 If you say, e.g., `\def\a1{...}', then you must always
 put `1' after `\a', since control sequence names are
@@ -819,8 +822,13 @@ made up of letters only. The macro here has not been
 followed by the required stuff, so I'm ignoring it.
 
 
+Overfull \hbox (7.4084pt too wide) in paragraph at lines 650--651
+ \T1/cmr/bx/n/10 7. GPU-Friendly Point Lo-ca-tion (Pro-jected Per-for-mance).[][] [][Not checked|
+ []
+
+
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
-(hyperref)                be the same. Added a new anchor on input line 642.
+(hyperref)                be the same. Added a new anchor on input line 658.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -828,42 +836,42 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [7]
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
-(hyperref)                be the same. Added a new anchor on input line 686.
+(hyperref)                be the same. Added a new anchor on input line 706.
+
+
+LaTeX Warning: Citation 'HiGHS2022' on page 8 undefined on input line 724.
 
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
-(hyperref)                be the same. Added a new anchor on input line 722.
+(hyperref)                be the same. Added a new anchor on input line 746.
 
-<plots/speed_heatmaps.pdf, id=320, 1344.94475pt x 469.755pt>
+<plots/speed_heatmaps.pdf, id=300, 1344.94475pt x 469.755pt>
 File: plots/speed_heatmaps.pdf Graphic file (type pdf)
 <use plots/speed_heatmaps.pdf>
-Package pdftex.def Info: plots/speed_heatmaps.pdf  used on input line 726.
-(pdftex.def)             Requested size: 370.38374pt x 129.3658pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<plots/preproc_heatmaps.pdf, id=323, 1344.94475pt x 469.755pt>
-File: plots/preproc_heatmaps.pdf Graphic file (type pdf)
-<use plots/preproc_heatmaps.pdf>
-Package pdftex.def Info: plots/preproc_heatmaps.pdf  used on input line 745.
+Package pdftex.def Info: plots/speed_heatmaps.pdf  used on input line 751.
 (pdftex.def)             Requested size: 370.38374pt x 129.3658pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [8]
-<plots/breakeven_heatmap.pdf, id=332, 564.42871pt x 325.215pt>
+<plots/preproc_heatmaps.pdf, id=309, 1344.94475pt x 469.755pt>
+File: plots/preproc_heatmaps.pdf Graphic file (type pdf)
+<use plots/preproc_heatmaps.pdf>
+Package pdftex.def Info: plots/preproc_heatmaps.pdf  used on input line 771.
+(pdftex.def)             Requested size: 370.38374pt x 129.3658pt.
+<plots/breakeven_heatmap.pdf, id=311, 564.42871pt x 325.215pt>
 File: plots/breakeven_heatmap.pdf Graphic file (type pdf)
 <use plots/breakeven_heatmap.pdf>
-Package pdftex.def Info: plots/breakeven_heatmap.pdf  used on input line 764.
+Package pdftex.def Info: plots/breakeven_heatmap.pdf  used on input line 791.
 (pdftex.def)             Requested size: 370.38374pt x 213.41685pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<plots/speedup_heatmaps.pdf, id=334, 564.42871pt x 325.215pt>
+<plots/speedup_heatmaps.pdf, id=313, 564.42871pt x 325.215pt>
 File: plots/speedup_heatmaps.pdf Graphic file (type pdf)
 <use plots/speedup_heatmaps.pdf>
-Package pdftex.def Info: plots/speedup_heatmaps.pdf  used on input line 784.
+Package pdftex.def Info: plots/speedup_heatmaps.pdf  used on input line 812.
 (pdftex.def)             Requested size: 370.38374pt x 213.41685pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -871,71 +879,89 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [9 <./plots/speed_heatmaps.pdf> <./plots/preproc_heatmaps.pdf>]
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
-(hyperref)                be the same. Added a new anchor on input line 804.
+(hyperref)                be the same. Added a new anchor on input line 832.
 
-[10 <./plots/breakeven_heatmap.pdf> <./plots/speedup_heatmaps.pdf>] [11]
+
+Underfull \vbox (badness 7814) has occurred while \output is active []
+
+ [10 <./plots/breakeven_heatmap.pdf> <./plots/speedup_heatmaps.pdf>] [11]
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
-(hyperref)                be the same. Added a new anchor on input line 914.
+(hyperref)                be the same. Added a new anchor on input line 947.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: Citation 'HiGHS2022' on page 12 undefined on input line 989.
 
 [12] [13]
-Overfull \hbox (1.61368pt too wide) in paragraph at lines 1051--1054
+Overfull \hbox (1.61368pt too wide) in paragraph at lines 1088--1091
 \T1/cmr/m/n/10 warp di-ver-gence, the-o-ret-i-cally restor-ing STEROID's per-query ad-van-tage even|
  []
 
-
-Overfull \hbox (0.12685pt too wide) in paragraph at lines 1073--1079
+[14]
+Overfull \hbox (0.12685pt too wide) in paragraph at lines 1111--1117
 []\T1/cmr/m/n/10 All bench-mark scripts and re-sults are avail-able at []\T1/cmr/bx/n/10 [repos-i-tory URL][]\T1/cmr/m/n/10 . Key scripts:|
  []
 
 
-Overfull \hbox (35.18388pt too wide) in paragraph at lines 1073--1079
+Overfull \hbox (35.18388pt too wide) in paragraph at lines 1111--1117
 \T1/cmtt/m/n/10 gen_param_sweep.py \T1/cmr/m/n/10 (prob-lem gen-er-a-tion), \T1/cmtt/m/n/10 run_suite.py \T1/cmr/m/n/10 (bulk run-ner), \T1/cmtt/m/n/10 plot_heatmaps.py|
  []
 
-[14]
-Overfull \hbox (18.26483pt too wide) in paragraph at lines 1106--1106
+[15]
+Overfull \hbox (18.26483pt too wide) in paragraph at lines 1145--1145
 \T1/cmr/m/n/10 lems in Nu-clear Fu-sion and High-Energy As-tro-physics''. In: (2025). arXiv:2505.03849.|
  []
 
-[15]
-Overfull \hbox (30.13828pt too wide) in paragraph at lines 1106--1106
+
+Overfull \hbox (30.13828pt too wide) in paragraph at lines 1145--1145
 \T1/cmr/m/n/10 Pro-cess Us-ing the Buck-ing-ham Pi The-o-rem''. In: \T1/cmr/m/it/10 Poly-mers \T1/cmr/m/n/10 15.18 (2023). PMC10534782,|
  []
 
-
-Overfull \hbox (0.474pt too wide) in paragraph at lines 1106--1106
+[16]
+Overfull \hbox (0.474pt too wide) in paragraph at lines 1145--1145
 \T1/cmr/m/n/10 wise Affine Con-trol via Bi-nary Search Tree''. In: \T1/cmr/m/it/10 Au-to-mat-ica \T1/cmr/m/n/10 39.5 (2003), pp. 945^^U|
  []
 
 \tf@thm=\write5
 \openout5 = `methods.thm'.
 
-[16] (./methods.aux)
+[17] (./methods.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `methods.out' has not changed.
-(rerunfilecheck)             Checksum: 83CE814EB30C246BCF2BF4F583185DCF;9826.
+(rerunfilecheck)             Checksum: 8848C7A293044F6DFFCCB0E187D34115;9055.
+
+Package biblatex Warning: Please (re)run BibTeX on the file(s):
+(biblatex)                methods
+(biblatex)                and rerun LaTeX afterwards.
+
 Package logreq Info: Writing requests to 'methods.run.xml'.
 \openout1 = `methods.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 20962 strings out of 467533
- 382402 string characters out of 5392394
- 1011015 words of memory out of 5000000
- 49570 multiletter control sequences out of 15000+600000
+ 20954 strings out of 467533
+ 382143 string characters out of 5392394
+ 1011816 words of memory out of 5000000
+ 49563 multiletter control sequences out of 15000+600000
  644237 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 89i,14n,93p,1881b,1472s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 89i,14n,93p,1881b,1478s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/amsfonts/cm/cmex10.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/amsfonts/cm/cmr10.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/amsfonts/cm/cmr6.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/amsfonts/cm/cmr7.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/amsfonts/cm/cmr8.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combine
 d-full-2025-final-texmfdist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/amsfonts/symbols/msam10.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/cm-super/sfbi0800.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/cm-super/sfbx0800.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/cm-super/sfbx1000.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/cm-super/sfcc0800.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/cm-super/sfcc1000.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/cm-super/sfrm0700.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/cm-super/sfrm0800.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/cm-super/sfrm1000.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/cm-super/sfti0800.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/cm-super/sfti1000.pfb></nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on methods.pdf (16 pages, 656724 bytes).
+Output written on methods.pdf (17 pages, 660134 bytes).
 PDF statistics:
- 875 PDF objects out of 1000 (max. 8388607)
- 525 compressed objects within 6 object streams
- 63 named destinations out of 1000 (max. 500000)
- 437 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 858 PDF objects out of 1000 (max. 8388607)
+ 507 compressed objects within 6 object streams
+ 62 named destinations out of 1000 (max. 500000)
+ 405 words of extra memory for PDF output out of 10000 (max. 10000000)
 

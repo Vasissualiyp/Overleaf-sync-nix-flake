@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex methods"] 1785368853.67404 "methods.aux" "methods.bbl" "methods" 1785368858.82204 0
-  "./methods-blx.bib" 1785368857.85444 342 20d1170ef6c1d70c658d70e011e08dba ""
-  "./methods.bib" 1783860590.19729 14012 a962e2f470c54b5cfd4ba58aa0ad9cca ""
+["bibtex methods"] 1786022557.99551 "methods.aux" "methods.bbl" "methods" 1786022560.43203 0
+  "./methods-blx.bib" 1786022559.93091 342 20d1170ef6c1d70c658d70e011e08dba ""
+  "./methods.bib" 1786022557.63485 14012 2095c580ca0c2c0bf7c842f26fb54b2a ""
   "/nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/bibtex/bst/biblatex/biblatex.bst" 1 65510 9a2a51799b543ff279b8ea2dd91ec499 ""
-  "methods.aux" 1785368857.84944 24246 58909f25a2e5cecfc06fb31f6cc3ea7e "pdflatex"
+  "methods.aux" 1786022559.92612 23062 ef91b2b7213d3e728b06cb50609406df "pdflatex"
   (generated)
   "methods.bbl"
   "methods.blg"
   (rewritten before read)
-["pdflatex"] 1785368854.13992 "methods.tex" "methods.pdf" "methods" 1785368858.82231 2
+["pdflatex"] 1786022558.15543 "methods.tex" "methods.pdf" "methods" 1786022560.43264 2
   "/nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1 2971 def0b6c1f0b107b3b936def894055589 ""
   "/nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/map/fontname/texfonts.map" 1 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/nix/store/z04bvjdadj4kd7zihcwn0v44vkmyimf4-texlive-combined-full-2025-final-texmfdist/fonts/tfm/jknappen/ec/ecbi0800.tfm" 1 3072 356816d08702a080511d9b4663f7e425 ""
@@ -160,11 +160,11 @@
   "/nix/store/z22g7l2iaraqc2jxdjjrnd0wvm8w8xz4-texlive-combined-full-2025-final/share/texmf-var/web2c/pdftex/pdflatex.fmt" 1 3637258 14776f72e0d5d6c907892169cbc60c5a ""
   "/nix/store/z22g7l2iaraqc2jxdjjrnd0wvm8w8xz4-texlive-combined-full-2025-final/share/texmf-var/web2c/texmf.cnf" 1 44359 62e559557a72fb24e6298cca1f8bfa7d ""
   "SIAM_template/siamart171218.cls" 1782331102.39569 52399 c5dd28231f892a4eb7f50de27fa71160 ""
-  "methods.aux" 1785368857.84944 24246 58909f25a2e5cecfc06fb31f6cc3ea7e "pdflatex"
-  "methods.bbl" 1785368854.07644 30613 9da01064f81aeda3816ba777712fba3a "bibtex methods"
-  "methods.out" 1785368857.85244 9826 83ce814eb30c246bcf2bf4f583185dcf "pdflatex"
-  "methods.run.xml" 1785368857.8566 2546 7728483e28d99fed49b97fc882a24a5c "pdflatex"
-  "methods.tex" 1785258573.50767 56240 e5b443f23751b20cbdce726323f0a10d ""
+  "methods.aux" 1786022559.92612 23062 ef91b2b7213d3e728b06cb50609406df "pdflatex"
+  "methods.bbl" 1786022558.14091 29906 81f5a7b557b3b5e7ff531bbd191c2939 "bibtex methods"
+  "methods.out" 1786022559.92991 9055 8848c7a293044f6dffccb0e187d34115 "pdflatex"
+  "methods.run.xml" 1786022559.93276 2546 a28a45df73fd54c0adc5a5d672dd0266 "pdflatex"
+  "methods.tex" 1786022557.63449 57219 9f59d0df08bf1cb51bce0a5a338e3d5f ""
   "plots/breakeven_heatmap.pdf" 1783019248.40493 29990 b27c04ade214014952b7c5a0489127a4 ""
   "plots/preproc_heatmaps.pdf" 1783019248.40293 36376 36ea43a4f3a27d82f788e8b4da55a74c ""
   "plots/speed_heatmaps.pdf" 1783019248.40126 38768 4eedb97f59041ceca18b9f7f0d212eca ""

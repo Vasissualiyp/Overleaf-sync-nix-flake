@@ -39,6 +39,7 @@ Parameter Spaces in Buckingham Pi}
 
 % ---------------------------------------------------------------
 \begin{abstract}
+\note{Check last}
 We study the inverse dimensional reduction problem arising in Buckingham Pi analysis:
 given a sampled point $\mathbf{d}$ in dimensionless space $\mathbb{R}^m$ and a map
 $f$ encoding the Buckingham Pi exponents (linear: $A\mathbf{p}=\mathbf{d}$, or
@@ -71,11 +72,11 @@ physically meaningful equation involving $n$ dimensional quantities can be expre
 terms of $m = n - k$ independent dimensionless groups, where $k$ is the rank of the
 dimensional matrix (i.e. number of dimensions in kernel of the problem).
 Dimensional analysis has become a core tool in fluid mechanics,
-astrophysics, materials science, and engineering design~\cite{Bakarji2022,
+astrophysics, materials science, and engineering design \cite{Bakarji2022,
 BuckinghamPy2021, SalazarMeza2023, Opdahl2021}: working in dimensionless space
 reduces experimental parameter sweeps from $n$-dimensional to $m$-dimensional.
 
-\textbf{The inverse problem.}
+%\textbf{The inverse problem.}
 Applications increasingly require the \emph{inverse} direction: given a query point
 $\mathbf{d}$ sampled in dimensionless space (e.g., a grid point in a design sweep),
 find one or more physical parameter vectors $\mathbf{p}$ that reproduce
@@ -91,9 +92,8 @@ dimensionally reduced parameter combinations remain physically valid as an open
 challenge in nuclear fusion and high-energy astrophysics.
 Practitioners typically either resort to brute-force rejection sampling (prohibitively
 slow), or run a linear program (LP) per query without exploiting the repeated
-structure of the parameter sweep~\cite{Bakarji2022, BuckinghamPy2021}.
+structure of the parameter sweep \cite{Bakarji2022, BuckinghamPy2021}.
 
-\textbf{Related work.}
 In this paper we benchmark existing methods for solving the inverse dimensional
 reduction problem and introduce a novel approach, STEROID, as an alternative.
 The closest algorithmic relative is explicit linear Model Predictive Control
@@ -104,13 +104,13 @@ supports $O(\log R)$ query cost ($R$ = number of regions) via binary search
 trees \cite{Tondel2003}. The Delaunay Triangulation approach (a big part of
 STEROID method) was also explored for explicit MPC by \cite{Scibilia2009}.
 
-For feasibility queries without preprocessing, Dykstra's alternating projection
-algorithm \cite{Dykstra1983, Tibshirani2017} solves the reduced LP formulation in the
-null space of $A$ by cyclic projection onto half-spaces.  The HiGHS
-solver \cite{HiGHS2022} provides a state-of-the-art LP simplex and interior-point
-implementation.  Analytic centers of parameterized polytopes provide smooth selections via the
-log-barrier function~\cite{Nesterov1998}, but require solving a convex
-optimization problem at each query point.
+%For feasibility queries without preprocessing, Dykstra's alternating projection
+%algorithm \cite{Dykstra1983, Tibshirani2017} solves the reduced LP formulation in the
+%null space of $A$ by cyclic projection onto half-spaces.  The HiGHS
+%solver \cite{HiGHS2022} provides a state-of-the-art LP simplex and interior-point
+%implementation.  Analytic centers of parameterized polytopes provide smooth selections via the
+%log-barrier function \cite{Nesterov1998}, but require solving a convex
+%optimization problem at each query point.
 
 %\textbf{When to use STEROID vs.\ alternatives.}
 %A practitioner who needs only a \emph{single feasible point} per query should use
@@ -153,7 +153,6 @@ optimization problem at each query point.
 
 The paper is organized as follows.
 Section \ref{sec:problem} formalizes the inverse problem.
-Section \ref{sec:nullspace} derives the null-space reduction exploited by all methods.
 Section \ref{sec:methods} describes each method, including the full STEROID derivation
 and correctness proof.
 Sections \ref{sec:geometric}--\ref{sec:gpu} characterize STEROID's unique geometric
@@ -166,13 +165,12 @@ Section \ref{sec:discussion} provides a method selection guide and discusses lim
 % ---------------------------------------------------------------
 \section{Problem Statement}
 \label{sec:problem}
+\note{Not checked yet}
 
 We work entirely in log-space.  Physical variables $\mathbf{p} \in \mathbb{R}^n$
 are the logs of positive dimensional quantities; dimensionless variables
 $\mathbf{d} \in \mathbb{R}^m$ are the logs of Buckingham groups; all constraints
 are linear in these log variables.
-
-\subsection{Physical space and constraints}
 
 The physical parameter space is $\mathbb{R}^n$.  Physical constraints take the form
 \begin{equation}
@@ -182,8 +180,6 @@ The physical parameter space is $\mathbb{R}^n$.  Physical constraints take the f
 where $\Lambda \in \mathbb{R}^{K \times n}$ and $\mathbf{c} \in \mathbb{R}^K$.
 We assume the feasible set $\mathcal{P} = \{\mathbf{p} : \Lambda\mathbf{p} \leq
 \mathbf{c}\}$ is a compact convex polytope (i.e., full-dimensional and bounded).
-
-\subsection{Buckingham Pi map and dimensionless space}
 
 By the Buckingham $\Pi$-theorem, there exists a matrix $A \in \mathbb{R}^{m \times n}$
 with $\mathrm{rank}(A) = m < n$ such that the dimensionless variables are
@@ -195,19 +191,20 @@ The feasible dimensionless region is $\mathcal{D}^* = \{A\mathbf{p} :
 \mathbf{p} \in \mathcal{P}\}$, the projection of $\mathcal{P}$ under $A$.
 This is itself a compact convex polytope in $\mathbb{R}^m$.
 
-\subsection{Inverse problem}
-
-Given a query $\mathbf{d} \in \mathbb{R}^m$, find $\mathbf{p} \in \mathbb{R}^n$
-satisfying \eqref{eq:constraint} and \eqref{eq:buckingham}, or report infeasibility.
-Return $\emptyset$ if $\mathbf{d} \notin \mathcal{D}^*$.
+Given a query $\mathbf{d} \in \mathbb{R}^m$, an algorithm that solves the
+inverse problem should find $\mathbf{p} \in \mathbb{R}^n$ satisfying
+\eqref{eq:constraint} and \eqref{eq:buckingham}, or report infeasibility, i.e. 
+return $\emptyset$ if $\mathbf{d} \notin \mathcal{D}^*$.
 
 In practice, queries arrive as a batch $G = \{\mathbf{d}_1, \ldots, \mathbf{d}_Q\}$
-(e.g., a regular $11^m$-point Cartesian grid in $[-1,1]^m$), and the problem
-parameters $A, \Lambda, \mathbf{c}$ are fixed across all queries.
+(e.g., a regular $N^m$-point Cartesian grid in $[-1,1]^m$ in one example), and 
+the problem parameters $A, \Lambda, \mathbf{c}$ are fixed across all queries.
 
 % ---------------------------------------------------------------
-\section{Null-Space Reduction}
-\label{sec:nullspace}
+
+% ---------------------------------------------------------------
+\section{Methods}
+\label{sec:methods}
 
 All methods in this paper exploit the following algebraic reduction.
 
@@ -231,30 +228,31 @@ The key observation is that \eqref{eq:reduced_lp} lives in $\mathbb{R}^{n-m}$, n
 $\mathbb{R}^n$.  As $m$ increases (holding $n$ fixed), the LP dimension $n - m$
 \emph{decreases}.  Any per-query method exploits this automatically.
 
-% ---------------------------------------------------------------
-\section{Methods}
-\label{sec:methods}
-
 \subsection{LP Simplex and Interior Point (HiGHS)}
 \label{sec:lp}
+\note{Not checked yet}
 
 The most direct approach: solve \eqref{eq:reduced_lp} as an LP feasibility problem
-with HiGHS \cite{HiGHS2022}.  Simplex is exponential in the worst case but
+with HiGHS \cite{HiGHS2018}.  Simplex is exponential in the worst case but
 typically performs $O((n{-}m) K)$ pivot steps in practice;
 interior point achieves polynomial worst-case $O((n{-}m)^{3.5} \log(1/\varepsilon))$.
 No preprocessing beyond computing $N$, $A^\dagger$ once ($O(n^2 m)$ via SVD).
+\note{Sources for these numbers? did not find them in the HiGHS 2018 paper}
 
 \subsection{Chebyshev Center LP}
 \label{sec:chebyshev}
+\note{Not checked yet}
 
 Find the Chebyshev center of \eqref{eq:reduced_lp}: the largest inscribed ball
 maximizes minimum slack, giving the most ``interior'' feasible point.
-Solved as an LP with one additional radius variable~\cite{Boyd2004}.
+Solved as an LP with one additional radius variable \cite{Boyd2004}.
+\note{Do not have access to this manuscript. Find another one}
 Useful when downstream applications require $\mathbf{p}$ to be far from
 constraint boundaries.
 
 \subsection{Dykstra's Alternating Projection}
 \label{sec:dykstra}
+\note{Not checked yet}
 
 Dykstra's algorithm \cite{Dykstra1983} finds the projection onto the intersection of
 convex sets by cyclic orthogonal projection with incremental corrections.
@@ -271,6 +269,7 @@ $(\Lambda N)_k \mathbf{z} \leq (\mathbf{c} - \Lambda A^\dagger \mathbf{d})_k
 
 \subsection{ADMM and Kaczmarz}
 \label{sec:admm_kaczmarz}
+\note{Not checked yet}
 
 Alternating Direction Method of Multipliers (ADMM) \cite{BoydADMM2011} solves 
 the feasibility problem via consensus splitting,
@@ -289,6 +288,7 @@ increasing $\rho$ progressively until feasibility is achieved.
 
 \subsection{STEROID: Vertex Enumeration + Delaunay Triangulation}
 \label{sec:steroid}
+\note{Not checked yet}
 
 STEROID invests in a one-time preprocessing step: it identifies the feasible
 region, projects it into dimensionless space, triangulates it, and precomputes
@@ -299,6 +299,7 @@ We now walk through the construction step by step.
 
 \subsubsection{Identifying the feasible vertices}
 
+\note{Not checked yet}
 The feasible polytope $\mathcal{P} = \{\mathbf{p} : \Lambda\mathbf{p} \leq
 \mathbf{c}\}$ is defined by $K$ linear constraints (its H-representation).
 STEROID first converts $\mathcal{P}$ to its V-representation---a list of vertices
@@ -309,6 +310,7 @@ the vertex count satisfies $V \leq \binom{K}{\lfloor n/2 \rfloor}$.
 
 \subsubsection{Projection into dimensionless space}
 \label{sec:proj_dim_subspace}
+\note{Not checked yet}
 
 Each vertex $\mathbf{w}_i \in \mathbb{R}^n$ is mapped to dimensionless space via
 $\mathbf{v}_i = A\mathbf{w}_i \in \mathbb{R}^m$.  The projected vertices
@@ -326,6 +328,7 @@ from all constraint boundaries (maximizing slack).
 
 \subsubsection{Triangulating the dimensionless region}
 
+\note{Not checked yet}
 We compute the Delaunay triangulation of the projected vertices using
 CGAL \cite{cgal}, producing a set of simplices $\{T_1, \ldots, T_S\}$ that
 partition $\mathcal{D}^*$.  In the worst case,
@@ -333,6 +336,7 @@ $S = O(V^{\lceil m/2 \rceil})$ \cite{McMullen1970}.
 
 \subsubsection{Obtaining physical values from a query point}
 
+\note{Not checked yet}
 Now take an arbitrary simplex $T_i$ and a query point $\mathbf{d}$ inside it.
 Each simplex has $m+1$ vertices in dimensionless space; we pick one as the
 ``base'' vertex $\mathbf{v}_{i,0}$ and form the difference vectors from it.
@@ -358,6 +362,7 @@ We apply the \emph{same} barycentric coordinates $\mu_j$ to the parent vertices:
 
 \subsubsection{Precomputing the deprojection map}
 
+\note{Not checked yet}
 Since the difference vectors in \eqref{eq:steroid_1} and \eqref{eq:steroid_2}
 depend only on the simplex (not on the query point), we can precompute
 everything into a compact form.
@@ -398,6 +403,7 @@ computed once per simplex during preprocessing and stored for retrieval.
 
 \subsubsection{Query evaluation}
 
+\note{Not checked yet}
 At query time, STEROID performs two operations:
 \begin{enumerate}
   \item \emph{Point location}: find the simplex $T_i$ containing $\mathbf{d}$
@@ -413,6 +419,7 @@ linear algebra embarrassingly parallel.
 
 \subsubsection{Correctness}
 
+\note{Not checked yet}
 The key property of this construction is that it always produces a feasible
 physical point.
 
@@ -448,6 +455,7 @@ physical point.
 
 \subsubsection{Scaling}
 
+\note{Not checked yet}
 The per-query cost has two components:
 (i)~the triangulation walk, costing $O(S^{1/m})$ simplex traversals in
 expectation (each requiring $O(m)$ facet tests), giving $O(m \cdot S^{1/m})$;
@@ -461,6 +469,7 @@ $O(V^{\lceil m/2 \rceil})$ simplices.  This becomes impractical for $m \geq 6$.
 % ---------------------------------------------------------------
 \section{Complexity Summary}
 \label{sec:complexity}
+\note{Not checked yet}
 
 \begin{table}[h]
 \caption{Asymptotic complexity.  $K$: constraints; $n,m$: dimensions;
@@ -486,12 +495,14 @@ STEROID      & $O(V^{\lceil m/2 \rceil})$ & $O(m \cdot S^{1/m} + nm)$ & $O(V^{\l
 % ---------------------------------------------------------------
 \section{Geometric Capabilities of STEROID}
 \label{sec:geometric}
+\note{Not checked yet}
 
 Beyond point queries, STEROID's triangulation enables tasks inaccessible to per-query
 methods.
 
 \subsection{Feasible volume computation}
 
+\note{Not checked yet}
 \begin{equation}
   \mathrm{vol}(\mathcal{D}^*) = \sum_i \frac{|\det P_i|}{m!}.
 \end{equation}
@@ -501,6 +512,7 @@ space is physically realizable?''
 
 \subsection{Exact uniform sampling}
 
+\note{Not checked yet}
 To sample uniformly in dimensionless space $\mathcal{D}^*$: select simplex $T_i$
 with probability $\propto |\det P_i|/m!$ (proportional to its volume); sample
 $\mathbf{d} \sim \mathrm{Uniform}(T_i)$ via Dirichlet$(1,\ldots,1)$ barycentric
@@ -511,7 +523,7 @@ probabilities must be adjusted by the Jacobian of the deprojection map: select $
 with probability $\propto |\det P_i| \cdot |\det(E_i^\top E_i)|^{1/2} / m!$, which
 accounts for the volume distortion of the affine map $E_i$ from $\mathbb{R}^m$ to
 $\mathbb{R}^n$.  Both variants are exact one-pass samplers.  The Volesti
-library~\cite{volesti} provides hit-and-run MCMC sampling within polytopes,
+library \cite{volesti} provides hit-and-run MCMC sampling within polytopes,
 but requires a burn-in period of $O(n^3)$ steps before samples are
 approximately uniform, and the approximation error is controlled only in
 distribution.  STEROID's sampler produces exactly uniform samples with no
@@ -519,6 +531,7 @@ burn-in and no tolerance parameter.
 
 \subsection{Phase diagrams of active constraint sets}
 
+\note{Not checked yet}
 Each physical constraint $(\Lambda\mathbf{p})_k \leq c_k$ is either
 \emph{active} (tight, $= c_k$) or \emph{inactive} (strict, $< c_k$) at a given
 point $\mathbf{p}$.  The set of active constraints changes as $\mathbf{d}$ moves
@@ -539,7 +552,7 @@ $\mathcal{A}_i$ produces a map in $\mathcal{D}^*$ showing which physical
 constraints govern each region of dimensionless space---a phase diagram in the
 thermodynamic sense.
 
-In explicit MPC~\cite{Tondel2003}, a similar map is produced via KKT critical
+In explicit MPC \cite{Tondel2003}, a similar map is produced via KKT critical
 regions, where each region corresponds to exactly one active set by construction.
 STEROID's Delaunay simplices are determined by geometry rather than optimality,
 so a single simplex may nominally span two active sets near a transition; the
@@ -548,6 +561,7 @@ improving as the triangulation is refined.
 
 \subsection{Smooth $d \to p$ manifolds via spline interpolation}
 \label{sec:splines}
+\note{Not checked yet}
 
 The Delaunay triangulation provides a simplicial mesh on $\mathcal{D}^*$ suitable for
 $C^k$ spline interpolation \cite{LaiSchumaker2007}.  Replacing the piecewise-affine
@@ -563,12 +577,13 @@ optimization per query.  STEROID + splines achieves $C^k$ with precomputed $O(1)
 Constructing splines that are continuous across simplex boundaries (i.e.,
 achieving $k \geq 1$) requires choosing the spline coefficients to satisfy
 inter-element compatibility conditions; this is a standard problem in finite
-element analysis~\cite{LaiSchumaker2007, Ciarlet2002} and is deferred to
+element analysis \cite{LaiSchumaker2007, Ciarlet2002} and is deferred to
 future work.
 
 % ---------------------------------------------------------------
 \section{Extension to Non-Linear Monotonic Maps}
 \label{sec:nonlinear}
+\note{Not checked yet}
 
 \begin{definition}
   $f: \mathbb{R}^n \to \mathbb{R}^m$ is \emph{coordinate-monotonic} if each $f_j$
@@ -579,7 +594,7 @@ Physical examples include Arrhenius reaction rate laws
 ($k \propto e^{-E_a/RT}$, monotone in temperature $T$), Cobb-Douglas production
 functions ($Y = A K^\alpha L^\beta$, monotone in capital $K$ and labor $L$), and
 power-law rheology models where viscosity depends monotonically on shear rate
-and temperature~\cite{SalazarMeza2023, RomeroObon2025}.
+and temperature \cite{SalazarMeza2023, RomeroObon2025}.
 
 \begin{proposition}
   \label{prop:nonlinear}
@@ -623,7 +638,7 @@ improves accuracy, but also increases precompute time.
 
 \textbf{Uniqueness.}  Explicit MPC requires $f = A$ (linear).  Analytic center and
 Dykstra require convex $f(\mathcal{P})$ (non-linear $f$ may destroy convexity).
-Differentiable convex optimization layers~\cite{cvxpylayers} embed a convex
+Differentiable convex optimization layers \cite{cvxpylayers} embed a convex
 program as a layer in a neural network, enabling gradient-based learning through
 the solution map; but this still requires $f(\mathcal{P})$ to be convex at each
 forward pass.  Only STEROID operates directly on $\mathcal{P}$, avoiding any
@@ -632,6 +647,7 @@ convexity requirement on $f$.
 % ---------------------------------------------------------------
 \section{GPU-Friendly Point Location (Projected Performance)}
 \label{sec:gpu}
+\note{Not checked yet}
 
 The current STEROID bottleneck for large batches is CGAL's triangulation walk
 (pointer-chasing, cache-unfriendly on GPU).  The matrix multiply $E_i \mathbf{d}$
@@ -639,8 +655,9 @@ is already perfectly SIMD-parallel.
 
 \subsection{Spatial hashing}
 
+\note{Not checked yet}
 During preprocessing, insert each simplex into a hash table keyed by the Morton
-code (Z-order curve)~\cite{MortonCode1966}
+code (Z-order curve) \cite{MortonCode1966}
 of its bounding grid cell.  Per-query: one hash lookup
 $O(1)$ + $O(m)$ barycentric containment check.
 
@@ -664,12 +681,14 @@ $m$ & $n$ & STEROID (hash+matmul) & Dykstra & STEROID speedup \\
 
 \subsection{BVH for higher dimensions}
 
+\note{Not checked yet}
 Morton encoding requires $>64$ bits for $m \geq 9$.  A Bounding Volume Hierarchy
 (BVH) provides $O(m \log V)$ point location.  NVIDIA RTX cores include dedicated BVH
 traversal hardware applicable to simplex point location.
 
 \subsection{Warp-divergence advantage}
 
+\note{Not checked yet}
 Dykstra's variable iteration count causes GPU warp divergence: threads in a
 warp must wait for the slowest query before proceeding, wasting compute on
 well-conditioned queries.  STEROID's fixed-cost pipeline (one lookup + one
@@ -680,9 +699,11 @@ via CUDA profiling is deferred to future work.
 % ---------------------------------------------------------------
 \section{Experimental Setup}
 \label{sec:experiments}
+\note{Not checked yet}
 
 \subsection{Problem generation}
 
+\note{Not checked yet}
 We generate synthetic problems on an $(n,m)$ grid with $n \in \{4,6,8,10,12,15,20\}$
 and $m \in \{2,3,4,5,6,8\}$ (valid pairs: $m < n$).  For each pair:
 \begin{enumerate}
@@ -695,19 +716,21 @@ and $m \in \{2,3,4,5,6,8\}$ (valid pairs: $m < n$).  For each pair:
 
 \subsection{Implementation}
 
+\note{Not checked yet}
 Python methods (LP simplex, LP IPM, Chebyshev) use HiGHS via the
 \texttt{highspy} Python bindings with default solver settings.
 Dykstra, ADMM, Kaczmarz, gradient penalty, and LP-HiGHS are implemented as
 standalone C++ binaries compiled with \texttt{-O3 -march=native} and linked
-against HiGHS~\cite{HiGHS2022}.
-STEROID is compiled with the same flags, using CGAL~\cite{cgal} for
-triangulation and PPL~\cite{PPL2008} for vertex enumeration.
+against HiGHS \cite{HiGHS2022}.
+STEROID is compiled with the same flags, using CGAL \cite{cgal} for
+triangulation and PPL \cite{PPL2008} for vertex enumeration.
 For each method, preprocessing (matrix factorizations, triangulation) is timed
 separately from per-query evaluation.  Python method timings reflect
 interpreter overhead; C++ timings are hardware-limited.
 
 \subsection{Timing}
 
+\note{Not checked yet}
 Per method, we record: preprocessing time $t_{\mathrm{pre}}$ (s), mean per-query
 time $t_{\mathrm{q}}$ (ms), $p_{99}$ query time, and feasibility rate.
 $N_{\mathrm{rep}} = 5$ repetitions; median reported.
@@ -716,9 +739,11 @@ $N_{\mathrm{rep}} = 5$ repetitions; median reported.
 % ---------------------------------------------------------------
 \section{Results}
 \label{sec:results}
+\note{Not checked yet}
 
 \subsection{Per-query speed}
 
+\note{Not checked yet}
 Figure \ref{fig:speed_heatmaps} shows mean query time across the $(n,m)$ grid.
 
 \begin{figure}[h]
@@ -738,6 +763,7 @@ is ${\sim}30$--$100\times$ slower.
 
 \subsection{Preprocessing}
 
+\note{Not checked yet}
 Figure \ref{fig:preproc_heatmaps} shows preprocessing time.
 
 \begin{figure}[h]
@@ -755,6 +781,7 @@ All per-query methods have $\leq 1$~ms preprocessing (SVD of $A$ only).
 
 \subsection{Break-even query count}
 
+\note{Not checked yet}
 Figure \ref{fig:breakeven} shows $Q^* = t_{\mathrm{pre}}^{\mathrm{STEROID}} /
 (t_{\mathrm{q}}^{\mathrm{method}} - t_{\mathrm{q}}^{\mathrm{STEROID}})$
 for $(n,m)$ pairs where STEROID is faster per query ($m \leq 3$).
@@ -777,6 +804,7 @@ approaches break-even at the larger $(n,m)$ pairs.
 
 \subsection{Speedup vs.\ STEROID}
 
+\note{Not checked yet}
 Figure \ref{fig:speedup} shows per-query speedup of each method relative to STEROID.
 
 \begin{figure}[h]
@@ -791,6 +819,7 @@ Dykstra is faster than STEROID for all tested pairs with $m \geq 4$.
 % ---------------------------------------------------------------
 \section{Applications}
 \label{sec:applications}
+\note{Not checked yet}
 
 We now demonstrate STEROID's unique capabilities on two concrete applications drawn
 from the literature, selected because they require capabilities that per-query methods
@@ -800,6 +829,7 @@ demonstrations are deferred.
 
 \subsection{Ultrasonic micro-injection molding: inverse design and sensitivity}
 \label{sec:molding}
+\note{Not checked yet}
 
 Salazar-Meza et al. \cite{SalazarMeza2023} apply Buckingham Pi analysis to ultrasonic
 micro-injection molding (UMIM), fitting power-law models for energy consumption $Q$
@@ -849,6 +879,7 @@ sensitivity surface plot as a figure here.}
 
 \subsection{Dimensionless robot policy transfer: hardware feasibility}
 \label{sec:robot}
+\note{Not checked yet}
 
 Girard \cite{Girard2024} and Hromatko et al. \cite{Hromatko2025} show that control
 policies trained in dimensionless space transfer zero-shot to any physically similar
@@ -887,6 +918,7 @@ STEROID's non-linear monotonic extension is the only method that handles this ca
 
 \subsection{Open gap: inverse dimensional reduction in fusion reactor design}
 \label{sec:fusion}
+\note{Not checked yet}
 
 Gorard et al. \cite{Gorard2025} identify the problem of ensuring physical
 validity of dimensionally reduced parameter combinations as an open challenge
@@ -908,9 +940,11 @@ which a per-query LP provides.
 % ---------------------------------------------------------------
 \section{Discussion}
 \label{sec:discussion}
+\note{Not checked yet}
 
 \subsection{When to use STEROID vs.\ Dykstra}
 
+\note{Not checked yet}
 A critical finding of our benchmark is that STEROID's preprocessing overhead is
 \emph{not} justified by per-query speed alone: Dykstra is faster at $m \geq 4$
 with zero preprocessing.  STEROID is the right choice only when the application
@@ -952,9 +986,9 @@ of the feasibility domain is not guaranteed and LP/Dykstra may fail;
 STEROID operates on $\mathcal{P}$ directly and is unaffected.
 At $m \geq 6$, STEROID's preprocessing grows exponentially and Dykstra becomes
 the only practical option.
-When a certifiably exact solution is required, LP via HiGHS~\cite{HiGHS2022}
+When a certifiably exact solution is required, LP via HiGHS \cite{HiGHS2022}
 is preferable to Dykstra (which has a finite termination tolerance); STEROID is
-exact in the linear case by Theorem~\ref{thm:feasibility}.
+exact in the linear case by Theorem \ref{thm:feasibility}.
 
 \textbf{Common misconception.}
 It is tempting to argue STEROID is justified whenever preprocessing can be paid once
@@ -966,6 +1000,7 @@ in Table \ref{tab:selection}, not amortized query speed.
 
 \subsection{Relationship to explicit MPC}
 \label{sec:mpc_comparison}
+\note{Not checked yet}
 
 STEROID computes the same mathematical object as explicit MPC \cite{Bemporad2002}:
 a precomputed piecewise-affine lookup table that maps a low-dimensional parameter
@@ -993,11 +1028,12 @@ Buckingham Pi guarantees $m \ll n$, so the effective parameter space is genuinel
 low-dimensional even for large $n$.  This keeps the Delaunay triangulation
 tractable at dimensions $m \leq 4$ where explicit MPC would face the curse of
 dimensionality in KKT enumeration.  Additionally, STEROID's non-linear monotonic
-extension (Section~\ref{sec:nonlinear}) has no direct counterpart in standard
+extension (Section \ref{sec:nonlinear}) has no direct counterpart in standard
 explicit MPC formulations, which assume affine objectives and constraints.
 
 \subsection{Limitations and future work}
 
+\note{Not checked yet}
 STEROID is infeasible at $m \geq 6$ due to exponential growth in simplex count.
 Generalized barycentric coordinates \cite{Hormann2017} offer a meshfree alternative:
 given vertices $\{(\mathbf{v}_i, \mathbf{w}_i)\}$, solve a small LP for barycentric
@@ -1031,6 +1067,7 @@ cluster in a small sub-region of the feasible domain.
 % ---------------------------------------------------------------
 \section{Conclusion}
 \label{sec:conclusion}
+\note{Not checked yet}
 
 We have benchmarked STEROID against six alternative methods for inverse Buckingham Pi
 dimensional reduction and critically assessed when its preprocessing overhead is
@@ -1069,6 +1106,7 @@ spatial-hashing speedup predicted in Section \ref{sec:gpu}.
 
 \section{Benchmark Code}
 \label{app:code}
+\note{Not checked yet}
 
 All benchmark scripts and results are available at \note{repository URL}.
 Key scripts:
@@ -1079,6 +1117,7 @@ A Nix development shell (\texttt{flake.nix}) provides a reproducible environment
 
 \section{STEROID File Formats}
 \label{app:formats}
+\note{Not checked yet}
 
 STEROID stores precomputed deprojection data in a binary format (\texttt{.sprj}).
 The layout (little-endian) is:
