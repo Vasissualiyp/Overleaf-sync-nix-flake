@@ -62,10 +62,43 @@
     \field{labeltitlesource}{title}
     \field{sortinit}{A}
     \field{sortinithash}{A}
-    \field{booktitle}{Advances in Neural Information Processing Systems (NeurIPS)}
+    \field{booktitle}{Advances in Neural Information Processing Systems
+  (NeurIPS)}
     \field{title}{Differentiable Convex Optimization Layers}
     \field{volume}{32}
     \field{year}{2019}
+  \endentry
+
+  \entry{Avis1992}{article}{}{}
+    \name{author}{2}{}{%
+      {{hash=AD}{%
+         family={Avis},
+         familyi={A\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=FK}{%
+         family={Fukuda},
+         familyi={F\bibinitperiod},
+         given={Komei},
+         giveni={K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ADFK1}
+    \strng{fullhash}{ADFK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \verb{doi}
+    \verb 10.1007/BF02293050
+    \endverb
+    \field{pages}{295\bibrangedash 313}
+    \field{title}{A Pivoting Algorithm for Convex Hulls and Vertex Enumeration
+  of Arrangements and Polyhedra}
+    \field{volume}{8}
+    \field{journaltitle}{Discrete \& Computational Geometry}
+    \field{year}{1992}
   \endentry
 
   \entry{PPL2008}{article}{}{}
@@ -100,7 +133,9 @@
     \endverb
     \field{number}{1--2}
     \field{pages}{3\bibrangedash 21}
-    \field{title}{The {P}arma {P}olyhedra {L}ibrary: Toward a Complete Set of Numerical Abstractions for the Analysis and Verification of Hardware and Software Systems}
+    \field{title}{The {P}arma {P}olyhedra {L}ibrary: Toward a Complete Set of
+  Numerical Abstractions for the Analysis and Verification of Hardware and
+  Software Systems}
     \field{volume}{72}
     \field{journaltitle}{Science of Computer Programming}
     \field{year}{2008}
@@ -187,10 +222,38 @@
     \endverb
     \field{number}{1}
     \field{pages}{3\bibrangedash 20}
-    \field{title}{The Explicit Linear Quadratic Regulator for Constrained Systems}
+    \field{title}{The Explicit Linear Quadratic Regulator for Constrained
+  Systems}
     \field{volume}{38}
     \field{journaltitle}{Automatica}
     \field{year}{2002}
+  \endentry
+
+  \entry{Berger2023}{article}{}{}
+    \name{author}{2}{}{%
+      {{hash=BC}{%
+         family={Berger},
+         familyi={B\bibinitperiod},
+         given={Christian},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=BL}{%
+         family={Birkemeyer},
+         familyi={B\bibinitperiod},
+         given={Lukas},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BCBL1}
+    \strng{fullhash}{BCBL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{title}{{ZEBRA}: {Z}-Order Curve-based Event Retrieval Approach to
+  Efficiently Explore Automotive Data}
+    \field{journaltitle}{arXiv preprint arXiv:2304.10232}
+    \field{year}{2023}
   \endentry
 
   \entry{Boyd2004}{book}{}{}
@@ -268,7 +331,8 @@
     \endverb
     \field{number}{1}
     \field{pages}{1\bibrangedash 122}
-    \field{title}{Distributed Optimization and Statistical Learning via the Alternating Direction Method of Multipliers}
+    \field{title}{Distributed Optimization and Statistical Learning via the
+  Alternating Direction Method of Multipliers}
     \field{volume}{3}
     \field{journaltitle}{Foundations and Trends in Machine Learning}
     \field{year}{2011}
@@ -294,7 +358,8 @@
     \endverb
     \field{number}{4}
     \field{pages}{345\bibrangedash 376}
-    \field{title}{On Physically Similar Systems; Illustrations of the Use of Dimensional Equations}
+    \field{title}{On Physically Similar Systems; Illustrations of the Use of
+  Dimensional Equations}
     \field{volume}{4}
     \field{journaltitle}{Physical Review}
     \field{year}{1914}
@@ -381,6 +446,43 @@
     \field{year}{1983}
   \endentry
 
+  \entry{Fuchs2010}{inproceedings}{}{}
+    \name{author}{3}{}{%
+      {{hash=FAN}{%
+         family={Fuchs},
+         familyi={F\bibinitperiod},
+         given={Andreas\bibnamedelima N.},
+         giveni={A\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+      {{hash=JCN}{%
+         family={Jones},
+         familyi={J\bibinitperiod},
+         given={Colin\bibnamedelima N.},
+         giveni={C\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={Morari},
+         familyi={M\bibinitperiod},
+         given={Manfred},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FANJCNMM1}
+    \strng{fullhash}{FANJCNMM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{booktitle}{Proceedings of the American Control Conference (ACC)}
+    \verb{doi}
+    \verb 10.1109/ACC.2010.5530979
+    \endverb
+    \field{pages}{5507\bibrangedash 5512}
+    \field{title}{Optimized Decision Trees for Point Location in Polytopic Data
+  Sets: Application to Explicit {MPC}}
+    \field{year}{2010}
+  \endentry
+
   \entry{Girard2024}{article}{}{}
     \name{author}{1}{}{%
       {{hash=GA}{%
@@ -401,7 +503,8 @@
     \endverb
     \field{number}{5}
     \field{pages}{709}
-    \field{title}{Dimensionless Policies Based on the {B}uckingham {$\Pi$} Theorem: Is This a Good Way to Generalize Numerical Results?}
+    \field{title}{Dimensionless Policies Based on the {B}uckingham {$\Pi$}
+  Theorem: Is This a Good Way to Generalize Numerical Results?}
     \field{volume}{12}
     \field{journaltitle}{Mathematics}
     \field{year}{2024}
@@ -450,7 +553,8 @@
     \verb 10.48550/arXiv.2505.03849
     \endverb
     \field{note}{arXiv:2505.03849}
-    \field{title}{Improved Dimensionality Reduction for Inverse Problems in Nuclear Fusion and High-Energy Astrophysics}
+    \field{title}{Improved Dimensionality Reduction for Inverse Problems in
+  Nuclear Fusion and High-Energy Astrophysics}
     \field{year}{2025}
   \endentry
 
@@ -481,7 +585,8 @@
     \verb{doi}
     \verb 10.1201/9781315153452
     \endverb
-    \field{title}{Generalized Barycentric Coordinates in Computer Graphics and Computational Mechanics}
+    \field{title}{Generalized Barycentric Coordinates in Computer Graphics and
+  Computational Mechanics}
     \field{year}{2017}
   \endentry
 
@@ -522,7 +627,8 @@
     \verb 10.48550/arXiv.2512.08667
     \endverb
     \field{note}{arXiv:2512.08667}
-    \field{title}{Direct Transfer of Optimized Controllers to Similar Systems Using Dimensionless {MPC}}
+    \field{title}{Direct Transfer of Optimized Controllers to Similar Systems
+  Using Dimensionless {MPC}}
     \field{year}{2025}
   \endentry
 
@@ -538,7 +644,8 @@
          family={Hall},
          familyi={H\bibinitperiod},
          given={J.\bibnamedelima A.\bibnamedelima J.},
-         giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim J\bibinitperiod},
+         giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim
+  J\bibinitperiod},
       }}%
     }
     \strng{namehash}{HQHJAJ1}
@@ -662,7 +769,8 @@
     \field{labeltitlesource}{title}
     \field{sortinit}{M}
     \field{sortinithash}{M}
-    \field{title}{A Computer Oriented Geodetic Data Base and a New Technique in File Sequencing}
+    \field{title}{A Computer Oriented Geodetic Data Base and a New Technique in
+  File Sequencing}
     \field{journaltitle}{IBM Technical Report}
     \field{year}{1966}
   \endentry
@@ -693,7 +801,8 @@
     \endverb
     \field{number}{1}
     \field{pages}{1\bibrangedash 38}
-    \field{title}{Multi-Parameter Surfaces of Analytic Centers and Long-Step Surface-Following Interior Point Methods}
+    \field{title}{Multi-Parameter Surfaces of Analytic Centers and Long-Step
+  Surface-Following Interior Point Methods}
     \field{volume}{23}
     \field{journaltitle}{Mathematics of Operations Research}
     \field{year}{1998}
@@ -726,7 +835,8 @@
     \field{note}{PMC8074371}
     \field{number}{8}
     \field{pages}{2079}
-    \field{title}{Dimensional Analysis and Optimization of {IsoTruss} Structures with Outer Longitudinal Members in Uniaxial Compression}
+    \field{title}{Dimensional Analysis and Optimization of {IsoTruss}
+  Structures with Outer Longitudinal Members in Uniaxial Compression}
     \field{volume}{14}
     \field{journaltitle}{Materials}
     \field{year}{2021}
@@ -788,7 +898,8 @@
     \endverb
     \field{number}{7}
     \field{pages}{1033}
-    \field{title}{Scale-Agnostic Models Based on Dimensionless Quality by Design as Pharmaceutical Development Accelerator}
+    \field{title}{Scale-Agnostic Models Based on Dimensionless Quality by
+  Design as Pharmaceutical Development Accelerator}
     \field{volume}{18}
     \field{journaltitle}{Pharmaceuticals}
     \field{year}{2025}
@@ -851,7 +962,8 @@
     \field{note}{PMC10534782}
     \field{number}{18}
     \field{pages}{3779}
-    \field{title}{Modeling the Ultrasonic Micro-Injection Molding Process Using the {B}uckingham {P}i Theorem}
+    \field{title}{Modeling the Ultrasonic Micro-Injection Molding Process Using
+  the {B}uckingham {P}i Theorem}
     \field{volume}{15}
     \field{journaltitle}{Polymers}
     \field{year}{2023}
@@ -966,7 +1078,8 @@
     \field{sortinithash}{S}
     \field{booktitle}{Proceedings of the European Control Conference (ECC)}
     \field{pages}{2833\bibrangedash 2838}
-    \field{title}{Approximate Explicit Linear {MPC} via {D}elaunay Tessellation}
+    \field{title}{Approximate Explicit Linear {MPC} via {D}elaunay
+  Tessellation}
     \field{year}{2009}
   \endentry
 
@@ -996,7 +1109,8 @@
     \endverb
     \field{number}{2}
     \field{pages}{262\bibrangedash 278}
-    \field{title}{A Randomized {K}aczmarz Algorithm with Exponential Convergence}
+    \field{title}{A Randomized {K}aczmarz Algorithm with Exponential
+  Convergence}
     \field{volume}{15}
     \field{journaltitle}{Journal of Fourier Analysis and Applications}
     \field{year}{2009}
@@ -1055,7 +1169,8 @@
     \endverb
     \field{number}{5}
     \field{pages}{945\bibrangedash 950}
-    \field{title}{Evaluation of Piecewise Affine Control via Binary Search Tree}
+    \field{title}{Evaluation of Piecewise Affine Control via Binary Search
+  Tree}
     \field{volume}{39}
     \field{journaltitle}{Automatica}
     \field{year}{2003}

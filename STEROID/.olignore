@@ -11,3 +11,5 @@
 methods.pdf
 *.bak
 *(busy)
+*.loc
+*.soc
