@@ -8,6 +8,11 @@ Zotero library (excerpt + section/page recorded as `% VERIFIED` comments), the `
 package was added for tracked edits, and the `\note{}` markers were resolved. Details in
 `/tmp/opencode/steroid_refcheck_ledger.md`.
 
+> **Full submission-readiness task list:** `~/research/Obsidian/VasVault1/projects/STEROID/Paper1/tasks.md`
+> (paper) and `~/research/Obsidian/VasVault1/projects/STEROID/Code/tasks.md` (code).
+> This file tracks quick paper-specific items; the vault pages are the authoritative
+> path to submission.
+
 ---
 
 ## Authors & Metadata
