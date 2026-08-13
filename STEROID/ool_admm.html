@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>alternating direction method &#8211; Optimization Online</title>
+<meta name='robots' content='max-image-preview:large' />
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel='dns-prefetch' href='//www.google.com' />
+<link rel='dns-prefetch' href='//use.fontawesome.com' />
+<link rel="alternate" type="application/rss+xml" title="Optimization Online &raquo; Feed" href="https://optimization-online.org/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Optimization Online &raquo; alternating direction method Tag Feed" href="https://optimization-online.org/tag/alternating-direction-method/feed/" />
+		<!-- This site uses the Google Analytics by MonsterInsights plugin v10.2.2 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+							<script src="//www.googletagmanager.com/gtag/js?id=G-FX9JPL0Y2N"  data-cfasync="false" data-wpfc-render="false" async></script>
+			<script data-cfasync="false" data-wpfc-render="false">
+				var mi_version = '10.2.2';
+				var mi_track_user = true;
+				var mi_no_track_reason = '';
+								var MonsterInsightsDefaultLocations = {"page_location":"https:\/\/optimization-online.org\/tag\/alternating-direction-method\/"};
+								if ( typeof MonsterInsightsPrivacyGuardFilter === 'function' ) {
+					var MonsterInsightsLocations = (typeof MonsterInsightsExcludeQuery === 'object') ? MonsterInsightsPrivacyGuardFilter( MonsterInsightsExcludeQuery ) : MonsterInsightsPrivacyGuardFilter( MonsterInsightsDefaultLocations );
+				} else {
+					var MonsterInsightsLocations = (typeof MonsterInsightsExcludeQuery === 'object') ? MonsterInsightsExcludeQuery : MonsterInsightsDefaultLocations;
+				}
+
+								var disableStrs = [
+										'ga-disable-G-FX9JPL0Y2N',
+									];
+
+				/* Function to detect opted out users */
+				function __gtagTrackerIsOptedOut() {
+					for (var index = 0; index < disableStrs.length; index++) {
+						if (document.cookie.indexOf(disableStrs[index] + '=true') > -1) {
+							return true;
+						}
+					}
+
+					return false;
+				}
+
+				/* Disable tracking if the opt-out cookie exists. */
+				if (__gtagTrackerIsOptedOut()) {
+					for (var index = 0; index < disableStrs.length; index++) {
+						window[disableStrs[index]] = true;
+					}
+				}
+
+				/* Opt-out function */
+				function __gtagTrackerOptout() {
+					for (var index = 0; index < disableStrs.length; index++) {
+						document.cookie = disableStrs[index] + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+						window[disableStrs[index]] = true;
+					}
+				}
+
+				if ('undefined' === typeof gaOptout) {
+					function gaOptout() {
+						__gtagTrackerOptout();
+					}
+				}
+								window.dataLayer = window.dataLayer || [];
+
+				window.MonsterInsightsDualTracker = {
+					helpers: {},
+					trackers: {},
+				};
+				if (mi_track_user) {
+					function __gtagDataLayer() {
+						dataLayer.push(arguments);
+					}
+
+					function __gtagTracker(type, name, parameters) {
+						if (!parameters) {
+							parameters = {};
+						}
+
+						if (parameters.send_to) {
+							__gtagDataLayer.apply(null, arguments);
+							return;
+						}
+
+						if (type === 'event') {
+														parameters.send_to = monsterinsights_frontend.v4_id;
+							var hookName = name;
+							if (typeof parameters['event_category'] !== 'undefined') {
+								hookName = parameters['event_category'] + ':' + name;
+							}
+
+							if (typeof MonsterInsightsDualTracker.trackers[hookName] !== 'undefined') {
+								MonsterInsightsDualTracker.trackers[hookName](parameters);
+							} else {
+								__gtagDataLayer('event', name, parameters);
+							}
+							
+						} else {
+							__gtagDataLayer.apply(null, arguments);
+						}
+					}
+
+					__gtagTracker('js', new Date());
+					__gtagTracker('set', {
+						'developer_id.dZGIzZG': true,
+											});
+					if ( MonsterInsightsLocations.page_location ) {
+						__gtagTracker('set', MonsterInsightsLocations);
+					}
+										__gtagTracker('config', 'G-FX9JPL0Y2N', {"forceSSL":"true","link_attribution":"true"} );
+										window.gtag = __gtagTracker;										(function () {
+						/* https://developers.google.com/analytics/devguides/collection/analyticsjs/ */
+						/* ga and __gaTracker compatibility shim. */
+						var noopfn = function () {
+							return null;
+						};
+						var newtracker = function () {
+							return new Tracker();
+						};
+						var Tracker = function () {
+							return null;
+						};
+						var p = Tracker.prototype;
+						p.get = noopfn;
+						p.set = noopfn;
+						p.send = function () {
+							var args = Array.prototype.slice.call(arguments);
+							args.unshift('send');
+							__gaTracker.apply(null, args);
+						};
+						var __gaTracker = function () {
+							var len = arguments.length;
+							if (len === 0) {
+								return;
+							}
+							var f = arguments[len - 1];
+							if (typeof f !== 'object' || f === null || typeof f.hitCallback !== 'function') {
+								if ('send' === arguments[0]) {
+									var hitConverted, hitObject = false, action;
+									if ('event' === arguments[1]) {
+										if ('undefined' !== typeof arguments[3]) {
+											hitObject = {
+												'eventAction': arguments[3],
+												'eventCategory': arguments[2],
+												'eventLabel': arguments[4],
+												'value': arguments[5] ? arguments[5] : 1,
+											}
+										}
+									}
+									if ('pageview' === arguments[1]) {
+										if ('undefined' !== typeof arguments[2]) {
+											hitObject = {
+												'eventAction': 'page_view',
+												'page_path': arguments[2],
+											}
+										}
+									}
+									if (typeof arguments[2] === 'object') {
+										hitObject = arguments[2];
+									}
+									if (typeof arguments[5] === 'object') {
+										Object.assign(hitObject, arguments[5]);
+									}
+									if ('undefined' !== typeof arguments[1].hitType) {
+										hitObject = arguments[1];
+										if ('pageview' === hitObject.hitType) {
+											hitObject.eventAction = 'page_view';
+										}
+									}
+									if (hitObject) {
+										action = 'timing' === arguments[1].hitType ? 'timing_complete' : hitObject.eventAction;
+										hitConverted = mapArgs(hitObject);
+										__gtagTracker('event', action, hitConverted);
+									}
+								}
+								return;
+							}
+
+							function mapArgs(args) {
+								var arg, hit = {};
+								var gaMap = {
+									'eventCategory': 'event_category',
+									'eventAction': 'event_action',
+									'eventLabel': 'event_label',
+									'eventValue': 'event_value',
+									'nonInteraction': 'non_interaction',
+									'timingCategory': 'event_category',
+									'timingVar': 'name',
+									'timingValue': 'value',
+									'timingLabel': 'event_label',
+									'page': 'page_path',
+									'location': 'page_location',
+									'title': 'page_title',
+									'referrer' : 'page_referrer',
+								};
+								for (arg in args) {
+																		if (!(!args.hasOwnProperty(arg) || !gaMap.hasOwnProperty(arg))) {
+										hit[gaMap[arg]] = args[arg];
+									} else {
+										hit[arg] = args[arg];
+									}
+								}
+								return hit;
+							}
+
+							try {
+								f.hitCallback();
+							} catch (ex) {
+							}
+						};
+						__gaTracker.create = newtracker;
+						__gaTracker.getByName = newtracker;
+						__gaTracker.getAll = function () {
+							return [];
+						};
+						__gaTracker.remove = noopfn;
+						__gaTracker.loaded = true;
+						window['__gaTracker'] = __gaTracker;
+					})();
+									} else {
+										console.log("");
+					(function () {
+						function __gtagTracker() {
+							return null;
+						}
+
+						window['__gtagTracker'] = __gtagTracker;
+						window['gtag'] = __gtagTracker;
+					})();
+									}
+			</script>
+							<!-- / Google Analytics by MonsterInsights -->
+		<script>
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/optimization-online.org\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.5.9"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83d\udc26\u200d\u2b1b","\ud83d\udc26\u200b\u2b1b")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+</script>
+<style id='wp-emoji-styles-inline-css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='https://optimization-online.org/wp-includes/css/dist/block-library/style.min.css?ver=6.5.9' media='all' />
+<style id='co-authors-plus-coauthors-style-inline-css'>
+.wp-block-co-authors-plus-coauthors.is-layout-flow [class*=wp-block-co-authors-plus]{display:inline}
+
+</style>
+<style id='co-authors-plus-avatar-style-inline-css'>
+.wp-block-co-authors-plus-avatar :where(img){height:auto;max-width:100%;vertical-align:bottom}.wp-block-co-authors-plus-coauthors.is-layout-flow .wp-block-co-authors-plus-avatar :where(img){vertical-align:middle}.wp-block-co-authors-plus-avatar:is(.alignleft,.alignright){display:table}.wp-block-co-authors-plus-avatar.aligncenter{display:table;margin-inline:auto}
+
+</style>
+<style id='co-authors-plus-image-style-inline-css'>
+.wp-block-co-authors-plus-image{margin-bottom:0}.wp-block-co-authors-plus-image :where(img){height:auto;max-width:100%;vertical-align:bottom}.wp-block-co-authors-plus-coauthors.is-layout-flow .wp-block-co-authors-plus-image :where(img){vertical-align:middle}.wp-block-co-authors-plus-image:is(.alignfull,.alignwide) :where(img){width:100%}.wp-block-co-authors-plus-image:is(.alignleft,.alignright){display:table}.wp-block-co-authors-plus-image.aligncenter{display:table;margin-inline:auto}
+
+</style>
+<style id='pdfemb-pdf-embedder-viewer-style-inline-css'>
+.wp-block-pdfemb-pdf-embedder-viewer{max-width:none}
+
+</style>
+<style id='font-awesome-svg-styles-default-inline-css'>
+.svg-inline--fa {
+  display: inline-block;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -.125em;
+}
+</style>
+<link rel='stylesheet' id='font-awesome-svg-styles-css' href='https://optimization-online.org/wp-content/uploads/font-awesome/v5.15.4/css/svg-with-js.css' media='all' />
+<style id='font-awesome-svg-styles-inline-css'>
+   .wp-block-font-awesome-icon svg::before,
+   .wp-rich-text-font-awesome-icon svg::before {content: unset;}
+</style>
+<style id='classic-theme-styles-inline-css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--contrast: var(--contrast);--wp--preset--color--contrast-2: var(--contrast-2);--wp--preset--color--contrast-3: var(--contrast-3);--wp--preset--color--base: var(--base);--wp--preset--color--base-2: var(--base-2);--wp--preset--color--base-3: var(--base-3);--wp--preset--color--accent: var(--accent);--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}body .is-layout-grid{display: grid;}body .is-layout-grid > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='contact-form-7-css' href='https://optimization-online.org/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.5.6' media='all' />
+<link rel='stylesheet' id='c4wp-public-css' href='https://optimization-online.org/wp-content/plugins/wp-captcha//assets/css/c4wp-public.css?ver=6.5.9' media='all' />
+<link rel='stylesheet' id='generatepress-parent-css' href='https://optimization-online.org/wp-content/themes/generatepress/style.css' media='all' />
+<link rel='stylesheet' id='child-style-css' href='https://optimization-online.org/wp-content/themes/oo-generatepress/style.css?ver=1.0' media='all' />
+<link rel='stylesheet' id='generate-style-grid-css' href='https://optimization-online.org/wp-content/themes/generatepress/assets/css/unsemantic-grid.min.css?ver=3.6.1' media='all' />
+<link rel='stylesheet' id='generate-style-css' href='https://optimization-online.org/wp-content/themes/generatepress/assets/css/style.min.css?ver=3.6.1' media='all' />
+<style id='generate-style-inline-css'>
+body{background-color:#efefef;color:#3a3a3a;}a{color:#1e73be;}a:hover, a:focus, a:active{color:#000000;}body .grid-container{max-width:1200px;}.wp-block-group__inner-container{max-width:1200px;margin-left:auto;margin-right:auto;}:root{--contrast:#222222;--contrast-2:#575760;--contrast-3:#b2b2be;--base:#f0f0f0;--base-2:#f7f8f9;--base-3:#ffffff;--accent:#1e73be;}:root .has-contrast-color{color:var(--contrast);}:root .has-contrast-background-color{background-color:var(--contrast);}:root .has-contrast-2-color{color:var(--contrast-2);}:root .has-contrast-2-background-color{background-color:var(--contrast-2);}:root .has-contrast-3-color{color:var(--contrast-3);}:root .has-contrast-3-background-color{background-color:var(--contrast-3);}:root .has-base-color{color:var(--base);}:root .has-base-background-color{background-color:var(--base);}:root .has-base-2-color{color:var(--base-2);}:root .has-base-2-background-color{background-color:var(--base-2);}:root .has-base-3-color{color:var(--base-3);}:root .has-base-3-background-color{background-color:var(--base-3);}:root .has-accent-color{color:var(--accent);}:root .has-accent-background-color{background-color:var(--accent);}body, button, input, select, textarea{font-family:-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";}body{line-height:1.5;}.entry-content > [class*="wp-block-"]:not(:last-child):not(.wp-block-heading){margin-bottom:1.5em;}.main-title{font-size:45px;}.main-navigation .main-nav ul ul li a{font-size:14px;}.sidebar .widget, .footer-widgets .widget{font-size:17px;}h1{font-weight:300;font-size:40px;}h2{font-weight:300;font-size:30px;}h3{font-size:20px;}h4{font-size:inherit;}h5{font-size:inherit;}@media (max-width:768px){.main-title{font-size:30px;}h1{font-size:30px;}h2{font-size:25px;}}.top-bar{background-color:#BE1E73;color:#ffffff;}.top-bar a{color:#ffffff;}.top-bar a:hover{color:#303030;}.site-header{background-color:#ffffff;color:#3a3a3a;}.site-header a{color:#3a3a3a;}.main-title a,.main-title a:hover{color:#222222;}.site-description{color:#757575;}.main-navigation,.main-navigation ul ul{background-color:#222222;}.main-navigation .main-nav ul li a, .main-navigation .menu-toggle, .main-navigation .menu-bar-items{color:#ffffff;}.main-navigation .main-nav ul li:not([class*="current-menu-"]):hover > a, .main-navigation .main-nav ul li:not([class*="current-menu-"]):focus > a, .main-navigation .main-nav ul li.sfHover:not([class*="current-menu-"]) > a, .main-navigation .menu-bar-item:hover > a, .main-navigation .menu-bar-item.sfHover > a{color:#ffffff;background-color:#3f3f3f;}button.menu-toggle:hover,button.menu-toggle:focus,.main-navigation .mobile-bar-items a,.main-navigation .mobile-bar-items a:hover,.main-navigation .mobile-bar-items a:focus{color:#ffffff;}.main-navigation .main-nav ul li[class*="current-menu-"] > a{color:#ffffff;background-color:#3f3f3f;}.navigation-search input[type="search"],.navigation-search input[type="search"]:active, .navigation-search input[type="search"]:focus, .main-navigation .main-nav ul li.search-item.active > a, .main-navigation .menu-bar-items .search-item.active > a{color:#ffffff;background-color:#3f3f3f;}.main-navigation ul ul{background-color:#3f3f3f;}.main-navigation .main-nav ul ul li a{color:#ffffff;}.main-navigation .main-nav ul ul li:not([class*="current-menu-"]):hover > a,.main-navigation .main-nav ul ul li:not([class*="current-menu-"]):focus > a, .main-navigation .main-nav ul ul li.sfHover:not([class*="current-menu-"]) > a{color:#ffffff;background-color:#4f4f4f;}.main-navigation .main-nav ul ul li[class*="current-menu-"] > a{color:#ffffff;background-color:#4f4f4f;}.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .one-container .container, .separate-containers .paging-navigation, .inside-page-header{background-color:#ffffff;}.entry-meta{color:#595959;}.entry-meta a{color:#595959;}.entry-meta a:hover{color:#1e73be;}.sidebar .widget{background-color:#ffffff;}.sidebar .widget .widget-title{color:#000000;}.footer-widgets{background-color:#ffffff;}.footer-widgets .widget-title{color:#000000;}.site-info{color:#ffffff;background-color:#222222;}.site-info a{color:#ffffff;}.site-info a:hover{color:#606060;}.footer-bar .widget_nav_menu .current-menu-item a{color:#606060;}input[type="text"],input[type="email"],input[type="url"],input[type="password"],input[type="search"],input[type="tel"],input[type="number"],textarea,select{color:#666666;background-color:#fafafa;border-color:#cccccc;}input[type="text"]:focus,input[type="email"]:focus,input[type="url"]:focus,input[type="password"]:focus,input[type="search"]:focus,input[type="tel"]:focus,input[type="number"]:focus,textarea:focus,select:focus{color:#666666;background-color:#ffffff;border-color:#bfbfbf;}button,html input[type="button"],input[type="reset"],input[type="submit"],a.button,a.wp-block-button__link:not(.has-background){color:#ffffff;background-color:#666666;}button:hover,html input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover,a.button:hover,button:focus,html input[type="button"]:focus,input[type="reset"]:focus,input[type="submit"]:focus,a.button:focus,a.wp-block-button__link:not(.has-background):active,a.wp-block-button__link:not(.has-background):focus,a.wp-block-button__link:not(.has-background):hover{color:#ffffff;background-color:#3f3f3f;}a.generate-back-to-top{background-color:rgba( 0,0,0,0.4 );color:#ffffff;}a.generate-back-to-top:hover,a.generate-back-to-top:focus{background-color:rgba( 0,0,0,0.6 );color:#ffffff;}:root{--gp-search-modal-bg-color:var(--base-3);--gp-search-modal-text-color:var(--contrast);--gp-search-modal-overlay-bg-color:rgba(0,0,0,0.2);}@media (max-width:768px){.main-navigation .menu-bar-item:hover > a, .main-navigation .menu-bar-item.sfHover > a{background:none;color:#ffffff;}}.inside-top-bar{padding:10px;}.inside-header{padding:40px;}.site-main .wp-block-group__inner-container{padding:40px;}.entry-content .alignwide, body:not(.no-sidebar) .entry-content .alignfull{margin-left:-40px;width:calc(100% + 80px);max-width:calc(100% + 80px);}.rtl .menu-item-has-children .dropdown-menu-toggle{padding-left:20px;}.rtl .main-navigation .main-nav ul li.menu-item-has-children > a{padding-right:20px;}.site-info{padding:20px;}@media (max-width:768px){.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header{padding:30px;}.site-main .wp-block-group__inner-container{padding:30px;}.site-info{padding-right:10px;padding-left:10px;}.entry-content .alignwide, body:not(.no-sidebar) .entry-content .alignfull{margin-left:-30px;width:calc(100% + 60px);max-width:calc(100% + 60px);}}.one-container .sidebar .widget{padding:0px;}/* End cached CSS */@media (max-width:768px){.main-navigation .menu-toggle,.main-navigation .mobile-bar-items,.sidebar-nav-mobile:not(#sticky-placeholder){display:block;}.main-navigation ul,.gen-sidebar-nav{display:none;}[class*="nav-float-"] .site-header .inside-header > *{float:none;clear:both;}}
+</style>
+<link rel='stylesheet' id='generate-mobile-style-css' href='https://optimization-online.org/wp-content/themes/generatepress/assets/css/mobile.min.css?ver=3.6.1' media='all' />
+<link rel='stylesheet' id='generate-font-icons-css' href='https://optimization-online.org/wp-content/themes/generatepress/assets/css/components/font-icons.min.css?ver=3.6.1' media='all' />
+<link rel='stylesheet' id='generate-child-css' href='https://optimization-online.org/wp-content/themes/oo-generatepress/style.css?ver=1783523984' media='all' />
+<link rel='stylesheet' id='font-awesome-official-css' href='https://use.fontawesome.com/releases/v5.15.4/css/all.css' media='all' integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+<link rel='stylesheet' id='font-awesome-official-v4shim-css' href='https://use.fontawesome.com/releases/v5.15.4/css/v4-shims.css' media='all' integrity="sha384-Vq76wejb3QJM4nDatBa5rUOve+9gkegsjCebvV/9fvXlGWo4HCMR4cJZjjcF6Viv" crossorigin="anonymous" />
+<style id='font-awesome-official-v4shim-inline-css'>
+@font-face {
+font-family: "FontAwesome";
+font-display: block;
+src: url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.eot"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.eot?#iefix") format("embedded-opentype"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.woff2") format("woff2"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.woff") format("woff"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.ttf") format("truetype"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.svg#fontawesome") format("svg");
+}
+
+@font-face {
+font-family: "FontAwesome";
+font-display: block;
+src: url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.eot"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.woff2") format("woff2"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.woff") format("woff"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.ttf") format("truetype"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.svg#fontawesome") format("svg");
+}
+
+@font-face {
+font-family: "FontAwesome";
+font-display: block;
+src: url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.eot"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.eot?#iefix") format("embedded-opentype"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.woff2") format("woff2"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.woff") format("woff"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.ttf") format("truetype"),
+		url("https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.svg#fontawesome") format("svg");
+unicode-range: U+F004-F005,U+F007,U+F017,U+F022,U+F024,U+F02E,U+F03E,U+F044,U+F057-F059,U+F06E,U+F070,U+F075,U+F07B-F07C,U+F080,U+F086,U+F089,U+F094,U+F09D,U+F0A0,U+F0A4-F0A7,U+F0C5,U+F0C7-F0C8,U+F0E0,U+F0EB,U+F0F3,U+F0F8,U+F0FE,U+F111,U+F118-F11A,U+F11C,U+F133,U+F144,U+F146,U+F14A,U+F14D-F14E,U+F150-F152,U+F15B-F15C,U+F164-F165,U+F185-F186,U+F191-F192,U+F1AD,U+F1C1-F1C9,U+F1CD,U+F1D8,U+F1E3,U+F1EA,U+F1F6,U+F1F9,U+F20A,U+F247-F249,U+F24D,U+F254-F25B,U+F25D,U+F267,U+F271-F274,U+F279,U+F28B,U+F28D,U+F2B5-F2B6,U+F2B9,U+F2BB,U+F2BD,U+F2C1-F2C2,U+F2D0,U+F2D2,U+F2DC,U+F2ED,U+F328,U+F358-F35B,U+F3A5,U+F3D1,U+F410,U+F4AD;
+}
+</style>
+<script src="https://optimization-online.org/wp-content/plugins/google-analytics-for-wordpress/assets/js/frontend-gtag.min.js?ver=10.2.2" id="monsterinsights-frontend-script-js" async data-wp-strategy="async"></script>
+<script data-cfasync="false" data-wpfc-render="false" id='monsterinsights-frontend-script-js-extra'>var monsterinsights_frontend = {"js_events_tracking":"true","download_extensions":"doc,pdf,ppt,zip,xls,docx,pptx,xlsx","inbound_paths":"[{\"path\":\"\\\/go\\\/\",\"label\":\"affiliate\"},{\"path\":\"\\\/recommend\\\/\",\"label\":\"affiliate\"}]","home_url":"https:\/\/optimization-online.org","hash_tracking":"false","v4_id":"G-FX9JPL0Y2N"};</script>
+<script src="https://optimization-online.org/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script src="https://optimization-online.org/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script src="https://optimization-online.org/wp-content/plugins/wp-captcha//assets/js/c4wp-public.js?ver=6.5.9" id="c4wp-public-js"></script>
+<link rel="https://api.w.org/" href="https://optimization-online.org/wp-json/" /><link rel="alternate" type="application/json" href="https://optimization-online.org/wp-json/wp/v2/tags/4510" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://optimization-online.org/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 6.5.9" />
+<link rel="icon" href="https://optimization-online.org/wp-content/uploads/2021/08/mps_minilogo.png" sizes="32x32" />
+<link rel="icon" href="https://optimization-online.org/wp-content/uploads/2021/08/mps_minilogo.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://optimization-online.org/wp-content/uploads/2021/08/mps_minilogo.png" />
+<meta name="msapplication-TileImage" content="https://optimization-online.org/wp-content/uploads/2021/08/mps_minilogo.png" />
+<style id="ur-dynamic-colors">:root {
+	--ur-primary-color: #475bb2;
+	--ur-primary-dark: #4052a0;
+	--ur-primary-light: #ffffff;
+	--ur-button-text-normal-color: #FFFFFF;
+	--ur-button-text-hover-color: #FFFFFF;
+	--ur-button-background-normal-color: #475bb2;
+	--ur-button-background-hover-color: #38488e;
+}</style></head>
+
+<body class="archive tag tag-alternating-direction-method tag-4510 wp-custom-logo wp-embed-responsive user-registration-page ur-settings-sidebar-show left-sidebar nav-below-header separate-containers fluid-header active-footer-widgets-0 nav-aligned-left header-aligned-left dropdown-hover" itemtype="https://schema.org/Blog" itemscope>
+	<a class="screen-reader-text skip-link" href="#content" title="Skip to content">Skip to content</a>		<header class="site-header" id="masthead" aria-label="Site"  itemtype="https://schema.org/WPHeader" itemscope>
+			<div class="inside-header grid-container grid-parent">
+							<div class="header-widget">
+				<aside id="block-10" class="widget inner-padding widget_block widget_media_image">
+<figure class="wp-block-image size-full"><img decoding="async" width="58" height="58" src="https://optimization-online.org/wp-content/uploads/2021/08/mps_minilogo.png" alt="" class="wp-image-81"/></figure>
+</aside>			</div>
+			<div class="site-branding">
+						<p class="main-title" itemprop="headline">
+					<a href="https://optimization-online.org/" rel="home">Optimization Online</a>
+				</p>
+						
+					</div>			</div>
+		</header>
+				<nav class="main-navigation sub-menu-right" id="site-navigation" aria-label="Primary"  itemtype="https://schema.org/SiteNavigationElement" itemscope>
+			<div class="inside-navigation grid-container grid-parent">
+								<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+					<span class="mobile-menu">Menu</span>				</button>
+				<div id="primary-menu" class="main-nav"><ul id="menu-navigation" class=" menu sf-menu"><li id="menu-item-126" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-126"><a href="https://optimization-online.org/">Welcome</a></li>
+<li id="menu-item-16" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-16"><a href="https://optimization-online.org/repository/">Repository</a></li>
+<li id="menu-item-42" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42"><a href="https://optimization-online.org/submit/">Submit</a></li>
+<li id="menu-item-122" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-122"><a rel="privacy-policy" href="https://optimization-online.org/about/">About</a></li>
+<li id="menu-item-8952" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8952"><a href="https://optimization-online.org/help/">Help</a></li>
+<li id="menu-item-17613" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-17613"><a href="/wp-admin/edit.php?post_type=post">My Eprints</a></li>
+<li class='menu-header-search'><form method="get" class="search-form" action="https://optimization-online.org/">
+	<label>
+		<span class="screen-reader-text">Search for:</span>
+		<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" title="Search for:">
+	</label>
+	<input type="submit" class="search-submit" value="Search"></form>
+</li></ul></div>			</div>
+		</nav>
+		
+	<div class="site grid-container container hfeed grid-parent" id="page">
+				<div class="site-content" id="content">
+			
+	<div class="content-area grid-parent mobile-grid-100 push-25 grid-75 tablet-push-25 tablet-grid-75" id="primary">
+		<main class="site-main" id="main">
+					<header class="page-header" aria-label="Page">
+			
+			<h1 class="page-title">
+				alternating direction method			</h1>
+
+					</header>
+		<article id="post-17254" class="post-17254 post type-post status-publish format-standard hentry category-constrained-nonlinear-optimization tag-alternating-direction-method tag-dictionary-learning tag-nonconvex-nonsmooth-minimization tag-proximal-gradient-algorithms tag-spectral-gradient-method tag-tensor-train-decomposition" itemtype="https://schema.org/CreativeWork" itemscope>
+	<div class="inside-article">
+					<header class="entry-header">
+				<h2 class="entry-title" itemprop="headline"><a href="https://optimization-online.org/2021/07/8516/" rel="bookmark">A spectral PALM algorithm for matrix and tensor-train based Dictionary Learning</a></h2>		<div class="entry-meta">
+			<span class="posted-on"><time class="entry-date published" datetime="2021-07-24T00:00:00-05:00" itemprop="datePublished">Published: 2021/07/24</time><time class="updated" datetime="2022-03-10T00:00:00-06:00" itemprop="dateModified">, Updated: 2022/03/10</time></span> <ul class="byline"><li><a href="/author/domitilla-brandoni2">Domitilla Brandoni</a></li><li><a href="/author/margherita-porcelli">Margherita Porcelli</a></li><li><a href="/author/valeria-simoncini">Valeria Simoncini</a></li></ul><span class="cat-links"><span class="screen-reader-text">Categories </span><a href="https://optimization-online.org/category/nonlinear-optimization/constrained-nonlinear-optimization/" rel="category tag">Constrained Nonlinear Optimization</a></span> <span class="tags-links"><span class="screen-reader-text">Tags </span><a href="https://optimization-online.org/tag/alternating-direction-method/" rel="tag">alternating direction method</a>, <a href="https://optimization-online.org/tag/dictionary-learning/" rel="tag">dictionary learning</a>, <a href="https://optimization-online.org/tag/nonconvex-nonsmooth-minimization/" rel="tag">nonconvex-nonsmooth minimization</a>, <a href="https://optimization-online.org/tag/proximal-gradient-algorithms/" rel="tag">proximal-gradient algorithms</a>, <a href="https://optimization-online.org/tag/spectral-gradient-method/" rel="tag">spectral gradient method</a>, <a href="https://optimization-online.org/tag/tensor-train-decomposition/" rel="tag">tensor-train decomposition</a></span> 		</div>
+					</header>
+			
+			<div class="entry-summary" itemprop="text">
+				<p>Dictionary Learning (DL) is one of the leading sparsity promoting techniques in the context of image classification, where the &#8220;dictionary&#8221; matrix D of images and the sparse matrix X are determined so as to represent a redundant image dataset. The resulting constrained optimization problem is nonconvex and non-smooth, providing several computational challenges for its solution. &#8230; <a title="A spectral PALM algorithm for matrix and tensor-train based Dictionary Learning" class="read-more" href="https://optimization-online.org/2021/07/8516/" aria-label="Read more about A spectral PALM algorithm for matrix and tensor-train based Dictionary Learning">Read more</a></p>
+			</div>
+
+				<footer class="entry-meta" aria-label="Entry meta">
+					</footer>
+			</div>
+</article>
+<article id="post-16820" class="post-16820 post type-post status-publish format-standard hentry category-mixed-integer-nonlinear-programming category-finance-and-economics category-statistics tag-alternating-direction-method tag-best-subset-selection tag-cardinality-constraints tag-penalty-methods tag-portfolio-optimization" itemtype="https://schema.org/CreativeWork" itemscope>
+	<div class="inside-article">
+					<header class="entry-header">
+				<h2 class="entry-title" itemprop="headline"><a href="https://optimization-online.org/2020/11/8124/" rel="bookmark">An Alternating Method for Cardinality-Constrained Optimization: A Computational Study for the Best Subset Selection and Sparse Portfolio Problems</a></h2>		<div class="entry-meta">
+			<span class="posted-on"><time class="entry-date published" datetime="2020-11-20T00:00:00-06:00" itemprop="datePublished">Published: 2020/11/20</time><time class="updated" datetime="2022-01-11T00:00:00-06:00" itemprop="dateModified">, Updated: 2022/01/11</time></span> <ul class="byline"><li><a href="/author/costa">Carina Moreira Costa</a></li><li><a href="/author/kreber-dennis">Dennis Kreber</a></li><li><a href="/author/martin-schmidt">Martin Schmidt</a></li></ul><span class="cat-links"><span class="screen-reader-text">Categories </span><a href="https://optimization-online.org/category/integer-programming/mixed-integer-nonlinear-programming/" rel="category tag">(Mixed) Integer Nonlinear Programming</a>, <a href="https://optimization-online.org/category/applications-or-and-management-sciences/finance-and-economics/" rel="category tag">Finance and Economics</a>, <a href="https://optimization-online.org/category/applications-science-engineering/statistics/" rel="category tag">Statistics</a></span> <span class="tags-links"><span class="screen-reader-text">Tags </span><a href="https://optimization-online.org/tag/alternating-direction-method/" rel="tag">alternating direction method</a>, <a href="https://optimization-online.org/tag/best-subset-selection/" rel="tag">best subset selection</a>, <a href="https://optimization-online.org/tag/cardinality-constraints/" rel="tag">cardinality constraints</a>, <a href="https://optimization-online.org/tag/penalty-methods/" rel="tag">penalty methods</a>, <a href="https://optimization-online.org/tag/portfolio-optimization/" rel="tag">portfolio optimization</a></span> 		</div>
+					</header>
+			
+			<div class="entry-summary" itemprop="text">
+				<p>Cardinality-constrained optimization problems are notoriously hard to solve both in theory and practice. However, as famous examples such as the sparse portfolio optimization and best subset selection problems show, this class is extremely important in real-world applications. In this paper, we apply a penalty alternating direction method to these problems. The key idea is to &#8230; <a title="An Alternating Method for Cardinality-Constrained Optimization: A Computational Study for the Best Subset Selection and Sparse Portfolio Problems" class="read-more" href="https://optimization-online.org/2020/11/8124/" aria-label="Read more about An Alternating Method for Cardinality-Constrained Optimization: A Computational Study for the Best Subset Selection and Sparse Portfolio Problems">Read more</a></p>
+			</div>
+
+				<footer class="entry-meta" aria-label="Entry meta">
+					</footer>
+			</div>
+</article>
+<article id="post-16459" class="post-16459 post type-post status-publish format-standard hentry category-mixed-integer-nonlinear-programming category-robust-optimization tag-alternating-direction-method tag-gamma-robustness tag-k-means-clustering tag-robust-optimization tag-strict-robustness" itemtype="https://schema.org/CreativeWork" itemscope>
+	<div class="inside-article">
+					<header class="entry-header">
+				<h2 class="entry-title" itemprop="headline"><a href="https://optimization-online.org/2020/05/7799/" rel="bookmark">Robustification of the k-Means Clustering Problem and Tailored Decomposition Methods: When More Conservative Means More Accurate</a></h2>		<div class="entry-meta">
+			<span class="posted-on"><time class="entry-date published" datetime="2020-05-17T00:00:00-05:00" itemprop="datePublished">Published: 2020/05/17</time><time class="updated" datetime="2022-04-27T00:00:00-05:00" itemprop="dateModified">, Updated: 2022/04/27</time></span> <ul class="byline"><li><a href="/author/burgardj">Jan Pablo Burgard</a></li><li><a href="/author/costa">Carina Moreira Costa</a></li><li><a href="/author/martin-schmidt">Martin Schmidt</a></li></ul><span class="cat-links"><span class="screen-reader-text">Categories </span><a href="https://optimization-online.org/category/integer-programming/mixed-integer-nonlinear-programming/" rel="category tag">(Mixed) Integer Nonlinear Programming</a>, <a href="https://optimization-online.org/category/robust-optimization/" rel="category tag">Robust Optimization</a></span> <span class="tags-links"><span class="screen-reader-text">Tags </span><a href="https://optimization-online.org/tag/alternating-direction-method/" rel="tag">alternating direction method</a>, <a href="https://optimization-online.org/tag/gamma-robustness/" rel="tag">gamma-robustness</a>, <a href="https://optimization-online.org/tag/k-means-clustering/" rel="tag">k-means clustering</a>, <a href="https://optimization-online.org/tag/robust-optimization/" rel="tag">robust optimization</a>, <a href="https://optimization-online.org/tag/strict-robustness/" rel="tag">strict robustness</a></span> 		</div>
+					</header>
+			
+			<div class="entry-summary" itemprop="text">
+				<p>k-means clustering is a classic method of unsupervised learning with the aim of partitioning a given number of measurements into k clusters. In many modern applications, however, this approach suffers from unstructured measurement errors because the k-means clustering result then represents a clustering of the erroneous measurements instead of retrieving the true underlying clustering structure. &#8230; <a title="Robustification of the k-Means Clustering Problem and Tailored Decomposition Methods: When More Conservative Means More Accurate" class="read-more" href="https://optimization-online.org/2020/05/7799/" aria-label="Read more about Robustification of the k-Means Clustering Problem and Tailored Decomposition Methods: When More Conservative Means More Accurate">Read more</a></p>
+			</div>
+
+				<footer class="entry-meta" aria-label="Entry meta">
+					</footer>
+			</div>
+</article>
+<article id="post-15711" class="post-15711 post type-post status-publish format-standard hentry category-mixed-integer-linear-programming category-supply-chain-management tag-alternating-direction-method tag-decomposition tag-mixed-integer-programming tag-penalty-method tag-supply-chain" itemtype="https://schema.org/CreativeWork" itemscope>
+	<div class="inside-article">
+					<header class="entry-header">
+				<h2 class="entry-title" itemprop="headline"><a href="https://optimization-online.org/2019/03/7120/" rel="bookmark">A Decomposition Heuristic for Mixed-Integer Supply Chain Problems</a></h2>		<div class="entry-meta">
+			<span class="posted-on"><time class="entry-date published" datetime="2019-03-12T00:00:00-05:00" itemprop="datePublished">Published: 2019/03/12</time><time class="updated" datetime="2020-02-18T00:00:00-06:00" itemprop="dateModified">, Updated: 2020/02/18</time></span> <ul class="byline"><li><a href="/author/lars-schewe">Lars Schewe</a></li><li><a href="/author/martin-schmidt">Martin Schmidt</a></li><li><a href="/author/dieter-weninger">Dieter Weninger</a></li></ul><span class="cat-links"><span class="screen-reader-text">Categories </span><a href="https://optimization-online.org/category/integer-programming/mixed-integer-linear-programming/" rel="category tag">(Mixed) Integer Linear Programming</a>, <a href="https://optimization-online.org/category/applications-or-and-management-sciences/supply-chain-management/" rel="category tag">Supply Chain Management</a></span> <span class="tags-links"><span class="screen-reader-text">Tags </span><a href="https://optimization-online.org/tag/alternating-direction-method/" rel="tag">alternating direction method</a>, <a href="https://optimization-online.org/tag/decomposition/" rel="tag">decomposition</a>, <a href="https://optimization-online.org/tag/mixed-integer-programming/" rel="tag">mixed-integer programming</a>, <a href="https://optimization-online.org/tag/penalty-method/" rel="tag">penalty method</a>, <a href="https://optimization-online.org/tag/supply-chain/" rel="tag">supply chain</a></span> 		</div>
+					</header>
+			
+			<div class="entry-summary" itemprop="text">
+				<p>Mixed-integer supply chain models typically are very large but are also very sparse and can be decomposed into loosely coupled blocks. In this paper, we use general-purpose techniques to obtain a block decomposition of supply chain instances and apply a tailored penalty alternating direction method, which exploits the structural properties of the decomposed instances. We &#8230; <a title="A Decomposition Heuristic for Mixed-Integer Supply Chain Problems" class="read-more" href="https://optimization-online.org/2019/03/7120/" aria-label="Read more about A Decomposition Heuristic for Mixed-Integer Supply Chain Problems">Read more</a></p>
+			</div>
+
+				<footer class="entry-meta" aria-label="Entry meta">
+					</footer>
+			</div>
+</article>
+<article id="post-15708" class="post-15708 post type-post status-publish format-standard hentry category-mixed-integer-linear-programming category-mixed-integer-nonlinear-programming tag-alternating-direction-method tag-bilevel-optimization tag-mixed-integer-bilevel-optimization tag-penalty-methods tag-stationary-points" itemtype="https://schema.org/CreativeWork" itemscope>
+	<div class="inside-article">
+					<header class="entry-header">
+				<h2 class="entry-title" itemprop="headline"><a href="https://optimization-online.org/2019/03/7117/" rel="bookmark">Computing Feasible Points of Bilevel Problems with a Penalty Alternating Direction Method</a></h2>		<div class="entry-meta">
+			<span class="posted-on"><time class="entry-date published" datetime="2019-03-11T00:00:00-05:00" itemprop="datePublished">Published: 2019/03/11</time><time class="updated" datetime="2019-11-06T00:00:00-06:00" itemprop="dateModified">, Updated: 2019/11/06</time></span> <ul class="byline"><li><a href="/author/thomas-kleinert">Thomas Kleinert</a></li><li><a href="/author/martin-schmidt">Martin Schmidt</a></li></ul><span class="cat-links"><span class="screen-reader-text">Categories </span><a href="https://optimization-online.org/category/integer-programming/mixed-integer-linear-programming/" rel="category tag">(Mixed) Integer Linear Programming</a>, <a href="https://optimization-online.org/category/integer-programming/mixed-integer-nonlinear-programming/" rel="category tag">(Mixed) Integer Nonlinear Programming</a></span> <span class="tags-links"><span class="screen-reader-text">Tags </span><a href="https://optimization-online.org/tag/alternating-direction-method/" rel="tag">alternating direction method</a>, <a href="https://optimization-online.org/tag/bilevel-optimization/" rel="tag">bilevel optimization</a>, <a href="https://optimization-online.org/tag/mixed-integer-bilevel-optimization/" rel="tag">mixed-integer bilevel optimization</a>, <a href="https://optimization-online.org/tag/penalty-methods/" rel="tag">penalty methods</a>, <a href="https://optimization-online.org/tag/stationary-points/" rel="tag">stationary points</a></span> 		</div>
+					</header>
+			
+			<div class="entry-summary" itemprop="text">
+				<p>Bilevel problems are highly challenging optimization problems that appear in many applications of energy market design, critical infrastructure defense, transportation, pricing, etc. Often, these bilevel models are equipped with integer decisions, which makes the problems even harder to solve. Typically, in such a setting in mathematical optimization one develops primal heuristics in order to obtain &#8230; <a title="Computing Feasible Points of Bilevel Problems with a Penalty Alternating Direction Method" class="read-more" href="https://optimization-online.org/2019/03/7117/" aria-label="Read more about Computing Feasible Points of Bilevel Problems with a Penalty Alternating Direction Method">Read more</a></p>
+			</div>
+
+				<footer class="entry-meta" aria-label="Entry meta">
+					</footer>
+			</div>
+</article>
+<article id="post-15361" class="post-15361 post type-post status-publish format-standard hentry category-convex-optimization tag-alternating-direction-method tag-broyden-family tag-convex-optimization tag-variable-metric-semi-proximal-method" itemtype="https://schema.org/CreativeWork" itemscope>
+	<div class="inside-article">
+					<header class="entry-header">
+				<h2 class="entry-title" itemprop="headline"><a href="https://optimization-online.org/2018/08/6785/" rel="bookmark">A proximal ADMM with the Broyden family for Convex Optimization Problems</a></h2>		<div class="entry-meta">
+			<span class="posted-on"><time class="entry-date published" datetime="2018-08-29T00:00:00-05:00" itemprop="datePublished">Published: 2018/08/29</time><time class="updated" datetime="2019-04-08T00:00:00-05:00" itemprop="dateModified">, Updated: 2019/04/08</time></span> <ul class="byline"><li><a href="/author/yan">Yan Gu</a></li><li><a href="/author/nobuo">Nobuo Yamashita</a></li></ul><span class="cat-links"><span class="screen-reader-text">Categories </span><a href="https://optimization-online.org/category/convex-nonsmooth-optimization/convex-optimization/" rel="category tag">Convex Optimization</a></span> <span class="tags-links"><span class="screen-reader-text">Tags </span><a href="https://optimization-online.org/tag/alternating-direction-method/" rel="tag">alternating direction method</a>, <a href="https://optimization-online.org/tag/broyden-family/" rel="tag">broyden family</a>, <a href="https://optimization-online.org/tag/convex-optimization/" rel="tag">convex optimization</a>, <a href="https://optimization-online.org/tag/variable-metric-semi-proximal-method/" rel="tag">variable metric semi-proximal method</a></span> 		</div>
+					</header>
+			
+			<div class="entry-summary" itemprop="text">
+				<p>Alternating direction methods of multipliers (ADMM) have been well studied and effectively used in various application fields. The classical ADMM must solve two subproblems exactly at each iteration. To overcome the difficulty of computing the exact solution of the subproblems, some proximal terms are added to the subproblems. Recently, Gu and Yamashita studied a special &#8230; <a title="A proximal ADMM with the Broyden family for Convex Optimization Problems" class="read-more" href="https://optimization-online.org/2018/08/6785/" aria-label="Read more about A proximal ADMM with the Broyden family for Convex Optimization Problems">Read more</a></p>
+			</div>
+
+				<footer class="entry-meta" aria-label="Entry meta">
+					</footer>
+			</div>
+</article>
+<article id="post-15109" class="post-15109 post type-post status-publish format-standard hentry category-constrained-nonlinear-optimization category-nonlinear-optimization tag-alternating-direction-method tag-convex-composite-optimization tag-coordinate-descent-methods tag-exact-penalty-functions tag-nonlinear-optimization tag-sequential-quadratic-programming" itemtype="https://schema.org/CreativeWork" itemscope>
+	<div class="inside-article">
+					<header class="entry-header">
+				<h2 class="entry-title" itemprop="headline"><a href="https://optimization-online.org/2018/03/6539/" rel="bookmark">A Dynamic Penalty Parameter Updating Strategy for Matrix-Free Sequential Quadratic Optimization</a></h2>		<div class="entry-meta">
+			<span class="posted-on"><time class="entry-date published" datetime="2018-03-25T00:00:00-05:00" itemprop="datePublished">Published: 2018/03/25</time></span> <ul class="byline"><li><a href="/author/jvburke">James V. Burke</a></li><li><a href="/author/frank-e-curtis">Frank E. Curtis</a></li><li><a href="/author/jsw1119">Jiashan Wang</a></li><li><a href="/author/wanghao1">Hao Wang</a></li></ul><span class="cat-links"><span class="screen-reader-text">Categories </span><a href="https://optimization-online.org/category/nonlinear-optimization/constrained-nonlinear-optimization/" rel="category tag">Constrained Nonlinear Optimization</a>, <a href="https://optimization-online.org/category/nonlinear-optimization/" rel="category tag">Nonlinear Optimization</a></span> <span class="tags-links"><span class="screen-reader-text">Tags </span><a href="https://optimization-online.org/tag/alternating-direction-method/" rel="tag">alternating direction method</a>, <a href="https://optimization-online.org/tag/convex-composite-optimization/" rel="tag">convex composite optimization</a>, <a href="https://optimization-online.org/tag/coordinate-descent-methods/" rel="tag">coordinate descent methods</a>, <a href="https://optimization-online.org/tag/exact-penalty-functions/" rel="tag">exact penalty functions</a>, <a href="https://optimization-online.org/tag/nonlinear-optimization/" rel="tag">nonlinear optimization</a>, <a href="https://optimization-online.org/tag/sequential-quadratic-programming/" rel="tag">sequential quadratic programming</a></span> 		</div>
+					</header>
+			
+			<div class="entry-summary" itemprop="text">
+				<p>This paper focuses on the design of sequential quadratic optimization (commonly known as SQP) methods for solving large-scale nonlinear optimization problems. The most computationally demanding aspect of such an approach is the computation of the search direction during each iteration, for which we consider the use of matrix-free methods. In particular, we develop a method &#8230; <a title="A Dynamic Penalty Parameter Updating Strategy for Matrix-Free Sequential Quadratic Optimization" class="read-more" href="https://optimization-online.org/2018/03/6539/" aria-label="Read more about A Dynamic Penalty Parameter Updating Strategy for Matrix-Free Sequential Quadratic Optimization">Read more</a></p>
+			</div>
+
+				<footer class="entry-meta" aria-label="Entry meta">
+					</footer>
+			</div>
+</article>
+<article id="post-15057" class="post-15057 post type-post status-publish format-standard hentry category-constrained-nonlinear-optimization category-nonsmooth-optimization tag-admm tag-alternating-direction-method tag-multiaffine-constraints tag-nonconvex-optimization tag-nonlinear-optimization" itemtype="https://schema.org/CreativeWork" itemscope>
+	<div class="inside-article">
+					<header class="entry-header">
+				<h2 class="entry-title" itemprop="headline"><a href="https://optimization-online.org/2018/02/6488/" rel="bookmark">ADMM for Multiaffine Constrained Optimization</a></h2>		<div class="entry-meta">
+			<span class="posted-on"><time class="entry-date published" datetime="2018-02-26T00:00:00-06:00" itemprop="datePublished">Published: 2018/02/26</time><time class="updated" datetime="2018-08-29T00:00:00-05:00" itemprop="dateModified">, Updated: 2018/08/29</time></span> <ul class="byline"><li><a href="/author/frank-e-curtis">Frank E. Curtis</a></li><li><a href="/author/wg2279">Wenbo Gao</a></li><li><a href="/author/goldfarb">Donald Goldfarb</a></li></ul><span class="cat-links"><span class="screen-reader-text">Categories </span><a href="https://optimization-online.org/category/nonlinear-optimization/constrained-nonlinear-optimization/" rel="category tag">Constrained Nonlinear Optimization</a>, <a href="https://optimization-online.org/category/convex-nonsmooth-optimization/nonsmooth-optimization/" rel="category tag">Nonsmooth Optimization</a></span> <span class="tags-links"><span class="screen-reader-text">Tags </span><a href="https://optimization-online.org/tag/admm/" rel="tag">admm</a>, <a href="https://optimization-online.org/tag/alternating-direction-method/" rel="tag">alternating direction method</a>, <a href="https://optimization-online.org/tag/multiaffine-constraints/" rel="tag">multiaffine constraints</a>, <a href="https://optimization-online.org/tag/nonconvex-optimization/" rel="tag">nonconvex optimization</a>, <a href="https://optimization-online.org/tag/nonlinear-optimization/" rel="tag">nonlinear optimization</a></span> 		</div>
+					</header>
+			
+			<div class="entry-summary" itemprop="text">
+				<p>We propose an expansion of the scope of the alternating direction method of multipliers (ADMM). Specifically, we show that ADMM, when employed to solve problems with multiaffine constraints that satisfy certain easily verifiable assumptions, converges to the set of constrained stationary points if the penalty parameter in the augmented Lagrangian is sufficiently large. When the &#8230; <a title="ADMM for Multiaffine Constrained Optimization" class="read-more" href="https://optimization-online.org/2018/02/6488/" aria-label="Read more about ADMM for Multiaffine Constrained Optimization">Read more</a></p>
+			</div>
+
+				<footer class="entry-meta" aria-label="Entry meta">
+					</footer>
+			</div>
+</article>
+<article id="post-15005" class="post-15005 post type-post status-publish format-standard hentry category-convex-optimization category-unconstrained-optimization tag-alternating-direction-method tag-local-optimality tag-matrix-completion tag-svd tag-symmetric-low-rank-product" itemtype="https://schema.org/CreativeWork" itemscope>
+	<div class="inside-article">
+					<header class="entry-header">
+				<h2 class="entry-title" itemprop="headline"><a href="https://optimization-online.org/2018/01/6442/" rel="bookmark">An Alternating Minimization Method for Matrix Completion Problem</a></h2>		<div class="entry-meta">
+			<span class="posted-on"><time class="entry-date published" datetime="2018-01-30T00:00:00-06:00" itemprop="datePublished">Published: 2018/01/30</time></span> <ul class="byline"><li><a href="/author/liuxin">Xin Liu</a></li><li><a href="/author/ocsiban">Yuan Shen</a></li></ul><span class="cat-links"><span class="screen-reader-text">Categories </span><a href="https://optimization-online.org/category/convex-nonsmooth-optimization/convex-optimization/" rel="category tag">Convex Optimization</a>, <a href="https://optimization-online.org/category/nonlinear-optimization/unconstrained-optimization/" rel="category tag">Unconstrained Optimization</a></span> <span class="tags-links"><span class="screen-reader-text">Tags </span><a href="https://optimization-online.org/tag/alternating-direction-method/" rel="tag">alternating direction method</a>, <a href="https://optimization-online.org/tag/local-optimality/" rel="tag">local optimality</a>, <a href="https://optimization-online.org/tag/matrix-completion/" rel="tag">matrix completion</a>, <a href="https://optimization-online.org/tag/svd/" rel="tag">svd</a>, <a href="https://optimization-online.org/tag/symmetric-low-rank-product/" rel="tag">symmetric low-rank product</a></span> 		</div>
+					</header>
+			
+			<div class="entry-summary" itemprop="text">
+				<p>In this paper, we focus on solving matrix completion problem arising from applications in the fields of information theory, statistics, engineering, etc. However, the matrix completion problem involves nonconvex rank constraints which make this type of problem difficult to handle. Traditional approaches use a nuclear norm surrogate to replace the rank constraints. The relaxed model &#8230; <a title="An Alternating Minimization Method for Matrix Completion Problem" class="read-more" href="https://optimization-online.org/2018/01/6442/" aria-label="Read more about An Alternating Minimization Method for Matrix Completion Problem">Read more</a></p>
+			</div>
+
+				<footer class="entry-meta" aria-label="Entry meta">
+					</footer>
+			</div>
+</article>
+<article id="post-14358" class="post-14358 post type-post status-publish format-standard hentry category-complementarity-variational-inequalities category-constrained-nonlinear-optimization category-semi-definite-programming tag-alternating-direction-method tag-penalty-methods tag-rank-minimization" itemtype="https://schema.org/CreativeWork" itemscope>
+	<div class="inside-article">
+					<header class="entry-header">
+				<h2 class="entry-title" itemprop="headline"><a href="https://optimization-online.org/2017/01/5808/" rel="bookmark">A Penalty Method for Rank Minimization Problems in Symmetric Matrices</a></h2>		<div class="entry-meta">
+			<span class="posted-on"><time class="entry-date published" datetime="2017-01-12T00:00:00-06:00" itemprop="datePublished">Published: 2017/01/12</time><time class="updated" datetime="2018-02-08T00:00:00-06:00" itemprop="dateModified">, Updated: 2018/02/08</time></span> <ul class="byline"><li><a href="/author/mitchj">John E. Mitchell</a></li><li><a href="/author/shenxinhust">Xin Shen</a></li></ul><span class="cat-links"><span class="screen-reader-text">Categories </span><a href="https://optimization-online.org/category/complementarity-variational-inequalities/" rel="category tag">Complementarity and Variational Inequalities</a>, <a href="https://optimization-online.org/category/nonlinear-optimization/constrained-nonlinear-optimization/" rel="category tag">Constrained Nonlinear Optimization</a>, <a href="https://optimization-online.org/category/linear-cone-semidefinite/semi-definite-programming/" rel="category tag">Semi-definite Programming</a></span> <span class="tags-links"><span class="screen-reader-text">Tags </span><a href="https://optimization-online.org/tag/alternating-direction-method/" rel="tag">alternating direction method</a>, <a href="https://optimization-online.org/tag/penalty-methods/" rel="tag">penalty methods</a>, <a href="https://optimization-online.org/tag/rank-minimization/" rel="tag">rank minimization</a></span> 		</div>
+					</header>
+			
+			<div class="entry-summary" itemprop="text">
+				<p>The problem of minimizing the rank of a symmetric positive semidefinite matrix subject to constraints can be cast equivalently as a semidefinite program with complementarity constraints (SDCMPCC). The formulation requires two positive semidefinite matrices to be complementary. We investigate calmness of locally optimal solutions to the SDCMPCC formulation and hence show that any locally optimal &#8230; <a title="A Penalty Method for Rank Minimization Problems in Symmetric Matrices" class="read-more" href="https://optimization-online.org/2017/01/5808/" aria-label="Read more about A Penalty Method for Rank Minimization Problems in Symmetric Matrices">Read more</a></p>
+			</div>
+
+				<footer class="entry-meta" aria-label="Entry meta">
+					</footer>
+			</div>
+</article>
+		<nav id="nav-below" class="paging-navigation" aria-label="Archive Page">
+								<div class="nav-previous">
+												<span class="prev" title="Previous"><a href="https://optimization-online.org/tag/alternating-direction-method/page/2/" >Older posts</a></span>
+					</div>
+					<div class="nav-links"><span aria-current="page" class="page-numbers current"><span class="screen-reader-text">Page</span>1</span>
+<a class="page-numbers" href="https://optimization-online.org/tag/alternating-direction-method/page/2/"><span class="screen-reader-text">Page</span>2</a>
+<span class="page-numbers dots">&hellip;</span>
+<a class="page-numbers" href="https://optimization-online.org/tag/alternating-direction-method/page/5/"><span class="screen-reader-text">Page</span>5</a>
+<a class="next page-numbers" href="https://optimization-online.org/tag/alternating-direction-method/page/2/">Next <span aria-hidden="true">&rarr;</span></a></div>		</nav>
+				</main>
+	</div>
+
+	<div class="widget-area sidebar is-left-sidebar grid-25 tablet-grid-25 mobile-grid-100 grid-parent pull-75 tablet-pull-75" id="left-sidebar">
+	<div class="inside-left-sidebar">
+		<aside id="block-3" class="widget inner-padding widget_block">
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow"><div class="logged-out wp-block-loginout"><a href="https://optimization-online.org/wp-login.php?redirect_to=https%3A%2F%2Foptimization-online.org%2Ftag%2Falternating-direction-method%2F">Log in</a></div>
+
+
+<hr class="wp-block-separator"/>
+
+
+<form role="search" method="get" action="https://optimization-online.org/" class="wp-block-search__button-outside wp-block-search__icon-button wp-block-search"    ><label class="wp-block-search__label screen-reader-text" for="wp-block-search__input-1" >Search</label><div class="wp-block-search__inside-wrapper " ><input class="wp-block-search__input" id="wp-block-search__input-1" placeholder="" value="" type="search" name="s" required /><button aria-label="Search" class="wp-block-search__button has-icon wp-element-button" type="submit" ><svg class="search-icon" viewBox="0 0 24 24" width="24" height="24">
+					<path d="M13 5c-3.3 0-6 2.7-6 6 0 1.4.5 2.7 1.3 3.7l-3.8 3.8 1.1 1.1 3.8-3.8c1 .8 2.3 1.3 3.7 1.3 3.3 0 6-2.7 6-6S16.3 5 13 5zm0 10.5c-2.5 0-4.5-2-4.5-4.5s2-4.5 4.5-4.5 4.5 2 4.5 4.5-2 4.5-4.5 4.5z"></path>
+				</svg></button></div></form>
+
+
+<hr class="wp-block-separator"/>
+
+
+
+<h2 class="has-text-align-left wp-block-heading">Repository</h2>
+
+
+
+<h3 class="wp-block-heading"><a href="/author/">Author List</a></h3>
+
+
+
+<h3 class="has-text-align-left wp-block-heading"><a href="/archive/">Months</a></h3>
+
+
+<div class="wp-block-archives-dropdown wp-block-archives"><label for="wp-block-archives-2" class="wp-block-archives__label">Archives</label>
+		<select id="wp-block-archives-2" name="archive-dropdown" onchange="document.location.href=this.options[this.selectedIndex].value;">
+		<option value="">Select Month</option>	<option value='https://optimization-online.org/2026/08/'> August 2026 &nbsp;(20)</option>
+	<option value='https://optimization-online.org/2026/07/'> July 2026 &nbsp;(40)</option>
+	<option value='https://optimization-online.org/2026/06/'> June 2026 &nbsp;(35)</option>
+	<option value='https://optimization-online.org/2026/05/'> May 2026 &nbsp;(36)</option>
+	<option value='https://optimization-online.org/2026/04/'> April 2026 &nbsp;(43)</option>
+	<option value='https://optimization-online.org/2026/03/'> March 2026 &nbsp;(48)</option>
+	<option value='https://optimization-online.org/2026/02/'> February 2026 &nbsp;(32)</option>
+	<option value='https://optimization-online.org/2026/01/'> January 2026 &nbsp;(30)</option>
+	<option value='https://optimization-online.org/2025/12/'> December 2025 &nbsp;(38)</option>
+	<option value='https://optimization-online.org/2025/11/'> November 2025 &nbsp;(42)</option>
+	<option value='https://optimization-online.org/2025/10/'> October 2025 &nbsp;(39)</option>
+	<option value='https://optimization-online.org/2025/09/'> September 2025 &nbsp;(30)</option>
+	<option value='https://optimization-online.org/2025/08/'> August 2025 &nbsp;(32)</option>
+	<option value='https://optimization-online.org/2025/07/'> July 2025 &nbsp;(32)</option>
+	<option value='https://optimization-online.org/2025/06/'> June 2025 &nbsp;(33)</option>
+	<option value='https://optimization-online.org/2025/05/'> May 2025 &nbsp;(41)</option>
+	<option value='https://optimization-online.org/2025/04/'> April 2025 &nbsp;(43)</option>
+	<option value='https://optimization-online.org/2025/03/'> March 2025 &nbsp;(25)</option>
+	<option value='https://optimization-online.org/2025/02/'> February 2025 &nbsp;(23)</option>
+	<option value='https://optimization-online.org/2025/01/'> January 2025 &nbsp;(32)</option>
+	<option value='https://optimization-online.org/2024/12/'> December 2024 &nbsp;(29)</option>
+	<option value='https://optimization-online.org/2024/11/'> November 2024 &nbsp;(28)</option>
+	<option value='https://optimization-online.org/2024/10/'> October 2024 &nbsp;(34)</option>
+	<option value='https://optimization-online.org/2024/09/'> September 2024 &nbsp;(34)</option>
+	<option value='https://optimization-online.org/2024/08/'> August 2024 &nbsp;(36)</option>
+	<option value='https://optimization-online.org/2024/07/'> July 2024 &nbsp;(37)</option>
+	<option value='https://optimization-online.org/2024/06/'> June 2024 &nbsp;(30)</option>
+	<option value='https://optimization-online.org/2024/05/'> May 2024 &nbsp;(27)</option>
+	<option value='https://optimization-online.org/2024/04/'> April 2024 &nbsp;(29)</option>
+	<option value='https://optimization-online.org/2024/03/'> March 2024 &nbsp;(27)</option>
+	<option value='https://optimization-online.org/2024/02/'> February 2024 &nbsp;(29)</option>
+	<option value='https://optimization-online.org/2024/01/'> January 2024 &nbsp;(40)</option>
+	<option value='https://optimization-online.org/2023/12/'> December 2023 &nbsp;(28)</option>
+	<option value='https://optimization-online.org/2023/11/'> November 2023 &nbsp;(30)</option>
+	<option value='https://optimization-online.org/2023/10/'> October 2023 &nbsp;(34)</option>
+	<option value='https://optimization-online.org/2023/09/'> September 2023 &nbsp;(30)</option>
+	<option value='https://optimization-online.org/2023/08/'> August 2023 &nbsp;(23)</option>
+	<option value='https://optimization-online.org/2023/07/'> July 2023 &nbsp;(32)</option>
+	<option value='https://optimization-online.org/2023/06/'> June 2023 &nbsp;(35)</option>
+	<option value='https://optimization-online.org/2023/05/'> May 2023 &nbsp;(24)</option>
+	<option value='https://optimization-online.org/2023/04/'> April 2023 &nbsp;(26)</option>
+	<option value='https://optimization-online.org/2023/03/'> March 2023 &nbsp;(38)</option>
+	<option value='https://optimization-online.org/2023/02/'> February 2023 &nbsp;(36)</option>
+	<option value='https://optimization-online.org/2023/01/'> January 2023 &nbsp;(34)</option>
+	<option value='https://optimization-online.org/2022/12/'> December 2022 &nbsp;(30)</option>
+	<option value='https://optimization-online.org/2022/11/'> November 2022 &nbsp;(29)</option>
+	<option value='https://optimization-online.org/2022/10/'> October 2022 &nbsp;(35)</option>
+	<option value='https://optimization-online.org/2022/09/'> September 2022 &nbsp;(21)</option>
+	<option value='https://optimization-online.org/2022/08/'> August 2022 &nbsp;(40)</option>
+	<option value='https://optimization-online.org/2022/07/'> July 2022 &nbsp;(34)</option>
+	<option value='https://optimization-online.org/2022/06/'> June 2022 &nbsp;(28)</option>
+	<option value='https://optimization-online.org/2022/05/'> May 2022 &nbsp;(37)</option>
+	<option value='https://optimization-online.org/2022/04/'> April 2022 &nbsp;(43)</option>
+	<option value='https://optimization-online.org/2022/03/'> March 2022 &nbsp;(43)</option>
+	<option value='https://optimization-online.org/2022/02/'> February 2022 &nbsp;(30)</option>
+	<option value='https://optimization-online.org/2022/01/'> January 2022 &nbsp;(30)</option>
+	<option value='https://optimization-online.org/2021/12/'> December 2021 &nbsp;(45)</option>
+	<option value='https://optimization-online.org/2021/11/'> November 2021 &nbsp;(40)</option>
+	<option value='https://optimization-online.org/2021/10/'> October 2021 &nbsp;(49)</option>
+	<option value='https://optimization-online.org/2021/09/'> September 2021 &nbsp;(36)</option>
+	<option value='https://optimization-online.org/2021/08/'> August 2021 &nbsp;(43)</option>
+	<option value='https://optimization-online.org/2021/07/'> July 2021 &nbsp;(49)</option>
+	<option value='https://optimization-online.org/2021/06/'> June 2021 &nbsp;(45)</option>
+	<option value='https://optimization-online.org/2021/05/'> May 2021 &nbsp;(54)</option>
+	<option value='https://optimization-online.org/2021/04/'> April 2021 &nbsp;(47)</option>
+	<option value='https://optimization-online.org/2021/03/'> March 2021 &nbsp;(44)</option>
+	<option value='https://optimization-online.org/2021/02/'> February 2021 &nbsp;(31)</option>
+	<option value='https://optimization-online.org/2021/01/'> January 2021 &nbsp;(52)</option>
+	<option value='https://optimization-online.org/2020/12/'> December 2020 &nbsp;(43)</option>
+	<option value='https://optimization-online.org/2020/11/'> November 2020 &nbsp;(51)</option>
+	<option value='https://optimization-online.org/2020/10/'> October 2020 &nbsp;(39)</option>
+	<option value='https://optimization-online.org/2020/09/'> September 2020 &nbsp;(49)</option>
+	<option value='https://optimization-online.org/2020/08/'> August 2020 &nbsp;(42)</option>
+	<option value='https://optimization-online.org/2020/07/'> July 2020 &nbsp;(67)</option>
+	<option value='https://optimization-online.org/2020/06/'> June 2020 &nbsp;(55)</option>
+	<option value='https://optimization-online.org/2020/05/'> May 2020 &nbsp;(41)</option>
+	<option value='https://optimization-online.org/2020/04/'> April 2020 &nbsp;(61)</option>
+	<option value='https://optimization-online.org/2020/03/'> March 2020 &nbsp;(58)</option>
+	<option value='https://optimization-online.org/2020/02/'> February 2020 &nbsp;(51)</option>
+	<option value='https://optimization-online.org/2020/01/'> January 2020 &nbsp;(44)</option>
+	<option value='https://optimization-online.org/2019/12/'> December 2019 &nbsp;(45)</option>
+	<option value='https://optimization-online.org/2019/11/'> November 2019 &nbsp;(41)</option>
+	<option value='https://optimization-online.org/2019/10/'> October 2019 &nbsp;(55)</option>
+	<option value='https://optimization-online.org/2019/09/'> September 2019 &nbsp;(39)</option>
+	<option value='https://optimization-online.org/2019/08/'> August 2019 &nbsp;(27)</option>
+	<option value='https://optimization-online.org/2019/07/'> July 2019 &nbsp;(53)</option>
+	<option value='https://optimization-online.org/2019/06/'> June 2019 &nbsp;(32)</option>
+	<option value='https://optimization-online.org/2019/05/'> May 2019 &nbsp;(45)</option>
+	<option value='https://optimization-online.org/2019/04/'> April 2019 &nbsp;(36)</option>
+	<option value='https://optimization-online.org/2019/03/'> March 2019 &nbsp;(44)</option>
+	<option value='https://optimization-online.org/2019/02/'> February 2019 &nbsp;(41)</option>
+	<option value='https://optimization-online.org/2019/01/'> January 2019 &nbsp;(40)</option>
+	<option value='https://optimization-online.org/2018/12/'> December 2018 &nbsp;(45)</option>
+	<option value='https://optimization-online.org/2018/11/'> November 2018 &nbsp;(57)</option>
+	<option value='https://optimization-online.org/2018/10/'> October 2018 &nbsp;(61)</option>
+	<option value='https://optimization-online.org/2018/09/'> September 2018 &nbsp;(32)</option>
+	<option value='https://optimization-online.org/2018/08/'> August 2018 &nbsp;(40)</option>
+	<option value='https://optimization-online.org/2018/07/'> July 2018 &nbsp;(57)</option>
+	<option value='https://optimization-online.org/2018/06/'> June 2018 &nbsp;(47)</option>
+	<option value='https://optimization-online.org/2018/05/'> May 2018 &nbsp;(37)</option>
+	<option value='https://optimization-online.org/2018/04/'> April 2018 &nbsp;(47)</option>
+	<option value='https://optimization-online.org/2018/03/'> March 2018 &nbsp;(50)</option>
+	<option value='https://optimization-online.org/2018/02/'> February 2018 &nbsp;(43)</option>
+	<option value='https://optimization-online.org/2018/01/'> January 2018 &nbsp;(45)</option>
+	<option value='https://optimization-online.org/2017/12/'> December 2017 &nbsp;(42)</option>
+	<option value='https://optimization-online.org/2017/11/'> November 2017 &nbsp;(48)</option>
+	<option value='https://optimization-online.org/2017/10/'> October 2017 &nbsp;(66)</option>
+	<option value='https://optimization-online.org/2017/09/'> September 2017 &nbsp;(45)</option>
+	<option value='https://optimization-online.org/2017/08/'> August 2017 &nbsp;(36)</option>
+	<option value='https://optimization-online.org/2017/07/'> July 2017 &nbsp;(34)</option>
+	<option value='https://optimization-online.org/2017/06/'> June 2017 &nbsp;(56)</option>
+	<option value='https://optimization-online.org/2017/05/'> May 2017 &nbsp;(63)</option>
+	<option value='https://optimization-online.org/2017/04/'> April 2017 &nbsp;(32)</option>
+	<option value='https://optimization-online.org/2017/03/'> March 2017 &nbsp;(54)</option>
+	<option value='https://optimization-online.org/2017/02/'> February 2017 &nbsp;(35)</option>
+	<option value='https://optimization-online.org/2017/01/'> January 2017 &nbsp;(46)</option>
+	<option value='https://optimization-online.org/2016/12/'> December 2016 &nbsp;(39)</option>
+	<option value='https://optimization-online.org/2016/11/'> November 2016 &nbsp;(45)</option>
+	<option value='https://optimization-online.org/2016/10/'> October 2016 &nbsp;(36)</option>
+	<option value='https://optimization-online.org/2016/09/'> September 2016 &nbsp;(48)</option>
+	<option value='https://optimization-online.org/2016/08/'> August 2016 &nbsp;(37)</option>
+	<option value='https://optimization-online.org/2016/07/'> July 2016 &nbsp;(44)</option>
+	<option value='https://optimization-online.org/2016/06/'> June 2016 &nbsp;(52)</option>
+	<option value='https://optimization-online.org/2016/05/'> May 2016 &nbsp;(42)</option>
+	<option value='https://optimization-online.org/2016/04/'> April 2016 &nbsp;(32)</option>
+	<option value='https://optimization-online.org/2016/03/'> March 2016 &nbsp;(40)</option>
+	<option value='https://optimization-online.org/2016/02/'> February 2016 &nbsp;(33)</option>
+	<option value='https://optimization-online.org/2016/01/'> January 2016 &nbsp;(36)</option>
+	<option value='https://optimization-online.org/2015/12/'> December 2015 &nbsp;(36)</option>
+	<option value='https://optimization-online.org/2015/11/'> November 2015 &nbsp;(39)</option>
+	<option value='https://optimization-online.org/2015/10/'> October 2015 &nbsp;(44)</option>
+	<option value='https://optimization-online.org/2015/09/'> September 2015 &nbsp;(51)</option>
+	<option value='https://optimization-online.org/2015/08/'> August 2015 &nbsp;(33)</option>
+	<option value='https://optimization-online.org/2015/07/'> July 2015 &nbsp;(59)</option>
+	<option value='https://optimization-online.org/2015/06/'> June 2015 &nbsp;(44)</option>
+	<option value='https://optimization-online.org/2015/05/'> May 2015 &nbsp;(37)</option>
+	<option value='https://optimization-online.org/2015/04/'> April 2015 &nbsp;(41)</option>
+	<option value='https://optimization-online.org/2015/03/'> March 2015 &nbsp;(52)</option>
+	<option value='https://optimization-online.org/2015/02/'> February 2015 &nbsp;(32)</option>
+	<option value='https://optimization-online.org/2015/01/'> January 2015 &nbsp;(47)</option>
+	<option value='https://optimization-online.org/2014/12/'> December 2014 &nbsp;(35)</option>
+	<option value='https://optimization-online.org/2014/11/'> November 2014 &nbsp;(56)</option>
+	<option value='https://optimization-online.org/2014/10/'> October 2014 &nbsp;(48)</option>
+	<option value='https://optimization-online.org/2014/09/'> September 2014 &nbsp;(40)</option>
+	<option value='https://optimization-online.org/2014/08/'> August 2014 &nbsp;(50)</option>
+	<option value='https://optimization-online.org/2014/07/'> July 2014 &nbsp;(50)</option>
+	<option value='https://optimization-online.org/2014/06/'> June 2014 &nbsp;(36)</option>
+	<option value='https://optimization-online.org/2014/05/'> May 2014 &nbsp;(36)</option>
+	<option value='https://optimization-online.org/2014/04/'> April 2014 &nbsp;(33)</option>
+	<option value='https://optimization-online.org/2014/03/'> March 2014 &nbsp;(39)</option>
+	<option value='https://optimization-online.org/2014/02/'> February 2014 &nbsp;(38)</option>
+	<option value='https://optimization-online.org/2014/01/'> January 2014 &nbsp;(30)</option>
+	<option value='https://optimization-online.org/2013/12/'> December 2013 &nbsp;(37)</option>
+	<option value='https://optimization-online.org/2013/11/'> November 2013 &nbsp;(38)</option>
+	<option value='https://optimization-online.org/2013/10/'> October 2013 &nbsp;(41)</option>
+	<option value='https://optimization-online.org/2013/09/'> September 2013 &nbsp;(34)</option>
+	<option value='https://optimization-online.org/2013/08/'> August 2013 &nbsp;(40)</option>
+	<option value='https://optimization-online.org/2013/07/'> July 2013 &nbsp;(36)</option>
+	<option value='https://optimization-online.org/2013/06/'> June 2013 &nbsp;(35)</option>
+	<option value='https://optimization-online.org/2013/05/'> May 2013 &nbsp;(46)</option>
+	<option value='https://optimization-online.org/2013/04/'> April 2013 &nbsp;(41)</option>
+	<option value='https://optimization-online.org/2013/03/'> March 2013 &nbsp;(17)</option>
+	<option value='https://optimization-online.org/2013/02/'> February 2013 &nbsp;(39)</option>
+	<option value='https://optimization-online.org/2013/01/'> January 2013 &nbsp;(31)</option>
+	<option value='https://optimization-online.org/2012/12/'> December 2012 &nbsp;(26)</option>
+	<option value='https://optimization-online.org/2012/11/'> November 2012 &nbsp;(25)</option>
+	<option value='https://optimization-online.org/2012/10/'> October 2012 &nbsp;(39)</option>
+	<option value='https://optimization-online.org/2012/09/'> September 2012 &nbsp;(28)</option>
+	<option value='https://optimization-online.org/2012/08/'> August 2012 &nbsp;(45)</option>
+	<option value='https://optimization-online.org/2012/07/'> July 2012 &nbsp;(27)</option>
+	<option value='https://optimization-online.org/2012/06/'> June 2012 &nbsp;(27)</option>
+	<option value='https://optimization-online.org/2012/05/'> May 2012 &nbsp;(34)</option>
+	<option value='https://optimization-online.org/2012/04/'> April 2012 &nbsp;(33)</option>
+	<option value='https://optimization-online.org/2012/03/'> March 2012 &nbsp;(36)</option>
+	<option value='https://optimization-online.org/2012/02/'> February 2012 &nbsp;(41)</option>
+	<option value='https://optimization-online.org/2012/01/'> January 2012 &nbsp;(32)</option>
+	<option value='https://optimization-online.org/2011/12/'> December 2011 &nbsp;(39)</option>
+	<option value='https://optimization-online.org/2011/11/'> November 2011 &nbsp;(35)</option>
+	<option value='https://optimization-online.org/2011/10/'> October 2011 &nbsp;(29)</option>
+	<option value='https://optimization-online.org/2011/09/'> September 2011 &nbsp;(46)</option>
+	<option value='https://optimization-online.org/2011/08/'> August 2011 &nbsp;(28)</option>
+	<option value='https://optimization-online.org/2011/07/'> July 2011 &nbsp;(30)</option>
+	<option value='https://optimization-online.org/2011/06/'> June 2011 &nbsp;(34)</option>
+	<option value='https://optimization-online.org/2011/05/'> May 2011 &nbsp;(24)</option>
+	<option value='https://optimization-online.org/2011/04/'> April 2011 &nbsp;(52)</option>
+	<option value='https://optimization-online.org/2011/03/'> March 2011 &nbsp;(30)</option>
+	<option value='https://optimization-online.org/2011/02/'> February 2011 &nbsp;(36)</option>
+	<option value='https://optimization-online.org/2011/01/'> January 2011 &nbsp;(32)</option>
+	<option value='https://optimization-online.org/2010/12/'> December 2010 &nbsp;(34)</option>
+	<option value='https://optimization-online.org/2010/11/'> November 2010 &nbsp;(51)</option>
+	<option value='https://optimization-online.org/2010/10/'> October 2010 &nbsp;(30)</option>
+	<option value='https://optimization-online.org/2010/09/'> September 2010 &nbsp;(27)</option>
+	<option value='https://optimization-online.org/2010/08/'> August 2010 &nbsp;(27)</option>
+	<option value='https://optimization-online.org/2010/07/'> July 2010 &nbsp;(21)</option>
+	<option value='https://optimization-online.org/2010/06/'> June 2010 &nbsp;(30)</option>
+	<option value='https://optimization-online.org/2010/05/'> May 2010 &nbsp;(27)</option>
+	<option value='https://optimization-online.org/2010/04/'> April 2010 &nbsp;(23)</option>
+	<option value='https://optimization-online.org/2010/03/'> March 2010 &nbsp;(28)</option>
+	<option value='https://optimization-online.org/2010/02/'> February 2010 &nbsp;(19)</option>
+	<option value='https://optimization-online.org/2010/01/'> January 2010 &nbsp;(23)</option>
+	<option value='https://optimization-online.org/2009/12/'> December 2009 &nbsp;(28)</option>
+	<option value='https://optimization-online.org/2009/11/'> November 2009 &nbsp;(31)</option>
+	<option value='https://optimization-online.org/2009/10/'> October 2009 &nbsp;(34)</option>
+	<option value='https://optimization-online.org/2009/09/'> September 2009 &nbsp;(24)</option>
+	<option value='https://optimization-online.org/2009/08/'> August 2009 &nbsp;(24)</option>
+	<option value='https://optimization-online.org/2009/07/'> July 2009 &nbsp;(27)</option>
+	<option value='https://optimization-online.org/2009/06/'> June 2009 &nbsp;(29)</option>
+	<option value='https://optimization-online.org/2009/05/'> May 2009 &nbsp;(15)</option>
+	<option value='https://optimization-online.org/2009/04/'> April 2009 &nbsp;(17)</option>
+	<option value='https://optimization-online.org/2009/03/'> March 2009 &nbsp;(26)</option>
+	<option value='https://optimization-online.org/2009/02/'> February 2009 &nbsp;(30)</option>
+	<option value='https://optimization-online.org/2009/01/'> January 2009 &nbsp;(27)</option>
+	<option value='https://optimization-online.org/2008/12/'> December 2008 &nbsp;(20)</option>
+	<option value='https://optimization-online.org/2008/11/'> November 2008 &nbsp;(26)</option>
+	<option value='https://optimization-online.org/2008/10/'> October 2008 &nbsp;(27)</option>
+	<option value='https://optimization-online.org/2008/09/'> September 2008 &nbsp;(24)</option>
+	<option value='https://optimization-online.org/2008/08/'> August 2008 &nbsp;(23)</option>
+	<option value='https://optimization-online.org/2008/07/'> July 2008 &nbsp;(26)</option>
+	<option value='https://optimization-online.org/2008/06/'> June 2008 &nbsp;(28)</option>
+	<option value='https://optimization-online.org/2008/05/'> May 2008 &nbsp;(26)</option>
+	<option value='https://optimization-online.org/2008/04/'> April 2008 &nbsp;(24)</option>
+	<option value='https://optimization-online.org/2008/03/'> March 2008 &nbsp;(24)</option>
+	<option value='https://optimization-online.org/2008/02/'> February 2008 &nbsp;(17)</option>
+	<option value='https://optimization-online.org/2008/01/'> January 2008 &nbsp;(31)</option>
+	<option value='https://optimization-online.org/2007/12/'> December 2007 &nbsp;(15)</option>
+	<option value='https://optimization-online.org/2007/11/'> November 2007 &nbsp;(27)</option>
+	<option value='https://optimization-online.org/2007/10/'> October 2007 &nbsp;(18)</option>
+	<option value='https://optimization-online.org/2007/09/'> September 2007 &nbsp;(31)</option>
+	<option value='https://optimization-online.org/2007/08/'> August 2007 &nbsp;(26)</option>
+	<option value='https://optimization-online.org/2007/07/'> July 2007 &nbsp;(26)</option>
+	<option value='https://optimization-online.org/2007/06/'> June 2007 &nbsp;(36)</option>
+	<option value='https://optimization-online.org/2007/05/'> May 2007 &nbsp;(17)</option>
+	<option value='https://optimization-online.org/2007/04/'> April 2007 &nbsp;(24)</option>
+	<option value='https://optimization-online.org/2007/03/'> March 2007 &nbsp;(26)</option>
+	<option value='https://optimization-online.org/2007/02/'> February 2007 &nbsp;(25)</option>
+	<option value='https://optimization-online.org/2007/01/'> January 2007 &nbsp;(13)</option>
+	<option value='https://optimization-online.org/2006/12/'> December 2006 &nbsp;(20)</option>
+	<option value='https://optimization-online.org/2006/11/'> November 2006 &nbsp;(25)</option>
+	<option value='https://optimization-online.org/2006/10/'> October 2006 &nbsp;(31)</option>
+	<option value='https://optimization-online.org/2006/09/'> September 2006 &nbsp;(19)</option>
+	<option value='https://optimization-online.org/2006/08/'> August 2006 &nbsp;(15)</option>
+	<option value='https://optimization-online.org/2006/07/'> July 2006 &nbsp;(16)</option>
+	<option value='https://optimization-online.org/2006/06/'> June 2006 &nbsp;(15)</option>
+	<option value='https://optimization-online.org/2006/05/'> May 2006 &nbsp;(21)</option>
+	<option value='https://optimization-online.org/2006/04/'> April 2006 &nbsp;(25)</option>
+	<option value='https://optimization-online.org/2006/03/'> March 2006 &nbsp;(18)</option>
+	<option value='https://optimization-online.org/2006/02/'> February 2006 &nbsp;(11)</option>
+	<option value='https://optimization-online.org/2006/01/'> January 2006 &nbsp;(22)</option>
+	<option value='https://optimization-online.org/2005/12/'> December 2005 &nbsp;(19)</option>
+	<option value='https://optimization-online.org/2005/11/'> November 2005 &nbsp;(15)</option>
+	<option value='https://optimization-online.org/2005/10/'> October 2005 &nbsp;(16)</option>
+	<option value='https://optimization-online.org/2005/09/'> September 2005 &nbsp;(20)</option>
+	<option value='https://optimization-online.org/2005/08/'> August 2005 &nbsp;(5)</option>
+	<option value='https://optimization-online.org/2005/07/'> July 2005 &nbsp;(18)</option>
+	<option value='https://optimization-online.org/2005/06/'> June 2005 &nbsp;(26)</option>
+	<option value='https://optimization-online.org/2005/05/'> May 2005 &nbsp;(18)</option>
+	<option value='https://optimization-online.org/2005/04/'> April 2005 &nbsp;(14)</option>
+	<option value='https://optimization-online.org/2005/03/'> March 2005 &nbsp;(31)</option>
+	<option value='https://optimization-online.org/2005/02/'> February 2005 &nbsp;(18)</option>
+	<option value='https://optimization-online.org/2005/01/'> January 2005 &nbsp;(20)</option>
+	<option value='https://optimization-online.org/2004/12/'> December 2004 &nbsp;(29)</option>
+	<option value='https://optimization-online.org/2004/11/'> November 2004 &nbsp;(16)</option>
+	<option value='https://optimization-online.org/2004/10/'> October 2004 &nbsp;(23)</option>
+	<option value='https://optimization-online.org/2004/09/'> September 2004 &nbsp;(14)</option>
+	<option value='https://optimization-online.org/2004/08/'> August 2004 &nbsp;(32)</option>
+	<option value='https://optimization-online.org/2004/07/'> July 2004 &nbsp;(16)</option>
+	<option value='https://optimization-online.org/2004/06/'> June 2004 &nbsp;(14)</option>
+	<option value='https://optimization-online.org/2004/05/'> May 2004 &nbsp;(18)</option>
+	<option value='https://optimization-online.org/2004/04/'> April 2004 &nbsp;(18)</option>
+	<option value='https://optimization-online.org/2004/03/'> March 2004 &nbsp;(17)</option>
+	<option value='https://optimization-online.org/2004/02/'> February 2004 &nbsp;(15)</option>
+	<option value='https://optimization-online.org/2004/01/'> January 2004 &nbsp;(7)</option>
+	<option value='https://optimization-online.org/2003/12/'> December 2003 &nbsp;(22)</option>
+	<option value='https://optimization-online.org/2003/11/'> November 2003 &nbsp;(15)</option>
+	<option value='https://optimization-online.org/2003/10/'> October 2003 &nbsp;(25)</option>
+	<option value='https://optimization-online.org/2003/09/'> September 2003 &nbsp;(26)</option>
+	<option value='https://optimization-online.org/2003/08/'> August 2003 &nbsp;(16)</option>
+	<option value='https://optimization-online.org/2003/07/'> July 2003 &nbsp;(16)</option>
+	<option value='https://optimization-online.org/2003/06/'> June 2003 &nbsp;(14)</option>
+	<option value='https://optimization-online.org/2003/05/'> May 2003 &nbsp;(13)</option>
+	<option value='https://optimization-online.org/2003/04/'> April 2003 &nbsp;(16)</option>
+	<option value='https://optimization-online.org/2003/03/'> March 2003 &nbsp;(13)</option>
+	<option value='https://optimization-online.org/2003/02/'> February 2003 &nbsp;(12)</option>
+	<option value='https://optimization-online.org/2003/01/'> January 2003 &nbsp;(12)</option>
+	<option value='https://optimization-online.org/2002/12/'> December 2002 &nbsp;(16)</option>
+	<option value='https://optimization-online.org/2002/11/'> November 2002 &nbsp;(14)</option>
+	<option value='https://optimization-online.org/2002/10/'> October 2002 &nbsp;(18)</option>
+	<option value='https://optimization-online.org/2002/09/'> September 2002 &nbsp;(15)</option>
+	<option value='https://optimization-online.org/2002/08/'> August 2002 &nbsp;(10)</option>
+	<option value='https://optimization-online.org/2002/07/'> July 2002 &nbsp;(18)</option>
+	<option value='https://optimization-online.org/2002/06/'> June 2002 &nbsp;(12)</option>
+	<option value='https://optimization-online.org/2002/05/'> May 2002 &nbsp;(14)</option>
+	<option value='https://optimization-online.org/2002/04/'> April 2002 &nbsp;(10)</option>
+	<option value='https://optimization-online.org/2002/03/'> March 2002 &nbsp;(13)</option>
+	<option value='https://optimization-online.org/2002/02/'> February 2002 &nbsp;(9)</option>
+	<option value='https://optimization-online.org/2002/01/'> January 2002 &nbsp;(16)</option>
+	<option value='https://optimization-online.org/2001/12/'> December 2001 &nbsp;(13)</option>
+	<option value='https://optimization-online.org/2001/11/'> November 2001 &nbsp;(11)</option>
+	<option value='https://optimization-online.org/2001/10/'> October 2001 &nbsp;(17)</option>
+	<option value='https://optimization-online.org/2001/09/'> September 2001 &nbsp;(7)</option>
+	<option value='https://optimization-online.org/2001/08/'> August 2001 &nbsp;(8)</option>
+	<option value='https://optimization-online.org/2001/07/'> July 2001 &nbsp;(6)</option>
+	<option value='https://optimization-online.org/2001/06/'> June 2001 &nbsp;(16)</option>
+	<option value='https://optimization-online.org/2001/05/'> May 2001 &nbsp;(19)</option>
+	<option value='https://optimization-online.org/2001/04/'> April 2001 &nbsp;(11)</option>
+	<option value='https://optimization-online.org/2001/03/'> March 2001 &nbsp;(18)</option>
+	<option value='https://optimization-online.org/2001/02/'> February 2001 &nbsp;(24)</option>
+	<option value='https://optimization-online.org/2001/01/'> January 2001 &nbsp;(17)</option>
+	<option value='https://optimization-online.org/2000/12/'> December 2000 &nbsp;(6)</option>
+	<option value='https://optimization-online.org/2000/11/'> November 2000 &nbsp;(8)</option>
+	<option value='https://optimization-online.org/2000/10/'> October 2000 &nbsp;(3)</option>
+	<option value='https://optimization-online.org/2000/09/'> September 2000 &nbsp;(1)</option>
+	<option value='https://optimization-online.org/2000/08/'> August 2000 &nbsp;(16)</option>
+</select></div>
+
+
+<p></p>
+
+
+
+<h3 class="has-text-align-left wp-block-heading"><a href="/categories/">Categories</a></h3>
+
+
+<div class="wp-block-categories-dropdown aligncenter wp-block-categories"><label class="screen-reader-text" for="wp-block-categories-1">Categories</label><select  name='cat' id='wp-block-categories-1' class='postform'>
+	<option value='-1'>Select Category</option>
+	<option class="level-0" value="34">Applications &#8211; OR and Management Sciences&nbsp;&nbsp;(1,789)</option>
+	<option class="level-1" value="35">&nbsp;&nbsp;&nbsp;Airline Optimization&nbsp;&nbsp;(35)</option>
+	<option class="level-1" value="36">&nbsp;&nbsp;&nbsp;Finance and Economics&nbsp;&nbsp;(196)</option>
+	<option class="level-1" value="37">&nbsp;&nbsp;&nbsp;Marketing&nbsp;&nbsp;(14)</option>
+	<option class="level-1" value="38">&nbsp;&nbsp;&nbsp;Production and Logistics&nbsp;&nbsp;(182)</option>
+	<option class="level-1" value="39">&nbsp;&nbsp;&nbsp;Scheduling&nbsp;&nbsp;(242)</option>
+	<option class="level-1" value="40">&nbsp;&nbsp;&nbsp;Supply Chain Management&nbsp;&nbsp;(97)</option>
+	<option class="level-1" value="41">&nbsp;&nbsp;&nbsp;Telecommunications&nbsp;&nbsp;(112)</option>
+	<option class="level-1" value="42">&nbsp;&nbsp;&nbsp;Transportation&nbsp;&nbsp;(367)</option>
+	<option class="level-1" value="43">&nbsp;&nbsp;&nbsp;Yield Management&nbsp;&nbsp;(20)</option>
+	<option class="level-0" value="2">Applications &#8211; Science and Engineering&nbsp;&nbsp;(1,347)</option>
+	<option class="level-1" value="7">&nbsp;&nbsp;&nbsp;Basic Sciences Applications&nbsp;&nbsp;(86)</option>
+	<option class="level-1" value="8">&nbsp;&nbsp;&nbsp;Biomedical Applications&nbsp;&nbsp;(105)</option>
+	<option class="level-1" value="9">&nbsp;&nbsp;&nbsp;Chemical Engineering&nbsp;&nbsp;(33)</option>
+	<option class="level-1" value="44">&nbsp;&nbsp;&nbsp;Civil and Environmental Engineering&nbsp;&nbsp;(30)</option>
+	<option class="level-1" value="45">&nbsp;&nbsp;&nbsp;Control Applications&nbsp;&nbsp;(155)</option>
+	<option class="level-1" value="3">&nbsp;&nbsp;&nbsp;Data-Mining&nbsp;&nbsp;(161)</option>
+	<option class="level-1" value="50">&nbsp;&nbsp;&nbsp;Energy&nbsp;&nbsp;(92)</option>
+	<option class="level-1" value="46">&nbsp;&nbsp;&nbsp;Facility Planning and Design&nbsp;&nbsp;(89)</option>
+	<option class="level-1" value="47">&nbsp;&nbsp;&nbsp;Mechanical Engineering&nbsp;&nbsp;(46)</option>
+	<option class="level-1" value="48">&nbsp;&nbsp;&nbsp;Multidisciplinary Design Optimization&nbsp;&nbsp;(35)</option>
+	<option class="level-1" value="49">&nbsp;&nbsp;&nbsp;Optimization of Systems modeled by PDEs&nbsp;&nbsp;(70)</option>
+	<option class="level-1" value="51">&nbsp;&nbsp;&nbsp;Statistics&nbsp;&nbsp;(188)</option>
+	<option class="level-1" value="52">&nbsp;&nbsp;&nbsp;VLSI layout&nbsp;&nbsp;(13)</option>
+	<option class="level-0" value="22280">Bilevel Optimization&nbsp;&nbsp;(47)</option>
+	<option class="level-0" value="53">Combinatorial Optimization&nbsp;&nbsp;(1,404)</option>
+	<option class="level-1" value="54">&nbsp;&nbsp;&nbsp;Approximation Algorithms&nbsp;&nbsp;(181)</option>
+	<option class="level-1" value="55">&nbsp;&nbsp;&nbsp;Branch and Cut Algorithms&nbsp;&nbsp;(231)</option>
+	<option class="level-1" value="56">&nbsp;&nbsp;&nbsp;Graphs and Matroids&nbsp;&nbsp;(160)</option>
+	<option class="level-1" value="57">&nbsp;&nbsp;&nbsp;Meta Heuristics&nbsp;&nbsp;(172)</option>
+	<option class="level-1" value="58">&nbsp;&nbsp;&nbsp;Polyhedra&nbsp;&nbsp;(222)</option>
+	<option class="level-0" value="59">Complementarity and Variational Inequalities&nbsp;&nbsp;(296)</option>
+	<option class="level-0" value="27">Convex and Nonsmooth Optimization&nbsp;&nbsp;(2,166)</option>
+	<option class="level-1" value="60">&nbsp;&nbsp;&nbsp;Convex Optimization&nbsp;&nbsp;(1,067)</option>
+	<option class="level-1" value="61">&nbsp;&nbsp;&nbsp;Generalized Convexity/Monoticity&nbsp;&nbsp;(63)</option>
+	<option class="level-1" value="62">&nbsp;&nbsp;&nbsp;Nonsmooth Optimization&nbsp;&nbsp;(681)</option>
+	<option class="level-0" value="63">Global Optimization&nbsp;&nbsp;(768)</option>
+	<option class="level-1" value="65">&nbsp;&nbsp;&nbsp;Global Optimization Applications&nbsp;&nbsp;(124)</option>
+	<option class="level-1" value="64">&nbsp;&nbsp;&nbsp;Global Optimization Theory&nbsp;&nbsp;(237)</option>
+	<option class="level-1" value="66">&nbsp;&nbsp;&nbsp;Stochastic Approaches&nbsp;&nbsp;(77)</option>
+	<option class="level-0" value="67">Infinite Dimensional Optimization&nbsp;&nbsp;(166)</option>
+	<option class="level-1" value="69">&nbsp;&nbsp;&nbsp;Distributed Control&nbsp;&nbsp;(11)</option>
+	<option class="level-1" value="68">&nbsp;&nbsp;&nbsp;Semi-infinite Programming&nbsp;&nbsp;(66)</option>
+	<option class="level-0" value="70">Integer Programming&nbsp;&nbsp;(2,075)</option>
+	<option class="level-1" value="72">&nbsp;&nbsp;&nbsp;(Mixed) Integer Linear Programming&nbsp;&nbsp;(760)</option>
+	<option class="level-1" value="73">&nbsp;&nbsp;&nbsp;(Mixed) Integer Nonlinear Programming&nbsp;&nbsp;(586)</option>
+	<option class="level-1" value="71">&nbsp;&nbsp;&nbsp;0-1 Programming&nbsp;&nbsp;(300)</option>
+	<option class="level-1" value="74">&nbsp;&nbsp;&nbsp;Cutting Plane Approaches&nbsp;&nbsp;(306)</option>
+	<option class="level-0" value="75">Linear, Cone and Semidefinite Programming&nbsp;&nbsp;(1,607)</option>
+	<option class="level-1" value="492">&nbsp;&nbsp;&nbsp;Cone Programming&nbsp;&nbsp;(39)</option>
+	<option class="level-1" value="76">&nbsp;&nbsp;&nbsp;Linear Programming&nbsp;&nbsp;(335)</option>
+	<option class="level-1" value="77">&nbsp;&nbsp;&nbsp;Second-Order Cone Programming&nbsp;&nbsp;(117)</option>
+	<option class="level-1" value="78">&nbsp;&nbsp;&nbsp;Semi-definite Programming&nbsp;&nbsp;(657)</option>
+	<option class="level-0" value="79">Network Optimization&nbsp;&nbsp;(318)</option>
+	<option class="level-0" value="82">Nonlinear Optimization&nbsp;&nbsp;(2,546)</option>
+	<option class="level-1" value="85">&nbsp;&nbsp;&nbsp;Bound-constrained Optimization&nbsp;&nbsp;(97)</option>
+	<option class="level-1" value="87">&nbsp;&nbsp;&nbsp;Constrained Nonlinear Optimization&nbsp;&nbsp;(794)</option>
+	<option class="level-1" value="83">&nbsp;&nbsp;&nbsp;Nonlinear Systems and Least-Squares&nbsp;&nbsp;(117)</option>
+	<option class="level-1" value="86">&nbsp;&nbsp;&nbsp;Quadratic Programming&nbsp;&nbsp;(308)</option>
+	<option class="level-1" value="88">&nbsp;&nbsp;&nbsp;Systems governed by Differential Equations Optimization&nbsp;&nbsp;(135)</option>
+	<option class="level-1" value="84">&nbsp;&nbsp;&nbsp;Unconstrained Optimization&nbsp;&nbsp;(391)</option>
+	<option class="level-0" value="20036">Optimization in Data Science&nbsp;&nbsp;(156)</option>
+	<option class="level-1" value="20039">&nbsp;&nbsp;&nbsp;Data Science Algorithms&nbsp;&nbsp;(43)</option>
+	<option class="level-1" value="20038">&nbsp;&nbsp;&nbsp;Data Science Applications&nbsp;&nbsp;(13)</option>
+	<option class="level-1" value="20037">&nbsp;&nbsp;&nbsp;Data Science Theory&nbsp;&nbsp;(12)</option>
+	<option class="level-0" value="89">Optimization Software and Modeling Systems&nbsp;&nbsp;(433)</option>
+	<option class="level-1" value="92">&nbsp;&nbsp;&nbsp;Modeling Languages and Systems&nbsp;&nbsp;(39)</option>
+	<option class="level-1" value="91">&nbsp;&nbsp;&nbsp;Optimization Software Benchmark&nbsp;&nbsp;(71)</option>
+	<option class="level-1" value="90">&nbsp;&nbsp;&nbsp;Optimization Software Design Principles&nbsp;&nbsp;(44)</option>
+	<option class="level-1" value="93">&nbsp;&nbsp;&nbsp;Parallel Algorithms&nbsp;&nbsp;(136)</option>
+	<option class="level-1" value="94">&nbsp;&nbsp;&nbsp;Problem Solving Environments&nbsp;&nbsp;(22)</option>
+	<option class="level-0" value="1">Other Topics&nbsp;&nbsp;(827)</option>
+	<option class="level-1" value="96">&nbsp;&nbsp;&nbsp;Dynamic Programming&nbsp;&nbsp;(211)</option>
+	<option class="level-1" value="97">&nbsp;&nbsp;&nbsp;Game Theory&nbsp;&nbsp;(171)</option>
+	<option class="level-1" value="98">&nbsp;&nbsp;&nbsp;Multi-Criteria Optimization&nbsp;&nbsp;(298)</option>
+	<option class="level-1" value="99">&nbsp;&nbsp;&nbsp;Optimization of Simulated Systems&nbsp;&nbsp;(51)</option>
+	<option class="level-0" value="18">Robust Optimization&nbsp;&nbsp;(726)</option>
+	<option class="level-0" value="612">Stochastic Programming&nbsp;&nbsp;(1,133)</option>
+</select><script>
+	
+	( function() {
+		var dropdown = document.getElementById( 'wp-block-categories-1' );
+		function onCatChange() {
+			if ( dropdown.options[ dropdown.selectedIndex ].value > 0 ) {
+				location.href = "https://optimization-online.org/?cat=" + dropdown.options[ dropdown.selectedIndex ].value;
+			}
+		}
+		dropdown.onchange = onCatChange;
+	})();
+	
+	
+</script>
+
+</div>
+
+
+<p></p>
+
+
+
+<h3 class="has-text-align-left wp-block-heading"><a href="/keywords/">Keywords</a></h3>
+
+
+<p class="wp-block-tag-cloud"><a href="https://optimization-online.org/tag/alternating-direction-method-of-multipliers/" class="tag-cloud-link tag-link-6332 tag-link-position-1" style="font-size: 8.175pt;" aria-label="alternating direction method of multipliers (78 items)">alternating direction method of multipliers</a>
+<a href="https://optimization-online.org/tag/augmented-lagrangian-method/" class="tag-cloud-link tag-link-3711 tag-link-position-2" style="font-size: 11.325pt;" aria-label="augmented lagrangian method (118 items)">augmented lagrangian method</a>
+<a href="https://optimization-online.org/tag/benders-decomposition/" class="tag-cloud-link tag-link-3018 tag-link-position-3" style="font-size: 8.7pt;" aria-label="benders decomposition (84 items)">benders decomposition</a>
+<a href="https://optimization-online.org/tag/bilevel-optimization/" class="tag-cloud-link tag-link-2247 tag-link-position-4" style="font-size: 12.025pt;" aria-label="bilevel optimization (131 items)">bilevel optimization</a>
+<a href="https://optimization-online.org/tag/branch-and-bound/" class="tag-cloud-link tag-link-485 tag-link-position-5" style="font-size: 11.5pt;" aria-label="Branch-and-Bound (121 items)">Branch-and-Bound</a>
+<a href="https://optimization-online.org/tag/branch-and-cut/" class="tag-cloud-link tag-link-617 tag-link-position-6" style="font-size: 10.8pt;" aria-label="branch-and-cut (111 items)">branch-and-cut</a>
+<a href="https://optimization-online.org/tag/chance-constraints/" class="tag-cloud-link tag-link-2661 tag-link-position-7" style="font-size: 8.875pt;" aria-label="chance constraints (87 items)">chance constraints</a>
+<a href="https://optimization-online.org/tag/column-generation/" class="tag-cloud-link tag-link-924 tag-link-position-8" style="font-size: 10.45pt;" aria-label="column generation (107 items)">column generation</a>
+<a href="https://optimization-online.org/tag/combinatorial-optimization/" class="tag-cloud-link tag-link-857 tag-link-position-9" style="font-size: 12.55pt;" aria-label="combinatorial optimization (140 items)">combinatorial optimization</a>
+<a href="https://optimization-online.org/tag/complexity/" class="tag-cloud-link tag-link-478 tag-link-position-10" style="font-size: 15.35pt;" aria-label="complexity (203 items)">complexity</a>
+<a href="https://optimization-online.org/tag/constrained-optimization/" class="tag-cloud-link tag-link-807 tag-link-position-11" style="font-size: 8pt;" aria-label="constrained optimization (77 items)">constrained optimization</a>
+<a href="https://optimization-online.org/tag/convex-optimization/" class="tag-cloud-link tag-link-651 tag-link-position-12" style="font-size: 19.025pt;" aria-label="convex optimization (331 items)">convex optimization</a>
+<a href="https://optimization-online.org/tag/cutting-planes/" class="tag-cloud-link tag-link-621 tag-link-position-13" style="font-size: 15.525pt;" aria-label="cutting planes (210 items)">cutting planes</a>
+<a href="https://optimization-online.org/tag/decomposition/" class="tag-cloud-link tag-link-2331 tag-link-position-14" style="font-size: 8.525pt;" aria-label="decomposition (82 items)">decomposition</a>
+<a href="https://optimization-online.org/tag/derivative-free-optimization/" class="tag-cloud-link tag-link-948 tag-link-position-15" style="font-size: 12.025pt;" aria-label="derivative-free optimization (130 items)">derivative-free optimization</a>
+<a href="https://optimization-online.org/tag/distributionally-robust-optimization/" class="tag-cloud-link tag-link-7410 tag-link-position-16" style="font-size: 12.725pt;" aria-label="distributionally robust optimization (144 items)">distributionally robust optimization</a>
+<a href="https://optimization-online.org/tag/duality/" class="tag-cloud-link tag-link-923 tag-link-position-17" style="font-size: 9.925pt;" aria-label="duality (99 items)">duality</a>
+<a href="https://optimization-online.org/tag/dynamic-programming/" class="tag-cloud-link tag-link-1329 tag-link-position-18" style="font-size: 12.025pt;" aria-label="dynamic programming (131 items)">dynamic programming</a>
+<a href="https://optimization-online.org/tag/first-order-methods/" class="tag-cloud-link tag-link-1343 tag-link-position-19" style="font-size: 10.275pt;" aria-label="first-order methods (103 items)">first-order methods</a>
+<a href="https://optimization-online.org/tag/global-convergence/" class="tag-cloud-link tag-link-399 tag-link-position-20" style="font-size: 11.85pt;" aria-label="global convergence (127 items)">global convergence</a>
+<a href="https://optimization-online.org/tag/global-optimization/" class="tag-cloud-link tag-link-1010 tag-link-position-21" style="font-size: 13.775pt;" aria-label="global optimization (165 items)">global optimization</a>
+<a href="https://optimization-online.org/tag/heuristics/" class="tag-cloud-link tag-link-1040 tag-link-position-22" style="font-size: 8.875pt;" aria-label="heuristics (86 items)">heuristics</a>
+<a href="https://optimization-online.org/tag/integer-programming/" class="tag-cloud-link tag-link-495 tag-link-position-23" style="font-size: 18.85pt;" aria-label="integer programming (324 items)">integer programming</a>
+<a href="https://optimization-online.org/tag/interior-point-methods/" class="tag-cloud-link tag-link-397 tag-link-position-24" style="font-size: 18.15pt;" aria-label="interior point methods (291 items)">interior point methods</a>
+<a href="https://optimization-online.org/tag/large-scale-optimization/" class="tag-cloud-link tag-link-540 tag-link-position-25" style="font-size: 10.8pt;" aria-label="large-scale optimization (112 items)">large-scale optimization</a>
+<a href="https://optimization-online.org/tag/linear-programming/" class="tag-cloud-link tag-link-476 tag-link-position-26" style="font-size: 16.575pt;" aria-label="linear programming (240 items)">linear programming</a>
+<a href="https://optimization-online.org/tag/machine-learning/" class="tag-cloud-link tag-link-3728 tag-link-position-27" style="font-size: 11.5pt;" aria-label="machine learning (121 items)">machine learning</a>
+<a href="https://optimization-online.org/tag/mixed-integer-linear-programming/" class="tag-cloud-link tag-link-4684 tag-link-position-28" style="font-size: 10.275pt;" aria-label="mixed-integer linear programming (104 items)">mixed-integer linear programming</a>
+<a href="https://optimization-online.org/tag/mixed-integer-nonlinear-programming/" class="tag-cloud-link tag-link-484 tag-link-position-29" style="font-size: 12.025pt;" aria-label="mixed-integer nonlinear programming (132 items)">mixed-integer nonlinear programming</a>
+<a href="https://optimization-online.org/tag/mixed-integer-programming/" class="tag-cloud-link tag-link-620 tag-link-position-30" style="font-size: 18.325pt;" aria-label="mixed-integer programming (299 items)">mixed-integer programming</a>
+<a href="https://optimization-online.org/tag/multiobjective-optimization/" class="tag-cloud-link tag-link-489 tag-link-position-31" style="font-size: 9.225pt;" aria-label="multiobjective optimization (90 items)">multiobjective optimization</a>
+<a href="https://optimization-online.org/tag/nonconvex-optimization/" class="tag-cloud-link tag-link-1394 tag-link-position-32" style="font-size: 15.175pt;" aria-label="nonconvex optimization (200 items)">nonconvex optimization</a>
+<a href="https://optimization-online.org/tag/nonlinear-optimization/" class="tag-cloud-link tag-link-398 tag-link-position-33" style="font-size: 13.425pt;" aria-label="nonlinear optimization (159 items)">nonlinear optimization</a>
+<a href="https://optimization-online.org/tag/nonlinear-programming/" class="tag-cloud-link tag-link-487 tag-link-position-34" style="font-size: 13.95pt;" aria-label="nonlinear programming (168 items)">nonlinear programming</a>
+<a href="https://optimization-online.org/tag/nonsmooth-optimization/" class="tag-cloud-link tag-link-28 tag-link-position-35" style="font-size: 12.2pt;" aria-label="nonsmooth optimization (133 items)">nonsmooth optimization</a>
+<a href="https://optimization-online.org/tag/optimal-control/" class="tag-cloud-link tag-link-678 tag-link-position-36" style="font-size: 9.05pt;" aria-label="optimal control (89 items)">optimal control</a>
+<a href="https://optimization-online.org/tag/optimization/" class="tag-cloud-link tag-link-708 tag-link-position-37" style="font-size: 9.925pt;" aria-label="optimization (98 items)">optimization</a>
+<a href="https://optimization-online.org/tag/proximal-point-algorithm/" class="tag-cloud-link tag-link-2321 tag-link-position-38" style="font-size: 8pt;" aria-label="proximal point algorithm (77 items)">proximal point algorithm</a>
+<a href="https://optimization-online.org/tag/quadratic-programming/" class="tag-cloud-link tag-link-882 tag-link-position-39" style="font-size: 10.625pt;" aria-label="quadratic programming (108 items)">quadratic programming</a>
+<a href="https://optimization-online.org/tag/robust-optimization/" class="tag-cloud-link tag-link-22 tag-link-position-40" style="font-size: 18.325pt;" aria-label="robust optimization (299 items)">robust optimization</a>
+<a href="https://optimization-online.org/tag/semidefinite-programming/" class="tag-cloud-link tag-link-892 tag-link-position-41" style="font-size: 22pt;" aria-label="semidefinite programming (494 items)">semidefinite programming</a>
+<a href="https://optimization-online.org/tag/stochastic-optimization/" class="tag-cloud-link tag-link-1709 tag-link-position-42" style="font-size: 12.025pt;" aria-label="stochastic optimization (132 items)">stochastic optimization</a>
+<a href="https://optimization-online.org/tag/stochastic-programming/" class="tag-cloud-link tag-link-615 tag-link-position-43" style="font-size: 17.1pt;" aria-label="stochastic programming (254 items)">stochastic programming</a>
+<a href="https://optimization-online.org/tag/trust-region-methods/" class="tag-cloud-link tag-link-1234 tag-link-position-44" style="font-size: 12.725pt;" aria-label="trust-region methods (144 items)">trust-region methods</a>
+<a href="https://optimization-online.org/tag/unconstrained-optimization/" class="tag-cloud-link tag-link-944 tag-link-position-45" style="font-size: 9.05pt;" aria-label="unconstrained optimization (89 items)">unconstrained optimization</a></p></div></div>
+</aside>	</div>
+</div>
+
+	</div>
+</div>
+
+
+<div class="site-footer">
+			<footer class="site-info" aria-label="Site"  itemtype="https://schema.org/WPFooter" itemscope>
+			<div class="inside-site-info grid-container grid-parent">
+								<div class="copyright-bar">
+					<span class="copyright">&copy; 2026 Optimization Online</span> &bull; Child Theme of  <a href="https://generatepress.com" itemprop="url">GeneratePress</a><br><i>For feedback or questions, contact optonline@wid.wisc.edu.</i>				</div>
+			</div>
+		</footer>
+		</div>
+
+<script id="generate-a11y">
+!function(){"use strict";if("querySelector"in document&&"addEventListener"in window){var e=document.body;e.addEventListener("pointerdown",(function(){e.classList.add("using-mouse")}),{passive:!0}),e.addEventListener("keydown",(function(){e.classList.remove("using-mouse")}),{passive:!0})}}();
+</script>
+<link rel='stylesheet' id='pdfemb_embed_pdf_css-css' href='https://optimization-online.org/wp-content/plugins/pdf-embedder/assets/css/pdfemb.min.css?ver=4.9.3' media='all' />
+<script src="https://optimization-online.org/wp-includes/js/dist/vendor/wp-polyfill-inert.min.js?ver=3.1.2" id="wp-polyfill-inert-js"></script>
+<script src="https://optimization-online.org/wp-includes/js/dist/vendor/regenerator-runtime.min.js?ver=0.14.0" id="regenerator-runtime-js"></script>
+<script src="https://optimization-online.org/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0" id="wp-polyfill-js"></script>
+<script id="contact-form-7-js-extra">
+var wpcf7 = {"api":{"root":"https:\/\/optimization-online.org\/wp-json\/","namespace":"contact-form-7\/v1"},"cached":"1"};
+</script>
+<script src="https://optimization-online.org/wp-content/plugins/contact-form-7/includes/js/index.js?ver=5.5.6" id="contact-form-7-js"></script>
+<script id="generate-menu-js-before">
+var generatepressMenu = {"toggleOpenedSubMenus":true,"openSubMenuLabel":"Open Sub-Menu","closeSubMenuLabel":"Close Sub-Menu"};
+</script>
+<script src="https://optimization-online.org/wp-content/themes/generatepress/assets/js/menu.min.js?ver=3.6.1" id="generate-menu-js"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LfIxyAdAAAAALeDXCfs5a7lSeW6F68IrYSFMWPX&amp;ver=3.0" id="google-recaptcha-js"></script>
+<script id="wpcf7-recaptcha-js-extra">
+var wpcf7_recaptcha = {"sitekey":"6LfIxyAdAAAAALeDXCfs5a7lSeW6F68IrYSFMWPX","actions":{"homepage":"homepage","contactform":"contactform"}};
+</script>
+<script src="https://optimization-online.org/wp-content/plugins/contact-form-7/modules/recaptcha/index.js?ver=5.5.6" id="wpcf7-recaptcha-js"></script>
+<script src="https://optimization-online.org/wp-content/plugins/pdf-embedder/assets/js/pdfjs/pdf.min.js?ver=2.2.228" id="pdfemb_pdfjs-js"></script>
+<script id="pdfemb_embed_pdf-js-extra">
+var pdfemb_trans = {"worker_src":"https:\/\/optimization-online.org\/wp-content\/plugins\/pdf-embedder\/assets\/js\/pdfjs\/pdf.worker.min.js","cmap_url":"https:\/\/optimization-online.org\/wp-content\/plugins\/pdf-embedder\/assets\/js\/pdfjs\/cmaps\/","objectL10n":{"loading":"Loading...","page":"Page","zoom":"Zoom","prev":"Previous page","next":"Next page","zoomin":"Zoom In","secure":"Secure","zoomout":"Zoom Out","download":"Download PDF","fullscreen":"Full Screen","domainerror":"Error: URL to the PDF file must be on exactly the same domain as the current web page.","clickhereinfo":"Click here for more info","widthheightinvalid":"PDF page width or height are invalid","viewinfullscreen":"View in Full Screen"}};
+</script>
+<script src="https://optimization-online.org/wp-content/plugins/pdf-embedder/assets/js/pdfemb.min.js?ver=4.9.3" id="pdfemb_embed_pdf-js"></script>
+
+</body>
+</html>
+
+<!-- Dynamic page generated in 0.174 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2026-08-11 16:44:41 -->
+
+<!-- super cache -->

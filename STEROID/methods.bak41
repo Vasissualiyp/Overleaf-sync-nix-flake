@@ -1083,9 +1083,9 @@ constraint-satisfaction solve per design point, not an LP.
 %   comprehensive method is derived ... Assuming prescribed geometrical coefficients,
 %   we find the ensemble of possible triplets R, B and normalized beta β_N which allow
 %   one to reach target fusion gain Q and fusion power Pfus" — Abstract. Confirmed: the
-%   method is nonlinear constraint satisfaction per design point; task 2.7 softening
-%   applied ("self-consistent nonlinear system solve" → "nonlinear constraint-satisfaction
-%   solve").
+%   method is nonlinear constraint satisfaction per design point; "self-consistent
+%   nonlinear system solve" is a fair but loose paraphrase (softening decision is task
+%   2.7's).
 STEROID addresses the
 \emph{linear sub-problem} (which parameter combinations satisfy the scaling law and
 linear constraints), not the full nonlinear reactor code.  Its value would be in

@@ -1,0 +1,2312 @@
+1
+
+eLemaireMoreau2004
+
+3
+4
+
+DIMENSIONAL REDUCTION ON STEROIDS: GEOMETRIC
+CHARACTERIZATION OF FEASIBLE PARAMETER SPACES IN
+BUCKINGHAM PI
+
+5
+
+VASILII PUSTOVOIT , UTKARSH MALI , AND [CO-AUTHORS?]
+
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+
+Abstract.
+We study the inverse dimensional reduction problem arising in Buckingham Pi
+analysis: given a sampled point d in dimensionless space Rm and a map A encoding the Buckingham Pi exponents (Ap = d), recover a physical parameter vector p ∈ Rn satisfying the map
+and the physical constraints Λp ≤ c. We present STEROID (Simplicial TEssellation Reduction Of
+Invariant Domains), which preprocesses the feasible polytope once and answers subsequent queries
+in O(1) time. We benchmark STEROID against six alternative methods across a grid of problem
+sizes (n, m). For point queries alone, compiled Dykstra is faster at m ≥ 4 with zero preprocessing,
+with a crossover at m ≈ 3–4: the two methods scale in opposite directions with m, and no preprocessing amortization justifies STEROID for pure feasibility queries. However, STEROID provides
+precomputed smooth ∂p/∂d, exact one-pass uniform sampling of the feasible dimensionless region,
+and geometric characterization of the feasible dimensionless region with no per-query analogue.
+
+2
+
+1. Introduction. Buckingham’s Π-theorem [9] states that any physically meaningful equation involving n dimensional quantities can be expressed in terms of m =
+n − k independent dimensionless groups, where k is the rank of the dimensional ma20 trix (i.e. number of dimensions in kernel of the problem). Dimensional analysis has
+21 become a core tool in fluid mechanics, astrophysics, materials science, and engineering
+22 design [3, 23, 33, 31]: working in dimensionless space reduces experimental parameter
+23 sweeps from n-dimensional to m-dimensional.
+24
+Applications increasingly require the inverse direction: given a query point d
+25 sampled in dimensionless space (e.g., a grid point in a design sweep), find one or more
+26 physical parameter vectors p that reproduce d under the Buckingham map and satisfy
+27 all physical constraints (ranges of validity, material limits, operating bounds). This
+28 problem is under-determined—the preimage A−1 d is an affine subspace of dimension
+29 n−m—and the constraint set restricts it to a (possibly empty) convex polytope within
+30 that affine subspace.
+31
+To our knowledge, no dedicated open-source solver exists for this problem. Gorard
+32 et al. [18] identify the lack of guarantees that dimensionally reduced parameter combi33 nations remain physically valid as an open challenge in nuclear fusion and high-energy
+34 astrophysics. Practitioners typically either resort to brute-force rejection sampling
+35 (prohibitively slow), or run a linear program (LP) per query without exploiting the
+36 repeated structure of the parameter sweep [3, 23].
+37
+In this paper we benchmark existing methods for solving the inverse dimensional
+38 reduction problem and introduce a novel approach, STEROID, as an alternative.
+39 The closest algorithmic relative is explicit linear Model Predictive Control (MPC) [4],
+40 which precomputes a piecewise-affine (PWA) map from parameter to optimizer by
+41 partitioning the parameter space into critical regions via Karush-Kuhn-Tucker (KKT)
+42 conditions. The resulting lookup table supports O(log R) query cost (R = number of
+43 regions) via binary search trees [40, 16]. The Delaunay Triangulation approach (a big
+44 part of STEROID method) was also explored for explicit MPC by [35].
+45
+The paper is organized as follows. Section 2 formalizes the inverse problem. Sec46 tion 3 describes each method, including the full STEROID derivation and correctness
+47 proof. Sections 5–6 characterize STEROID’s unique geometric capabilities and GPU48 friendly point location. Section 7 describes the experimental setup, Section 8 presents
+17
+18
+19
+
+1
+
+This manuscript is for review purposes only.
+
+[VP 1] abstract
+reviewed; claims
+match the verified
+benchmark + geometric capabilities
+
+2] checked
+
+2
+
+V. PUSTOVOIT ET AL.
+
+49
+50
+
+benchmark results, Section 9 demonstrates applications, and Section 10 provides a
+method selection guide and discusses limitations.
+
+51
+52
+53
+54
+55
+
+2. Problem Statement.
+We work entirely in log-space. Physical variables p ∈ Rn are the logs of positive
+dimensional quantities; dimensionless variables d ∈ Rm are the logs of Buckingham
+groups; all constraints are linear in these log variables.
+The physical parameter space is Rn . Physical constraints take the form
+
+56
+
+(2.1)
+
+57
+58
+59
+60
+
+where Λ ∈ RK×n and c ∈ RK . We assume the feasible set P = {p : Λp ≤ c} is a
+compact convex polytope (i.e., full-dimensional and bounded).
+By the Buckingham Π-theorem, there exists a matrix A ∈ Rm×n with rank(A) =
+m < n such that the dimensionless variables are
+
+61
+
+(2.2)
+
+62
+63
+64
+65
+66
+67
+68
+
+The feasible dimensionless region is D∗ = {Ap : p ∈ P}, the projection of P under
+A. This is itself a compact convex polytope in Rm .
+Given a query d ∈ Rm , an algorithm that solves the inverse problem should find
+p ∈ Rn satisfying (2.1) and (2.2), or report infeasibility, i.e. return ∅ if d ∈
+/ D∗ .
+In practice, queries arrive as a batch G = {d1 , . . . , dQ } (e.g., a regular N m -point
+Cartesian grid in [−1, 1]m in one example), and the problem parameters A, Λ, c are
+fixed across all queries.
+
+69
+
+3. Methods. All methods in this paper exploit the following algebraic reduction.
+
+70
+
+Proposition 3.1. The general solution to Ap = d is
+
+Λp ≤ c,
+
+Ap = d.
+
+p = A† d + N z,
+
+z ∈ Rn−m ,
+
+71
+
+(3.1)
+
+72
+73
+
+where A† ∈ Rn×m is the Moore-Penrose pseudoinverse and N ∈ Rn×(n−m) is a basis
+for ker(A). Substituting into (2.1) reduces the problem to an LP in Rn−m :
+
+74
+
+(3.2)
+
+75
+76
+77
+
+The key observation is that (3.2) lives in Rn−m , not Rn . As m increases (holding
+n fixed), the LP dimension n − m decreases. Any per-query method exploits this
+automatically.
+
+3] section 78
+ed; complex-79
+umbers now 80
+81
+82
+83
+
+(ΛN )z ≤ c − ΛA† d.
+
+3.1. LP Simplex and Interior Point (HiGHS).
+The most direct approach: solve (3.2) as an LP feasibility problem with HiGHS
+[22]. Simplex is exponential in the worst case [25] but typically performs O(K) pivots in practice, each pivot costing O(n−m), giving the typical-case per-query cost
+O((n−m)K) [32, 37]; interior point achieves polynomial worst-case O((n−m)3.5 log(1/ε))
+[24, 32]. No preprocessing beyond computing N , A† once (O(n2 m) via SVD).
+
+3.2. Chebyshev Center LP.
+Find the Chebyshev center of (3.2): the largest inscribed ball maximizes minimum
+slack, giving the most “interior” feasible point. Solved as an LP with one additional
+87 radius variable [7], with the same typical-case per-query cost as the simplex/IPM rows
+88 of Table 1 [25, 24]. Useful when downstream applications require p to be far from
+89 constraint boundaries.
+
+4] section 84
+ed; Boyd200485
+86
+ed
+
+This manuscript is for review purposes only.
+
+STEROID: INVERSE BUCKINGHAM PI DIMENSIONAL REDUCTION
+
+3
+
+3.3. Dykstra’s Alternating Projection.
+Dykstra’s algorithm [14] finds the projection onto the intersection of convex sets
+by cyclic orthogonal projection with incremental corrections. Applied to (3.2): project
+93 z onto each half-space (ΛN )k z ≤ (c − ΛA† d)k in round-robin order. Projection onto
+94 one half-space costs O(n − m). Per-query scaling is then O(C · K · (n − m)), C ≈ 5–20
+95 cycles in practice, which decreases as m increases.
+96
+Dykstra terminates when the maximum constraint violation falls below a tolerance
+97 ε. The returned point satisfies (ΛN )k z ≤ (c − ΛA† d)k + ε for all k, so feasibility holds
+98 up to ε.
+
+5] section 90
+91
+ed; Dyk983 verified 92
+
+3.4. ADMM and Kaczmarz.
+Alternating Direction Method of Multipliers (ADMM) [8] solves the feasibility
+problem via consensus splitting, with similar per-iteration cost to Dykstra but easier
+parameter tuning for ill-conditioned constraint matrices. ADMM converges with an
+ergodic O(1/k) rate for convex problems [19, 28], i.e. O(1/ε) iterations to drive the
+feasibility residual below ε. Randomized Kaczmarz [38] uses random constraint selection and converges exponentially in expectation: E∥zt − z∗ ∥2 ≤ (1 − κ−2 )t ∥z0 − z∗ ∥2 ,
+where κ is the scaled condition number of ΛN . A gradient-penalty method adds a
+differentiable penalty ρ∥ max(0, (ΛN )z − (c − ΛA† d))∥2 to a quadratic objective and
+minimizes via gradient descent, increasing ρ progressively until feasibility is achieved.
+
+[VP 6] section
+checked; ADMM
+splitting + Kaczmarz rate verified
+
+3.5. STEROID: Vertex Enumeration + Delaunay Triangulation.
+STEROID invests in a one-time preprocessing step: it identifies the feasible region,
+projects it into dimensionless space, triangulates it, and precomputes an affine map
+for each simplex. Subsequent queries reduce to locating the containing simplex and
+evaluating a single matrix-vector product.
+We now walk through the construction step by step.
+
+[VP 7] section checked;
+PPL/McMullen/CGAL
+citations annotated
+
+3.5.1. Identifying the feasible vertices. The feasible polytope P = {p :
+Λp ≤ c} is defined by K linear constraints (its H-representation). STEROID first
+converts P to its V-representation—a list of vertices W = {w1 , . . . , wV }—using the
+Parma Polyhedra Library [2] (see also the reverse-search pivoting algorithm of [1]).
+By McMullen’s Upper Bound Theorem [27], which bounds the number
+of faces of a
+
+K
+polytope with K facets in Rn , the vertex count satisfies V ≤ ⌊n/2⌋
+.
+
+[VP 8] checked
+
+3.5.2. Projection into dimensionless space.
+Each vertex wi ∈ Rn is mapped to dimensionless space via vi = Awi ∈ Rm . The
+projected vertices {v1 , . . . , vV } span the feasible dimensionless region D∗ .
+Degenerate projections. Multiple physical vertices may project to the same
+(or nearly the same) dimensionless point when the polytope P has edges nearly aligned
+with ker(A). In this case the Delaunay triangulation produces near-degenerate simplices (det Pi ≈ 0), and the deprojection matrix Ei = Pi′ Pi−1 becomes ill-conditioned.
+A natural remedy, left for future implementation, is to merge projected vertices within
+a relative tolerance εmerge before triangulation, retaining among merged candidates
+the parent vertex farthest from all constraint boundaries (maximizing slack).
+
+[VP 9] checked
+
+132
+133
+
+3.5.3. Triangulating the dimensionless region. We compute the Delaunay
+triangulation of the projected vertices using CGAL [39], producing a set of simplices
+{T1 , . . . , TS } that partition D∗ . In the worst case, S = O(V ⌈m/2⌉ ) [36].
+
+[VP 10] checked;
+CGAL/McMullen/Seidel
+annotated
+
+134
+135
+136
+
+3.5.4. Obtaining physical values from a query point. Now take an arbitrary simplex Ti and a query point d inside it. Each simplex has m + 1 vertices
+in dimensionless space; we pick one as the “base” vertex vi,0 and form the difference
+
+[VP 11] checked
+
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+
+This manuscript is for review purposes only.
+
+4
+
+V. PUSTOVOIT ET AL.
+
+137
+
+vectors from it. Any point d inside Ti can then be written as:
+
+138
+
+(3.3)
+
+d = vi,0 +
+
+m
+X
+
+µj (vi,j − vi,0 ).
+
+j=1
+
+143
+
+Where we solve for ⃗
+µ = {µi }. If no simplex contains d, then d ∈
+/ D∗ and we report
+infeasibility.
+To get the physical parameters, we remember that each projected vertex vi,j has
+a “parent” vertex wi,j in physical space (the vertex that was projected to produce it:
+Awi,j = vi,j ). We apply the same barycentric coordinates µj to the parent vertices:
+
+144
+
+(3.4)
+
+139
+140
+141
+142
+
+p = wi,0 +
+
+m
+X
+
+µj (wi,j − wi,0 ).
+
+j=1
+
+152
+
+3.5.5. Precomputing the deprojection map. Since the difference vectors
+in (3.3) and (3.4) depend only on the simplex (not on the query point), we can
+precompute everything into a compact form.
+Define Pi ∈ Rm×m as the matrix whose columns are the difference vectors vi,j −
+vi,0 for j = 1, . . . , m, and Pi′ ∈ Rn×m as the matrix whose columns are the corresponding physical differences wi,j − wi,0 .
+With this notation, (3.3) becomes d = vi,0 + Pi µ. Since Ti is a non-degenerate
+simplex, det Pi ̸= 0, and we can solve for the barycentric coordinates:
+
+153
+
+(3.5)
+
+12] checked145
+146
+147
+148
+149
+150
+151
+
+154
+
+µ = Pi−1 (d − vi,0 ).
+
+Substituting into (3.4):
+p = wi,0 + Pi′ Pi−1 (d − vi,0 ) = wi,0 − Pi′ Pi−1 vi,0 + Pi′ Pi−1 d.
+
+155
+
+(3.6)
+
+156
+157
+158
+
+The first two terms give a vector that depends only on the simplex. The last term
+is a matrix (also depending only on the simplex) multiplied by the query point. We
+can therefore write:
+
+159
+
+(3.7)
+
+160
+161
+
+Both ei ∈ Rn and Ei ∈ Rn×m are computed once per simplex during preprocessing
+and stored for retrieval.
+
+13] checked162
+
+3.5.6. Query evaluation. At query time, STEROID performs two operations:
+1. Point location: find the simplex Ti containing d via CGAL’s triangulation
+walk—starting from a previously located simplex and following facet adjacencies until d is enclosed.
+2. Affine map: compute p = ei + Ei d (one matrix-vector multiply, O(nm)
+operations).
+If the walk exits the convex hull of D∗ , the query is infeasible. The deprojection data
+(ei , Ei ) can also be evaluated in batch: a matrix of query points yields a matrix of
+physical parameters, making the linear algebra embarrassingly parallel.
+
+163
+164
+165
+166
+167
+168
+169
+170
+
+p = ei + Ei d,
+
+Ei = Pi′ Pi−1 ,
+
+ei = wi,0 − Ei vi,0 .
+
+172
+
+3.5.7. Correctness. The key property of this construction is that it always
+produces a feasible physical point.
+
+173
+174
+
+Theorem 3.2. For any d interior to a simplex Ti ⊂ D∗ , the deprojected point
+p = ei + Ei d satisfies: (i) Ap = d, and (ii) Λp ≤ c.
+
+14] checked171
+
+This manuscript is for review purposes only.
+
+STEROID: INVERSE BUCKINGHAM PI DIMENSIONAL REDUCTION
+
+5
+
+176
+177
+178
+
+P
+Proof. Since d lies inside Ti , the barycentric coordinates µj ≥ 0 with j µj ≤ 1.
+Pm
+Pm
+Setting µ0 = 1 − j=1 µj , the deprojected point is p =
+j=0 µj wi,j —a convex
+combination
+of
+the
+physical
+vertices.
+Since
+Aw
+=
+v
+by
+construction: Ap =
+i,j
+i,j
+P
+µ
+v
+=
+d.
+Since
+each
+w
+∈
+P
+and
+P
+is
+convex,
+p
+∈
+P,
+i.e.,
+Λp ≤ c.
+i,j
+j j i,j
+
+179
+180
+181
+182
+183
+184
+
+Remark 3.3. The deprojection map d 7→ p is piecewise affine and generally discontinuous across simplex boundaries: adjacent simplices Ti and Tj sharing a facet
+may have different parent vertices, producing different p values at the shared boundary. Feasibility is preserved (both outputs lie in P and satisfy Ap = d), but the map
+is multi-valued at boundaries. The C k spline interpolation of Section 5.3 resolves this
+by enforcing smoothness across simplex boundaries.
+
+175
+
+3.5.8. Scaling. The per-query cost has two components: (i) the triangulation [VP 15] checked
+walk, costing O(S 1/m ) simplex traversals in expectation (each requiring O(m) facet
+tests), giving O(m·S 1/m ) [12, 6, 13]; and (ii) the matrix multiply Ei d, costing O(nm).
+188 Both grow with m, making STEROID slower as m increases—the opposite scaling
+189 from Dykstra.
+190
+Preprocessing is dominated by the Delaunay triangulation, with worst-case O(V ⌈m/2⌉ )
+191 simplices [36]. This becomes impractical for m ≥ 6.
+185
+186
+187
+
+192
+
+4. Complexity Summary.
+
+[VP 16] checked
+
+Table 1
+Asymptotic complexity. K: constraints; n, m: dimensions; V ∼ K ⌊n/2⌋ : vertices; C: convergence cycles. †Typical-case; the simplex method is exponential in the worst case [25]. Each row’s
+asymptotic is derived in its 3.1–3.5 subsection; LP-simplex and LP-IPM rows follow [24, 32] and
+the STEROID rows follow [36, 12].
+
+193
+194
+195
+196
+
+197
+
+Method
+
+Preprocessing
+
+Per query
+
+Memory
+
+Trend in m
+
+LP simplex
+LP IPM
+Chebyshev
+Dykstra
+ADMM
+Kaczmarz
+STEROID
+
+O(1)
+O(1)
+O(1)
+O(1)
+O(1)
+O(1)
+O(V ⌈m/2⌉ )
+
+O((n−m)K)†
+O((n−m)3.5 )
+O((n−m)K)†
+O(CK(n−m))
+O(CK(n−m))
+O(C(n−m))
+O(m · S 1/m + nm)
+
+O(nK)
+O(nK)
+O(nK)
+O(nK)
+O(nK)
+O(nK)
+O(V ⌈m/2⌉ n)
+
+Gets faster
+Gets faster
+Gets faster
+Gets faster
+Gets faster
+Gets faster
+Gets slower
+
+5. Geometric Capabilities of STEROID.
+Beyond point queries, STEROID’s triangulation enables tasks inaccessible to perquery methods.
+5.1. Feasible volume computation.
+(5.1)
+
+vol(D∗ ) =
+
+[VP 18] checked
+
+X | det Pi |
+i
+
+[VP 17] checked
+
+m!
+
+.
+
+198
+199
+200
+
+3
+Exact,
+√ O(Sm ) (one determinant per simplex). Monte Carlo alternatives converge as
+O(1/ N ). Application: uncertainty quantification—“what fraction of dimensionless
+design space is physically realizable?”
+
+201
+202
+
+5.2. Exact uniform sampling. To sample uniformly in dimensionless space
+D∗ : select simplex Ti with probability ∝ | det Pi |/m! (proportional to its volume);
+
+This manuscript is for review purposes only.
+
+[VP 19] checked
+
+6
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+
+V. PUSTOVOIT ET AL.
+
+sample d ∼ Uniform(Ti ) via Dirichlet(1, . . . , 1) barycentric coordinates; recover p =
+ei + Ei d.
+To sample uniformly in physical space P, the simplex selection probabilities must
+be adjusted by the Jacobian of the deprojection map: select Ti with probability
+∝ | det Pi | · | det(Ei⊤ Ei )|1/2 /m!, which accounts for the volume distortion of the affine
+map Ei from Rm to Rn . Both variants are exact one-pass samplers. The Volesti
+library [10] provides hit-and-run MCMC sampling within polytopes, but requires a
+burn-in period of O(n3 ) steps before samples are approximately uniform, and the
+approximation error is controlled only in distribution. STEROID’s sampler produces
+exactly uniform samples with no burn-in and no tolerance parameter.
+
+5.3. Smooth d → p manifolds via spline interpolation.
+The Delaunay triangulation provides a simplicial mesh on D∗ suitable for C k
+spline interpolation [26]. Replacing the piecewise-affine STEROID map with a C k
+216 spline yields:
+217
+• Analytical sensitivity: ∂p/∂d available everywhere in D∗ .
+218
+• Smooth optimization on the feasible manifold.
+219
+• Geodesic computation with well-defined curvature.
+220 The analytic center [30] achieves C ∞ but requires online optimization per query.
+221 STEROID + splines achieves C k with precomputed O(1) evaluation. Constructing
+222 splines that are continuous across simplex boundaries (i.e., achieving k ≥ 1) requires
+223 choosing the spline coefficients to satisfy inter-element compatibility conditions; this
+224 is a standard problem in finite element analysis [26, 11, 15] and is deferred to future
+225 work. The interpolation accuracy of a degree-r piecewise-polynomial on a simplicial
+226 mesh of diameter h is ∥σ − σ ∗ ∥L2 = O(hr+1 ) [15]: the piecewise-affine STEROID map
+227 (r = 1) achieves O(h2 ), and a C k spline of degree k + 1 achieves O(hk+2 ).
+
+20] checked213
+214
+215
+
+21] checked228
+229
+230
+231
+
+22] checked232
+233
+234
+
+6. GPU-Friendly Point Location (Projected Performance).
+The current STEROID bottleneck for large batches is CGAL’s triangulation walk
+(pointer-chasing, cache-unfriendly on GPU). The matrix multiply Ei d is already perfectly SIMD-parallel.
+6.1. Spatial hashing. During preprocessing, insert each simplex into a hash
+table keyed by the Morton code (Z-order curve) [29, 5] of its bounding grid cell.
+Per-query: one hash lookup O(1) + O(m) barycentric containment check.
+Table 2
+Estimated per-query FLOPs with spatial-hash point location (C = 10 for Dykstra).
+
+23] GPU 235
+Ps table: the236
+al estimates;
+237
+with hard238
+benchmarks.
+239
+
+m
+
+n
+
+STEROID (hash+matmul)
+
+Dykstra
+
+STEROID speedup
+
+2
+3
+5
+5
+8
+
+6
+6
+6
+10
+12
+
+∼ 12
+∼ 18
+∼ 30
+∼ 50
+∼ 96
+
+∼ 960
+∼ 660
+∼ 330
+∼ 750
+∼ 1080
+
+∼ 80×
+∼ 37×
+∼ 11×
+∼ 15×
+∼ 11×
+
+6.2. BVH for higher dimensions. Morton encoding requires > 64 bits for
+m ≥ 9. A Bounding Volume Hierarchy (BVH) provides O(m log V ) point location.
+NVIDIA RTX cores include dedicated BVH traversal hardware applicable to simplex
+point location.
+
+24] checked
+
+This manuscript is for review purposes only.
+
+7
+
+STEROID: INVERSE BUCKINGHAM PI DIMENSIONAL REDUCTION
+
+6.3. Warp-divergence advantage. Dykstra’s variable iteration count causes
+GPU warp divergence: threads in a warp must wait for the slowest query before proceeding, wasting compute on well-conditioned queries. STEROID’s fixed-cost pipeline
+243 (one lookup + one matmul) eliminates warp divergence entirely, providing a funda244 mental architectural advantage for large batches on GPU. Empirical quantification
+245 via CUDA profiling is deferred to future work.
+
+240
+241
+25] checked242
+
+7. Experimental Setup.
+
+246
+247
+248
+249
+250
+251
+252
+253
+
+[VP 26] checked
+
+7.1. Problem generation. We generate synthetic problems on an (n, m) grid
+with n ∈ {4, 6, 8, 10, 12, 15, 20} and m ∈ {2, 3, 4, 5, 6, 8} (valid pairs: m < n). For
+each pair:
+1. A ∈ Rm×n : random normal, orthogonalized to rank(A) = m.
+2. K = 3(n + m) constraints: Λ ∈ RK×n with entries in [−1, 1]; c shifted to
+ensure feasibility.
+3. Query set G: 11m -point Cartesian grid in [−1, 1]m , capped at 500.
+
+[VP 27] checked
+
+[VP 28] checked
+
+257
+258
+259
+260
+261
+
+7.2. Implementation. Python methods (LP simplex, LP IPM, Chebyshev)
+use HiGHS via the highspy Python bindings with default solver settings. Dykstra,
+ADMM, Kaczmarz, gradient penalty, and LP-HiGHS are implemented as standalone
+C++ binaries compiled with -O3 -march=native and linked against HiGHS [22].
+STEROID is compiled with the same flags, using CGAL [39] for triangulation and PPL
+[2] for vertex enumeration. For each method, preprocessing (matrix factorizations,
+triangulation) is timed separately from per-query evaluation. Python method timings
+reflect interpreter overhead; C++ timings are hardware-limited.
+
+262
+263
+264
+
+7.3. Timing. Per method, we record: preprocessing time tpre (s), mean perquery time tq (ms), p99 query time, and feasibility rate. Nrep = 5 repetitions; median
+reported. Hardware: [CPU model, RAM, OS, compiler version.]
+
+[VP 29] checked
+
+254
+255
+256
+
+8. Results.
+
+265
+266
+267
+
+[VP 30] checked
+Figure 1 shows mean query time across the (n, m)
+
+8.1. Per-query speed.
+grid.
+8
+
+0.5
+
+Dykstra's
+Algorithm
+
+Chebyshev
+Centre LP
+
+LP Simplex
+
+6
+
+ADMM
+0.0
+
+m
+
+5
+0.5
+
+4
+3
+
+log (query time / ms)
+
+1.0
+
+2
+
+1.5
+8
+
+Gradient
+Penalty
+
+LP Solver
+(HiGHS)
+
+Kaczmarz
+
+6
+
+STEROID
+
+2.0
+
+5
+
+m
+
+2.5
+
+4
+3.0
+
+3
+2
+
+3.5
+4
+
+5
+
+6
+
+8
+
+n
+
+10
+
+12
+
+15
+
+20
+
+4
+
+5
+
+6
+
+8
+
+n
+
+10
+
+12
+
+15
+
+20
+
+4
+
+5
+
+6
+
+8
+
+n
+
+10
+
+12
+
+15
+
+20
+
+4
+
+5
+
+6
+
+8
+
+n
+
+10
+
+12
+
+15
+
+20
+
+Fig. 1. Mean query time (ms, log scale) vs. (n, m) per method. White: missing data (timeout
+or infeasible preprocessing).
+268
+269
+270
+
+C++ Dykstra achieves 0.001–0.013 ms per query across all tested pairs with
+zero preprocessing. STEROID is ∼7× faster at m = 2 and ∼10× slower at m = 5.
+Crossover at m ≈ 3–4, consistent with opposite scaling predicted in Section 3. Python
+
+This manuscript is for review purposes only.
+
+[VP 31] checked
+
+8
+271
+272
+
+V. PUSTOVOIT ET AL.
+
+LP methods are ∼100–3000× slower than Dykstra; C++ LP-HiGHS is ∼30–100×
+slower.
+8.2. Preprocessing. Figure 2 shows preprocessing time.
+
+32] checked273
+8
+
+3.2
+
+Dykstra's
+Algorithm
+
+Chebyshev
+Centre LP
+
+LP Simplex
+
+6
+
+ADMM
+3.4
+
+m
+
+5
+4
+
+3.6
+
+log (preproc time / s)
+
+3
+3.8
+
+2
+4
+
+8
+
+5
+
+6
+
+8
+
+n
+
+10
+
+12
+
+15
+
+20
+
+4.0
+
+Gradient
+Penalty
+
+LP Solver
+(HiGHS)
+
+Kaczmarz
+
+6
+
+4.2
+
+m
+
+5
+4
+
+4.4
+3
+2
+
+4.6
+4
+
+5
+
+6
+
+8
+
+n
+
+10
+
+12
+
+15
+
+20
+
+4
+
+5
+
+6
+
+8
+
+n
+
+10
+
+12
+
+15
+
+20
+
+4
+
+5
+
+6
+
+8
+
+n
+
+10
+
+12
+
+15
+
+20
+
+Fig. 2. Preprocessing time (s, log scale) vs. (n, m). White: exceeded timeout or not tested.
+274
+275
+276
+
+STEROID preprocessing grows exponentially in m and becomes infeasible at m ≥
+6 in our tests (the largest tested STEROID instance, n = 6, m = 5, requires ∼0.09 s).
+All per-query methods have ≤ 1 ms preprocessing (SVD of A only).
+
+33] checked277
+
+8.3. Break-even query count. Figure 3 shows Q∗ = tSTEROID
+−
+/(tmethod
+q
+pre
+STEROID
+) for (n, m) pairs where STEROID is faster per query (m ≤ 3).
+tq
+
+278
+
+5
+
+Dykstra's
+Algorithm
+
+Chebyshev
+Centre LP
+
+LP Simplex
+
+ADMM
+
+4
+
+m
+
+2
+
+1
+
+2
+5
+
+4
+
+Gradient
+Penalty
+
+LP Solver
+(HiGHS)
+
+Kaczmarz
+
+5
+
+n
+
+6
+0
+
+log (Q* queries)
+
+3
+
+m
+
+4
+1
+
+3
+2
+4
+
+5
+
+n
+
+6
+
+4
+
+5
+
+n
+
+6
+
+4
+
+5
+
+n
+
+6
+
+2
+
+Fig. 3. Break-even query count log10 (Q∗ ) for (n, m) pairs where STEROID has per-query
+advantage. Red = many queries to amortize; blue = few.
+279
+280
+281
+282
+
+At m = 2, STEROID preprocessing takes 0.0002–0.0008 s (depending on n),
+while the per-query advantage over Dykstra is ∼0.002 ms. This gives Q∗ ≈ 100–
+400 queries to break even—comparable to the standard 112 = 121 grid. At m = 3,
+preprocessing takes 0.0003–0.0016 s with a per-query advantage of ∼0.001 ms, giving
+
+This manuscript is for review purposes only.
+
+9
+
+STEROID: INVERSE BUCKINGHAM PI DIMENSIONAL REDUCTION
+283
+284
+
+Q∗ ≈ 300–1600. The standard 113 = 1331 grid approaches break-even at the larger
+(n, m) pairs.
+
+285
+286
+
+8.4. Speedup vs. STEROID.
+method relative to STEROID.
+5
+
+Dykstra's
+Algorithm
+
+Chebyshev
+Centre LP
+
+LP Simplex
+
+Figure 4 shows per-query speedup of each
+
+ADMM
+
+[VP 34] checked
+
+3
+
+4
+
+1
+2
+5
+
+4
+
+Gradient
+Penalty
+
+LP Solver
+(HiGHS)
+
+Kaczmarz
+
+5
+
+n
+
+6
+
+0
+
+log (method / STEROID)
+
+m
+
+2
+3
+
+1
+
+4
+
+m
+
+2
+3
+3
+2
+4
+
+5
+
+n
+
+6
+
+4
+
+5
+
+n
+
+6
+
+4
+
+5
+
+n
+
+6
+
+Fig. 4. Query speedup vs. STEROID (log ratio; blue = faster than STEROID).
+287
+288
+289
+290
+291
+292
+293
+294
+295
+
+Dykstra is faster than STEROID for all tested pairs with m ≥ 4.
+9. Applications.
+We now demonstrate STEROID’s unique capabilities on two concrete applications
+drawn from the literature, selected because they require capabilities that per-query
+methods genuinely cannot provide. We also discuss two motivating examples where
+STEROID addresses an open gap identified in the literature, even though full numerical demonstrations are deferred.
+
+[VP 35] checked
+
+9.1. Ultrasonic micro-injection molding: inverse design and sensitivity.
+[VP 36] checked
+
+Salazar-Meza et al. [33] apply Buckingham Pi analysis to ultrasonic microinjection molding (UMIM), fitting power-law models for energy consumption Q and
+final Young’s modulus E of the molded part. With n = 7 physical variables (amplitude A, action time Ut , plunger power P , flexural modulus Sf , mold temperature TM , thermal conductivity λ, output property) and m = 3 dimensionless groups
+(Π0 = Q/(Ut P ), Π1 = A4 Sf TM λ/(Ut P 2 ), Π2 = A3 E/(Ut P )), the fitted models read
+302 in log-space:
+
+296
+297
+298
+299
+300
+301
+
+303
+
+log E = log(5.82×10−8 ) − 1.03 log A + 0.508 log Ut + 0.016 log P + 0.492 log(Sf TM λ),
+
+304
+
+log Q = log(9.05×105 ) + 2.20 log A + 0.449 log Ut − 0.101 log P + 0.551 log(Sf TM λ).
+
+305
+306
+307
+308
+
+The exponent matrix A is read directly from these equations. Process constraints
+are log-linear box bounds: A ∈ [22.5, 56.2] µm, Ut ∈ [4, 5] s, IF ≤ 4000 N, TM ∈
+[323, 373] K, plus the feasibility threshold log Π1 > −9 log 10 (which is also linear in
+log-space).
+
+This manuscript is for review purposes only.
+
+10
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+
+325
+37] If time 326
+its: imple327
+the UMIM
+328
+ROID run
+329
+rically and
+330
+the sensitiv331
+rface plot as
+332
+re here.
+
+V. PUSTOVOIT ET AL.
+
+Gap in the existing work. The paper solves only the forward direction—given
+process parameters, predict E and Q. It explicitly leaves the inverse problem unsolved:
+given a target Young’s modulus E ∗ , which combinations of (A, Ut , P, TM ) achieve it
+within the feasible operating window? The paper identifies infeasible combinations
+empirically by discarding trials that fail to produce complete specimens.
+What STEROID provides.
+1. Inverse design: for any target (E ∗ , Q∗ ), STEROID returns a feasible process
+parameter set in O(1) after preprocessing. The feasible region in (Π1 , Π2 )
+space is a polytope image; its preimage covers all achievable operating points.
+2. Sensitivity surface: via C k splines on the triangulation, ∂E/∂A, ∂E/∂Ut , etc.
+are available as continuous functions over the entire feasible operating space.
+A process engineer can identify the most sensitive parameter direction and
+allocate manufacturing tolerance budgets accordingly. No per-query method
+produces this: LP gives one point at a time with no mesh.
+3. Feasibility characterization: STEROID computes the exact volume of the
+achievable (Π1 , Π2 ) region and identifies which constraint—amplitude bound,
+power bound, or temperature bound—is active at each operating point.
+
+345
+346
+347
+348
+349
+
+9.2. Dimensionless robot policy transfer: hardware feasibility.
+Girard [17] and Hromatko et al. [21] show that control policies trained in dimensionless space transfer zero-shot to any physically similar system. For a pendulum,
+∗
+) = (q/(mgl), τmax /(mgl)); for a race car,
+the dimensionless context is d = (q ∗ , τmax
+the paper derives m = 6 dimensionless groups from the state and context variables
+(scaled positions and velocities). The Buckingham Pi maps are power-law monomials
+and hence linear in log-space (Theorem 1 of [17] establishes this for the pendulum;
+the race car uses the same monomial structure but the log-linearity should be verified
+from the specific group definitions in each application).
+Gap identified in the literature. Both papers prove that many physical systems map to the same d, but neither provides an algorithm for finding which hardware
+configurations are feasible: “Equation (12) is a mapping from a m dimensional space
+to a m−d dimensional space, and its inverse has multiple solutions” [17] (here d denotes the number of base dimensions in the original text, not our dimensionless vector
+d). Transferring a trained policy requires identifying real hardware (within actuator
+datasheets and structural bounds) that achieves the target d.
+What STEROID provides. The hardware constraint polytope (motor torque
+bounds, mass range, link length range from a parts catalogue) is log-linear. STEROID
+precomputes the image of this polytope in d-space—the set of dimensionless operating
+points achievable with available hardware—and answers “does hardware configuration
+p achieve d∗ ?” in O(1). For the more practically important question of finding the
+full family of hardware achieving d∗ , STEROID provides exact uniform sampling over
+the achievable hardware configurations.
+
+350
+
+9.3. Open gap: inverse dimensional reduction in fusion reactor design.
+
+333
+334
+38] checked
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+
+39] checked351
+Gorard et al. [18] identify the problem of ensuring physical validity of dimensionally reduced parameter combinations as an open challenge in nuclear fusion and
+354 astrophysics. For tokamak design, the energy confinement scaling laws (IPB98, DS03)
+355 are power laws in plasma temperature, density, magnetic field, and geometry, and the
+356 Greenwald density limit, Troyon beta limit, and kink stability factor are all log-linear
+357 constraints—the full STEROID problem structure.
+358
+We note, however, that replacing STEROID here requires care: the expensive
+352
+353
+
+This manuscript is for review purposes only.
+
+STEROID: INVERSE BUCKINGHAM PI DIMENSIONAL REDUCTION
+
+11
+
+step in existing reactor dimensioning studies (e.g., [34]) is a self-consistent nonlinear
+system solve per design point, not an LP. STEROID addresses the linear sub-problem
+(which parameter combinations satisfy the scaling law and linear constraints), not the
+362 full nonlinear reactor code. Its value would be in providing precomputed sensitivity
+363 ∂(R, B, βN )/∂(exponents) for uncertainty propagation through the scaling law, and
+364 in generating unbiased samples from the feasible reactor design space for Bayesian
+365 inference—neither of which a per-query LP provides.
+359
+360
+361
+
+366
+367
+368
+369
+370
+
+10. Discussion.
+
+[VP 40] checked
+
+10.1. When to use STEROID vs. Dykstra. A critical finding of our benchmark is that STEROID’s preprocessing overhead is not justified by per-query speed
+alone: Dykstra is faster at m ≥ 4 with zero preprocessing. STEROID is the right
+choice only when the application genuinely requires one of its unique capabilities.
+
+[VP 41] checked
+
+Table 3
+Method selection guide. “Point query” = find any feasible p for a given d.
+
+Need
+
+Recommended method
+
+Point query only, m ≥ 4
+Point query only, m ≤ 3, Q ≳ 105
+Smooth ∂p/∂d everywhere
+Exact uniform sampling
+Feasible volume
+m ≥ 6, any task
+Certifiably exact solution
+
+Dykstra (C++)
+STEROID
+STEROID + splines
+STEROID
+STEROID
+Dykstra
+LP (HiGHS)
+
+388
+
+For pure point queries at m ≥ 4, Dykstra requires no preprocessing and is faster
+per query than STEROID; there is no benefit to the preprocessing cost. At m ≤ 3
+with very many queries (Q ≳ 105 ), STEROID’s O(1) per-query cost can amortize the
+preprocessing over the batch. When smooth sensitivity ∂p/∂d is required over all of
+D∗ —for tolerance analysis or gradient-based design optimization—LP and Dykstra
+are inapplicable: they return isolated points with no mesh structure, and derivatives
+cannot be formed across queries. Exact uniform sampling of the feasible space is
+similarly beyond LP or Dykstra; Volesti’s MCMC is an approximation with burn-in
+cost. At m ≥ 6, STEROID’s preprocessing grows exponentially and Dykstra becomes
+the only practical option. When a certifiably exact solution is required, LP via HiGHS
+[22] is preferable to Dykstra (which has a finite termination tolerance); STEROID is
+exact in the linear case by Theorem 3.2.
+Common misconception. It is tempting to argue STEROID is justified whenever preprocessing can be paid once and many queries follow. This is true only at
+m ≤ 3 (where STEROID is faster per query) and Q ≳ 105 . For m ≥ 4 and any realistic query count, Dykstra is faster in total (preprocessing + all queries). The correct
+justification for STEROID in those regimes is always one of the unique capabilities in
+Table 3, not amortized query speed.
+
+389
+390
+391
+392
+393
+
+10.2. Relationship to explicit MPC.
+STEROID computes the same mathematical object as explicit MPC [4]: a precomputed piecewise-affine lookup table that maps a low-dimensional parameter d to
+a feasible solution p. The connection is genuine: both partition a bounded parameter
+domain into regions and precompute an affine map per region. However, the two
+
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+
+This manuscript is for review purposes only.
+
+[VP 42] checked
+
+12
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+
+43] checked413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+
+V. PUSTOVOIT ET AL.
+
+approaches differ in how those regions arise.
+In explicit MPC, regions are critical regions defined by active constraint sets
+from the parametric KKT conditions. Their boundaries are determined by the constraints and the objective function, and can be irregular in shape, numerous in count,
+and expensive to enumerate via multi-parametric programming. In STEROID, regions are Delaunay simplices obtained by triangulating the projected feasible vertices. Simplices are well-shaped by the Delaunay circumsphere criterion, and their
+count depends on the number of vertices rather than the number of constraint inequalities. Scibilia et al. [35] independently proposed using Delaunay tessellation for
+explicit MPC approximation, noting the same regularity advantage. STEROID can
+be viewed as an exact variant of that idea applied to the Buckingham Pi setting, where
+the Delaunay regions coincide with KKT critical regions whenever the feasible polytope is simple (each vertex is defined by exactly n tight constraints). For non-simple
+polytopes the two decompositions differ: KKT regions may be finer, while Delaunay
+simplices cover the same domain with fewer, better-conditioned cells.
+Buckingham Pi guarantees m ≪ n, so the effective parameter space is genuinely
+low-dimensional even for large n. This keeps the Delaunay triangulation tractable at
+dimensions m ≤ 4 where explicit MPC would face the curse of dimensionality in KKT
+enumeration.
+10.3. Limitations and future work. STEROID is infeasible at m ≥ 6 due to
+exponential growth in simplex count. Generalized barycentric coordinates [20] offer
+a meshfree alternative: given vertices {(vi , wi )}, solve a small LP for barycentric
+weights at each query and return a convex combination of preimages. This eliminates
+Delaunay entirely while preserving feasibility guarantees. We plan to benchmark this
+approach in future work.
+The GPU spatial hashing analysis in Section 6 is currently theoretical. Empirical
+validation on CUDA hardware would confirm the warp-divergence advantage.
+STEROID is currently restricted to the linear map Ap = d; extending it to
+coordinate-monotonic non-linear maps remains an open problem, because the image
+of a polytope under a non-linear map need not lie within the convex hull of the
+projected vertices and a correct treatment requires boundary sampling at additional
+computational cost. The active constraint sets of each simplex’s parent vertices are
+already known from vertex enumeration, so identifying which physical limits can bind
+in each region of D∗ (a phase diagram of binding constraints) is a natural by-product
+of the triangulation, but a rigorous phase analysis is left to future work.
+The current implementation assumes that the feasible set {p : Λp ≤ c} is a single
+convex polytope. Physical problems with disjoint or non-convex feasible regions—
+arising, for example, from phase coexistence or multi-modal constraints— require
+extensions. A union-of-polytopes representation can handle such cases by running
+STEROID independently on each convex component and dispatching at query time
+based on the simplex lookup; the main cost is that vertex enumeration must be
+repeated per component.
+For problems with very large constraint count K, vertex enumeration via PPL
+can become the bottleneck. Inexact enumeration strategies—such as pruning lowweight vertices or using randomized double description—can reduce the vertex set at
+the cost of missing thin feasible slivers. For applications where approximate coverage
+is acceptable, this offers a practical escape from exponential scaling in K.
+Finally, for streaming query settings where the dimensionless point d arrives
+incrementally, the full triangulation need not be computed upfront. Lazy triangulation
+
+This manuscript is for review purposes only.
+
+STEROID: INVERSE BUCKINGHAM PI DIMENSIONAL REDUCTION
+443
+444
+445
+
+13
+
+inserts simplices on demand, triggered by the first query near each unexplored region.
+This amortizes preprocessing over the query stream and can be effective when queries
+cluster in a small sub-region of the feasible domain.
+
+11. Conclusion.
+We have benchmarked STEROID against six alternative methods for inverse
+Buckingham Pi dimensional reduction and critically assessed when its preprocessing
+overhead is justified. The main conclusions are:
+• For point queries alone, Dykstra dominates STEROID at m ≥ 4 with zero
+451
+preprocessing. The crossover is driven by opposite scaling laws: STEROID’s
+452
+triangulation walk grows with m; Dykstra’s null-space projection shrinks.
+453
+• STEROID preprocessing becomes exponentially infeasible at m ≥ 6.
+454
+• STEROID’s preprocessing is justified only when the application requires at
+455
+least one of: (i) smooth precomputed ∂p/∂d, or (ii) exact uniform sampling
+456
+of the feasible space.
+457
+• The ultrasonic micro-injection molding application of [33] concretely requires
+458
+both smooth sensitivity and exact feasibility characterization. The A matrix
+459
+is read directly from published dimensional analysis; all constraints are log460
+linear.
+461
+• Spatial hashing replaces CGAL’s walk with O(1) lookup and eliminates GPU
+462
+warp divergence, theoretically restoring STEROID’s per-query advantage even
+463
+at m ≥ 4—pending empirical validation.
+464
+We recommend Dykstra for all pure point-query applications, and STEROID as a
+465 geometric characterization tool for feasible parameter spaces when sensitivity or exact
+466 sampling are required.
+467
+Open problems include extending to unions of polytopes (non-convex P), lazy
+468 triangulation for online query streams, and empirical GPU validation of the spatial469 hashing speedup predicted in Section 6.
+446
+447
+448
+449
+450
+
+[VP 44] checked
+
+470
+471
+
+Acknowledgements. [Funding sources, compute resources, collaborators.]
+
+472
+
+Appendix A. Benchmark Code.
+[VP 45] checked
+All benchmark scripts and results are available at [repository URL]. Key scripts:
+gen_param_sweep.py (problem generation), run_suite.py (bulk runner), plot_heatmaps.py
+(visualization). A Nix development shell (flake.nix) provides a reproducible environment.
+
+473
+474
+475
+476
+477
+478
+479
+
+480
+
+481
+
+Appendix B. STEROID File Formats.
+STEROID stores precomputed deprojection data in a binary format (.sprj). The
+layout (little-endian) is:
+Offset
+
+Type
+
+Field
+
+0
+4
+8
+
+int32
+int32
+uint64
+
+n (physical dimension)
+m (dimensionless dimension)
+S (number of simplices)
+
+Repeated S times:
+float64[m]
+simplex centroid v̄i ∈ Rm
+float64[n]
+translation ei ∈ Rn
+float64[n × m] deprojection matrix Ei ∈ Rn×m (row-major)
+Deprojection at query time: p = ei + Ei d.
+
+This manuscript is for review purposes only.
+
+[VP 46] checked
+
+14
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+
+V. PUSTOVOIT ET AL.
+
+List of changes.
+Commented (VP): abstract reviewed; claims match the verified [. . .] . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): section checked; complexity numbers now cited . . . . . . .
+Commented (VP): section checked; Boyd2004 verified . . . . . . . . . . . . . .
+Commented (VP): section checked; Dykstra1983 verified . . . . . . . . . . . . .
+Commented (VP): section checked; ADMM splitting + Kaczmar‌ [. . .] . . . . .
+Commented (VP): section checked; PPL/McMullen/CGAL citat‌ [. . .] . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked; CGAL/McMullen/Seidel annotated . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): GPU FLOPs table: theoretical estimates; ver‌ [. . .] . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): If time permits: implement the UMIM STER‌ [. . .] . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Commented (VP): checked . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+References.
+
+This manuscript is for review purposes only.
+
+1
+2
+2
+2
+3
+3
+3
+3
+3
+3
+3
+4
+4
+4
+5
+5
+5
+5
+5
+6
+6
+6
+6
+6
+7
+7
+7
+7
+7
+7
+7
+8
+8
+9
+9
+9
+10
+10
+10
+11
+11
+11
+12
+13
+13
+13
+
+STEROID: INVERSE BUCKINGHAM PI DIMENSIONAL REDUCTION
+530
+531
+532
+
+[1]
+
+533
+534
+535
+536
+537
+538
+
+[2]
+
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+
+[3]
+
+[4]
+
+[5]
+
+[6]
+
+[7]
+[8]
+
+[9]
+
+[10]
+
+[11]
+[12]
+
+562
+563
+564
+565
+566
+567
+568
+
+[13]
+
+569
+570
+571
+572
+573
+
+[15]
+
+574
+575
+576
+577
+578
+
+[14]
+
+[16]
+
+15
+
+David Avis and Komei Fukuda. “A Pivoting Algorithm for Convex Hulls and
+Vertex Enumeration of Arrangements and Polyhedra”. In: Discrete & Computational Geometry 8 (1992), pp. 295–313. doi: 10.1007/BF02293050.
+Roberto Bagnara, Patricia M. Hill, and Enea Zaffanella. “The Parma Polyhedra
+Library: Toward a Complete Set of Numerical Abstractions for the Analysis
+and Verification of Hardware and Software Systems”. In: Science of Computer
+Programming 72.1–2 (2008), pp. 3–21. doi: 10.1016/j.scico.2007.08.001.
+Joseph Bakarji et al. “Dimensionally Consistent Learning with Buckingham Pi”.
+In: Nature Computational Science 2 (2022), pp. 834–844. doi: 10.1038/s43588022-00355-5.
+Alberto Bemporad et al. “The Explicit Linear Quadratic Regulator for Constrained Systems”. In: Automatica 38.1 (2002), pp. 3–20. doi: 10.1016/S00051098(01)00174-1.
+Christian Berger and Lukas Birkemeyer. “ZEBRA: Z-Order Curve-based Event
+Retrieval Approach to Efficiently Explore Automotive Data”. In: arXiv preprint
+arXiv:2304.10232 (2023).
+Prosenjit Bose and Luc Devroye. “On the Stabbing Number of a Random Delaunay Triangulation”. In: Computational Geometry: Theory and Applications
+36.2 (2007), pp. 89–105. doi: 10.1016/j.comgeo.2006.05.005.
+Stephen Boyd and Lieven Vandenberghe. Convex Optimization. Cambridge University Press, 2004. doi: 10.1017/CBO9780511804441.
+Stephen Boyd et al. “Distributed Optimization and Statistical Learning via the
+Alternating Direction Method of Multipliers”. In: Foundations and Trends in
+Machine Learning 3.1 (2011), pp. 1–122. doi: 10.1561/2200000016.
+Edgar Buckingham. “On Physically Similar Systems; Illustrations of the Use
+of Dimensional Equations”. In: Physical Review 4.4 (1914), pp. 345–376. doi:
+10.1103/PhysRev.4.345.
+Apostolos Chalkis and Vissarion Fisikopoulos. volesti: Volume Approximation
+and Sampling of Convex Bodies. R package and C++ library. 2021. url: https:
+//github.com/GeomScale/volesti.
+Philippe G. Ciarlet. The Finite Element Method for Elliptic Problems. Classics
+edition. SIAM, 2002. doi: 10.1137/1.9780898719208.
+Olivier Devillers and Ross Hemsley.
+“The Worst Visibility Walk in a Random
+√
+Delaunay Triangulation is O( n)”. In: Journal of Computational Geometry 7.1
+(2016), pp. 332–359. doi: 10.20382/jocg.v7i1a16.
+Luc Devroye, Christophe Lemaire, and Jean-Michel Moreau. “Expected Time
+Analysis for Delaunay Point Location”. In: Computational Geometry: Theory
+and Applications 29.2 (2004), pp. 61–89. doi: 10.1016/j.comgeo.2004.02.002.
+Richard L. Dykstra. “An Algorithm for Restricted Least Squares Regression”.
+In: Journal of the American Statistical Association 78.384 (1983), pp. 837–842.
+doi: 10.1080/01621459.1983.10477029.
+Alexandre Ern and Jean-Luc Guermond. Finite Elements I: Approximation and
+Interpolation. Vol. 72. Texts in Applied Mathematics. Open-access preprint:
+https://hal.science/hal-03226049. Springer, 2021, pp. XII, 325. doi: 10.1007/
+978-3-030-56341-7.
+Andreas N. Fuchs, Colin N. Jones, and Manfred Morari. “Optimized Decision
+Trees for Point Location in Polytopic Data Sets: Application to Explicit MPC”.
+In: Proceedings of the American Control Conference (ACC). 2010, pp. 5507–
+5512. doi: 10.1109/ACC.2010.5530979.
+
+This manuscript is for review purposes only.
+
+16
+579
+580
+581
+
+[17]
+
+582
+583
+584
+585
+586
+587
+
+[18]
+
+588
+589
+590
+591
+592
+593
+
+[20]
+
+594
+595
+596
+597
+598
+
+[22]
+
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+
+[19]
+
+[21]
+
+[23]
+
+[24]
+[25]
+
+[26]
+[27]
+[28]
+
+[29]
+[30]
+
+[31]
+
+[32]
+
+[33]
+
+V. PUSTOVOIT ET AL.
+
+Alexandre Girard. “Dimensionless Policies Based on the Buckingham Π Theorem: Is This a Good Way to Generalize Numerical Results?” In: Mathematics
+12.5 (2024), p. 709. doi: 10.3390/math12050709.
+Jonathan Gorard et al. “Improved Dimensionality Reduction for Inverse Problems in Nuclear Fusion and High-Energy Astrophysics”. In: (2025). arXiv:2505.03849.
+doi: 10.48550/arXiv.2505.03849.
+Bingsheng He and Xiaoming Yuan. “On the O(1/n) Convergence Rate of the
+Douglas-Rachford Alternating Direction Method”. In: SIAM Journal on Numerical Analysis 50.2 (2012), pp. 700–709. doi: 10.1137/110836936.
+Kai Hormann and N. Sukumar, eds. Generalized Barycentric Coordinates in
+Computer Graphics and Computational Mechanics. CRC Press, 2017. doi: 10.
+1201/9781315153452.
+Josip Kir Hromatko et al. “Direct Transfer of Optimized Controllers to Similar Systems Using Dimensionless MPC”. In: (2025). arXiv:2512.08667. doi:
+10.48550/arXiv.2512.08667.
+Qi Huangfu and J. A. J. Hall. “Parallelizing the Dual Revised Simplex Method”.
+In: Mathematical Programming Computation 10.1 (2018). HiGHS solver: https:
+//highs.dev, pp. 119–142. doi: 10.1007/s12532-017-0130-5.
+Mokbel Karam and Tony Saad. “BuckinghamPy: A Python Software for Dimensional Analysis”. In: SoftwareX 16 (2021), p. 100851. doi: 10.1016/j.softx.
+2021.100851.
+Narendra Karmarkar. “A New Polynomial-Time Algorithm for Linear Programming”. In: Combinatorica 4.4 (1984), pp. 373–395. doi: 10.1007/BF02579150.
+Victor Klee and George J. Minty. “How Good Is the Simplex Algorithm?” In:
+Inequalities III (Proceedings of the Third Symposium on Inequalities, University
+of California, Los Angeles, 1969). Ed. by Oved Shisha. Academic Press, New
+York, 1972, pp. 159–175.
+Ming-Jun Lai and Larry L. Schumaker. Spline Functions on Triangulations.
+Cambridge University Press, 2007. doi: 10.1017/CBO9780511721588.
+Peter McMullen. “The Maximum Numbers of Faces of a Convex Polytope”. In:
+Mathematika 17.2 (1970), pp. 179–184. doi: 10.1112/S0025579300002850.
+Renato D. C. Monteiro and Benar F. Svaiter. “Iteration-Complexity of BlockDecomposition Algorithms and the Alternating Direction Method of Multipliers”. In: SIAM Journal on Optimization 23.1 (2013), pp. 475–507. doi: 10.1137/
+110849468.
+G. M. Morton. “A Computer Oriented Geodetic Data Base and a New Technique
+in File Sequencing”. In: IBM Technical Report (1966).
+Yurii Nesterov and Arkadii Nemirovskii. “Multi-Parameter Surfaces of Analytic
+Centers and Long-Step Surface-Following Interior Point Methods”. In: Mathematics of Operations Research 23.1 (1998), pp. 1–38. doi: 10.1287/moor.23.1.1.
+Hanna Opdahl and David Jensen. “Dimensional Analysis and Optimization
+of IsoTruss Structures with Outer Longitudinal Members in Uniaxial Compression”. In: Materials 14.8 (2021). PMC8074371, p. 2079. doi: 10 . 3390 /
+ma14082079.
+Florian A. Potra and Stephen J. Wright. “Interior-Point Methods”. In: Journal
+of Computational and Applied Mathematics 124.1–2 (2000), pp. 281–302. doi:
+10.1016/S0377-0427(00)00433-7.
+Marco Salazar-Meza et al. “Modeling the Ultrasonic Micro-Injection Molding
+Process Using the Buckingham Pi Theorem”. In: Polymers 15.18 (2023). PMC10534782,
+p. 3779. doi: 10.3390/polym15183779.
+
+This manuscript is for review purposes only.
+
+STEROID: INVERSE BUCKINGHAM PI DIMENSIONAL REDUCTION
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+
+[34]
+[35]
+
+[36]
+
+[37]
+
+[38]
+
+[39]
+[40]
+
+17
+
+Y. Sarazin et al. “Impact of Scaling Laws on Tokamak Reactor Dimensioning”.
+In: Nuclear Fusion 60.1 (2020), p. 016010. doi: 10.1088/1741-4326/ab48a5.
+Francesco Scibilia, Sorin Olaru, and Morten Hovd. “Approximate Explicit Linear MPC via Delaunay Tessellation”. In: Proceedings of the European Control
+Conference (ECC). 2009, pp. 2833–2838.
+Raimund Seidel. “The Upper Bound Theorem for Polytopes: An Easy Proof of
+Its Asymptotic Version”. In: Computational Geometry: Theory and Applications
+5.2 (1995), pp. 115–116. doi: 10.1016/0925-7721(95)00013-y.
+Daniel A. Spielman and Shang-Hua Teng. “Smoothed Analysis of Algorithms:
+Why the Simplex Algorithm Usually Takes Polynomial Time”. In: Journal of
+the ACM 51.3 (2004), pp. 385–463. doi: 10.1145/990308.990310.
+Thomas Strohmer and Roman Vershynin. “A Randomized Kaczmarz Algorithm
+with Exponential Convergence”. In: Journal of Fourier Analysis and Applications 15.2 (2009), pp. 262–278. doi: 10.1007/s00041-008-9030-4.
+The CGAL Project. CGAL User and Reference Manual. Version 6.x. 2024. url:
+https://doc.cgal.org/.
+Pål Tøndel, Tor Arne Johansen, and Alberto Bemporad. “Evaluation of Piecewise Affine Control via Binary Search Tree”. In: Automatica 39.5 (2003), pp. 945–
+950. doi: 10.1016/S0005-1098(02)00308-4.
+
+This manuscript is for review purposes only.
+
+

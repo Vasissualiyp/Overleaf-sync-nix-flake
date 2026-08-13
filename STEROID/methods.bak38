@@ -959,20 +959,17 @@ $\Pi_2 = A^3 E / (U_t P)$), the fitted models read in log-space:
 	- 0.101\log P + 0.551\log(S_f T_M \lambda). \notag
 \end{align}
 The exponent matrix $A$ is read directly from these equations.  Process constraints
-are log-linear box bounds on an illustrative operating window taken from the tested
-parameter envelope of \cite{SalazarMeza2023} (Table 5): amplitude
-$A \in [45, 56.2]\ \mu\text{m}$ (80--100\% of the machine's $56.2\ \mu$m maximum),
-action time $U_t \in [3, 6]\ \text{s}$, injection force
-$\text{IF} \in [2, 6.5]\ \text{kN}$, mold temperature
-$T_M \in [323, 373]\ \text{K}$ ($50$--$100\,^\circ$C), plus the feasibility threshold
+are log-linear box bounds: $A \in [22.5, 56.2]\ \mu\text{m}$,
+$U_t \in [4, 5]\ \text{s}$, $\text{IF} \leq 4000\ \text{N}$,
+$T_M \in [323, 373]\ \text{K}$, plus the feasibility threshold
 $\log\Pi_1 > -9\log 10$ (which is also linear in log-space).
-% VERIFIED SalazarMeza2023 (PDF in Zotero, KMCI9U5V): Pi groups are exactly (14)-(16)
-%   p.7; fitted exponents eq (28) (E) p.16 and eq (26) (Q) p.15; feasibility threshold
-%   "for Pi1 greater than 10^-9" (specimens complete) — §4.1, p.14. Box bounds = Table 5
-%   tested envelope: A = 80/90/100% of max amplitude 56.2 µm (§3.2 machine specs);
-%   Ut = 3-6 s; TM = 50-100 °C; IF = 2-5 and 6.5 kN. NOTE: the earlier draft's values
-%   A >= 22.5 µm, U_t <= 5 s, IF <= 4000 N were NOT source numbers — corrected to the
-%   tested envelope; the window is illustrative, not a physical feasibility limit.
+% VERIFIED SalazarMeza2023: the feasibility threshold "Pi1 greater than 10^-9"
+%   is stated in the source (specimens must have Pi1 > 10^-9 to be complete) —
+%   §4.1, p.14. NOTE: the box bounds are NOT all directly stated in the source:
+%   the tested amplitude is 80-100% of the max 56.2 µm (Table 3); action time was
+%   tested up to 6 s; clamping/injection force up to 6.5 kN. The values 22.5 µm,
+%   U_t<=5 s and IF<=4000 N are the authors' chosen operating window, not source
+%   numbers — confirm or re-derive before submission.
 
 \textbf{Gap in the existing work.}
 The paper solves only the \emph{forward} direction---given process parameters, predict
@@ -1077,15 +1074,13 @@ all log-linear constraints---the full STEROID problem structure.
 %   the IPB98/DS03 scaling-law power-law claim (it is the dimensioning-study source).
 
 We note, however, that replacing STEROID here requires care: the expensive step in
-existing reactor dimensioning studies (e.g., \cite{Sarazin2019}) is a nonlinear
-constraint-satisfaction solve per design point, not an LP.
-% VERIFIED Sarazin2019 (2026-08-12; PDF in Zotero, QB9HPV8W): "A simple and
-%   comprehensive method is derived ... Assuming prescribed geometrical coefficients,
-%   we find the ensemble of possible triplets R, B and normalized beta β_N which allow
-%   one to reach target fusion gain Q and fusion power Pfus" — Abstract. Confirmed: the
-%   method is nonlinear constraint satisfaction per design point; task 2.7 softening
-%   applied ("self-consistent nonlinear system solve" → "nonlinear constraint-satisfaction
-%   solve").
+existing reactor dimensioning studies (e.g., \cite{Sarazin2019}) is a self-consistent
+nonlinear system solve per design point, not an LP.
+% NOTE Sarazin2019: the source describes a "simple and comprehensive method" that
+%   computes (R, B, beta_N) triplets satisfying target fusion gain and power given
+%   the scaling law; it is a nonlinear constraint satisfaction per design point, so
+%   the STEROID text's "self-consistent nonlinear system solve" is a fair but loose
+%   paraphrase — consider softening to "nonlinear constraint satisfaction".
 STEROID addresses the
 \emph{linear sub-problem} (which parameter combinations satisfy the scaling law and
 linear constraints), not the full nonlinear reactor code.  Its value would be in
