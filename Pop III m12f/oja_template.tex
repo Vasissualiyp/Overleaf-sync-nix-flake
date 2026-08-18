@@ -1163,7 +1163,7 @@ first bulk star formation event, at the point when the spiral arms have formed.
 \subsubsection{Disk stability and fragmentation}
 \label{sec:stability}
 
-\skadd{In this section, we analyze the stability properties of the disk.}
+In this section, we analyze the stability properties of the disk.
 Whether a self-gravitating disk fragments into bound clumps, or instead disperses the accumulated mass through spiral-arm shocks and turbulent transport depends on the ratio of stabilising pressures (thermal, turbulent) to the destabilising self-gravity of the gas. The Toomre parameter, defined in \autoref{eq:toomreq} \citep{Toomre_1964}, quantifies this balance locally: $Q < 1$ marks regions where perturbations on the disk scale grow faster than orbital shear can wind them up.
 We track the spatial and temporal evolution of $Q$ to identify when and where fragmentation occurs, and how sink-driven velocity dispersion \skcomment{What does this term mean?} subsequently self-regulates the disk back toward marginal stability.
 
@@ -1193,14 +1193,18 @@ $\zeta = \sqrt{\sigma_r^2 + c_s^2}$, which includes both thermal
 and turbulent contributions, since supersonic turbulence provides
 additional effective pressure support.
 
-For each snapshot the gas is binned into 20 annular bins \skcut{in the face-on frame}.
-In each annulus $b$ we compute mass-weighted quantities:
+For each snapshot the gas is binned into 20 annular bins.
+In each annulus $b$ we compute mass-weighted face-on density:
 \begin{equation}
-	\Sigma_b = \frac{\sum_{i\in b} m_i}{\pi(r_{\mathrm{hi},b}^2 - r_{\mathrm{lo},b}^2)},
-	\qquad
-	\sigma_{r,b} = \sqrt{\frac{\sum_{i\in b} m_i\,v_{r,i}^2}{\sum_{i\in b} m_i} - \bar{v}_{r,b}^2}
+	\Sigma_b = \frac{\sum_{i\in b} m_i}{\pi(r_{\mathrm{out},b}^2 - r_{\mathrm{in},b}^2)}
 \end{equation}
-\skcomment{Make sure every single symbol is either has been described somewhere before the equation in the text or just after it. Like define $r_{\mathrm{hi},b}$ here.} \skcomment{The formula looks wrong. The first term is the same as the second term, right?} The angular velocity is measured directly from the rotation profile:
+with $r_{\mathrm{in},b}$ and $r_{\mathrm{out},b}$ corresponding to the inner
+and outer radii of the annulus $b$ respectively.
+The radial velocity dispersion for each gas particle is measured as its deviation from the annulus average $\bar{v}_{r,b}^2$:
+\begin{equation}
+	\sigma_{r,i} = \sqrt{v_{r,i}^2 - \bar{v}_{r,b}^2}
+\end{equation}
+The angular velocity is measured directly from the rotation profile:
 \begin{equation}
 	\Omega_b = \frac{|\bar{v}_{\phi,b}|}{r_b}
 \end{equation}
@@ -1241,10 +1245,7 @@ which sums over thermal and turbulent contributions.
 	\label{fig:toomre_Q_merged}
 \end{figure*}
 
-\skcut{The Toomre $Q$ parameter measures the gravitational stability of the
-	disk.} \autoref{fig:toomre_Q_merged} (top) shows face-on maps of the local $Q$,
-computed using the streaming-subtracted velocity dispersion
-$\sigma_v$ in place of $c_s$ \skcomment{Why did you do this? They are comparable in magnitude right?}.
+\autoref{fig:toomre_Q_merged} (top) shows face-on maps of the local $Q$.
 At the pre-stellar epoch ($t - \tform = -0.5\kyr$), the gas is
 broadly unstable with $Q \lesssim 1$ throughout most of the region.
 By $t - \tform = 0$, the central region near the first sink begins to
@@ -1265,7 +1266,7 @@ As the first sink forms and accretes, the inner $Q$ rises:
 by $t - \tform = 1.3\kyr$ (green), $Q \approx 1$ throughout, consistent
 with a marginally stable state.
 By $t - \tform = 9.5\kyr$ (brown),
-$Q$ is mostly stable in the whole disk, with \skadd{the} central region \skcomment{quantify in size} being the most stable. At later times a radial gradient develops, with the inner disk more
+$Q$ is mostly stable in the whole disk, with the central region \skcomment{quantify in size} being the most stable. At later times a radial gradient develops, with the inner disk more
 stable ($Q \gg 1$) and the outer spiral arms remaining near or below
 $Q \sim 1$.
 
@@ -1279,7 +1280,7 @@ $Q \sim 1$.
 		The disk starts with $Q < 1$ inside and $Q \approx 1$ near the edge,
 		but $Q$ rises with disk evolution, since gas is removed from the disk because of
 		star formation events. Center of the disk is extremely stable ($Q \gtrsim 10^2$)
-		by the 15 kyr mark, preventing any further star formation in the middle. \skcomment{I don't think this plot adds any new information, you can get rid of it to keep things more concise.}}
+by the 15 kyr mark, preventing any further star formation in the middle. \skcomment{I don't think this plot adds any new information, you can get rid of it to keep things more concise.} \note{It is a version of the heatmap that is easier to read. People need this specific plot.}}
 	\label{fig:profile_toomre_Q}
 \end{figure}
 
@@ -1577,8 +1578,8 @@ $\left| B \right| \propto n^{2/3}  \rightarrow \left| B \right| \propto n^{1}$.
 \subsection{Star Formation and the IMF}
 \label{sec:massevol}
 
-\skadd{In this section, we analyze the star formation outcome of the system by}
-\skcut{The rate at which gas is converted into stars is set by the competition between the accretion luminosity (which heats the disk and raises the Jeans mass, suppressing further fragmentation) and the gravitational instability of the disk (which drives fragmentation and seeds new protostars). The proto-stellar mass function (PMF) encodes the integrated outcome of these competing processes at the epoch of observation. We quantify} \skadd{quantifying} the total stellar mass growth, the instantaneous star formation efficiency within the disk, and the shape of the \skcut{PMF} \skadd{proto-stellar mass function (PMF).} \skcut{to constrain which physical mechanism dominates the mass budget.}
+In this section, we analyze the star formation outcome of the system by
+quantifying the total stellar mass growth, the instantaneous star formation efficiency within the disk, and the shape of the proto-stellar mass function (PMF).
 
 
 \begin{figure}[!htbp]
@@ -1633,12 +1634,10 @@ $\left| B \right| \propto n^{2/3}  \rightarrow \left| B \right| \propto n^{1}$.
 		\label{fig:num_sinks}
 	\end{figure}}
 
-\autoref{fig:mass_evol} shows the \skcut{time} evolution of gas, stellar
+\autoref{fig:mass_evol} shows the evolution of gas, stellar
 (sink), and total mass within a $0.1$ pc aperture centered on the
-disk. The total stellar mass (orange\skcut{, all sinks combined}\skadd{, solid line}) \skadd{reaches $\sim 200\,\Msun$ by $15\kyr$, growing as $M_* \propto (t - t_0)^{2.08}$ (dashed red line).} \skcut{grows from
-	$\sim 1\,\Msun$ at $t - \tform = 1\kyr$ to $\sim 200\,\Msun$ by
-	$15\kyr$, with a best-fit power law $M_* \propto (t - t_0)^{2.08}$
-	(dashed red line)}. \skcomment{Why cut it off at 1 kyr? Can go lower too to 0.01 or 0.1 kyr.}
+disk. The total stellar mass (orange, solid line) reaches $\sim 200\,\Msun$ by $15\kyr$, growing as $M_* \propto (t - t_0)^{2.08}$ (dashed red line). \skcomment{Why cut it off at 1 kyr? Can go lower too to 0.01 or 0.1 kyr.} \note{Not a lot of evolution is happening, just a flat line, and it extends the y-axis too much, making the other lines harder to read}.
+
 \skcut{This is consistent with the $M_* \propto t^2$
 	scaling predicted by models of accelerating accretion from a
 	turbulent collapsing core} \citep{mckee03}. \skcomment{The disk fragmentation picture (what we actually see in our sim, is very different from the turbulent core collapse picture, so the fact that they agree with each other doesn't mean anything really. You can get the same scaling in other ways too.} \skadd{This is consistent with the $M_* \propto t^2$ scaling predicted by} \skcomment{Add citation here and then describe the theory here and just say Murray+17 confirmed this scaling in AMR sims, although you don't need to say this last sentence. You should mention the rho(r) scaling you find above and that it doesn't look like r1.5, and yet you see the mass growing as t2}
