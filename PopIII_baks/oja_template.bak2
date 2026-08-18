@@ -141,9 +141,13 @@
 	and $\sim 50\%$ within a $0.1$ pc aperture.
 	Our results demonstrate that cosmologically-realistic initial conditions,
 	which produce asymmetric infall and complex angular momentum structure,
-	lead to vigorous fragmentation and a protostellar population
-	whose properties differ from those found in earlier works.
-	\note{can't say this because we don't have an idealized set up to compare to in this paper. You should change this to "those found in earlier works" or I would actually suggest to  remove it entirely and just talk about the properties that are different}
+	lead to vigorous fragmentation
+	\replaced{in a single, large-scale accretion disk that hosts the entire
+		protostellar population and whose turbulent velocity dispersion increases
+		inward, driven by gravitational collapse rather than stellar feedback.}
+	{and a protostellar population whose properties differ from those found in
+		earlier works.}
+	\deleted{\note{can't say this because we don't have an idealized set up to compare to in this paper. You should change this to "those found in earlier works" or I would actually suggest to  remove it entirely and just talk about the properties that are different}}
 \end{abstract}
 
 
@@ -631,9 +635,6 @@ as a function of the instantaneous mass and accretion rate.
 Protostellar jets are launched with a mass-loading proportional to the
 surface accretion rate and a launch velocity comparable to the escape
 velocity from the protostellar surface \citep{STARFORGE_Towa_Grudic_2021}.
-\added{Jets are therefore expected in this simulation, but they are
-	not resolved in the present run: a bug in the launch implementation
-	suppresses them. We defer the analysis of jet feedback to future work.}
 
 
 \subsection{Postprocessing methods}
@@ -790,19 +791,20 @@ future work.
 		disk-identified particles
 		\added{(the disk radius $r_{\mathrm{disk}}$ is taken as the 90th-percentile
 			cylindrical radius of disk-identified particles, see \autoref{sec:disk})}:
-		rotational kinetic energy $E_\mathrm{rot}$ (yellow),
-		turbulent kinetic energy $E_\mathrm{turb}$ (cyan), total kinetic energy
-		$E_\mathrm{kin} = E_\mathrm{rot} + E_\mathrm{turb}$ (green), gravitational
+		rotational kinetic energy $E_\mathrm{rot}$ (blue),
+		turbulent kinetic energy $E_\mathrm{turb}$ (green), total kinetic energy
+		$E_\mathrm{kin} = E_\mathrm{rot} + E_\mathrm{turb}$ (black, dash-dotted),
+		gravitational
 		potential energy $|E_\mathrm{pot}|$ (red), thermal energy $E_\mathrm{therm}$
-		(orange), and magnetic energy $E_\mathrm{mag}$ (magenta). \\
+		(orange, dotted), and magnetic energy $E_\mathrm{mag}$ (magenta, dashed). \\
 		Bottom: pure kinematic virial ratio
 		$\alpha_{\text{kin}} = 2 E_\mathrm{kin}/|E_\mathrm{pot}|$
-		(black); virial ratio with added thermal component (orange)
+		(black); virial ratio with added thermal component (orange, dashed)
 		$\alpha_{\text{kin+th}} = 2 \left(  E_\mathrm{kin} + E_\mathrm{therm} \right)/|E_\mathrm{pot}|$
 		, and with added
-		thermal and magnetic components (purple),
+		thermal and magnetic components (purple, dash-dotted),
 		$\alpha_{\text{vir}} = 2 \left(  E_\mathrm{kin} + E_\mathrm{therm} + E_\mathrm{mag} \right)/|E_\mathrm{pot}|$
-		. The dashed red line marks virial
+		. The dotted red line marks virial
 		equilibrium ($= 1$). The disk starts sub-virial and reaches equilibrium by
 		$\sim 2\kyr$.
 		The inclusion of thermal energy reveals that the disk is thermally supported
@@ -887,14 +889,14 @@ Here we characterize the accretion geometry and confirm that the simulated colla
 		collapse.
 		Smallest shells have a drop in $\dot{M}_{\text{shell}} $, associated with
 		coming close to the resolution limit.\\
-		Bottom plot: evolution of radial profile of kinematic virial parameter with
-		time. The disk starts clearly sub-virial in the region inside of the disk
-		($ < 10^{-2} $ pc), with virial parameter increasing by orders of magnitude
-		at later times.
-		\added{Note that this radial profile spans several orders of magnitude,
-			whereas the global (mass-weighted) virial ratio in \autoref{fig:energy_evol}
-			settles at $\sim 1$: the two probe different scales — the disk interior here
-			versus the whole disk there.}}
+Bottom plot: evolution of radial profile of kinematic virial parameter with 
+time. The disk starts clearly sub-virial in the region inside of the disk 
+($ < 10^{-2} $ pc), with virial parameter increasing by orders of magnitude
+at later times.
+\added{Note that this radial profile spans several orders of magnitude,
+whereas the global (mass-weighted) virial ratio in \autoref{fig:energy_evol}
+settles at $\sim 1$: the two probe different scales — the disk interior here
+versus the whole disk there.}}
 	\label{fig:shell_mass_accretion}
 \end{figure}
 
@@ -1077,12 +1079,6 @@ the whole simulation, with $|v_r|$ increasing until stabilizing at around
 formed. $c_s$ rises until 1.3 kyr, after which it stabilizes.
 It is clear that the turbulence starts off as sonic or sub-sonic,
 but becomes greatly supersonic once the sink forms.
-\added{The turbulent velocity dispersion increases inward, tracking the
-	increase in gravitational potential. Because the collapse compresses the
-	gas faster than the turbulence can decay, the turbulence is continuously
-	re-driven by the contraction itself rather than by stellar feedback
-	\citep{robertson_goldreich12}; feedback only begins to contribute once the
-	first protostar forms.}
 
 \autoref{fig:combined_density} shows face-on and edge-on surface density
 projections at six representative epochs spanning the full
@@ -1095,9 +1091,7 @@ $\sim 15\kyr$ evolution after the formation of the first sink
 	\caption{ Face-on and edge-on surface density projections at six epochs.
 		Each panel shows a $4100 \times 4100\AU$ region centred on the
 		most massive sink. Star symbols mark sink particles within the
-		image box.
-		\added{The sinks are scattered throughout the disk rather than
-			concentrated in a single cluster, tracing the spiral arms.} }
+		image box. }
 	\label{fig:combined_density}
 \end{figure*}
 
@@ -1530,9 +1524,6 @@ winding, and possibly the turbulent dynamo.
 	\includegraphics[width=\textwidth]{combined_Bz.pdf}
 	\caption{Face-on ($z=0$ slice) and edge-on ($x=0$ slice) of the vertical
 		magnetic field component $B_{z}$ at six epochs.
-		\added{By the late epochs shown here, most of the stars in the simulation
-			have already formed, so the field structure reflects the post-formation
-			disk rather than the initial collapse.}
 	}
 	\label{fig:combined_Bz}
 \end{figure*}
@@ -1577,9 +1568,9 @@ $\left| B \right| \propto n^{2/3}  \rightarrow \left| B \right| \propto n^{1}$.
 \subsection{Star Formation and the IMF}
 \label{sec:massevol}
 
-\skadd{In this section, we analyze the star formation outcome of the system by}
-\skcut{The rate at which gas is converted into stars is set by the competition between the accretion luminosity (which heats the disk and raises the Jeans mass, suppressing further fragmentation) and the gravitational instability of the disk (which drives fragmentation and seeds new protostars). The proto-stellar mass function (PMF) encodes the integrated outcome of these competing processes at the epoch of observation. We quantify} \skadd{quantifying} the total stellar mass growth, the instantaneous star formation efficiency within the disk, and the shape of the \skcut{PMF} \skadd{proto-stellar mass function (PMF).} \skcut{to constrain which physical mechanism dominates the mass budget.}
-
+The rate at which gas is converted into stars is set by the competition between the accretion luminosity (which heats the disk and raises the Jeans mass, suppressing further fragmentation) and the gravitational instability of the disk (which drives fragmentation and seeds new protostars).
+The proto-stellar mass function (PMF) encodes the integrated outcome of these competing processes at the epoch of observation.
+We quantify the total stellar mass growth, the instantaneous star formation efficiency within the disk, and the shape of the PMF to constrain which physical mechanism dominates the mass budget.
 
 \begin{figure}[!htbp]
 	\centering
@@ -1591,7 +1582,7 @@ $\left| B \right| \propto n^{2/3}  \rightarrow \left| B \right| \propto n^{1}$.
 		The best-fit power law $M_* \propto t^{2.08}$ is shown as a
 		dashed red line; the reference $t^2$ scaling as a dotted pink line.
 		Bottom: star formation efficiency $f_*$ within the disk
-		(green solid) and within the $0.1$ pc aperture (green dashed). \skcomment{Add legends, make lines a bit thicker because there's too much whitespace.}
+		(green solid) and within the $0.1$ pc aperture (green dashed).
 	}
 	\label{fig:mass_evol}
 \end{figure}
@@ -1633,24 +1624,26 @@ $\left| B \right| \propto n^{2/3}  \rightarrow \left| B \right| \propto n^{1}$.
 		\label{fig:num_sinks}
 	\end{figure}}
 
-\autoref{fig:mass_evol} shows the \skcut{time} evolution of gas, stellar
-(sink), and total mass within a $0.1$ pc aperture centered on the
-disk. The total stellar mass (orange\skcut{, all sinks combined}\skadd{, solid line}) \skadd{reaches $\sim 200\,\Msun$ by $15\kyr$, growing as $M_* \propto (t - t_0)^{2.08}$ (dashed red line).} \skcut{grows from
-	$\sim 1\,\Msun$ at $t - \tform = 1\kyr$ to $\sim 200\,\Msun$ by
-	$15\kyr$, with a best-fit power law $M_* \propto (t - t_0)^{2.08}$
-	(dashed red line)}. \skcomment{Why cut it off at 1 kyr? Can go lower too to 0.01 or 0.1 kyr.}
-\skcut{This is consistent with the $M_* \propto t^2$
-	scaling predicted by models of accelerating accretion from a
-	turbulent collapsing core} \citep{mckee03}. \skcomment{The disk fragmentation picture (what we actually see in our sim, is very different from the turbulent core collapse picture, so the fact that they agree with each other doesn't mean anything really. You can get the same scaling in other ways too.} \skadd{This is consistent with the $M_* \propto t^2$ scaling predicted by} \skcomment{Add citation here and then describe the theory here and just say Murray+17 confirmed this scaling in AMR sims, although you don't need to say this last sentence. You should mention the rho(r) scaling you find above and that it doesn't look like r1.5, and yet you see the mass growing as t2}
+\autoref{fig:mass_evol} shows the time evolution of gas, stellar
+(sink), and total mass within a $0.1$ pc aperture centred on the
+disk.
+
+The total stellar mass (orange, all sinks combined) grows from
+$\sim 1\,\Msun$ at $t - \tform = 1\kyr$ to $\sim 200\,\Msun$ by
+$15\kyr$, with a best-fit power law $M_* \propto (t - t_0)^{2.08}$
+(dashed red line).
+This is consistent with the $M_* \propto t^2$
+scaling predicted by models of accelerating accretion from a
+turbulent collapsing core \citep{mckee03}.
 \citet{murray16} confirmed this scaling in high-resolution AMR
 simulations of self-gravitating turbulent collapse, finding that
 the density inside the stellar sphere of influence evolves to a
 time-independent attractor $\rho(r,t) \to \rho(r) \propto r^{-3/2}$,
 which, combined with Keplerian infall velocities, yields a mass
-accretion rate $\dot{M} \propto t$ and thus $M_* \propto t^2$. \skcomment{You need to cite more papers by Norm here -- that wasn't the only papers, there's 3 of them I think.}
-\skcut{Our measured exponent of $2.08$ extends the} \citet{murray16} \skcut{result from
-	parsec-scale molecular cloud collapse to the sub-AU scales of
-	Population III accretion disks.}
+accretion rate $\dot{M} \propto t$ and thus $M_* \propto t^2$.
+Our measured exponent of $2.08$ extends the \citet{murray16} result from
+parsec-scale molecular cloud collapse to the sub-AU scales of
+Population III accretion disks.
 
 The disk gas mass (cyan solid) starts at $\sim 50\,\Msun$ and
 remains roughly constant for the first $\sim 3\kyr$, as infall
@@ -1897,13 +1890,6 @@ $>2000\,\AU$; the two most massive sinks in our simulation -- which
 dominate the mass budget throughout -- may represent an analogous
 central binary, with the surrounding cluster population arising
 from subsequent disk fragmentation.
-\added{A key qualitative difference from these earlier studies is that
-	our protostars form within a single, large-scale disk rather than in
-	small, circum-protostellar disks. The disk extends to $\sim 2500\,\AU$
-	and fragments repeatedly, so the entire protostellar population shares a
-	common gas reservoir and competes for the same infalling material. This
-	geometry naturally accounts for the large number of sinks and for the
-	accelerating, super-quadratic stellar-mass growth we report.}
 
 % -----------------------------------------------------------
 \subsection{Star formation efficiency}
